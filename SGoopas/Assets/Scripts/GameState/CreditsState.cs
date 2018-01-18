@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Credits : IGameState
+public class CreditsState : IGameState
 {
+    private const string sceneName = "Credits";
     void IGameState.onEnter()
     {
-        SceneManager.LoadScene(4, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
     void IGameState.onExit()
     {
-        SceneManager.UnloadSceneAsync(4);
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 }

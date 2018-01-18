@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level1 : IGameState
+public class IntroState : IGameState
 {
+    private const string sceneName = "Intro";
     void IGameState.onEnter()
     {
-        SceneManager.LoadScene(3, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
     void IGameState.onExit()
     {
-        SceneManager.UnloadSceneAsync(3);
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 }

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Intro : IGameState
+public class PongState : IGameState
 {
+    private const string sceneName = "Pong";
     void IGameState.onEnter()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
     }
 
     void IGameState.onExit()
     {
-        //SceneManager.UnloadSceneAsync(1);
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 }

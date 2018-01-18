@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour {
 
 	public void Play()
     {
-        SceneManager.LoadScene(3);
+        MasterStateMachine.Instance.setState(new PongState());
     }
 
     public void Credits()
     {
-        SceneManager.LoadScene(4);
+        MasterStateMachine.Instance.setState(new CreditsState());
     }
 
     public void Quit()

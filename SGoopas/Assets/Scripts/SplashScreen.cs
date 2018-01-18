@@ -28,8 +28,7 @@ public class SplashScreen : MonoBehaviour {
         FadeOut(goomba);
         yield return new WaitForSeconds(2.5f);
 
-        MasterSceneController dummy = MasterSceneController.Instance;
-        dummy.setState(new Menu());
+        MasterStateMachine.Instance.setState(new MainMenuState());
     }
 	
     public void FadeIn(Image image)
