@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/_Scenes/MasterScene.unity
     guid: 7a22783fd6a9142449d6fe03b09b036e
   - enabled: 1
-    path: Assets/_Scenes/Initial.unity
+    path: Assets/_Scenes/Intro.unity
     guid: 2a9afa103af8f3545892f744c2a23097
   - enabled: 1
     path: Assets/_Scenes/MainMenu.unity
     guid: 17a54b12a86785f4ca87553f850035f2
   - enabled: 1
-    path: Assets/_Scenes/MainScene.unity
-    guid: b8978622720564ad287e7563d73e79dc
+    path: Assets/_Scenes/Pong.unity
+    guid: 5cc3a89922a1240e1ace1ab620e63e33
   - enabled: 1
     path: Assets/_Scenes/Credits.unity
     guid: f328a27d0ce3fa843be52309dc547a02

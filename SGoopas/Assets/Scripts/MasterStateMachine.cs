@@ -28,7 +28,7 @@ public class MasterStateMachine
 
     public void setState(IGameState state)
     {
-        if (currentState != null)
+        if (currentState != null && !(state is PausedState))
         {
             currentState.onExit();
         }
