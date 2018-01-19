@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 1139710041}
   - component: {fileID: 1139710040}
   - component: {fileID: 1139710045}
+  - component: {fileID: 1139710046}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -577,6 +578,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbf18f5184f52249b0c49c948000c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1139710046
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139710039}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1139712897
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +603,7 @@ GameObject:
   - component: {fileID: 1139712900}
   - component: {fileID: 1139712899}
   - component: {fileID: 1139712903}
+  - component: {fileID: 1139712904}
   m_Layer: 0
   m_Name: Right Paddle
   m_TagString: Untagged
@@ -694,6 +708,19 @@ MonoBehaviour:
   zMax: 3.75
   speedLimit: 0.2
   ball: {fileID: 1139710039}
+--- !u!114 &1139712904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139712897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUpAmmount: 50
+  changeDirectionAmmount: 50
 --- !u!1 &1202086198
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +734,7 @@ GameObject:
   - component: {fileID: 1202086201}
   - component: {fileID: 1202086200}
   - component: {fileID: 1202086204}
+  - component: {fileID: 1202086205}
   m_Layer: 0
   m_Name: Left Paddle
   m_TagString: Untagged
@@ -811,6 +839,19 @@ MonoBehaviour:
   zMax: 3.75
   speedLimit: 0.5
   sensitivity: 0.5
+--- !u!114 &1202086205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1202086198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUpAmmount: 50
+  changeDirectionAmmount: 50
 --- !u!1 &1312104403
 GameObject:
   m_ObjectHideFlags: 0
