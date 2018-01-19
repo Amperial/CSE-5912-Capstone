@@ -11,6 +11,7 @@ public class GoalScore : MonoBehaviour {
         if (other.gameObject.name.Equals("Ball"))
         {
             score.IncrementScore();
+            transform.root.gameObject.SendMessage("Score");
         }
     }
 }
