@@ -806,7 +806,7 @@ SphereCollider:
   m_GameObject: {fileID: 1139710039}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -915,6 +915,7 @@ GameObject:
   - component: {fileID: 1139712899}
   - component: {fileID: 1139712903}
   - component: {fileID: 1139712904}
+  - component: {fileID: 1139712905}
   m_Layer: 0
   m_Name: Right Paddle
   m_TagString: Untagged
@@ -1032,6 +1033,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUpAmmount: 50
   changeDirectionAmmount: 50
+--- !u!65 &1139712905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139712897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1157182962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,6 +1121,7 @@ GameObject:
   - component: {fileID: 1202086200}
   - component: {fileID: 1202086204}
   - component: {fileID: 1202086205}
+  - component: {fileID: 1202086206}
   m_Layer: 0
   m_Name: Left Paddle
   m_TagString: Untagged
@@ -1225,6 +1239,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedUpAmmount: 50
   changeDirectionAmmount: 50
+--- !u!65 &1202086206
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1202086198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1233969996
 GameObject:
   m_ObjectHideFlags: 0
