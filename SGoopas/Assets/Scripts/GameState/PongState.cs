@@ -15,4 +15,14 @@ public class PongState : IGameState
     {
         SceneManager.UnloadSceneAsync(sceneName);
     }
+
+    void IGameState.onPause()
+    {
+        // No-op for now, will eventually freeze items within pong.
+    }
+
+    void IGameState.onUnpause()
+    {
+        // No-op for now, will eventually unfreeze items within the game.
+    }
 }

@@ -15,4 +15,14 @@ public class CreditsState : IGameState
     {
         SceneManager.UnloadSceneAsync(sceneName);
     }
+
+    void IGameState.onPause()
+    {
+        // No-op.
+    }
+
+    void IGameState.onUnpause()
+    {
+        // No-op.
+    }
 }

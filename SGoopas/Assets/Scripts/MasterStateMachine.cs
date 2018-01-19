@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
  */
 public class MasterStateMachine
 {
-
     private static MasterStateMachine instance;
+    private const string pauseScene = "Paused";
+    private bool isPaused = false;
     IGameState currentState;
 
     private MasterStateMachine() { }
@@ -28,11 +29,29 @@ public class MasterStateMachine
 
     public void setState(IGameState state)
     {
-        if (currentState != null && !(state is PausedState))
+        if (currentState != null)
         {
             currentState.onExit();
         }
         currentState = state;
         currentState.onEnter();
+    }
+
+    public void pause() {
+        if (!isPaused)
+        {
+            isPaused = true;
+            currentState.onPause();
+            SceneManager.LoadScene(pauseScene, LoadSceneMode.Additive);
+        }
+    }
+
+    public void unpause() {
+        if (isPaused)
+        {
+            isPaused = false;
+            currentState.onUnpause();
+            SceneManager.UnloadSceneAsync(pauseScene);
+        }
     }
 }
