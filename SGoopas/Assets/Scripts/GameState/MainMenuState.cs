@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuState : IGameState {
     private const string sceneName = "MainMenu";
+
+    AsyncOperation IGameState.load()
+    {
+        throw new System.NotImplementedException();
+    }
+
     void IGameState.onEnter()
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

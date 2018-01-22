@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class PongState : IGameState
 {
     private const string sceneName = "Pong";
+
+    AsyncOperation IGameState.load()
+    {
+        return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+    }
+
     void IGameState.onEnter()
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        
     }
 
     void IGameState.onExit()

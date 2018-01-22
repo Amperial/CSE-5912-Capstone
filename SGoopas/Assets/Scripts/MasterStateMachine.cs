@@ -54,4 +54,9 @@ public class MasterStateMachine
             SceneManager.UnloadSceneAsync(pauseScene);
         }
     }
+
+    public AsyncOperation load(IGameState state)
+    {
+        return state.load();
+    }
 }
