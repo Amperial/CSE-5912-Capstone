@@ -7,4 +7,10 @@ public class MasterSceneController : MonoBehaviour {
 	void Start () {
         MasterStateMachine.Instance.setState(new IntroState());
     }
+
+    void LateUpdate()
+    {
+        if (Input.GetKey(KeyCode.F1))
+            ScreenCapture.CaptureScreenshot("Assets/Screenshots/Shot1.png");
+    }
 }
