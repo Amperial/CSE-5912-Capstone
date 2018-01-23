@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject loadScreen;
     public Slider slider;
     public Text progressTxt;
+    public AudioSource buttonPress;
 
     void Start()
     {
@@ -15,17 +16,24 @@ public class MainMenu : MonoBehaviour {
     }
 	public void Play(int level)
     {
+        buttonPress.Play();
         StartCoroutine(LoadLevel(level));
     }
 
     public void Credits()
     {
+        buttonPress.Play();
         MasterStateMachine.Instance.setState(new CreditsState());
     }
 
     public void Quit()
     {
+        buttonPress.Play();
         Application.Quit();
+    }
+
+    private void PlaySound() {
+        buttonPress.Play();
     }
 
     IEnumerator LoadLevel(int level)
