@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour {
     private int count;
 
+    private int savedScore;
+
     public void IncrementScore()
     {
         count++;
@@ -54,6 +56,14 @@ public class Score : MonoBehaviour {
     //       }
     //}
 
+    void Save()
+    {
+        savedScore = count;
+    }
+    void Load()
+    {
+        count = savedScore;
+    }
     void UpdateScore(Text text, int score)
     {
         text.text = "Score: " + score.ToString();
