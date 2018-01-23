@@ -696,9 +696,9 @@ GameObject:
   - component: {fileID: 1139710041}
   - component: {fileID: 1139710040}
   - component: {fileID: 1139710045}
-  - component: {fileID: 1139710046}
   - component: {fileID: 1139710048}
   - component: {fileID: 1139710047}
+  - component: {fileID: 1139710049}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -798,18 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbf18f5184f52249b0c49c948000c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &1139710046
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1139710039}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  initialSpeed: 100
 --- !u!114 &1139710047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,6 +890,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1139710049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1139710039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c670899b9b126144496bed4b82396ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1139712897
 GameObject:
   m_ObjectHideFlags: 0
