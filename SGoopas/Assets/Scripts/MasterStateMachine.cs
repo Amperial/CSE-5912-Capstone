@@ -11,7 +11,7 @@ public class MasterStateMachine
     private static MasterStateMachine instance;
     private const string pauseScene = "Paused";
     private bool isPaused = false;
-    IGameState currentState;
+    private IGameState currentState;
 
     private MasterStateMachine() { }
 
@@ -26,6 +26,9 @@ public class MasterStateMachine
             return instance;
         }
     }
+
+    public IGameState getState() { return currentState; }
+    public bool getPaused() { return isPaused; }
 
     public void setState(IGameState state)
     {
