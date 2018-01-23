@@ -34,7 +34,11 @@ public class MainMenu : MonoBehaviour {
         loading = new PongState();
 
         float progress;
+<<<<<<< HEAD
         AsyncOperation operation = loading.load();
+=======
+        AsyncOperation operation = MasterStateMachine.Instance.load(loading);
+>>>>>>> ea0b84851192348e8dfe87de497327fbb828b885
         loadScreen.SetActive(true);
         while (!operation.isDone)
         {
