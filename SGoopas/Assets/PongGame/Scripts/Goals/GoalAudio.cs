@@ -6,7 +6,6 @@ public class GoalAudio : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        print("On Trigger Enter Goal Audio: " + other.gameObject.name);
         if (other.gameObject.name.Equals("Ball"))
         {
             AudioSource scoreSound = this.GetComponent<AudioSource>();
