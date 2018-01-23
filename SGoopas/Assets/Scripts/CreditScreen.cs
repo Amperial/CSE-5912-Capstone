@@ -21,6 +21,8 @@ public class CreditScreen : MonoBehaviour {
 		if (transform.position.y < credHeightBot)
         {
             transform.Translate(new Vector3(0, speed, 0));
+        } else {
+            MasterStateMachine.Instance.setState(new MainMenuState());
         }
 	}
 }
