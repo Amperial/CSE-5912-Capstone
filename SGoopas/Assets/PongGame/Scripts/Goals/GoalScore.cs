@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GoalAudio : MonoBehaviour {
-
+public class GoalScore : MonoBehaviour {
+    public Score score;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Equals("Ball"))
         {
-            AudioSource scoreSound = this.GetComponent<AudioSource>();
-            scoreSound.Play();
+            score.IncrementScore();
+            transform.root.gameObject.BroadcastMessage("RestartGame", false); ;
         }
     }
 }
