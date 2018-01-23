@@ -7,7 +7,6 @@ public class GoalScore : MonoBehaviour {
     public Score score;
     void OnTriggerEnter(Collider other)
     {
-        print("On Trigger Enter Goal Score: " + other.gameObject.name);
         if (other.gameObject.name.Equals("Ball"))
         {
             score.IncrementScore();
