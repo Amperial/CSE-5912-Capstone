@@ -16,7 +16,7 @@ public class MasterSceneController : MonoBehaviour {
             ScreenCapture.CaptureScreenshot("Assets/Screenshots/Shot1.png");
         if (Input.GetKey(KeyCode.Escape))
         {
-            if (MasterStateMachine.Instance.getState() is PongState && delay == 0)
+            if (MasterStateMachine.Instance.getState() is GameMainState && delay == 0)
             {
                 delay = 10;
                 if (MasterStateMachine.Instance.getPaused())

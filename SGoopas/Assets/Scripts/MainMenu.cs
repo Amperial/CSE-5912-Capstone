@@ -33,8 +33,8 @@ public class MainMenu : MonoBehaviour {
 
     IEnumerator LoadLevel(int level)
     {
-        PongState loading;
-        loading = new PongState();
+        GameMainState loading;
+        loading = new GameMainState();
 
         float progress;
         AsyncOperation operation = loading.loadAsynchronously();
