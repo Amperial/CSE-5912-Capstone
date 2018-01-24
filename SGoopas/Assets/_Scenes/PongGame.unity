@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43668893, g: 0.4842832, b: 0.56452656, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -570,8 +570,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 30}
+  m_Center: {x: 0, y: 0, z: 14}
 --- !u!33 &721687122
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -654,8 +654,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 30}
+  m_Center: {x: 0, y: 0, z: -14}
 --- !u!33 &1106273722
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   speedUpBall: 105
   speedMultiplier: 1.5
   computerPaddle: {fileID: 1139712897}
-  controlComputer: 112
+  controlComputer: 117
 --- !u!114 &1124247646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!23 &1139710041
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebbf18f5184f52249b0c49c948000c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 100
+  initialSpeed: 150
 --- !u!114 &1139710046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +999,6 @@ GameObject:
   - component: {fileID: 1139712903}
   - component: {fileID: 1139712906}
   - component: {fileID: 1139712904}
-  - component: {fileID: 1139712905}
   m_Layer: 0
   m_Name: Right Paddle
   m_TagString: Untagged
@@ -1031,10 +1030,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!23 &1139712900
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1076,11 +1075,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1139712897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 30, y: 1, z: 1}
+  m_Center: {x: 14, y: 0, z: 0}
 --- !u!33 &1139712902
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1115,20 +1114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmount: 0
-  changeDirectionAmount: 0
---- !u!65 &1139712905
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1139712897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  speedUpAmount: 5
+  maxBounceVelocity: 10
 --- !u!114 &1139712906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,7 +1204,6 @@ GameObject:
   - component: {fileID: 1202086204}
   - component: {fileID: 1202086207}
   - component: {fileID: 1202086205}
-  - component: {fileID: 1202086206}
   m_Layer: 0
   m_Name: Left Paddle
   m_TagString: Untagged
@@ -1249,10 +1235,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!23 &1202086201
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1294,11 +1280,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1202086198}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 30, y: 1, z: 1}
+  m_Center: {x: -14, y: 0, z: 0}
 --- !u!33 &1202086203
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1333,20 +1319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmount: 0
-  changeDirectionAmount: 0
---- !u!65 &1202086206
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1202086198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  speedUpAmount: 5
+  maxBounceVelocity: 10
 --- !u!114 &1202086207
 MonoBehaviour:
   m_ObjectHideFlags: 0
