@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43668893, g: 0.4842832, b: 0.56452656, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -673,6 +673,8 @@ GameObject:
   - component: {fileID: 1124247642}
   - component: {fileID: 1124247643}
   - component: {fileID: 1124247644}
+  - component: {fileID: 1124247645}
+  - component: {fileID: 1124247646}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -722,6 +724,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 631bd99380fe9c746aab6b8f862afb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1124247645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1124247641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3be0402a0ea1a46abe8e8171a7e9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 1139710039}
+  resetBall: 111
+  speedUpBall: 105
+  speedMultiplier: 1.5
+  computerPaddle: {fileID: 1139712897}
+  controlComputer: 112
+--- !u!114 &1124247646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1124247641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c34d4744d934ddb8b0f9ca9bfd87d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1139710039
