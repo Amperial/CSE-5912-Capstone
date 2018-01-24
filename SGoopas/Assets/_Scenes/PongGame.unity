@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 1124247642}
   - component: {fileID: 1124247643}
   - component: {fileID: 1124247644}
+  - component: {fileID: 1124247645}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -707,6 +708,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631bd99380fe9c746aab6b8f862afb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1124247645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1124247641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3be0402a0ea1a46abe8e8171a7e9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 1139710039}
+  resetBall: 111
+  speedUpBall: 105
+  speedMultiplier: 1.5
+  computerPaddle: {fileID: 1139712897}
+  controlComputer: 112
 --- !u!1 &1139710039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1073,7 @@ MonoBehaviour:
   paddle: {fileID: 1139712897}
   zMin: -3.75
   zMax: 3.75
-  speedLimit: 0.2
+  speedLimit: 0.1
   ball: {fileID: 1139710039}
 --- !u!114 &1139712904
 MonoBehaviour:
@@ -1068,8 +1086,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmmount: 50
-  changeDirectionAmmount: 50
+  speedUpAmount: 0
+  changeDirectionAmount: 0
 --- !u!65 &1139712905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1286,8 +1304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmmount: 50
-  changeDirectionAmmount: 50
+  speedUpAmount: 0
+  changeDirectionAmount: 0
 --- !u!65 &1202086206
 BoxCollider:
   m_ObjectHideFlags: 0
