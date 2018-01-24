@@ -13,7 +13,7 @@ public class KeybindController : MonoBehaviour {
     public KeyCode controlComputer = KeyCode.P;
     
     void Update () {
-        if (Input.GetKey(resetBall))
+        if (Input.GetKeyDown(resetBall))
         {
             ball.GetComponent<BallRestart>().RestartGame();
         } else if (Input.GetKeyDown(speedUpBall))
