@@ -27,6 +27,9 @@ public class MasterStateMachine
         }
     }
 
+    public IGameState getState() { return currentState; }
+    public bool getPaused() { return isPaused; }
+
     public void setState(IGameState state)
     {
         if (currentState != null)
