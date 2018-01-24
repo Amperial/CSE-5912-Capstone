@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Quit()
     {
-        Application.Quit();
+        MasterStateMachine.Instance.setState(new QuitState());
     }
 
     IEnumerator LoadLevel(int level)
