@@ -8,11 +8,14 @@ public class SplashScreen : MonoBehaviour {
 
     public Image unity,osu,goomba;
 
-	IEnumerator Start () {
+	void Start () {
         unity.canvasRenderer.SetAlpha(0f);
         osu.canvasRenderer.SetAlpha(0f);
         goomba.canvasRenderer.SetAlpha(0f);
+        StartCoroutine("RunFadeAnimation");
+    }
 
+    IEnumerator RunFadeAnimation() {
         FadeIn(unity);
         yield return new WaitForSeconds(2.5f);
         FadeOut(unity);
