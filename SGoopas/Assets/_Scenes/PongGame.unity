@@ -725,7 +725,7 @@ MonoBehaviour:
   speedUpBall: 105
   speedMultiplier: 1.5
   computerPaddle: {fileID: 1139712897}
-  controlComputer: 112
+  controlComputer: 117
 --- !u!114 &1124247646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1097,8 +1097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmount: 10
-  maxBounceVelocity: 20
+  speedUpAmount: 5
+  maxBounceVelocity: 10
 --- !u!114 &1139712906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,8 +1302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323c30dae479554388af16f5c5dd867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedUpAmount: 10
-  maxBounceVelocity: 20
+  speedUpAmount: 5
+  maxBounceVelocity: 10
 --- !u!114 &1202086207
 MonoBehaviour:
   m_ObjectHideFlags: 0
