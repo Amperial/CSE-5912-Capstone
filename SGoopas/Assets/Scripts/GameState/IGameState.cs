@@ -12,5 +12,4 @@ public interface IGameState{
     void onExit();
     void onPause();
     void onUnpause();
-    AsyncOperation load();
 }

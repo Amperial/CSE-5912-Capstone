@@ -30,22 +30,20 @@ public class MainMenu : MonoBehaviour {
 
     IEnumerator LoadLevel(int level)
     {
-        IGameState loading;
+        PongState loading;
         loading = new PongState();
 
         float progress;
-        AsyncOperation operation = loading.load();
+        AsyncOperation operation = loading.loadAsynchronously();
         loadScreen.SetActive(true);
         while (!operation.isDone)
         {
             progress = Mathf.Clamp01(operation.progress / .9f);
-
-            Debug.Log(operation.progress);
             slider.value = progress;
             progressTxt.text = progress * 100f + "%";
 
             yield return null;
         }
-        MasterStateMachine.Instance.setState(new PongState());
+        MasterStateMachine.Instance.setState(loading);
     }
 }

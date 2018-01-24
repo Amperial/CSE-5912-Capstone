@@ -7,11 +7,6 @@ public class IntroState : IGameState
 {
     private const string sceneName = "Intro";
 
-    AsyncOperation IGameState.load()
-    {
-        throw new System.NotImplementedException();
-    }
-
     void IGameState.onEnter()
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

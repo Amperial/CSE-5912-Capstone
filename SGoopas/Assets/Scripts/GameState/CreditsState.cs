@@ -7,11 +7,6 @@ public class CreditsState : IGameState
 {
     private const string sceneName = "Credits";
 
-    AsyncOperation IGameState.load()
-    {
-        throw new System.NotImplementedException();
-    }
-
     void IGameState.onEnter()
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

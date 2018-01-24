@@ -7,14 +7,17 @@ public class PongState : IGameState
 {
     private const string sceneName = "Pong";
 
-    AsyncOperation IGameState.load()
+    /*
+     * Load this scene asynchronously.
+     */
+    public AsyncOperation loadAsynchronously()
     {
         return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
     void IGameState.onEnter()
     {
-        
+        // No-op, this scene should be loaded asynchronously.
     }
 
     void IGameState.onExit()
