@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KeyboardPaddleController : PaddleController {
     
-    public KeyCode upKey;
-    public KeyCode downKey;
+    public KeyCode upKey = KeyCode.UpArrow;
+    public KeyCode downKey = KeyCode.DownArrow;
 
     void Update() {
         float move = 0f;
@@ -18,6 +18,5 @@ public class KeyboardPaddleController : PaddleController {
             move -= speedLimit;
         }
         MovePaddle(move);
-        
     }
 }

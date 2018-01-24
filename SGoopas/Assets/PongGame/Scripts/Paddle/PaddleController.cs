@@ -5,9 +5,9 @@ using UnityEngine;
 public class PaddleController : MonoBehaviour {
 
     public GameObject paddle;
-    public float zMin;
-    public float zMax;
-    public float speedLimit;
+    public float zMin = -3.75f;
+    public float zMax = 3.75f;
+    public float speedLimit = 0.1f;
 
     // Move paddle in the z direction by the given amount
     public void MovePaddle(float amount)
