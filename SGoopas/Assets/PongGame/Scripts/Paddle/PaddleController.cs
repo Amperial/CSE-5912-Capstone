@@ -15,8 +15,7 @@ public class PaddleController : MonoBehaviour {
         if (amount != 0f)
         {
             Vector3 position = paddle.transform.position;
-            if (amount > speedLimit) amount = speedLimit;
-            if (amount < -speedLimit) amount = -speedLimit;
+            amount = Mathf.Clamp(amount, -speedLimit, speedLimit);
             position.z = Mathf.Clamp(position.z + amount, zMin, zMax);
             paddle.transform.position = position;
         }
