@@ -5,8 +5,8 @@ using UnityEngine;
 public class MousePaddleController : PaddleController {
 
     public float sensitivity = 2f;
-    
-    void Update () {
+	
+	void Update () {
         MovePaddle(Input.GetAxis("Mouse Y") * sensitivity);
-    }
+	}
 }
