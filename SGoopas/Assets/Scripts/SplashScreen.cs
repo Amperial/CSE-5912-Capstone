@@ -30,6 +30,7 @@ public class SplashScreen : MonoBehaviour {
         yield return new WaitForSeconds(2.5f);
         FadeOut(goomba);
         yield return new WaitForSeconds(2.5f);
+        MasterStateMachine.Instance.setState(new MainMenuState());
     }
 	
     public void FadeIn(Image image)
