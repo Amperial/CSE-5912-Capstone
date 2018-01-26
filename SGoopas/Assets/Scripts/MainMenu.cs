@@ -8,30 +8,33 @@ public class MainMenu : MonoBehaviour {
     public GameObject loadScreen;
     public Slider slider;
     public Text progressTxt;
-
+    public AudioSource buttonPress;
     void Start()
     {
         loadScreen.SetActive(false);
     }
 	public void Play(int level)
     {
+        buttonPress.Play();
         StartCoroutine(LoadLevel(level));
     }
 
     public void Credits()
     {
+        buttonPress.Play();
         MasterStateMachine.Instance.setState(new CreditsState());
     }
 
     public void Quit()
     {
-        Application.Quit();
+        buttonPress.Play();
+        MasterStateMachine.Instance.setState(new QuitState());
     }
 
     IEnumerator LoadLevel(int level)
     {
-        PongState loading;
-        loading = new PongState();
+        GameMainState loading;
+        loading = new GameMainState();
 
         float progress;
         AsyncOperation operation = loading.loadAsynchronously();
