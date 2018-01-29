@@ -8,7 +8,7 @@ public class ShadowScript {
 		Given a lightPos, a gameObject, and a wallPlane, this method rerturns the points on wallPlane
 		that represent the shadow casted by the light on the gameObject onto the wallPlane
 	*/
-	public static List<Vector3> GetShadowPoints (Vector3 lightPos, GameObject gameObject, Plane wallPlane) {
+	public static List<Vector3> GetPointLightShadow (Vector3 lightPos, GameObject gameObject, Plane wallPlane) {
 		List<Vector3> rays = new List<Vector3>();
 		List<Vector3> wallIntersections = new List<Vector3> ();
 
