@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShadowScript {
+public class ShadowPolygonHelper {
 	/*
-		Given a lightPos, a gameObject, and a wallPlane, this method rerturns the points on wallPlane
-		that represent the shadow casted by the light on the gameObject onto the wallPlane
+		Rerturns the points on wallPlane that represent the shadow casted by the light on the gameObject onto the wallPlane
 	*/
 	public static List<Vector3> GetPointLightShadow (Vector3 lightPos, GameObject gameObject, Plane wallPlane) {
 		List<Vector3> rays = new List<Vector3>();
@@ -30,7 +28,7 @@ public class ShadowScript {
 	}
 
 	/*
-		Returns edge vertices of a mesh that are visible to gameObject.
+		Returns edge vertices of a mesh that are visible from perspective.
 	*/
 	private static List<Vector3> GetEdgeVertices(Vector3 perspective, GameObject gameObject){
 		Mesh m = gameObject.GetComponent<MeshFilter>().mesh;
