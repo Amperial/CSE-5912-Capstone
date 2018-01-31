@@ -6,24 +6,25 @@ public class Grabbing : MonoBehaviour {
 
     private bool grab,trigger;
     private Collider item;
+	GameObject parent;
+
 	void Start () {
         grab = false;
         trigger = false;
+		parent = transform.parent.gameObject;
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
         if (Input.GetKeyDown(KeyCode.R) && grab)
         {
-            GameObject parent = transform.parent.gameObject;
+			item.attachedRigidbody.useGravity = true;
             Destroy(parent.GetComponent<HingeJoint>());
-            item.attachedRigidbody.useGravity = true;
             grab = false;
         }
         if (Input.GetKeyDown(KeyCode.G) && !grab && trigger)
         {
             Debug.Log("GRAB INITIATED");
-            GameObject parent = transform.parent.gameObject;
 
             parent.AddComponent<HingeJoint>();
 
@@ -42,7 +43,7 @@ public class Grabbing : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) && grab)
         {
-            HingeJoint joint = transform.parent.gameObject.GetComponent<HingeJoint>();
+            HingeJoint joint = parent.GetComponent<HingeJoint>();
 
             JointSpring hingeSpring = joint.spring;
             if(hingeSpring.targetPosition < 60)
@@ -51,7 +52,7 @@ public class Grabbing : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && grab)
         {
-            HingeJoint joint = transform.parent.gameObject.GetComponent<HingeJoint>();
+            HingeJoint joint = parent.GetComponent<HingeJoint>();
 
             JointSpring hingeSpring = joint.spring;
             if(hingeSpring.targetPosition > 10)
@@ -60,11 +61,13 @@ public class Grabbing : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        trigger = true;
-        item = other;
-    }
+	void OnTriggerStay(Collider other){
+
+		if (!grab) {
+			trigger = true;
+			item = other;
+		}
+	}
 
     void OnTriggerExit(Collider other)
     {
