@@ -183,7 +183,7 @@ public class ShadowPolygonHelper
         }
         average = average / count;
         //Set the transform of the polygonObject to center it around the average of the points
-        polygonObject.transform.position = average;
+        polygonObject.transform.position = new Vector3(average.x, average.y, wallPlane.distance);
         foreach (Vector2 p2Temp in points2DTemp)
         {
             Vector2 p2 = p2Temp - average;
