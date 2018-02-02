@@ -184,6 +184,7 @@ public class ShadowPolygonHelper
         //Transform our ugly basis into an orthanormal one
         axis1 = axis1.normalized;
         axis2 = axis2 - Vector3.Dot(axis1, axis2) * axis1;
+        axis2 = axis2.normalized;
 
         //Construct the matrix representing the basis
         Matrix4x4 basis = new Matrix4x4(new Vector4(axis1.x, axis1.y, axis1.z, 0), new Vector4(axis2.x, axis2.y, axis2.z, 0), new Vector4(normal.x, normal.y, normal.z, 0), new Vector4(0, 0, 0, 1));
