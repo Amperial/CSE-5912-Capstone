@@ -6,18 +6,21 @@ public class MathHelpers {
     /*
         A helper method to translate a rotation represented by a 4x4 matrix into a quaternion for setting an objects transform
     */
-    public static Quaternion QuaternionFromMatrix(Matrix4x4 m)
+    public static Quaternion QuaternionFromMatrix(Matrix4x4 matrix)
     {
-        //Given in top answer to: https://answers.unity.com/questions/11363/converting-matrix4x4-to-quaternion-vector3.html
-        Quaternion q = new Quaternion();
-        q.w = Mathf.Sqrt(Mathf.Max(0, 1 + m[0, 0] + m[1, 1] + m[2, 2])) / 2;
-        q.x = Mathf.Sqrt(Mathf.Max(0, 1 + m[0, 0] - m[1, 1] - m[2, 2])) / 2;
-        q.y = Mathf.Sqrt(Mathf.Max(0, 1 - m[0, 0] + m[1, 1] - m[2, 2])) / 2;
-        q.z = Mathf.Sqrt(Mathf.Max(0, 1 - m[0, 0] - m[1, 1] + m[2, 2])) / 2;
-        q.x *= Mathf.Sign(q.x * (m[2, 1] - m[1, 2]));
-        q.y *= Mathf.Sign(q.y * (m[0, 2] - m[2, 0]));
-        q.z *= Mathf.Sign(q.z * (m[1, 0] - m[0, 1]));
-        return q;
+        // Taken from https://forum.unity.com/threads/how-to-assign-matrix4x4-to-transform.121966/
+
+        Vector3 forward;
+        forward.x = matrix.m02;
+        forward.y = matrix.m12;
+        forward.z = matrix.m22;
+
+        Vector3 upwards;
+        upwards.x = matrix.m01;
+        upwards.y = matrix.m11;
+        upwards.z = matrix.m21;
+
+        return Quaternion.LookRotation(forward, upwards);
     }
 
     /*
