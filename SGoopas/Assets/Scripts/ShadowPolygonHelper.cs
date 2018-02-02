@@ -137,7 +137,7 @@ public class ShadowPolygonHelper
             lower++;
 
             //modify the upper hull
-            while (upper >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) >= 0)
+            while (upper >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) <= 0)
             {
                 hull.RemoveFirst();
                 upper--;
