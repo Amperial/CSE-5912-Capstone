@@ -95,7 +95,7 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
+    public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
         GameObject shadow = new GameObject();
         List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
