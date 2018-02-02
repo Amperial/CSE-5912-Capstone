@@ -26,7 +26,6 @@ public class ShadowPolygonHelper
         {
             Vector3 intersection = GetRayPlaneIntersection(lightPos, ray, wallPlane.normal, wallPlane.distance);
             wallIntersections.Add(intersection);
-            Debug.DrawLine(lightPos, intersection);
         }
 
         return wallIntersections;

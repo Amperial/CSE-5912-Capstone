@@ -11,9 +11,4 @@ public class ObjectWithShadow : MonoBehaviour {
     {
         ShadowPolygonHelper.CreateShadowGameObject(gameObject, shadowLight.gameObject.transform.position, new Plane(shadowPlane.transform.up.normalized, new Vector3(0, 0, 0)));
     }
-	
-	// Update is called once per frame
-	void Update () {
-        ShadowPolygonHelper.GetPointLightShadow(shadowLight.gameObject.transform.position, gameObject, new Plane(shadowPlane.transform.up.normalized, new Vector3(0, 0, 0)));
-	}
 }
