@@ -128,7 +128,7 @@ public class ShadowPolygonHelper
             Vector2 comparePoint;
 
             //modify the lower hull
-            while(lower >= 2 && CrossProduct(((comparePoint = hull.Last.Value) - hull.Last.Previous.Value), (p - comparePoint)) >= 0)
+            while(lower >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.Last.Value) - hull.Last.Previous.Value), (p - comparePoint)) >= 0)
             {
                 hull.RemoveLast();
                 lower--;
@@ -137,7 +137,7 @@ public class ShadowPolygonHelper
             lower++;
 
             //modify the upper hull
-            while (upper >= 2 && CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) <= 0)
+            while (upper >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) <= 0)
             {
                 hull.RemoveFirst();
                 upper--;
@@ -156,41 +156,74 @@ public class ShadowPolygonHelper
         polygonCollider.points = pointsArray;
     }
 
-    /*
-        Untiy doesn't have a cross product implementation for 2d vectors (as it's not technically defined),
-        so this is a helper method to find the scalar z component of the would-be cross product in 3d space.
-    */
-    private static double CrossProduct(Vector2 p1, Vector2 p2)
-    {
-        return (p1.x * p2.y - p1.y * p2.x);
-    }
+    
     /*
         Returns the 2D representation of the 3D points on the wallPlane. Requires that all the 3D points lie on the wallPlane
     */
     private static List<Vector2> ChangeOfBase3Dto2D(List<Vector3> points3D, Plane wallPlane, GameObject polygonObject)
     {
         List<Vector2> points2D = new List<Vector2>();
-        //This currently only works for walls whose normal is [0,0,1], will be updated to actually change base for the wall later
-        Vector2 average = new Vector2(0, 0);
-        List<Vector2> points2DTemp = new List<Vector2>();
-        int count = 0;
-        foreach(Vector3 p3 in points3D)
+        //Calculate the change of basis
+        Vector3 normal = wallPlane.normal;
+        //Picks some arbitrary vectors that span the plane
+        Vector3 axis1;
+        Vector3 axis2;
+        if (normal.x != 0) {
+            axis1 = new Vector3(normal.y / normal.x, -1, 0);
+            axis2 = new Vector3(normal.z / normal.x, 0, -1);
+        } else if (normal.y != 0)
         {
-            Vector2 p2Temp = new Vector2(p3.x, p3.y);
-            average = average + p2Temp;
-            count++;
+            axis1 = new Vector3(-1, normal.x / normal.y, 0);
+            axis2 = new Vector3(0, normal.z / normal.y, -1);
+        }
+        else //the normal can't be [0,0,0], so Z can't be 0 if the two earlier tests failed
+        {
+            axis1 = new Vector3(-1, 0, normal.x / normal.z);
+            axis2 = new Vector3(0, -1, normal.y / normal.z);
+        }
+        //Transform our ugly basis into an orthanormal one
+        axis1 = axis1.normalized;
+        axis2 = axis2 - Vector3.Dot(axis1, axis2) * axis1;
+        axis2 = axis2.normalized;
+
+        //Construct the matrix representing the basis
+        Matrix4x4 basis = new Matrix4x4(new Vector4(axis1.x, axis1.y, axis1.z, 0), new Vector4(axis2.x, axis2.y, axis2.z, 0), new Vector4(normal.x, normal.y, normal.z, 0), new Vector4(0, 0, 0, 1));
+
+
+        //invert the basis
+
+        Matrix4x4 invertedBasis = basis.inverse;
+
+        //Use the inverted basis to find the 2d points
+        Vector2 average2D = new Vector2(0, 0);
+        Vector3 average3D = new Vector3(0, 0, 0);
+        List<Vector2> points2DTemp = new List<Vector2>();
+
+        foreach (Vector3 p3 in points3D)
+        {
+            average3D = average3D + p3;
+            Vector4 p4 = new Vector4(p3.x, p3.y, p3.z, 1);
+            Vector4 p4Transformed = invertedBasis * p4;
+            //After the transformation we can throw out the w value, which will always be 1, and the z value, which represents the offset from the plane
+            Vector2 p2Temp = new Vector2(p4Transformed.x, p4Transformed.y);
+            average2D = average2D + p2Temp;
             points2DTemp.Add(p2Temp);
         }
-        average = average / count;
-        //Set the transform of the polygonObject to center it around the average of the points
-        polygonObject.transform.position = new Vector3(average.x, average.y, wallPlane.distance);
+        average2D = average2D / points3D.Count;
+        average3D = average3D / points3D.Count;
+        
         foreach (Vector2 p2Temp in points2DTemp)
         {
-            Vector2 p2 = p2Temp - average;
+            Vector2 p2 = p2Temp - average2D;
             points2D.Add(p2);
         }
-        
-        //TODO: Change Base for wall not facing camera
+
+        //Set the transform of the polygonObject to place the shadow in 3d space
+        polygonObject.transform.rotation = MathHelpers.QuaternionFromMatrix(basis);
+        polygonObject.transform.position = average3D;
+
         return points2D;
     }
+
+    
 }
