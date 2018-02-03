@@ -95,27 +95,102 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public PolygonCollider2D GetShadowCollider(List<Vector3> points, Plane wallPlane)
+    public GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
-        List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane);
-        return GetConvexHullPolygon2D(points2D);
+        GameObject shadow = new GameObject();
+        List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
+        
+        shadow.AddComponent<PolygonCollider2D>();
+        ConvexHullPolygon2D(points2D, shadow);
+
+        return shadow;
     }
     /*
         Returns a Polygon2D representing the points in the array
     */
-    public static PolygonCollider2D GetConvexHullPolygon2D(List<Vector2> points)
+    private static void ConvexHullPolygon2D(List<Vector2> point, GameObject polygonObject)
     {
-        PolygonCollider2D polygonCollider = new PolygonCollider2D();
-        //TODO: Actually find the convex hull
-        return polygonCollider;
+        PolygonCollider2D polygonCollider = polygonObject.GetComponent<PolygonCollider2D>();
+        List<Vector2> points = new List<Vector2>(point);
+
+        //Sort the points first by x value, then by y value
+        points.Sort((p1, p2) =>
+            p1.x == p2.x ? p1.y.CompareTo(p2.y) : (p1.x > p2.x ? 1 : -1));
+
+        //Using a LinkedList as it allows for constant time insertions at the beginning and end.
+        LinkedList<Vector2> hull = new LinkedList<Vector2>();
+        //keep track of lower (end of list) and upper (beginning of list) convex hulls
+        int lower = 0, upper = 0;
+
+        for(int i = points.Count - 1; i>=0; i--)
+        {
+            Vector2 p = points[i];
+            Vector2 comparePoint;
+
+            //modify the lower hull
+            while(lower >= 2 && CrossProduct(((comparePoint = hull.Last.Value) - hull.Last.Previous.Value), (p - comparePoint)) >= 0)
+            {
+                hull.RemoveLast();
+                lower--;
+            }
+            hull.AddLast(p);
+            lower++;
+
+            //modify the upper hull
+            while (upper >= 2 && CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) <= 0)
+            {
+                hull.RemoveFirst();
+                upper--;
+            }
+            //Don't want to add the same point twice, so don't add to upper hull if upper == 0
+            if (upper != 0)
+                hull.AddFirst(p);
+            upper++;
+        }
+        hull.RemoveLast();
+
+        //Now take the hull, create an array from it, and use it to modify the PolygonCollider2D component
+        Vector2[] pointsArray = new Vector2[hull.Count];
+        hull.CopyTo(pointsArray, 0);
+
+        polygonCollider.points = pointsArray;
+    }
+
+    /*
+        Untiy doesn't have a cross product implementation for 2d vectors (as it's not technically defined),
+        so this is a helper method to find the scalar z component of the would-be cross product in 3d space.
+    */
+    private static double CrossProduct(Vector2 p1, Vector2 p2)
+    {
+        return (p1.x * p2.y - p1.y * p2.x);
     }
     /*
         Returns the 2D representation of the 3D points on the wallPlane. Requires that all the 3D points lie on the wallPlane
     */
-    public static List<Vector2> ChangeOfBase3Dto2D(List<Vector3> points3D, Plane wallPlane)
+    private static List<Vector2> ChangeOfBase3Dto2D(List<Vector3> points3D, Plane wallPlane, GameObject polygonObject)
     {
         List<Vector2> points2D = new List<Vector2>();
-        //TODO: Actually change base
+        //This currently only works for walls whose normal is [0,0,1], will be updated to actually change base for the wall later
+        Vector2 average = new Vector2(0, 0);
+        List<Vector2> points2DTemp = new List<Vector2>();
+        int count = 0;
+        foreach(Vector3 p3 in points3D)
+        {
+            Vector2 p2Temp = new Vector2(p3.x, p3.y);
+            average = average + p2Temp;
+            count++;
+            points2DTemp.Add(p2Temp);
+        }
+        average = average / count;
+        //Set the transform of the polygonObject to center it around the average of the points
+        polygonObject.transform.position = new Vector3(average.x, average.y, wallPlane.distance);
+        foreach (Vector2 p2Temp in points2DTemp)
+        {
+            Vector2 p2 = p2Temp - average;
+            points2D.Add(p2);
+        }
+        
+        //TODO: Change Base for wall not facing camera
         return points2D;
     }
 }
