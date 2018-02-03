@@ -12,11 +12,11 @@ public class ShadowPolygonHelper
         List<Vector3> rays = new List<Vector3>();
         List<Vector3> wallIntersections = new List<Vector3>();
 
-        //Get edge vertices
-        List<Vector3> edgeVerts = GetEdgeVertices(lightPos, gameObject);
+        //Get mesh vertices
+        List<Vector3> meshVertices = GetWorldVertices(gameObject);
 
         //Determine direction of object vertices
-        foreach (Vector3 v in edgeVerts)
+        foreach (Vector3 v in meshVertices)
         {
             rays.Add((lightPos - v).normalized);
         }
@@ -32,48 +32,24 @@ public class ShadowPolygonHelper
     }
 
     /*
-		Returns edge vertices of a mesh that are visible from perspective.
+		Returns the vertices of a mesh in world space coordinates.
 	*/
-    private static List<Vector3> GetEdgeVertices(Vector3 perspective, GameObject gameObject)
+    private static List<Vector3> GetWorldVertices(GameObject gameObject)
     {
         Mesh m = gameObject.GetComponent<MeshFilter>().mesh;
-        List<Vector3> visibleVerts = new List<Vector3>();
-        List<Vector3> invisibleVerts = new List<Vector3>();
 
         int[] triangles = m.triangles;
         Vector3[] vertices = m.vertices;
 
+        List<Vector3> transformedVertices = new List<Vector3>();
+
         //Convert mesh's localspace points to worldspace points
         for (int i = 0; i < vertices.Length; i++)
         {
-            vertices[i] = gameObject.transform.TransformPoint(vertices[i]);
+            transformedVertices.Add(gameObject.transform.TransformPoint(vertices[i]));
         }
 
-        //Iterate over each triangular face of the mesh
-        for (int i = 0; i < triangles.Length; i += 3)
-        {
-            Plane objectFace = new Plane(
-                          vertices[triangles[i]],
-                          vertices[triangles[i + 1]],
-                          vertices[triangles[i + 2]]);
-
-            //If plane is visible to the light, add each point to the list of visible vertices
-            if (IsPlaneFacingPoint(objectFace, perspective))
-            {
-                visibleVerts.Add(vertices[triangles[i]]);
-                visibleVerts.Add(vertices[triangles[i + 1]]);
-                visibleVerts.Add(vertices[triangles[i + 2]]);
-            }
-            else
-            { //Otherwise...
-                invisibleVerts.Add(vertices[triangles[i]]);
-                invisibleVerts.Add(vertices[triangles[i + 1]]);
-                invisibleVerts.Add(vertices[triangles[i + 2]]);
-            }
-        }
-
-        //Edge vertices are the intersection of ligh-facing plane vertices and nonlight-facing plane vertices
-        return invisibleVerts.Intersect(visibleVerts).Distinct().ToList();
+        return transformedVertices;
     }
 
     /*
