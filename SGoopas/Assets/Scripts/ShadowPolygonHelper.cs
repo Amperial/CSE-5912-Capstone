@@ -95,11 +95,16 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
+    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, Plane wallPlane)
+    {
+        return CreateShadowGameObject(GetPointLightShadow(lightPosition, gameObject, wallPlane), wallPlane);
+    }
+
+    public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
         GameObject shadow = new GameObject();
         List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
-        
+
         shadow.AddComponent<PolygonCollider2D>();
         ConvexHullPolygon2D(points2D, shadow);
 
