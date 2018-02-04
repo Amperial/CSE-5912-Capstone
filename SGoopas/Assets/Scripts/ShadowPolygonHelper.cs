@@ -12,11 +12,11 @@ public class ShadowPolygonHelper
         List<Vector3> rays = new List<Vector3>();
         List<Vector3> wallIntersections = new List<Vector3>();
 
-        //Get edge vertices
-        List<Vector3> edgeVerts = GetEdgeVertices(lightPos, gameObject);
+        //Get mesh vertices
+        List<Vector3> meshVertices = GetWorldVertices(gameObject);
 
         //Determine direction of object vertices
-        foreach (Vector3 v in edgeVerts)
+        foreach (Vector3 v in meshVertices)
         {
             rays.Add((lightPos - v).normalized);
         }
@@ -32,48 +32,24 @@ public class ShadowPolygonHelper
     }
 
     /*
-		Returns edge vertices of a mesh that are visible from perspective.
+		Returns the vertices of a mesh in world space coordinates.
 	*/
-    private static List<Vector3> GetEdgeVertices(Vector3 perspective, GameObject gameObject)
+    private static List<Vector3> GetWorldVertices(GameObject gameObject)
     {
         Mesh m = gameObject.GetComponent<MeshFilter>().mesh;
-        List<Vector3> visibleVerts = new List<Vector3>();
-        List<Vector3> invisibleVerts = new List<Vector3>();
 
         int[] triangles = m.triangles;
         Vector3[] vertices = m.vertices;
 
+        List<Vector3> transformedVertices = new List<Vector3>();
+
         //Convert mesh's localspace points to worldspace points
         for (int i = 0; i < vertices.Length; i++)
         {
-            vertices[i] = gameObject.transform.TransformPoint(vertices[i]);
+            transformedVertices.Add(gameObject.transform.TransformPoint(vertices[i]));
         }
 
-        //Iterate over each triangular face of the mesh
-        for (int i = 0; i < triangles.Length; i += 3)
-        {
-            Plane objectFace = new Plane(
-                          vertices[triangles[i]],
-                          vertices[triangles[i + 1]],
-                          vertices[triangles[i + 2]]);
-
-            //If plane is visible to the light, add each point to the list of visible vertices
-            if (IsPlaneFacingPoint(objectFace, perspective))
-            {
-                visibleVerts.Add(vertices[triangles[i]]);
-                visibleVerts.Add(vertices[triangles[i + 1]]);
-                visibleVerts.Add(vertices[triangles[i + 2]]);
-            }
-            else
-            { //Otherwise...
-                invisibleVerts.Add(vertices[triangles[i]]);
-                invisibleVerts.Add(vertices[triangles[i + 1]]);
-                invisibleVerts.Add(vertices[triangles[i + 2]]);
-            }
-        }
-
-        //Edge vertices are the intersection of ligh-facing plane vertices and nonlight-facing plane vertices
-        return invisibleVerts.Intersect(visibleVerts).Distinct().ToList();
+        return transformedVertices;
     }
 
     /*
@@ -95,11 +71,16 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
+    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, Plane wallPlane)
+    {
+        return CreateShadowGameObject(GetPointLightShadow(lightPosition, gameObject, wallPlane), wallPlane);
+    }
+
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
         GameObject shadow = new GameObject();
         List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
-        
+
         shadow.AddComponent<PolygonCollider2D>();
         ConvexHullPolygon2D(points2D, shadow);
 
@@ -137,7 +118,7 @@ public class ShadowPolygonHelper
             lower++;
 
             //modify the upper hull
-            while (upper >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) >= 0)
+            while (upper >= 2 && MathHelpers.CrossProduct(((comparePoint = hull.First.Value) - hull.First.Next.Value), (p - comparePoint)) <= 0)
             {
                 hull.RemoveFirst();
                 upper--;
@@ -184,6 +165,7 @@ public class ShadowPolygonHelper
         //Transform our ugly basis into an orthanormal one
         axis1 = axis1.normalized;
         axis2 = axis2 - Vector3.Dot(axis1, axis2) * axis1;
+        axis2 = axis2.normalized;
 
         //Construct the matrix representing the basis
         Matrix4x4 basis = new Matrix4x4(new Vector4(axis1.x, axis1.y, axis1.z, 0), new Vector4(axis2.x, axis2.y, axis2.z, 0), new Vector4(normal.x, normal.y, normal.z, 0), new Vector4(0, 0, 0, 1));
