@@ -24,8 +24,6 @@ public class Grabbing : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.G) && !grab && trigger)
         {
-            Debug.Log("GRAB INITIATED");
-
             parent.AddComponent<HingeJoint>();
 
             HingeJoint joint = parent.GetComponent<HingeJoint>();
