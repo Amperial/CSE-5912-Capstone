@@ -30,9 +30,13 @@ public class Grabbing : MonoBehaviour {
             joint.connectedBody = item.attachedRigidbody;
             item.attachedRigidbody.useGravity = false;
 
+            //added spring element to the joint so that the weight of the lifted object can have gameplay effect
             JointSpring hingeSpring = joint.spring;
+            //spring coefficient
             hingeSpring.spring = 10;
+            //damping coefficient
             hingeSpring.damper = 3;
+            //initial joint angle when grabbing; object right in front of player
             hingeSpring.targetPosition = 0;
             joint.spring = hingeSpring;
             joint.useSpring = true;
@@ -45,6 +49,7 @@ public class Grabbing : MonoBehaviour {
 
             JointSpring hingeSpring = joint.spring;
             if(hingeSpring.targetPosition < 60)
+                //increment the angle so that object is lifed. maximum is 60 degree
                 hingeSpring.targetPosition += 10;
             joint.spring = hingeSpring;
         }
