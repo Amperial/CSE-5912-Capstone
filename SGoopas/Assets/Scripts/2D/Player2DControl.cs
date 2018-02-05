@@ -11,6 +11,9 @@ public class Player2DControl : MonoBehaviour
 
     private float maxSpeed = 5f;
     private float jumpForce = 1000f;
+	GameObject shadow;
+	GameObject cube;
+	GameObject light;
 
     void Start()
     {
