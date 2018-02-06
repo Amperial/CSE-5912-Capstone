@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 923224345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c362f507af948e5a3441a1bc79c8a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadowLight: {fileID: 664801369}
@@ -455,11 +455,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1555354667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c362f507af948e5a3441a1bc79c8a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowLight: {fileID: 0}
-  shadowPlane: {fileID: 0}
+  shadowLight: {fileID: 664801369}
+  shadowPlane: {fileID: 1387130232}
 --- !u!1 &1630547697
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 1630547701}
   - component: {fileID: 1630547700}
   - component: {fileID: 1630547699}
+  - component: {fileID: 1630547703}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -617,6 +618,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1630547703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630547697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3458dcb2b7782954b92cdc19b4f384f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889341724
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,11 +722,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889341724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c362f507af948e5a3441a1bc79c8a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowLight: {fileID: 0}
-  shadowPlane: {fileID: 0}
+  shadowLight: {fileID: 664801369}
+  shadowPlane: {fileID: 1387130232}
 --- !u!1 &1934856847
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1934856849}
   - component: {fileID: 1934856848}
+  - component: {fileID: 1934856850}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -761,6 +774,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1934856850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1934856847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f5731d86646cf4886e54ea5b489a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018204268
 GameObject:
   m_ObjectHideFlags: 0
