@@ -5,15 +5,10 @@ using UnityEngine;
 public class Player2DControl : MonoBehaviour
 {
     public float moveForce = 20f;
-
     private bool jump = false;
     private Rigidbody2D rb;
-
     private float maxSpeed = 5f;
     private float jumpForce = 1000f;
-	GameObject shadow;
-	GameObject cube;
-	GameObject light;
 
     void Start()
     {
