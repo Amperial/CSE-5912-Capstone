@@ -5,19 +5,25 @@ using UnityEngine;
 public class Player3DControl : MonoBehaviour {
 
     private Rigidbody rb;
-    public float speed = 5f;
+
 	void Start () {
         rb = transform.GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
 
-        rb.AddForce(new Vector3(moveHorizontal * speed * 20f, 0f, moveVertical * speed * 20f));
+	// FixedUpdate for physics update
+	void FixedUpdate () {
+        if(Input.GetKey(KeyCode.W))
+            rb.AddRelativeForce(new Vector3(0f, 0f, 25f));
+        else if(Input.GetKey(KeyCode.S))
+            rb.AddRelativeForce(new Vector3(0f, 0f, -25f));
+
+        if (Input.GetKey(KeyCode.D))
+            transform.Rotate(new Vector3(0, 1f, 0));
+        else if (Input.GetKey(KeyCode.A))
+            transform.Rotate(new Vector3(0, -1f, 0));
 
         if (Input.GetKeyDown(KeyCode.Space))
-            rb.AddForce(new Vector3(0f, speed * 100f, 0f));
+            rb.AddForce(new Vector3(0f, 500f, 0f));
     }
+
 }
