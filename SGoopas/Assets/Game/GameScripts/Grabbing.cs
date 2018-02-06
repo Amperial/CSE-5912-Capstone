@@ -18,7 +18,6 @@ public class Grabbing : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.R) && grab)
         {
-			item.attachedRigidbody.useGravity = true;
             Destroy(parent.GetComponent<HingeJoint>());
             grab = false;
         }
@@ -28,12 +27,11 @@ public class Grabbing : MonoBehaviour {
 
             HingeJoint joint = parent.GetComponent<HingeJoint>();
             joint.connectedBody = item.attachedRigidbody;
-            item.attachedRigidbody.useGravity = false;
 
             //added spring element to the joint so that the weight of the lifted object can have gameplay effect
             JointSpring hingeSpring = joint.spring;
             //spring coefficient
-            hingeSpring.spring = 10;
+            hingeSpring.spring = 20;
             //damping coefficient
             hingeSpring.damper = 3;
             //initial joint angle when grabbing; object right in front of player
