@@ -66,7 +66,7 @@ public class Grabbing : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
 
-		if (!grab) {
+		if (!grab && other.attachedRigidbody != null) {
 			trigger = true;
 			item = other;
 		}
