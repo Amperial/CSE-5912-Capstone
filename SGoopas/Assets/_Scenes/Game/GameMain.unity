@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 923224349}
   - component: {fileID: 923224348}
   - component: {fileID: 923224347}
+  - component: {fileID: 923224351}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 923224345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd1ca9b04c824c4eaaf6b5d7dfc3115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadowLight: {fileID: 664801369}
@@ -276,6 +277,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 923224345}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &923224351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923224345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66c72c446713b94ba95cd38bf76e5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1387130232
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +386,7 @@ GameObject:
   - component: {fileID: 1555354670}
   - component: {fileID: 1555354669}
   - component: {fileID: 1555354672}
+  - component: {fileID: 1555354673}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -455,11 +468,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1555354667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd1ca9b04c824c4eaaf6b5d7dfc3115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadowLight: {fileID: 664801369}
   shadowPlane: {fileID: 1387130232}
+--- !u!114 &1555354673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555354667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66c72c446713b94ba95cd38bf76e5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1630547697
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +665,7 @@ GameObject:
   - component: {fileID: 1889341727}
   - component: {fileID: 1889341726}
   - component: {fileID: 1889341729}
+  - component: {fileID: 1889341730}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -722,11 +747,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889341724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94eeb184491544e8894218b61a7b7e09, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd1ca9b04c824c4eaaf6b5d7dfc3115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadowLight: {fileID: 664801369}
   shadowPlane: {fileID: 1387130232}
+--- !u!114 &1889341730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889341724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66c72c446713b94ba95cd38bf76e5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1934856847
 GameObject:
   m_ObjectHideFlags: 0
