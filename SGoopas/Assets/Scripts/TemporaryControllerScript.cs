@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TemporaryControllerScript : MonoBehaviour {
     private bool is2D;
+	private bool firstFrame = true;
 	// Use this for initialization
 	void Start () {
         is2D = false;
@@ -11,6 +12,13 @@ public class TemporaryControllerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (firstFrame) {
+			// Default to 3D mode initially, but wait until everything else is loaded first.
+			// There is probably a better way to do this..
+			this.BroadcastMessage ("SwitchTo3D");
+			firstFrame = false;
+		}
+
         if (Input.GetButtonDown("SwapDimension"))
         {
             if (is2D)

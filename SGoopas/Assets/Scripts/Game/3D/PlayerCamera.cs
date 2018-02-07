@@ -4,36 +4,32 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
-    public GameObject played3D;
-    public GameObject played2D;
+    public GameObject player3D;
+    public GameObject player2D;
 
     private bool is2D;
-    private float posDiv;
+	Vector3 initialCameraOffset3D;
+
+	private GameObject relevantGameObject;
 
 	void Start () {
-        is2D = false;
+		relevantGameObject = player3D;
+		initialCameraOffset3D = player3D.transform.position - transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (is2D)
-        {
-            posDiv = played2D.transform.position.x - transform.position.x;
-        }
-        else
-        {
-            posDiv = played3D.transform.position.x - transform.position.x;
-        }
-        transform.Translate(new Vector3(posDiv, 0f, 0f));
+		Vector3 posDiv = (relevantGameObject.transform.position - transform.position) - initialCameraOffset3D;
+		transform.Translate(posDiv.x, 0f, posDiv.z, Space.World);
 	}
 
     public void SwitchTo2D()
     {
-        is2D = true;
+		relevantGameObject = player2D;
     }
 
     public void SwitchTo3D()
     {
-        is2D = false;
+		relevantGameObject = player3D;
     }
 }
