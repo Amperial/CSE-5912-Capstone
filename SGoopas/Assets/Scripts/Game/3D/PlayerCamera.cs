@@ -30,12 +30,10 @@ public class PlayerCamera : MonoBehaviour {
     public void SwitchTo2D()
     {
         is2D = true;
-        Debug.Log("2D");
     }
 
     public void SwitchTo3D()
     {
         is2D = false;
-        Debug.Log("3D");
     }
 }
