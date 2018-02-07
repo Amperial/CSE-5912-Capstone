@@ -8,11 +8,6 @@ public abstract class ShadowCaster : MonoBehaviour {
     public GameObject shadowPlane;
     protected GameObject shadow;
 
-    void Start()
-    {
-        CreateShadow();
-    }
-
     public abstract void CreateShadow();
 
     public void ShowShadow()

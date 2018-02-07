@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class StaticShadowController : ShadowController {
 
+    public override void Start()
+    {
+        base.Start();
+
+        shadowCaster.CreateShadow();
+    }
+
     public override void SwitchTo2D()
     {
         base.SwitchTo2D();
