@@ -23,13 +23,31 @@ public class PlayerCamera : MonoBehaviour {
 		transform.Translate(posDiv.x, 0f, posDiv.z, Space.World);
 	}
 
-    public void SwitchTo2D()
+    private void Follow2DPlayer()
     {
-		relevantGameObject = player2D;
+        relevantGameObject = player2D;
     }
 
-    public void SwitchTo3D()
+    private void Follow3DPlayer()
     {
-		relevantGameObject = player3D;
+        relevantGameObject = player3D;
+    }
+
+    public void SwitchTo2D(Cancellable cancellable)
+    {
+        if (!cancellable.IsCancelled())
+        {
+            Follow2DPlayer();
+            cancellable.IfCancelled(Follow3DPlayer);
+        }
+    }
+
+    public void SwitchTo3D(Cancellable cancellable)
+    {
+        if (!cancellable.IsCancelled())
+        {
+            Follow3DPlayer();
+            cancellable.IfCancelled(Follow2DPlayer);
+        }
     }
 }

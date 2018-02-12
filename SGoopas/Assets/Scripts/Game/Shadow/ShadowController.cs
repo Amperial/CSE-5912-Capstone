@@ -13,14 +13,32 @@ public abstract class ShadowController : MonoBehaviour {
         shadowCaster = gameObject.GetComponent<ShadowCaster>();
     }
 
-    public virtual void SwitchTo2D()
+    public void ShowObject()
+    {
+        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+    }
+
+    public void HideObject()
     {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
     }
 
-    public virtual void SwitchTo3D()
+    public virtual void SwitchTo2D(Cancellable cancellable)
     {
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        if (!cancellable.IsCancelled())
+        {
+            HideObject();
+            cancellable.IfCancelled(ShowObject);
+        }
+    }
+
+    public virtual void SwitchTo3D(Cancellable cancellable)
+    {
+        if (!cancellable.IsCancelled())
+        {
+            ShowObject();
+            cancellable.IfCancelled(HideObject);
+        }
     }
 
 }

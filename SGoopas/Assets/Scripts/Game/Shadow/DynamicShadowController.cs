@@ -17,10 +17,18 @@ public class DynamicShadowController : ShadowController {
         angularVelocity = new Vector3();
     }
 
-    public override void SwitchTo2D()
+    public void RemoveShadow()
     {
-        base.SwitchTo2D();
+        rb.isKinematic = false;
 
+        rb.velocity = linearVelocity;
+        rb.angularVelocity = angularVelocity;
+
+        shadowCaster.DestroyShadow();
+    }
+
+    public void RestoreShadow()
+    {
         linearVelocity = rb.velocity;
         rb.velocity = new Vector3();
         angularVelocity = rb.angularVelocity;
@@ -31,16 +39,26 @@ public class DynamicShadowController : ShadowController {
         shadowCaster.CreateShadow();
     }
 
-    public override void SwitchTo3D()
+    public override void SwitchTo2D(Cancellable cancellable)
     {
-        base.SwitchTo3D();
+        if (!cancellable.IsCancelled())
+        {
+            base.SwitchTo2D(cancellable);
 
-        rb.isKinematic = false;
+            RestoreShadow();
+            cancellable.IfCancelled(RemoveShadow);
+        }
+    }
 
-        rb.velocity = linearVelocity;
-        rb.angularVelocity = angularVelocity;
+    public override void SwitchTo3D(Cancellable cancellable)
+    {
+        if (!cancellable.IsCancelled())
+        {
+            base.SwitchTo3D(cancellable);
 
-        shadowCaster.DestroyShadow();
+            RemoveShadow();
+            cancellable.IfCancelled(RestoreShadow);
+        }
     }
 
 }

@@ -10,6 +10,11 @@ public abstract class ShadowCaster : MonoBehaviour {
 
     public abstract void CreateShadow();
 
+    public GameObject GetShadow()
+    {
+        return shadow;
+    }
+
     public void ShowShadow()
     {
         if (shadow != null)

@@ -13,6 +13,7 @@ public class BinaryPosition : BinaryTriggerable {
     private Vector3 deltaRotation;
 
     private bool moving = false;
+    private bool returnTo2D = false;
     private float timePassed = 0f;
 
 	public void Start () {
@@ -25,7 +26,7 @@ public class BinaryPosition : BinaryTriggerable {
 
 	public void Update () {
         // Check if object is still moving toward target position
-		if (!moving)
+		if (!moving || TemporaryControllerScript.is2D)
         {
             return;
         }
@@ -64,6 +65,11 @@ public class BinaryPosition : BinaryTriggerable {
                 moving = false;
             }
         }
+
+        if (!moving && returnTo2D)
+        {
+            TemporaryControllerScript.SwapDimension();
+        }
 	}
 
     public override void Trigger()
@@ -71,6 +77,20 @@ public class BinaryPosition : BinaryTriggerable {
         base.Trigger();
 
         moving = true;
+        
+        if (TemporaryControllerScript.is2D)
+        {
+            TemporaryControllerScript.SwapDimension();
+            returnTo2D = true;
+        }
+    }
+
+    public void SwitchTo2D(Cancellable cancellable)
+    {
+        if (moving)
+        {
+            cancellable.Cancel();
+        }
     }
 
 }

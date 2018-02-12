@@ -17,7 +17,16 @@ public class Player3D2DSwap : MonoBehaviour {
         angularVelocity = new Vector3();
     }
 
-    public void SwitchTo2D()
+    public void Enable3DPlayer()
+    {
+        controller.enabled = true;
+        rb.isKinematic = false;
+
+        rb.velocity = linearVelocity;
+        rb.angularVelocity = angularVelocity;
+    }
+
+    public void Disable3DPlayer()
     {
         controller.enabled = false;
 
@@ -29,13 +38,22 @@ public class Player3D2DSwap : MonoBehaviour {
         rb.isKinematic = true;
     }
 
-    public void SwitchTo3D()
+    public void SwitchTo2D(Cancellable cancellable)
     {
-        controller.enabled = true;
-        rb.isKinematic = false;
+        if (!cancellable.IsCancelled())
+        {
+            Disable3DPlayer();
+            cancellable.IfCancelled(Enable3DPlayer);
+        }
+    }
 
-        rb.velocity = linearVelocity;
-        rb.angularVelocity = angularVelocity;
+    public void SwitchTo3D(Cancellable cancellable)
+    {
+        if (!cancellable.IsCancelled())
+        {
+            Enable3DPlayer();
+            cancellable.IfCancelled(Disable3DPlayer);
+        }
     }
 	
 }

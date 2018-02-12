@@ -11,18 +11,26 @@ public class StaticShadowController : ShadowController {
         shadowCaster.CreateShadow();
     }
 
-    public override void SwitchTo2D()
+    public override void SwitchTo2D(Cancellable cancellable)
     {
-        base.SwitchTo2D();
+        if (!cancellable.IsCancelled())
+        {
+            base.SwitchTo2D(cancellable);
 
-        shadowCaster.ShowShadow();
+            shadowCaster.ShowShadow();
+            cancellable.IfCancelled(() => shadowCaster.HideShadow());
+        }
     }
 
-    public override void SwitchTo3D()
+    public override void SwitchTo3D(Cancellable cancellable)
     {
-        base.SwitchTo3D();
+        if (!cancellable.IsCancelled())
+        {
+            base.SwitchTo3D(cancellable);
 
-        shadowCaster.HideShadow();
+            shadowCaster.HideShadow();
+            cancellable.IfCancelled(() => shadowCaster.ShowShadow());
+        }
     }
 
 }
