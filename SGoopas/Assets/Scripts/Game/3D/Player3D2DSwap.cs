@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player3D2DSwap : MonoBehaviour {
+
     private Player3DControl controller;
     private Rigidbody rb;
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
-    void Start()
-    {
+
+    void Start() {
         controller = this.gameObject.GetComponent<Player3DControl>();
         controller.enabled = false;
         rb = this.gameObject.GetComponent<Rigidbody>();
@@ -17,8 +16,7 @@ public class Player3D2DSwap : MonoBehaviour {
         angularVelocity = new Vector3();
     }
 
-    public void Enable3DPlayer()
-    {
+    public void Enable3DPlayer() {
         controller.enabled = true;
         rb.isKinematic = false;
 
@@ -26,8 +24,7 @@ public class Player3D2DSwap : MonoBehaviour {
         rb.angularVelocity = angularVelocity;
     }
 
-    public void Disable3DPlayer()
-    {
+    public void Disable3DPlayer() {
         controller.enabled = false;
 
         linearVelocity = rb.velocity;
@@ -38,22 +35,18 @@ public class Player3D2DSwap : MonoBehaviour {
         rb.isKinematic = true;
     }
 
-    public void SwitchTo2D(Cancellable cancellable)
-    {
-        if (!cancellable.IsCancelled())
-        {
+    public void SwitchTo2D(Cancellable cancellable) {
+        if (!cancellable.IsCancelled()) {
             Disable3DPlayer();
             cancellable.IfCancelled(Enable3DPlayer);
         }
     }
 
-    public void SwitchTo3D(Cancellable cancellable)
-    {
-        if (!cancellable.IsCancelled())
-        {
+    public void SwitchTo3D(Cancellable cancellable) {
+        if (!cancellable.IsCancelled()) {
             Enable3DPlayer();
             cancellable.IfCancelled(Disable3DPlayer);
         }
     }
-	
+
 }

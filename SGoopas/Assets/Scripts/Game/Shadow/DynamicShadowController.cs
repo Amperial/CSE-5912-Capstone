@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DynamicShadowController : ShadowController {
 
@@ -8,8 +6,7 @@ public class DynamicShadowController : ShadowController {
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
 
-    public override void Start()
-    {
+    public override void Start() {
         base.Start();
 
         rb = gameObject.GetComponent<Rigidbody>();
@@ -17,8 +14,7 @@ public class DynamicShadowController : ShadowController {
         angularVelocity = new Vector3();
     }
 
-    public void RemoveShadow()
-    {
+    public void RemoveShadow() {
         rb.isKinematic = false;
 
         rb.velocity = linearVelocity;
@@ -27,8 +23,7 @@ public class DynamicShadowController : ShadowController {
         shadowCaster.DestroyShadow();
     }
 
-    public void RestoreShadow()
-    {
+    public void RestoreShadow() {
         linearVelocity = rb.velocity;
         rb.velocity = new Vector3();
         angularVelocity = rb.angularVelocity;
@@ -39,10 +34,8 @@ public class DynamicShadowController : ShadowController {
         shadowCaster.CreateShadow();
     }
 
-    public override void SwitchTo2D(Cancellable cancellable)
-    {
-        if (!cancellable.IsCancelled())
-        {
+    public override void SwitchTo2D(Cancellable cancellable) {
+        if (!cancellable.IsCancelled()) {
             base.SwitchTo2D(cancellable);
 
             RestoreShadow();
@@ -50,10 +43,8 @@ public class DynamicShadowController : ShadowController {
         }
     }
 
-    public override void SwitchTo3D(Cancellable cancellable)
-    {
-        if (!cancellable.IsCancelled())
-        {
+    public override void SwitchTo3D(Cancellable cancellable) {
+        if (!cancellable.IsCancelled()) {
             base.SwitchTo3D(cancellable);
 
             RemoveShadow();
