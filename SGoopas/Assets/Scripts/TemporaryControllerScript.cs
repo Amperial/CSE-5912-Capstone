@@ -5,7 +5,6 @@ using UnityEngine;
 public class TemporaryControllerScript : MonoBehaviour {
     private bool is2D;
 	private bool firstFrame = true;
-    public GameObject triggerable;
 	// Use this for initialization
 	void Start () {
         is2D = false;
@@ -31,10 +30,6 @@ public class TemporaryControllerScript : MonoBehaviour {
                 is2D = true;
                 this.BroadcastMessage("SwitchTo2D");
             }
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            triggerable.GetComponent<ITriggerable>().Trigger();
         }
     }
 }
