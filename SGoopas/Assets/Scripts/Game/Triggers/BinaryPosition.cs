@@ -16,49 +16,42 @@ public class BinaryPosition : BinaryTriggerable {
     private bool returnTo2D = false;
     private float timePassed = 0f;
 
-	public void Start () {
+    public void Start() {
         initialPosition = transform.localPosition;
         initialRotation = transform.localRotation.eulerAngles;
 
         deltaPosition = (activePosition - initialPosition) / moveTime;
         deltaRotation = (activeRotation - initialRotation) / moveTime;
-	}
+    }
 
-	public void Update () {
+    public void Update() {
         // Check if object is still moving toward target position
-		if (!moving || TemporaryControllerScript.is2D)
-        {
+        if (!moving || TemporaryControllerScript.is2D) {
             return;
         }
-        
+
         // Check which state object is moving towards
-        if (IsActive())
-        {
+        if (IsActive()) {
             // Check if object has been moving long enough to reach target
-            if (timePassed < moveTime)
-            {
+            if (timePassed < moveTime) {
                 // Move object by constant speed towards target
                 transform.position += deltaPosition * Time.deltaTime;
                 transform.Rotate(deltaRotation * Time.deltaTime);
                 timePassed += Time.deltaTime;
-            } else
-            {
+            } else {
                 // Finished moving, set object's position and rotation exactly to the target
                 transform.localPosition = activePosition;
                 transform.localRotation = Quaternion.Euler(activeRotation);
                 timePassed = moveTime;
                 moving = false;
             }
-        } else
-        {
+        } else {
             // Same code except in reverse and moving to initial position
-            if (timePassed > 0)
-            {
+            if (timePassed > 0) {
                 transform.position -= deltaPosition * Time.deltaTime;
                 transform.Rotate(-deltaRotation * Time.deltaTime);
                 timePassed -= Time.deltaTime;
-            } else
-            {
+            } else {
                 transform.localPosition = initialPosition;
                 transform.localRotation = Quaternion.Euler(initialRotation);
                 timePassed = 0;
@@ -66,29 +59,24 @@ public class BinaryPosition : BinaryTriggerable {
             }
         }
 
-        if (!moving && returnTo2D)
-        {
+        if (!moving && returnTo2D) {
             TemporaryControllerScript.SwapDimension();
         }
-	}
+    }
 
-    public override void Trigger()
-    {
+    public override void Trigger() {
         base.Trigger();
 
         moving = true;
-        
-        if (TemporaryControllerScript.is2D)
-        {
+
+        if (TemporaryControllerScript.is2D) {
             TemporaryControllerScript.SwapDimension();
             returnTo2D = true;
         }
     }
 
-    public void SwitchTo2D(Cancellable cancellable)
-    {
-        if (moving)
-        {
+    public void SwitchTo2D(Cancellable cancellable) {
+        if (moving) {
             cancellable.Cancel();
         }
     }

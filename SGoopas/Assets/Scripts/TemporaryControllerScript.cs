@@ -6,7 +6,6 @@ public class TemporaryControllerScript : MonoBehaviour {
     public static bool is2D = false;
     private static GameObject gameSingleton;
 	private bool firstFrame = true;
-    public GameObject triggerable;
 
     void Awake()
     {
@@ -25,10 +24,6 @@ public class TemporaryControllerScript : MonoBehaviour {
         if (Input.GetButtonDown("SwapDimension"))
         {
             SwapDimension();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            triggerable.GetComponent<ITriggerable>().Trigger();
         }
     }
 
