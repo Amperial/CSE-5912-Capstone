@@ -6,31 +6,25 @@ public class Cancellable {
     private List<System.Action> callbacks = new List<System.Action>();
 
     // Check if the cancellable is cancelled
-    public bool IsCancelled()
-    {
+    public bool IsCancelled() {
         return cancelled;
     }
 
     // Register a callback to be invoked if the Cancellable is cancelled
-    public void IfCancelled(System.Action callback)
-    {
-        if (IsCancelled())
-        {
+    public void IfCancelled(System.Action callback) {
+        if (IsCancelled()) {
             // Already cancelled, invoke callback
             callback();
-        } else
-        {
+        } else {
             // Register callback
             callbacks.Add(callback);
         }
     }
 
     // Cancel the cancellable, invoke callbacks
-    public virtual void Cancel()
-    {
+    public virtual void Cancel() {
         cancelled = true;
-        foreach (System.Action callback in callbacks)
-        {
+        foreach (System.Action callback in callbacks) {
             callback();
         }
         callbacks.Clear();
