@@ -1,68 +1,58 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BinaryPosition : BinaryTriggerable {
 
-    public float moveTime = 1f;
-
+    // Vectors to keep track of initial and active positions
+    private Vector3 initialPosition;
+    private Vector3 initialRotation;
     public Vector3 activePosition;
     public Vector3 activeRotation;
 
-    private Vector3 initialPosition;
-    private Vector3 initialRotation;
-    private Vector3 deltaPosition;
-    private Vector3 deltaRotation;
-
-    private bool moving = false;
-    private float timePassed = 0f;
+    // Total time to move between positions
+    public float moveTime = 1f;
+    // Elapsed time moving between positions used by coroutine
+    private float elapsed = 0f;
 
     public void Start() {
         initialPosition = transform.localPosition;
         initialRotation = transform.localRotation.eulerAngles;
-
-        deltaPosition = (activePosition - initialPosition) / moveTime;
-        deltaRotation = (activeRotation - initialRotation) / moveTime;
     }
 
-    public void Update() {
-        // Check if object is still moving toward target position
-        if (!moving) {
-            return;
-        }
-
-        // Check which state object is moving towards
+    IEnumerator StepToPosition() {
+        // Calculate delta position and rotation for movement to position
+        Vector3 deltaPosition = (initialPosition - activePosition) * Time.fixedDeltaTime / moveTime;
+        Vector3 deltaRotation = (initialRotation - activeRotation) * Time.fixedDeltaTime / moveTime;
         if (IsActive()) {
-            // Check if object has been moving long enough to reach target
-            if (timePassed < moveTime) {
-                // Move object by constant speed towards target
-                transform.position += deltaPosition * Time.deltaTime;
-                transform.Rotate(deltaRotation * Time.deltaTime);
-                timePassed += Time.deltaTime;
-            } else {
-                // Finished moving, set object's position and rotation exactly to the target
-                transform.localPosition = activePosition;
-                transform.localRotation = Quaternion.Euler(activeRotation);
-                timePassed = moveTime;
-                moving = false;
-            }
-        } else {
-            // Same code except in reverse and moving to initial position
-            if (timePassed > 0) {
-                transform.position -= deltaPosition * Time.deltaTime;
-                transform.Rotate(-deltaRotation * Time.deltaTime);
-                timePassed -= Time.deltaTime;
-            } else {
-                transform.localPosition = initialPosition;
-                transform.localRotation = Quaternion.Euler(initialRotation);
-                timePassed = 0;
-                moving = false;
-            }
+            deltaPosition *= -1;
+            deltaRotation *= -1;
         }
+        // Move transform by delta position and rotation for specified time
+        while (elapsed < moveTime) {
+            transform.position += deltaPosition;
+            transform.Rotate(deltaRotation);
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        // Set transform position and rotation to exact final values
+        transform.localPosition = IsActive() ? activePosition : initialPosition;
+        transform.localRotation = Quaternion.Euler(IsActive() ? activeRotation : initialRotation);
+        elapsed = 0f;
     }
 
     public override void Trigger() {
         base.Trigger();
+        
+        // Check if coroutine is still running or stopped for some reason
+        if (elapsed > 0f) {
+            // Make sure coroutine is stopped
+            StopAllCoroutines();
+            // Calculate elapsed time for new coroutine
+            elapsed = (moveTime - elapsed);
+        }
 
-        moving = true;
+        // Start coroutine to step to position
+        StartCoroutine(StepToPosition());
     }
 
 }
