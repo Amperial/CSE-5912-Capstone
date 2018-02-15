@@ -7,21 +7,13 @@
     }
 
     public override void SwitchTo2D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            base.SwitchTo2D(cancellable);
-
-            shadowCaster.ShowShadow();
-            cancellable.IfCancelled(() => shadowCaster.HideShadow());
-        }
+        base.SwitchTo2D(cancellable);
     }
 
     public override void SwitchTo3D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            base.SwitchTo3D(cancellable);
-
-            shadowCaster.HideShadow();
-            cancellable.IfCancelled(() => shadowCaster.ShowShadow());
-        }
+        base.SwitchTo3D(cancellable);
+        cancellable.Perform(() => shadowCaster.HideShadow());
+        cancellable.OnCancel(() => shadowCaster.ShowShadow());
     }
 
 }

@@ -35,21 +35,13 @@ public class DynamicShadowController : ShadowController {
     }
 
     public override void SwitchTo2D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            base.SwitchTo2D(cancellable);
-
-            RestoreShadow();
-            cancellable.IfCancelled(RemoveShadow);
-        }
+        base.SwitchTo2D(cancellable);
     }
 
     public override void SwitchTo3D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            base.SwitchTo3D(cancellable);
-
-            RemoveShadow();
-            cancellable.IfCancelled(RestoreShadow);
-        }
+        base.SwitchTo3D(cancellable);
+        cancellable.Perform(RemoveShadow);
+        cancellable.OnCancel(RestoreShadow);
     }
 
 }

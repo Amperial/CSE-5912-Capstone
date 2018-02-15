@@ -36,17 +36,13 @@ public class Player3D2DSwap : MonoBehaviour {
     }
 
     public void SwitchTo2D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            Disable3DPlayer();
-            cancellable.IfCancelled(Enable3DPlayer);
-        }
+        cancellable.Perform(Disable3DPlayer);
+        cancellable.OnCancel(Enable3DPlayer);
     }
 
     public void SwitchTo3D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            Enable3DPlayer();
-            cancellable.IfCancelled(Disable3DPlayer);
-        }
+        cancellable.Perform(Enable3DPlayer);
+        cancellable.OnCancel(Disable3DPlayer);
     }
 
 }

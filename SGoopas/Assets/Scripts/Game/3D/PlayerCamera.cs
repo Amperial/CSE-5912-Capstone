@@ -30,17 +30,13 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     public void SwitchTo2D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            Follow2DPlayer();
-            cancellable.IfCancelled(Follow3DPlayer);
-        }
+        cancellable.Perform(Follow2DPlayer);
+        cancellable.OnCancel(Follow3DPlayer);
     }
 
     public void SwitchTo3D(Cancellable cancellable) {
-        if (!cancellable.IsCancelled()) {
-            Follow3DPlayer();
-            cancellable.IfCancelled(Follow2DPlayer);
-        }
+        cancellable.Perform(Follow3DPlayer);
+        cancellable.OnCancel(Follow2DPlayer);
     }
 
 }

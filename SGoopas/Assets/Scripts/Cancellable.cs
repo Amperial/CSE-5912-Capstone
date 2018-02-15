@@ -10,12 +10,16 @@ public class Cancellable {
         return cancelled;
     }
 
-    // Register a callback to be invoked if the Cancellable is cancelled
-    public void IfCancelled(System.Action callback) {
-        if (IsCancelled()) {
-            // Already cancelled, invoke callback
+    // Invoke the given callback if the cancellable isn't cancelled
+    public void Perform(System.Action callback) {
+        if (!IsCancelled()) {
             callback();
-        } else {
+        }
+    }
+
+    // Register a callback to be invoked if/when the cancellable is cancelled
+    public void OnCancel(System.Action callback) {
+        if (!IsCancelled()) {
             // Register callback
             callbacks.Add(callback);
         }
