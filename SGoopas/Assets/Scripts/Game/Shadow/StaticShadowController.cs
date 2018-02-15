@@ -8,6 +8,8 @@
 
     public override void SwitchTo2D(Cancellable cancellable) {
         base.SwitchTo2D(cancellable);
+        cancellable.Perform(() => shadowCaster.ShowShadow());
+        cancellable.OnCancel(() => shadowCaster.HideShadow());
     }
 
     public override void SwitchTo3D(Cancellable cancellable) {

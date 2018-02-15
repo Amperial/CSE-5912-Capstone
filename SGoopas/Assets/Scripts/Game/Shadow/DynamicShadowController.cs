@@ -36,6 +36,8 @@ public class DynamicShadowController : ShadowController {
 
     public override void SwitchTo2D(Cancellable cancellable) {
         base.SwitchTo2D(cancellable);
+        cancellable.Perform(RestoreShadow);
+        cancellable.OnCancel(RemoveShadow);
     }
 
     public override void SwitchTo3D(Cancellable cancellable) {
