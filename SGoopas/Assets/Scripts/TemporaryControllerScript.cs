@@ -26,7 +26,7 @@ public class TemporaryControllerScript : MonoBehaviour {
     public static void SwapDimension() {
         Cancellable cancellable = new Cancellable();
         gameSingleton.BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
-        if (!cancellable.IsCancelled()) {
+        if (!cancellable.IsCancelled) {
             is2D = !is2D;
         }
     }

@@ -19,13 +19,11 @@ public abstract class ShadowController : MonoBehaviour {
     }
 
     public virtual void SwitchTo2D(Cancellable cancellable) {
-        cancellable.Perform(HideObject);
-        cancellable.OnCancel(ShowObject);
+        cancellable.PerformCancellable(HideObject, ShowObject);
     }
 
     public virtual void SwitchTo3D(Cancellable cancellable) {
-        cancellable.Perform(ShowObject);
-        cancellable.OnCancel(HideObject);
+        cancellable.PerformCancellable(ShowObject, HideObject);
     }
 
 }

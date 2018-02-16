@@ -2,24 +2,37 @@
 
 public class Cancellable {
 
-    private bool cancelled = false;
     private List<System.Action> callbacks = new List<System.Action>();
+    private bool cancelled = false;
 
-    // Check if the cancellable is cancelled
-    public bool IsCancelled() {
-        return cancelled;
+    public bool IsCancelled {
+        get {
+            return cancelled;
+        }
     }
 
-    // Invoke the given callback if the cancellable isn't cancelled
-    public void Perform(System.Action callback) {
-        if (!IsCancelled()) {
-            callback();
+    // Invoke the given action if the cancellable hasn't cancelled, and register OnCancel callback.
+    // Essentially combines Perform(action) and OnCancel(callback) methods into one.
+    public void PerformCancellable(System.Action action, System.Action callback) {
+        if (!IsCancelled) {
+            // Invoke action
+            action();
+            // Register callback
+            callbacks.Add(callback);
+        }
+    }
+
+    // Invoke the given action if the cancellable hasn't been cancelled
+    public void Perform(System.Action action) {
+        if (!IsCancelled) {
+            // Invoke action
+            action();
         }
     }
 
     // Register a callback to be invoked if/when the cancellable is cancelled
     public void OnCancel(System.Action callback) {
-        if (!IsCancelled()) {
+        if (!IsCancelled) {
             // Register callback
             callbacks.Add(callback);
         }
