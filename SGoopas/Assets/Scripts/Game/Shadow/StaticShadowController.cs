@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticShadowController : ShadowController {
-
+    
     public override void Start()
     {
         base.Start();
 
-        shadowCaster.CreateShadow();
+        shadowCaster.CreateShadow(lightCalculator);
     }
 
     public override void SwitchTo2D()

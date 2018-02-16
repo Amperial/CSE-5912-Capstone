@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class ShadowCaster : MonoBehaviour {
-    public GameObject shadowPlane;
     protected GameObject shadow;
 
     public abstract void CreateShadow(LightCalculator lightCalculator);

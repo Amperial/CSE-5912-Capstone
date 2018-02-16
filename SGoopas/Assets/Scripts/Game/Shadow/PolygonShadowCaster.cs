@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PolygonShadowCaster : ShadowCaster {
 
     public override void CreateShadow(LightCalculator lightCalculator)
     {
         if(lightCalculator is PointLightCalculator)
-            shadow = ShadowPolygonHelper.CreateShadowGameObject(gameObject, shadowLight.gameObject.transform.position, new Plane(shadowPlane.transform.up.normalized, new Vector3(0, 0, 0)));
+            shadow = ShadowPolygonHelper.CreateShadowGameObject(gameObject, lightCalculator.Position, lightCalculator.Plane);
         else{
-            
+            shadow = ShadowPolygonHelper.CreateDirectionalShadowGameObject(gameObject, lightCalculator.Direction, lightCalculator.Plane);
         }   
     }
-
 }

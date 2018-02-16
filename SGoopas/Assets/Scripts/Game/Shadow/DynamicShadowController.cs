@@ -28,7 +28,7 @@ public class DynamicShadowController : ShadowController {
 
         rb.isKinematic = true;
 
-        shadowCaster.CreateShadow();
+        shadowCaster.CreateShadow(lightCalculator);
     }
 
     public override void SwitchTo3D()
