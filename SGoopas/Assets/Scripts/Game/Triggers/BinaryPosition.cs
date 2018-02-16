@@ -11,6 +11,9 @@ public class BinaryPosition : BinaryTriggerable {
 
     // Total time to move between positions
     public float moveTime = 1f;
+
+    // Reference to coroutine
+    private Coroutine coroutine;
     // Elapsed time moving between positions used by coroutine
     private float elapsed = 0f;
 
@@ -46,13 +49,13 @@ public class BinaryPosition : BinaryTriggerable {
         // Check if coroutine is still running or stopped for some reason
         if (elapsed > 0f) {
             // Make sure coroutine is stopped
-            StopAllCoroutines();
+            StopCoroutine(coroutine);
             // Calculate elapsed time for new coroutine
             elapsed = (moveTime - elapsed);
         }
 
         // Start coroutine to step to position
-        StartCoroutine(StepToPosition());
+        coroutine = StartCoroutine(StepToPosition());
     }
 
 }
