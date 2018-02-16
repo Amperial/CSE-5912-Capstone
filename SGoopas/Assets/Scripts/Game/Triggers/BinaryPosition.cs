@@ -1,82 +1,83 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BinaryPosition : BinaryTriggerable {
 
-    public float moveTime = 1f;
-
+    // Vectors to keep track of initial and active positions
+    private Vector3 initialPosition;
+    private Vector3 initialRotation;
     public Vector3 activePosition;
     public Vector3 activeRotation;
 
-    private Vector3 initialPosition;
-    private Vector3 initialRotation;
-    private Vector3 deltaPosition;
-    private Vector3 deltaRotation;
+    // Total time to move between positions
+    public float moveTime = 1f;
 
-    private bool moving = false;
+    // Reference to coroutine
+    private Coroutine coroutine;
     private bool returnTo2D = false;
-    private float timePassed = 0f;
+    // Elapsed time moving between positions used by coroutine
+    private float elapsed = 0f;
+    private bool IsMoving {
+        get { return elapsed > 0f; }
+    }
 
     public void Start() {
         initialPosition = transform.localPosition;
         initialRotation = transform.localRotation.eulerAngles;
-
-        deltaPosition = (activePosition - initialPosition) / moveTime;
-        deltaRotation = (activeRotation - initialRotation) / moveTime;
     }
 
-    public void Update() {
-        // Check if object is still moving toward target position
-        if (!moving || TemporaryControllerScript.is2D) {
-            return;
-        }
-
-        // Check which state object is moving towards
+    IEnumerator StepToPosition() {
+        // Calculate delta position and rotation for movement to position
+        Vector3 deltaPosition = (initialPosition - activePosition) * Time.fixedDeltaTime / moveTime;
+        Vector3 deltaRotation = (initialRotation - activeRotation) * Time.fixedDeltaTime / moveTime;
         if (IsActive()) {
-            // Check if object has been moving long enough to reach target
-            if (timePassed < moveTime) {
-                // Move object by constant speed towards target
-                transform.position += deltaPosition * Time.deltaTime;
-                transform.Rotate(deltaRotation * Time.deltaTime);
-                timePassed += Time.deltaTime;
-            } else {
-                // Finished moving, set object's position and rotation exactly to the target
-                transform.localPosition = activePosition;
-                transform.localRotation = Quaternion.Euler(activeRotation);
-                timePassed = moveTime;
-                moving = false;
-            }
-        } else {
-            // Same code except in reverse and moving to initial position
-            if (timePassed > 0) {
-                transform.position -= deltaPosition * Time.deltaTime;
-                transform.Rotate(-deltaRotation * Time.deltaTime);
-                timePassed -= Time.deltaTime;
-            } else {
-                transform.localPosition = initialPosition;
-                transform.localRotation = Quaternion.Euler(initialRotation);
-                timePassed = 0;
-                moving = false;
-            }
+            deltaPosition *= -1;
+            deltaRotation *= -1;
         }
+        // Move transform by delta position and rotation for specified time
+        while (elapsed < moveTime) {
+            transform.position += deltaPosition;
+            transform.Rotate(deltaRotation);
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        // Set transform position and rotation to exact final values
+        transform.localPosition = IsActive() ? activePosition : initialPosition;
+        transform.localRotation = Quaternion.Euler(IsActive() ? activeRotation : initialRotation);
+        elapsed = 0f;
 
-        if (!moving && returnTo2D) {
+        // Movement is done, return to 2D
+        if (returnTo2D) {
             TemporaryControllerScript.SwapDimension();
+            returnTo2D = false;
         }
     }
 
     public override void Trigger() {
         base.Trigger();
 
-        moving = true;
-
+        // Switch to 3D and return to 2D once movement is done.
+        // TODO: Replace with general system to focus on world changes & remove player control
         if (TemporaryControllerScript.is2D) {
             TemporaryControllerScript.SwapDimension();
             returnTo2D = true;
         }
+
+        // Check if coroutine is still running or stopped for some reason
+        if (IsMoving) {
+            // Make sure coroutine is stopped
+            StopCoroutine(coroutine);
+            // Calculate elapsed time for new coroutine
+            elapsed = (moveTime - elapsed);
+        }
+
+        // Start coroutine to step to position
+        coroutine = StartCoroutine(StepToPosition());
     }
 
     public void SwitchTo2D(Cancellable cancellable) {
-        if (moving) {
+        // Prevent switching to 2D while moving between positions
+        if (IsMoving) {
             cancellable.Cancel();
         }
     }

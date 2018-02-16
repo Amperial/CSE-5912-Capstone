@@ -2,14 +2,19 @@
 
 public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
 
-    public ITriggerable target;
+    public GameObject target;
+    private ITriggerable triggerable;
+
+    void Start() {
+        triggerable = target.GetComponent<ITriggerable>();
+    }
 
     public void Interact() {
         Trigger();
     }
 
     public void Trigger() {
-        target.Trigger();
+        triggerable.Trigger();
     }
 
 }
