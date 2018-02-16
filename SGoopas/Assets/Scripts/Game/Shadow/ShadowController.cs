@@ -31,4 +31,9 @@ public abstract class ShadowController : MonoBehaviour {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
     }
 
+    public LightCalculator LightCalculator
+    {
+        set { lightCalculator = value; }
+        get { return lightCalculator;}
+    }
 }
