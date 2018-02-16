@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ShadowCaster : MonoBehaviour {
-
-    public Light shadowLight;
     public GameObject shadowPlane;
     protected GameObject shadow;
 
-    public abstract void CreateShadow();
+    public abstract void CreateShadow(LightCalculator lightCalculator);
 
     public void ShowShadow()
     {
