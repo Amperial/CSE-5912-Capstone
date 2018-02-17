@@ -4,11 +4,16 @@ using UnityEngine;
 
 public abstract class ShadowCaster : MonoBehaviour {
 
-    public Light shadowLight;
-    public GameObject shadowPlane;
+    protected Light shadowLight;
+    protected GameObject shadowPlane;
     protected GameObject shadow;
 
     public abstract void CreateShadow();
+
+	public void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) {
+		this.shadowLight = shadowLight;
+		this.shadowPlane = shadowPlane;
+	}
 
     public void ShowShadow()
     {

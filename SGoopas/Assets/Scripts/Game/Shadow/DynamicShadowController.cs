@@ -8,18 +8,17 @@ public class DynamicShadowController : ShadowController {
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
 
-    public override void Start()
-    {
-        base.Start();
+	public override void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) { 
+		// Wait until we get the light params from above to construct the shadow.
+		base.ConfigureWithLightParams (shadowLight, shadowPlane);
+		rb = gameObject.GetComponent<Rigidbody>();
+		linearVelocity = new Vector3();
+		angularVelocity = new Vector3();
+	}
 
-        rb = gameObject.GetComponent<Rigidbody>();
-        linearVelocity = new Vector3();
-        angularVelocity = new Vector3();
-    }
-
-    public override void SwitchTo2D()
+    public override void ConstructShadow()
     {
-        base.SwitchTo2D();
+        base.ConstructShadow();
 
         linearVelocity = rb.velocity;
         rb.velocity = new Vector3();
@@ -31,9 +30,9 @@ public class DynamicShadowController : ShadowController {
         shadowCaster.CreateShadow();
     }
 
-    public override void SwitchTo3D()
+    public override void DeconstructShadow()
     {
-        base.SwitchTo3D();
+        base.DeconstructShadow();
 
         rb.isKinematic = false;
 
