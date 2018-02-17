@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ShadowCaster : MonoBehaviour {
+public abstract class ShadowCaster {
 
     protected Light shadowLight;
     protected GameObject shadowPlane;
     protected GameObject shadow;
 
-    public abstract void CreateShadow();
+	public abstract void CreateShadow(GameObject gameObject);
 
 	public void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) {
 		this.shadowLight = shadowLight;
@@ -35,7 +35,7 @@ public abstract class ShadowCaster : MonoBehaviour {
     {
         if (shadow != null)
         {
-            Destroy(shadow);
+			UnityEngine.Object.Destroy(shadow);
         }
     }
 

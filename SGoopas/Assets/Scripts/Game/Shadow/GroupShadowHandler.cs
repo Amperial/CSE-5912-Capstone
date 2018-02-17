@@ -9,20 +9,24 @@ public class GroupShadowHandler : MonoBehaviour {
 	public Light shadowLight;
 	public GameObject shadowPlane;
 
+	private List<ShadowController> shadowControllers = new List<ShadowController>();
+
 	public void Start() {
-		foreach (ShadowController shadowController in shadowObjectsParent.GetComponentsInChildren<ShadowController>()) {
-			shadowController.ConfigureWithLightParams(shadowLight, shadowPlane);
+		foreach (ShadowConfiguration configuration in shadowObjectsParent.GetComponentsInChildren<ShadowConfiguration>()) {
+			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration);
+			controller.ConfigureWithLightParams (shadowLight, shadowPlane);
+			shadowControllers.Add (controller);
 		}
 	}
 
 	public void SwitchTo2D() {
-		foreach (ShadowController shadowController in shadowObjectsParent.GetComponentsInChildren<ShadowController>()) {
+		foreach (ShadowController shadowController in shadowControllers) {
 			shadowController.ConstructShadow();
 		}
 	}
 
 	public void SwitchTo3D() { 
-		foreach (ShadowController shadowController in shadowObjectsParent.GetComponentsInChildren<ShadowController>()) {
+		foreach (ShadowController shadowController in shadowControllers) {
 			shadowController.DeconstructShadow();
 		}
 	}

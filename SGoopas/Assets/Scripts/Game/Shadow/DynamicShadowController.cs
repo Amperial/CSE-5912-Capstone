@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DynamicShadowController : ShadowController {
+	public DynamicShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {}
 
     private Rigidbody rb;
     private Vector3 linearVelocity;
@@ -27,7 +28,7 @@ public class DynamicShadowController : ShadowController {
 
         rb.isKinematic = true;
 
-        shadowCaster.CreateShadow();
+        shadowCaster.CreateShadow(gameObject);
     }
 
     public override void DeconstructShadow()

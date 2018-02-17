@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ShadowController : MonoBehaviour {
-
-    protected MeshRenderer meshRenderer;
+public abstract class ShadowController {
+	
+    protected GameObject gameObject;
     protected ShadowCaster shadowCaster;
+
+	private MeshRenderer meshRenderer;
+
+	public ShadowController(ShadowCaster caster, GameObject gameObject) {
+		shadowCaster = caster;
+		this.gameObject = gameObject;
+		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
+	}
 
 	/*
 	 * Sets up the initial parameters for the controller, called from the parent in the hierarchy.
-	 * All initialization code should go in here instead of start. 
 	 */
 	public virtual void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) {
-		meshRenderer = gameObject.GetComponent<MeshRenderer>();
-		shadowCaster = gameObject.GetComponent<ShadowCaster>();
 		shadowCaster.ConfigureWithLightParams (shadowLight, shadowPlane);
 	}
 
