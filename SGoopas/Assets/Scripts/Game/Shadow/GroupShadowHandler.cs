@@ -13,8 +13,7 @@ public class GroupShadowHandler : MonoBehaviour {
 
 	public void Start() {
 		foreach (ShadowConfiguration configuration in shadowObjectsParent.GetComponentsInChildren<ShadowConfiguration>()) {
-			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration);
-			controller.ConfigureWithLightParams (shadowLight, shadowPlane);
+			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, shadowPlane);
 			shadowControllers.Add (controller);
 		}
 	}

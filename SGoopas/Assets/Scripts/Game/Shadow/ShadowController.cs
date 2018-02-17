@@ -15,13 +15,6 @@ public abstract class ShadowController {
 		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
 
-	/*
-	 * Sets up the initial parameters for the controller, called from the parent in the hierarchy.
-	 */
-	public virtual void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) {
-		shadowCaster.ConfigureWithLightParams (shadowLight, shadowPlane);
-	}
-
 	public virtual void ConstructShadow()
     {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;

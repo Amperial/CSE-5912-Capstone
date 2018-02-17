@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class ShadowControllerFactory
 {
-	public static ShadowController CreateControllerFromConfiguration(ShadowConfiguration configuration) {
+	public static ShadowController CreateControllerFromConfiguration(ShadowConfiguration configuration, Light shadowLight, GameObject shadowPlane) {
 		ShadowCaster caster;
 
 		switch (configuration.casterType) {
 		case ShadowConfiguration.ShadowCasterType.Polygon:
 		default:
-			caster = new PolygonShadowCaster ();
+			caster = new PolygonShadowCaster(shadowLight, shadowPlane, configuration.gameObject);
 			break;
 		}
 
