@@ -2,38 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ShadowController : MonoBehaviour {
-
-    protected MeshRenderer meshRenderer;
+public abstract class ShadowController {
+	
+    protected GameObject gameObject;
     protected ShadowCaster shadowCaster;
-    protected LightCalculator lightCalculator;
-    public Light light;
-    public GameObject plane;
-    public virtual void Start()
-    {
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        shadowCaster = gameObject.GetComponent<ShadowCaster>();
+	private MeshRenderer meshRenderer;
 
-        if(light.type == LightType.Point)
-            lightCalculator = new PointLightCalculator(light, plane);
-        else
-            lightCalculator = new DirectionalLightCalculator(light, plane);
+	public ShadowController(ShadowCaster caster, GameObject gameObject) {
+		shadowCaster = caster;
+		this.gameObject = gameObject;
+		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
+	}
 
-    }
-
-    public virtual void SwitchTo2D()
+	public virtual void ConstructShadow()
     {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
     }
 
-    public virtual void SwitchTo3D()
+	public virtual void DeconstructShadow()
     {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-    }
-
-    public LightCalculator LightCalculator
-    {
-        set { lightCalculator = value; }
-        get { return lightCalculator;}
     }
 }
