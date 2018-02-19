@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticShadowController : ShadowController {
-	public override void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) { 
-		// Wait until we get the light params from above to construct the shadow.
-		base.ConfigureWithLightParams (shadowLight, shadowPlane);
+	public StaticShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {
 		shadowCaster.CreateShadow ();
 	}
 
@@ -21,5 +19,4 @@ public class StaticShadowController : ShadowController {
 
         shadowCaster.HideShadow();
     }
-
 }

@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DynamicShadowController : ShadowController {
-
     private Rigidbody rb;
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
 
-	public override void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) { 
-		// Wait until we get the light params from above to construct the shadow.
-		base.ConfigureWithLightParams (shadowLight, shadowPlane);
+	public DynamicShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {
 		rb = gameObject.GetComponent<Rigidbody>();
 		linearVelocity = new Vector3();
 		angularVelocity = new Vector3();
