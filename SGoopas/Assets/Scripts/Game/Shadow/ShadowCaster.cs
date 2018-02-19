@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class ShadowCaster : MonoBehaviour {
 
@@ -10,26 +8,24 @@ public abstract class ShadowCaster : MonoBehaviour {
 
     public abstract void CreateShadow();
 
-    public void ShowShadow()
-    {
-        if (shadow != null)
-        {
+    public GameObject GetShadow() {
+        return shadow;
+    }
+
+    public void ShowShadow() {
+        if (shadow != null) {
             shadow.SetActive(true);
         }
     }
 
-    public void HideShadow()
-    {
-        if (shadow != null)
-        {
+    public void HideShadow() {
+        if (shadow != null) {
             shadow.SetActive(false);
         }
     }
 
-    public void DestroyShadow()
-    {
-        if (shadow != null)
-        {
+    public void DestroyShadow() {
+        if (shadow != null) {
             Destroy(shadow);
         }
     }

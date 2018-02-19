@@ -14,8 +14,12 @@ public class BinaryPosition : BinaryTriggerable {
 
     // Reference to coroutine
     private Coroutine coroutine;
+    private bool returnTo2D = false;
     // Elapsed time moving between positions used by coroutine
     private float elapsed = 0f;
+    private bool IsMoving {
+        get { return elapsed > 0f; }
+    }
 
     public void Start() {
         initialPosition = transform.localPosition;
@@ -41,13 +45,26 @@ public class BinaryPosition : BinaryTriggerable {
         transform.localPosition = IsActive() ? activePosition : initialPosition;
         transform.localRotation = Quaternion.Euler(IsActive() ? activeRotation : initialRotation);
         elapsed = 0f;
+
+        // Movement is done, return to 2D
+        if (returnTo2D) {
+            TemporaryControllerScript.SwapDimension();
+            returnTo2D = false;
+        }
     }
 
     public override void Trigger() {
         base.Trigger();
-        
+
+        // Switch to 3D and return to 2D once movement is done.
+        // TODO: Replace with general system to focus on world changes & remove player control
+        if (TemporaryControllerScript.is2D) {
+            TemporaryControllerScript.SwapDimension();
+            returnTo2D = true;
+        }
+
         // Check if coroutine is still running or stopped for some reason
-        if (elapsed > 0f) {
+        if (IsMoving) {
             // Make sure coroutine is stopped
             StopCoroutine(coroutine);
             // Calculate elapsed time for new coroutine
@@ -56,6 +73,13 @@ public class BinaryPosition : BinaryTriggerable {
 
         // Start coroutine to step to position
         coroutine = StartCoroutine(StepToPosition());
+    }
+
+    public void SwitchTo2D(Cancellable cancellable) {
+        // Prevent switching to 2D while moving between positions
+        if (IsMoving) {
+            cancellable.Cancel();
+        }
     }
 
 }

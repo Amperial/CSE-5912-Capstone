@@ -1,35 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TemporaryControllerScript : MonoBehaviour {
-    private bool is2D;
-	private bool firstFrame = true;
-	// Use this for initialization
-	void Start () {
-        is2D = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (firstFrame) {
-			// Default to 3D mode initially, but wait until everything else is loaded first.
-			// There is probably a better way to do this..
-			this.BroadcastMessage ("SwitchTo3D");
-			firstFrame = false;
-		}
+    public static bool is2D = false;
+    private static GameObject gameSingleton;
+    private bool firstFrame = true;
 
-        if (Input.GetButtonDown("SwapDimension"))
-        {
-            if (is2D)
-            {
-                is2D = false;
-                this.BroadcastMessage("SwitchTo3D");
-            } else
-            {
-                is2D = true;
-                this.BroadcastMessage("SwitchTo2D");
-            }
+    void Awake() {
+        gameSingleton = gameObject;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (firstFrame) {
+            // Default to 3D mode initially, but wait until everything else is loaded first.
+            // There is probably a better way to do this..
+            this.BroadcastMessage("SwitchTo3D", new Cancellable(), SendMessageOptions.DontRequireReceiver);
+            firstFrame = false;
+        }
+
+        if (Input.GetButtonDown("SwapDimension")) {
+            SwapDimension();
         }
     }
+
+    public static void SwapDimension() {
+        Cancellable cancellable = new Cancellable();
+        gameSingleton.BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
+        if (!cancellable.IsCancelled) {
+            is2D = !is2D;
+        }
+    }
+
 }
