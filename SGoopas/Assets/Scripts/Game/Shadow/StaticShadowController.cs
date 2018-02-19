@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticShadowController : ShadowController {
+	public override void ConfigureWithLightParams(Light shadowLight, GameObject shadowPlane) { 
+		// Wait until we get the light params from above to construct the shadow.
+		base.ConfigureWithLightParams (shadowLight, shadowPlane);
+		shadowCaster.CreateShadow ();
+	}
 
-    public override void Start()
+    public override void ConstructShadow()
     {
-        base.Start();
-
-        shadowCaster.CreateShadow();
-    }
-
-    public override void SwitchTo2D()
-    {
-        base.SwitchTo2D();
-
+		base.ConstructShadow();
         shadowCaster.ShowShadow();
     }
 
-    public override void SwitchTo3D()
+    public override void DeconstructShadow()
     {
-        base.SwitchTo3D();
+        base.DeconstructShadow();
 
         shadowCaster.HideShadow();
     }
