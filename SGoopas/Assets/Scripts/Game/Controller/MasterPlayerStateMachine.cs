@@ -70,8 +70,15 @@ namespace PlayerStates
             currentState.Update();
         }
 
+        public void FixedUpdate()
+        {
+            currentState.FixedUpdate();
+        }
+
         public void SwitchDimension()
         {
+            currentState.StoreState();
+
             if (currentState is Base2DState)
             {
                 state2D = currentState;
@@ -82,6 +89,8 @@ namespace PlayerStates
                 state3D = currentState;
                 currentState = state2D;
             }
+
+            currentState.RestoreState();
         }
     }
 }

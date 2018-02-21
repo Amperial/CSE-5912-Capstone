@@ -34,5 +34,8 @@ namespace PlayerStates
         public abstract void MoveUp();
         public abstract void Release();
         public abstract void Update();
+        public abstract void FixedUpdate();
+        public abstract void StoreState();
+        public abstract void RestoreState();
     }
 }
