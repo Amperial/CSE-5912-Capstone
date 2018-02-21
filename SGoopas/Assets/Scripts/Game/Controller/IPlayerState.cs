@@ -10,7 +10,7 @@ namespace PlayerStates
         void MoveDown();
         void MoveLeft();
         void MoveRight();
-
+        void Update();
         void Jump();
         void Action();
         void Release();

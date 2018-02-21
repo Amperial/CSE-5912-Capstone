@@ -65,7 +65,12 @@ namespace PlayerStates
             currentState.Release();
         }
 
-        public void SwitchCtrl()
+        public void Update()
+        {
+            currentState.Update();
+        }
+
+        public void SwitchDimension()
         {
             if (currentState is Base2DState)
             {

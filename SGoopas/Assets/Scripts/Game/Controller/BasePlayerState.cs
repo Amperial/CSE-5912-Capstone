@@ -33,5 +33,6 @@ namespace PlayerStates
         public abstract void MoveRight();
         public abstract void MoveUp();
         public abstract void Release();
+        public abstract void Update();
     }
 }
