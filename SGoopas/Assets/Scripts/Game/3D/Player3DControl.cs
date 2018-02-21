@@ -36,7 +36,7 @@ public class Player3DControl : MonoBehaviour {
             if (child.rotation != forward) 
             {
                 deltaT = 0.5f;
-                if (Quaternion.Angle(child.rotation, forward) < 90f)
+                if (Mathf.Abs(Quaternion.Angle(child.rotation, forward)) < 90f)
                     deltaT = 0.35f;
                 child.localRotation = Quaternion.Lerp(child.rotation, forward, deltaT);
             }
@@ -48,7 +48,7 @@ public class Player3DControl : MonoBehaviour {
             if (child.rotation != back) 
             {
                 deltaT = 0.5f;
-                if (Quaternion.Angle(child.rotation, back) < 90f)
+                if (Mathf.Abs(Quaternion.Angle(child.rotation, back)) < 90f)
                     deltaT = 0.35f;
                 child.localRotation = Quaternion.Lerp(child.rotation, back, deltaT);
             }         
@@ -60,7 +60,7 @@ public class Player3DControl : MonoBehaviour {
             if (child.rotation != right) 
             {
                 deltaT = 0.5f;
-                if (Quaternion.Angle(child.rotation, right) < 90f)
+                if (Mathf.Abs(Quaternion.Angle(child.rotation, right)) < 90f)
                     deltaT = 0.35f;
                 child.localRotation = Quaternion.Lerp(child.rotation, right, deltaT);
             }
@@ -72,7 +72,7 @@ public class Player3DControl : MonoBehaviour {
             if (child.rotation != left) 
             {
                 deltaT = 0.5f;
-                if (Quaternion.Angle(child.rotation, left) < 90f)
+                if (Mathf.Abs(Quaternion.Angle(child.rotation, left)) < 90f)
                     deltaT = 0.35f;
                 child.localRotation = Quaternion.Lerp(child.rotation, left, deltaT);
             }
