@@ -6,7 +6,7 @@ public abstract class ShadowController {
 	
     protected GameObject gameObject;
     protected ShadowCaster shadowCaster;
-
+    
 	private MeshRenderer meshRenderer;
 
 	public ShadowController(ShadowCaster caster, GameObject gameObject) {
