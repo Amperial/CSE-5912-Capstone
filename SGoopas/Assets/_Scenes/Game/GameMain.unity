@@ -1450,6 +1450,7 @@ GameObject:
   - component: {fileID: 1520072829}
   - component: {fileID: 1520072828}
   - component: {fileID: 1520072826}
+  - component: {fileID: 1520072827}
   m_Layer: 0
   m_Name: 3DGroundPlatform2
   m_TagString: Untagged
@@ -1481,8 +1482,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cc909a9c74741838ad0d43ec8e4440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 0
+  objectType: 2
   casterType: 0
+--- !u!114 &1520072827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520072824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a22163d37d014f2f86847495bf1fe6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  travelDistance: 5
 --- !u!23 &1520072828
 MeshRenderer:
   m_ObjectHideFlags: 0

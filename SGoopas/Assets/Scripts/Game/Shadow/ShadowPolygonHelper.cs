@@ -5,6 +5,33 @@ using UnityEngine;
 public class ShadowPolygonHelper
 {
     /*
+     * Recalculates collision box for an existing shadow (presumably after the game object was moved).
+     */
+	public static GameObject UpdateShadowGameObject(GameObject gameObject, Vector3 lightPosition, LightType lightType, Plane wallPlane, GameObject shadowObject)
+	{
+        List<Vector3> points = GetShadowPoints(lightPosition, gameObject, wallPlane, lightType);
+        List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadowObject);
+        ConvexHullPolygon2D(points2D, shadowObject);
+        return shadowObject;
+	}
+
+    private static List<Vector3> GetShadowPoints(Vector3 lightPos, GameObject gameObject, Plane wallPlane, LightType lightType) {
+        List<Vector3> points;
+        switch (lightType)
+        {
+            case LightType.Directional:
+                points = GetDirectionalLightShadow(lightPos, gameObject, wallPlane);
+                break;
+
+            case LightType.Point:
+            default:
+                points = GetPointLightShadow(lightPos, gameObject, wallPlane);
+                break;
+        }
+        return points;
+    }
+
+    /*
 		Rerturns the points on wallPlane that represent the shadow casted by the light on the gameObject onto the wallPlane
 	*/
     public static List<Vector3> GetPointLightShadow(Vector3 lightPos, GameObject gameObject, Plane wallPlane)
@@ -91,14 +118,9 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, Plane wallPlane)
+    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, LightType lightType, Plane wallPlane)
     {
-        return CreateShadowGameObject(GetPointLightShadow(lightPosition, gameObject, wallPlane), wallPlane);
-    }
-
-    public static GameObject CreateDirectionalShadowGameObject(GameObject gameObject, Vector3 lightDir, Plane wallPlane)
-    {
-        return CreateShadowGameObject(GetDirectionalLightShadow(lightDir, gameObject, wallPlane), wallPlane);
+        return CreateShadowGameObject(GetShadowPoints(lightPosition, gameObject, wallPlane, lightType), wallPlane);
     }
 
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)

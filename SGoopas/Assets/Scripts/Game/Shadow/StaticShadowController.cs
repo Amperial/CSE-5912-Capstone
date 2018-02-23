@@ -19,4 +19,8 @@ public class StaticShadowController : ShadowController {
 
         shadowCaster.HideShadow();
     }
+
+	public override void UpdateShadow() {
+		// No-op, static shadows don't need to be updated in real-time.
+	}
 }

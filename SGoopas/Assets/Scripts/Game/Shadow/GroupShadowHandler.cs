@@ -29,4 +29,10 @@ public class GroupShadowHandler : MonoBehaviour {
 			shadowController.DeconstructShadow();
 		}
 	}
+
+	public void FixedUpdate() {
+		foreach (ShadowController shadowController in shadowControllers) {
+			shadowController.UpdateShadow();
+		}
+	}
 }

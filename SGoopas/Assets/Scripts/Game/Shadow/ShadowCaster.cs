@@ -10,6 +10,7 @@ public abstract class ShadowCaster {
     protected GameObject shadow;
 
 	public abstract void CreateShadow();
+	public abstract void UpdateShadow();
 
 	public ShadowCaster(Light shadowLight, GameObject shadowPlane, GameObject shadowObject) {
 		this.shadowLight = shadowLight;
@@ -40,5 +41,4 @@ public abstract class ShadowCaster {
 			UnityEngine.Object.Destroy(shadow);
         }
     }
-
 }
