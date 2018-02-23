@@ -1,19 +1,22 @@
-﻿public class StaticShadowController : ShadowController {
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-    public override void Start() {
-        base.Start();
+public class StaticShadowController : ShadowController {
+	public StaticShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {
+		shadowCaster.CreateShadow ();
+	}
 
-        shadowCaster.CreateShadow();
+    public override void ConstructShadow()
+    {
+		base.ConstructShadow();
+        shadowCaster.ShowShadow();
     }
 
-    public override void SwitchTo2D(Cancellable cancellable) {
-        base.SwitchTo2D(cancellable);
-        cancellable.PerformCancellable(() => shadowCaster.ShowShadow(), () => shadowCaster.HideShadow());
-    }
+    public override void DeconstructShadow()
+    {
+        base.DeconstructShadow();
 
-    public override void SwitchTo3D(Cancellable cancellable) {
-        base.SwitchTo3D(cancellable);
-        cancellable.PerformCancellable(() => shadowCaster.HideShadow(), () => shadowCaster.ShowShadow());
+        shadowCaster.HideShadow();
     }
-
 }
