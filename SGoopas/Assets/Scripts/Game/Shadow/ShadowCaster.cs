@@ -11,7 +11,12 @@ public abstract class ShadowCaster {
 
 	public abstract void CreateShadow();
 
-	public ShadowCaster(Light shadowLight, GameObject shadowPlane, GameObject shadowObject) {
+    public GameObject GetShadow()
+    {
+        return shadow;
+    }
+
+    public ShadowCaster(Light shadowLight, GameObject shadowPlane, GameObject shadowObject) {
 		this.shadowLight = shadowLight;
 		this.shadowPlane = shadowPlane;
 		this.shadowObject = shadowObject;
