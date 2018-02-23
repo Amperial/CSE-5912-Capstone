@@ -2566,6 +2566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2fa5fa5a758996419266ec6d8ca8f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  other: {fileID: 1886843205}
   target: {fileID: 89838728}
   key: 109
 --- !u!1 &2117129139

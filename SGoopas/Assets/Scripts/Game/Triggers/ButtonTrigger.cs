@@ -2,8 +2,12 @@
 
 public class ButtonTrigger : MonoBehaviour {
 
-    //public Collider other;
+    // Set as 3D player gameobject
+    public Collider other;
+
+    // Set as object to manipulate upon trigger
     public GameObject target;
+
     private ITriggerable triggerable;
     public KeyCode key;
     private bool trigger = false;
@@ -22,13 +26,19 @@ public class ButtonTrigger : MonoBehaviour {
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider collide)
     {
-        trigger = true;
+        if (collide.attachedRigidbody == other.attachedRigidbody)
+        {
+            trigger = true;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider collide)
     {
-        trigger = false;
+        if (collide.attachedRigidbody == other.attachedRigidbody)
+        {
+            trigger = false;
+        }
     }
 }
