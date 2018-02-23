@@ -1,17 +1,24 @@
-﻿public class StaticShadowControllerPlatform : ShadowController
-{
+﻿using UnityEngine;
 
+public class StaticShadowControllerPlatform : ShadowControllerPlatform
+{
+    private GameObject shadowObject;
     public override void Start()
     {
         base.Start();
 
-        shadowCaster.CreateShadow();
+        shadowCasterPlatform.CreateShadow();
+        shadowObject = shadowCasterPlatform.GetShadow();
     }
 
     private void FixedUpdate()
     {
-        shadowCaster.DestroyShadow();
-        shadowCaster.CreateShadow();
+        //shadowCaster.DestroyShadow();
+
+        //update the points on the shadow
+        shadowCasterPlatform.UpdateShadow(shadowObject);
+        //retrieve new shadow
+        shadowObject = shadowCasterPlatform.GetShadow();
     }
 
 }
