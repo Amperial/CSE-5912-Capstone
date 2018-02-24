@@ -13,7 +13,7 @@ public class GroupShadowHandler : MonoBehaviour {
 
 	public void Start() {
 		foreach (ShadowConfiguration configuration in shadowObjectsParent.GetComponentsInChildren<ShadowConfiguration>()) {
-			if(isLightMovable){
+			if(isLightMovable && configuration.objectType == ShadowConfiguration.ShadowObjectType.Static){
 				configuration.objectType = ShadowConfiguration.ShadowObjectType.Dynamic;
 			}
 			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, shadowPlane);
