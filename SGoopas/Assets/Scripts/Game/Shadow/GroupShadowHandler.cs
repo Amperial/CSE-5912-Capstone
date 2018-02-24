@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroupShadowHandler : MonoBehaviour {
 	public GameObject shadowObjectsParent;
-
+	public bool isLightMovable = false;
 	// Be explicit with reference to the light in the editor.
 	public Light shadowLight;
 	public GameObject shadowPlane;
@@ -13,7 +13,7 @@ public class GroupShadowHandler : MonoBehaviour {
 
 	public void Start() {
 		foreach (ShadowConfiguration configuration in shadowObjectsParent.GetComponentsInChildren<ShadowConfiguration>()) {
-			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, shadowPlane);
+			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, isLightMovable, shadowLight, shadowPlane);
 			shadowControllers.Add (controller);
 		}
 	}

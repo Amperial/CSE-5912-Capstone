@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DynamicShadowController : ShadowController {
-    private Rigidbody rb;
+    private Rigidbody rb = null;
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
 
@@ -17,12 +17,14 @@ public class DynamicShadowController : ShadowController {
     {
         base.ConstructShadow();
 
-        linearVelocity = rb.velocity;
-        rb.velocity = new Vector3();
-        angularVelocity = rb.angularVelocity;
-        rb.angularVelocity = new Vector3();
+        if(rb != null){
+            linearVelocity = rb.velocity;
+            rb.velocity = new Vector3();
+            angularVelocity = rb.angularVelocity;
+            rb.angularVelocity = new Vector3();
 
-        rb.isKinematic = true;
+            rb.isKinematic = true;
+        }
 
         shadowCaster.CreateShadow();
     }
@@ -31,11 +33,11 @@ public class DynamicShadowController : ShadowController {
     {
         base.DeconstructShadow();
 
-        rb.isKinematic = false;
-
-        rb.velocity = linearVelocity;
-        rb.angularVelocity = angularVelocity;
-
+        if(rb != null){
+            rb.isKinematic = false;
+            rb.velocity = linearVelocity;
+            rb.angularVelocity = angularVelocity;
+        }
         shadowCaster.DestroyShadow();
     }
 
