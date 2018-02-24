@@ -20,6 +20,7 @@ public class ButtonTrigger : MonoBehaviour {
 
     void Update()
     {
+        // Eventually replace with action button
         if (Input.GetKeyDown(key) && trigger)
         {
             triggerable.Trigger();
