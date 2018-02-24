@@ -8,7 +8,6 @@ public class GroupShadowHandler : MonoBehaviour {
 	// Be explicit with reference to the light in the editor.
 	public Light shadowLight;
 	public GameObject shadowPlane;
-    public GameObject player2D;
 
 	private List<ShadowController> shadowControllers = new List<ShadowController>();
 
@@ -19,18 +18,21 @@ public class GroupShadowHandler : MonoBehaviour {
 		}
 	}
 
-	public void SwitchTo2D(Cancellable cancellable) {
+	public void SwitchTo2D() {
 		foreach (ShadowController shadowController in shadowControllers) {
-            cancellable.PerformCancellable(shadowController.ConstructShadow, shadowController.DeconstructShadow);
-
-            if (!cancellable.IsCancelled && !shadowController.IsShadowOkay(player2D))
-                cancellable.Cancel();
+			shadowController.ConstructShadow();
 		}
 	}
 
-	public void SwitchTo3D(Cancellable cancellable) { 
+	public void SwitchTo3D() { 
 		foreach (ShadowController shadowController in shadowControllers) {
-            cancellable.PerformCancellable(shadowController.DeconstructShadow, shadowController.ConstructShadow);
-        }
+			shadowController.DeconstructShadow();
+		}
+	}
+
+	public void FixedUpdate() {
+		foreach (ShadowController shadowController in shadowControllers) {
+			shadowController.UpdateShadow();
+		}
 	}
 }

@@ -13,14 +13,6 @@ public class DynamicShadowController : ShadowController {
 		angularVelocity = new Vector3();
 	}
 
-    public override bool IsShadowOkay(GameObject player)
-    {
-        GameObject shadow = shadowCaster.GetShadow();
-        Collider2D shadowCollider = shadow.GetComponent<Collider2D>();
-        Vector3 playerPosition = player.transform.position;
-        return !shadowCollider.OverlapPoint(new Vector2(playerPosition.x, playerPosition.y));
-    }
-
     public override void ConstructShadow()
     {
         base.ConstructShadow();
@@ -46,5 +38,9 @@ public class DynamicShadowController : ShadowController {
 
         shadowCaster.DestroyShadow();
     }
+
+	public override void UpdateShadow() {
+		// No-op, dynamic shadows don't need to be updated in real-time.
+	}
 
 }

@@ -13,15 +13,14 @@ public class StaticShadowController : ShadowController {
         shadowCaster.ShowShadow();
     }
 
-    public override bool IsShadowOkay(GameObject player)
-    {
-        return true;
-    }
-
-public override void DeconstructShadow()
+    public override void DeconstructShadow()
     {
         base.DeconstructShadow();
 
         shadowCaster.HideShadow();
     }
+
+	public override void UpdateShadow() {
+		// No-op, static shadows don't need to be updated in real-time.
+	}
 }

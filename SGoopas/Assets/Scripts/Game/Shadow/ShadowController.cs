@@ -15,9 +15,9 @@ public abstract class ShadowController {
 		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
 
-    public abstract bool IsShadowOkay(GameObject player);
+	public abstract void UpdateShadow ();
 
-    public virtual void ConstructShadow()
+	public virtual void ConstructShadow()
     {
         meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
     }
