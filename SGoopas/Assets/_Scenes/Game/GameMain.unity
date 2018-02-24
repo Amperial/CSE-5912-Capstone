@@ -519,6 +519,7 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 751788782}
   shadowLight: {fileID: 664801369}
   shadowPlane: {fileID: 1387130232}
+  player2D: {fileID: 1630547697}
 --- !u!1 &686493301
 GameObject:
   m_ObjectHideFlags: 0
