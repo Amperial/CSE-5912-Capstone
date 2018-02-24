@@ -15,13 +15,20 @@ namespace PlayerStates
             this.playerStateMachine = playerStateMachine;
         }
         
+        protected MasterPlayerStateMachine MasterStateMachine {
+            get
+            {
+                return playerStateMachine;
+            }
+        }
+
         protected GameObject PlayerObject {
             get
             {
                 return player;
             }
         }
-        protected void setState(IPlayerState newState)
+        protected void SetState(IPlayerState newState)
         {
             playerStateMachine.SetCurrentState(newState);
         }
