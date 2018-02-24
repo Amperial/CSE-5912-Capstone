@@ -123,6 +123,11 @@ public class ShadowPolygonHelper
         return CreateShadowGameObject(GetShadowPoints(lightPosition, gameObject, wallPlane, lightType), wallPlane);
     }
 
+    public static GameObject CreateDirectionalShadowGameObject(GameObject gameObject, Vector3 lightDir, Plane wallPlane)
+    {
+        return CreateShadowGameObject(GetDirectionalLightShadow(lightDir, gameObject, wallPlane), wallPlane);
+    }
+
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
         GameObject shadow = new GameObject();
