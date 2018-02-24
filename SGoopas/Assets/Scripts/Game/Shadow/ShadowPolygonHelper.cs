@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class ShadowPolygonHelper
 {
-    /*
-     * Recalculates collision box for an existing shadow (presumably after the game object was moved).
-     */
-	public static GameObject UpdateShadowGameObject(GameObject gameObject, Vector3 lightPosition, LightType lightType, Plane wallPlane, GameObject shadowObject)
-	{
-        List<Vector3> points = GetShadowPoints(lightPosition, gameObject, wallPlane, lightType);
-        List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadowObject);
-        ConvexHullPolygon2D(points2D, shadowObject);
-        return shadowObject;
-	}
-
+	/*
+	 * Calculates raycast shadow points on a plane for point vs. directional lighting. 
+	 */
     private static List<Vector3> GetShadowPoints(Vector3 lightPos, GameObject gameObject, Plane wallPlane, LightType lightType) {
         List<Vector3> points;
         switch (lightType)
@@ -118,25 +110,15 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, LightType lightType, Plane wallPlane)
+	public static void CalculateShadowForGameObject(GameObject shadowWithCollider, GameObject castingObject, Vector3 lightPosition, LightType lightType, Plane wallPlane)
     {
-        return CreateShadowGameObject(GetShadowPoints(lightPosition, gameObject, wallPlane, lightType), wallPlane);
+		CalculateShadowForGameObject(GetShadowPoints(lightPosition, castingObject, wallPlane, lightType), wallPlane, shadowWithCollider);
     }
 
-    public static GameObject CreateDirectionalShadowGameObject(GameObject gameObject, Vector3 lightDir, Plane wallPlane)
+	public static void CalculateShadowForGameObject (List<Vector3> points, Plane wallPlane, GameObject shadowWithCollider)
     {
-        return CreateShadowGameObject(GetDirectionalLightShadow(lightDir, gameObject, wallPlane), wallPlane);
-    }
-
-    public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
-    {
-        GameObject shadow = new GameObject();
-        List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
-
-        shadow.AddComponent<PolygonCollider2D>();
-        ConvexHullPolygon2D(points2D, shadow);
-
-        return shadow;
+		List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadowWithCollider);
+		ConvexHullPolygon2D(points2D, shadowWithCollider);
     }
     /*
         Returns a Polygon2D representing the points in the array
