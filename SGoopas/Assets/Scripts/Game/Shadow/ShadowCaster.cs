@@ -9,19 +9,26 @@ public abstract class ShadowCaster {
 	protected GameObject shadowObject;
     protected GameObject shadow;
 
-	public abstract void CreateShadow();
     public abstract void UpdateShadow();
-
-    public GameObject GetShadow()
-    {
-        return shadow;
-    }
 
     public ShadowCaster(Light shadowLight, GameObject shadowPlane, GameObject shadowObject) {
 		this.shadowLight = shadowLight;
 		this.shadowPlane = shadowPlane;
 		this.shadowObject = shadowObject;
 	}
+
+    public GameObject GetShadow()
+    {
+        return shadow;
+    }
+
+    public virtual void CreateShadow()
+    {
+        if (shadow)
+        {
+            DestroyShadow();
+        }
+    }
 
     public void ShowShadow()
     {
