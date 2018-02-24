@@ -11,6 +11,14 @@ public class RealtimeShadowController : ShadowController {
 		shadowCaster.CreateShadow();
 	}
 
+    public override bool IsShadowOkay(GameObject player)
+    {
+        GameObject shadow = shadowCaster.GetShadow();
+        Collider2D shadowCollider = shadow.GetComponent<Collider2D>();
+        Vector3 playerPosition = player.transform.position;
+        return !shadowCollider.OverlapPoint(new Vector2(playerPosition.x, playerPosition.y));
+    }
+
 	public override void DeconstructShadow()
 	{
 		base.DeconstructShadow();

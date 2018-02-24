@@ -13,6 +13,11 @@ public class StaticShadowController : ShadowController {
         shadowCaster.ShowShadow();
     }
 
+    public override bool IsShadowOkay(GameObject player)
+    {
+        return true;
+    }
+
     public override void DeconstructShadow()
     {
         base.DeconstructShadow();
