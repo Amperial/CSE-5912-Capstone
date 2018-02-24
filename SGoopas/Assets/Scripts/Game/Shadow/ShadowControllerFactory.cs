@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShadowControllerFactory
 {
-	public static ShadowController CreateControllerFromConfiguration(ShadowConfiguration configuration, bool isLightMovable, Light shadowLight, GameObject shadowPlane) {
+	public static ShadowController CreateControllerFromConfiguration(ShadowConfiguration configuration, Light shadowLight, GameObject shadowPlane) {
 		ShadowCaster caster;
 
 		switch (configuration.casterType) {
@@ -22,11 +22,7 @@ public class ShadowControllerFactory
 
 		case ShadowConfiguration.ShadowObjectType.Static:
 		default:
-			if(isLightMovable){
-				controller = new DynamicShadowController (caster, configuration.gameObject);
-			}else{
-				controller = new StaticShadowController (caster, configuration.gameObject);
-			}
+			controller = new StaticShadowController (caster, configuration.gameObject);
 			break;
 		}
 
