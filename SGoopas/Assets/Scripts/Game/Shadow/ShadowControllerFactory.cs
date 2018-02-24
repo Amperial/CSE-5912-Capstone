@@ -14,20 +14,20 @@ public class ShadowControllerFactory
 		}
 
 		ShadowController controller;
-		if(!isLightMovable){
-			switch (configuration.objectType) {
-			case ShadowConfiguration.ShadowObjectType.Dynamic:
-				controller = new DynamicShadowController (caster, configuration.gameObject);
-				break;
 
-			case ShadowConfiguration.ShadowObjectType.Static:
-			default:
-				controller = new StaticShadowController (caster, configuration.gameObject);
-				break;
-			}
-		}else{
-			//Assign dynamic controller for moveable lights
+		switch (configuration.objectType) {
+		case ShadowConfiguration.ShadowObjectType.Dynamic:
 			controller = new DynamicShadowController (caster, configuration.gameObject);
+			break;
+
+		case ShadowConfiguration.ShadowObjectType.Static:
+		default:
+			if(isLightMovable){
+				controller = new DynamicShadowController (caster, configuration.gameObject);
+			}else{
+				controller = new StaticShadowController (caster, configuration.gameObject);
+			}
+			break;
 		}
 
 		return controller;
