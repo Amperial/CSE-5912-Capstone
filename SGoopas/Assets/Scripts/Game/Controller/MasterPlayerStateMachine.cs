@@ -25,7 +25,7 @@ namespace PlayerStates
         public MasterPlayerStateMachine(GameObject player2D, GameObject player3D)
         {
             //You can't instantiate an abstract class, the initial state of the players will be instantiated here, but for now
-            //state3D = new Base3DState(player3D, this);
+            state3D = new State3DStand(player3D, this);
             //state2D = new Base2DState(player2D, this);
             currentState = state3D;
         }
