@@ -17,6 +17,11 @@ public class DynamicShadowController : ShadowController {
     {
         base.ConstructShadow();
 
+        //Freezes rigid body if one exists
+        /*
+            NOTE: with movable lights, objects without rigidbodies 
+            will have a dynamic shadow controller
+         */
         if(rb != null){
             linearVelocity = rb.velocity;
             rb.velocity = new Vector3();
@@ -33,6 +38,7 @@ public class DynamicShadowController : ShadowController {
     {
         base.DeconstructShadow();
 
+        //Unfreezes rigid body if one exists
         if(rb != null){
             rb.isKinematic = false;
             rb.velocity = linearVelocity;
