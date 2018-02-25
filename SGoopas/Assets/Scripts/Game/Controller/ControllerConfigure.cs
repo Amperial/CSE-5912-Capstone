@@ -41,12 +41,12 @@ public class ControllerConfigure : MonoBehaviour {
 
     private void ConfigureControls()
     {
-        controller.RegisterButton("Jump", playerStateMachine.Jump);
-        controller.RegisterButton("Action", playerStateMachine.Action);
+        controller.RegisterButtonDown("Jump", playerStateMachine.Jump);
+        controller.RegisterButtonDown("Action", playerStateMachine.Action);
         controller.RegisterButtonDown("SwapDimension", SwapDimension);
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
-        controller.RegisterButton("Release", playerStateMachine.Release);
+        controller.RegisterButtonDown("Release", playerStateMachine.Release);
     }
 
 	// Use this for initialization
