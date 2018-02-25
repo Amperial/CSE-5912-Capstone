@@ -15,11 +15,15 @@ public class Controller {
     public void RegisterAxis(string axisName, Action negativeAction, Action positiveAction)
     {
         Tuple<Action,Action> action = new Tuple<Action, Action>(negativeAction, positiveAction);
+        if (axis.ContainsKey(axisName))
+            axis.Remove(axisName);
         axis.Add(axisName, action);
     }
 
     public void RegisterButton(string axisName, Action action)
     {
+        if (buttons.ContainsKey(axisName))
+            buttons.Remove(axisName);
         buttons.Add(axisName, action);
     }
 
