@@ -29,7 +29,7 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Jump()
@@ -63,7 +63,7 @@ namespace PlayerStates
 
         public override void Release()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Update()

@@ -37,7 +37,7 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Jump()
