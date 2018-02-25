@@ -10,6 +10,7 @@ public class Controller {
 	public Controller()
     {
         buttons = new Dictionary<string, Action>();
+        buttonDowns = new Dictionary<string, Action>();
         axis = new Dictionary<string, Tuple<Action, Action>>();
     }
  
