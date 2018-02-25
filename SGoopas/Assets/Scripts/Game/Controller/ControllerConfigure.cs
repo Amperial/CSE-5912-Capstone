@@ -42,7 +42,7 @@ public class ControllerConfigure : MonoBehaviour {
     {
         controller.RegisterButton("Jump", playerStateMachine.Jump);
         controller.RegisterButton("Action", playerStateMachine.Action);
-        controller.RegisterButton("SwapDimension", SwapDimension);
+        controller.RegisterButtonDown("SwapDimension", SwapDimension);
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
         controller.RegisterButton("Release", playerStateMachine.Release);
