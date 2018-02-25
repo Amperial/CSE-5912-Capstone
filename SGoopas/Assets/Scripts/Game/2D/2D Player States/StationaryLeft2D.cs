@@ -50,7 +50,7 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if(Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player")))){
+            if(!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player")))){
                 SetState(new JumpingLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
             }
         }
