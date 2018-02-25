@@ -32,6 +32,26 @@ public class ShadowPolygonHelper
     }
 
     /*
+		Returns the points on wallPlane that represent the shadow casted by a directional light on the gameObject onto the wallPlane
+	*/
+    private static List<Vector3> GetDirectionalLightShadow(Vector3 lightDir, GameObject gameObject, Plane wallPlane)
+    {
+        List<Vector3> wallIntersections = new List<Vector3>();
+
+        //Get mesh vertices
+        List<Vector3> meshVertices = GetWorldVertices(gameObject);
+
+        //Get intersection of lightDir and plane
+        foreach (Vector3 v in meshVertices)
+        {
+            Vector3 intersection = GetRayPlaneIntersection(v, lightDir, wallPlane.normal, wallPlane.distance);
+            wallIntersections.Add(intersection);
+        }
+
+        return wallIntersections;
+    }
+
+    /*
 		Returns the vertices of a mesh in world space coordinates.
 	*/
     private static List<Vector3> GetWorldVertices(GameObject gameObject)
@@ -74,6 +94,11 @@ public class ShadowPolygonHelper
     public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, Plane wallPlane)
     {
         return CreateShadowGameObject(GetPointLightShadow(lightPosition, gameObject, wallPlane), wallPlane);
+    }
+
+    public static GameObject CreateDirectionalShadowGameObject(GameObject gameObject, Vector3 lightDir, Plane wallPlane)
+    {
+        return CreateShadowGameObject(GetDirectionalLightShadow(lightDir, gameObject, wallPlane), wallPlane);
     }
 
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
