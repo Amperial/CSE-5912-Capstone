@@ -6,17 +6,14 @@ namespace PlayerStates
 {
     public class State3DMove : Base3DState
     {
-        private GameObject player3D, grabField;
-        private MasterPlayerStateMachine master;
+        private GameObject grabField;
         private Rigidbody rb;
         private float velocity;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         private Grabbing grabScript;
         public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            player3D = player;
-            master = playerStateMachine;
-            rb = player3D.GetComponent<Rigidbody>();
+            rb = player.GetComponent<Rigidbody>();
             forwardForce = new Vector3(0f, 0f, 60f);
             backForce = new Vector3(0f, 0f, -45f);
             rightForce = new Vector3(50f, 0f, 0f);
@@ -28,7 +25,15 @@ namespace PlayerStates
         }
         public override void Action()
         {
-            throw new System.NotImplementedException();
+            if (grabScript.Grabbable)
+            {
+                grabScript.Grab();
+                SetState(new State3DGrab(base.PlayerObject, base.MasterStateMachine));
+            }
+            else
+            {
+                //interact with other object
+            }
         }
 
         public override void FixedUpdate()
@@ -39,7 +44,7 @@ namespace PlayerStates
         public override void Jump()
         {
             rb.AddForce(new Vector3(0f, 300f, 0f));
-            master.SetCurrentState(new State3DJump(player3D, master));
+           SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
         }
 
         public override void MoveDown()
@@ -68,13 +73,13 @@ namespace PlayerStates
 
         public override void Release()
         {
-            throw new System.NotImplementedException();
+            //no action
         }
 
         public override void Update()
         {
             if (rb.velocity.magnitude == 0)
-                master.SetCurrentState(new State3DStand(player3D, master));
+                SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
         }
     }
 

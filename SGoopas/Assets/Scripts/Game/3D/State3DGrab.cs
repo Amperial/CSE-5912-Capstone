@@ -7,7 +7,6 @@ namespace PlayerStates
     public class State3DGrab : Base3DState
     {
         private GameObject player3D, grabField;
-        private MasterPlayerStateMachine master;
         private Rigidbody rb;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         private float velocity;
@@ -15,7 +14,6 @@ namespace PlayerStates
         public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             player3D = player;
-            master = playerStateMachine;
             rb = player3D.GetComponent<Rigidbody>();
             forwardForce = new Vector3(0f, 0f, 60f);
             backForce = new Vector3(0f, 0f, -45f);
@@ -28,7 +26,7 @@ namespace PlayerStates
         }
         public override void Action()
         {
-            throw new System.NotImplementedException();
+            //interract with other triggers (NOT GRABBING)
         }
 
         public override void FixedUpdate()
@@ -67,7 +65,7 @@ namespace PlayerStates
 
         public override void Release()
         {
-            throw new System.NotImplementedException();
+            grabScript.Release();
         }
 
         public override void Update()

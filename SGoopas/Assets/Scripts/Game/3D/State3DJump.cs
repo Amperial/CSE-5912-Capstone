@@ -6,14 +6,12 @@ namespace PlayerStates
 {
     public class State3DJump : Base3DState
     {
-        private MasterPlayerStateMachine master;
+        private JumpCollider jumpScript;
         private Rigidbody rb;
-        private float jumpThreshold;
-        private float airVelocity;
+        private float airVelocity, height, jumpThreshold;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            master = playerStateMachine;
             rb = player.GetComponent<Rigidbody>();
             jumpThreshold = 0.1f;
             forwardForce = new Vector3(0f, 0f, 5f);
@@ -21,6 +19,8 @@ namespace PlayerStates
             rightForce = new Vector3(5f, 0f, 0f);
             leftForce = new Vector3(-5f, 0f, 0f);
             airVelocity = 1.0f;
+            height = 0.499f;
+            jumpScript = player.GetComponent<JumpCollider>();
         }
         public override void Action()
         {
@@ -68,12 +68,27 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (rb.velocity.y < jumpThreshold)
+            if (jumpScript.hit)
             {
-                if (rb.velocity.magnitude == 0)
-                    setState(new State3DStand(base.PlayerObject, master));
-                else
-                    setState(new State3DMove(base.PlayerObject, master));
+                Vector3 playerPos = base.PlayerObject.transform.position;
+                float playerbase = playerPos.y - height;
+                bool land = false;
+                foreach (ContactPoint contact in jumpScript.col.contacts)
+                {
+                    Vector3 cp = contact.point;
+                    if (cp.y < playerbase)
+                    {
+                        land = true;
+                        break;
+                    }
+                }
+                if (land)
+                {
+                    if (rb.velocity.magnitude == 0)
+                        SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+                    else
+                        SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+                }
             }   
         }
 
