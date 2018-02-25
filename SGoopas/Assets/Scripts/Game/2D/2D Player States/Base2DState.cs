@@ -26,7 +26,7 @@ namespace PlayerStates
             rb.isKinematic = true;
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
-            Movement2DConfig mc = PlayerObject.GetComponent<Movement2DConfig>();
+            mc = PlayerObject.GetComponent<Movement2DConfig>();
         }
 
 
