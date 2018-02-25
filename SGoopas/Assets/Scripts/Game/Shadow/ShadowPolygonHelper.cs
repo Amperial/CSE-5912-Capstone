@@ -112,10 +112,10 @@ public class ShadowPolygonHelper
 
 	public static void CalculateShadowForGameObject(GameObject shadowWithCollider, GameObject castingObject, Vector3 lightPosition, LightType lightType, Plane wallPlane)
     {
-		CalculateShadowForGameObject(GetShadowPoints(lightPosition, castingObject, wallPlane, lightType), wallPlane, shadowWithCollider);
+        CalculateShadowFromCastPoints(GetShadowPoints(lightPosition, castingObject, wallPlane, lightType), wallPlane, shadowWithCollider);
     }
 
-	public static void CalculateShadowForGameObject (List<Vector3> points, Plane wallPlane, GameObject shadowWithCollider)
+	private static void CalculateShadowFromCastPoints (List<Vector3> points, Plane wallPlane, GameObject shadowWithCollider)
     {
 		List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadowWithCollider);
 		ConvexHullPolygon2D(points2D, shadowWithCollider);
