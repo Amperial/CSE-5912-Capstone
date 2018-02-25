@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticShadowController : ShadowController {
+	public StaticShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {
+		shadowCaster.CreateShadow ();
+	}
 
-    public override void Start()
+    public override void ConstructShadow()
     {
-        base.Start();
-
-        shadowCaster.CreateShadow();
-    }
-
-    public override void SwitchTo2D()
-    {
-        base.SwitchTo2D();
-
+		base.ConstructShadow();
         shadowCaster.ShowShadow();
     }
 
-    public override void SwitchTo3D()
+    public override bool IsShadowOkay(GameObject player)
     {
-        base.SwitchTo3D();
+        return true;
+    }
+
+public override void DeconstructShadow()
+    {
+        base.DeconstructShadow();
 
         shadowCaster.HideShadow();
     }
-
 }

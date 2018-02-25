@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player2DControl : MonoBehaviour
 {
+    // Provide easy access to player game object without doing a lookup.
+    // Possibly do this another way if someone isn't ok with singletons
+    public static GameObject player2d;
+
     public float moveForce = 20f;
 
     private bool jump = false;
@@ -11,6 +15,11 @@ public class Player2DControl : MonoBehaviour
 
     private float maxSpeed = 5f;
     private float jumpForce = 1000f;
+
+    void Awake()
+    {
+        player2d = gameObject;
+    }
 
     void Start()
     {

@@ -28,6 +28,7 @@ namespace PlayerStates
             //state3D = new Base3DState(player3D, this);
             Transform groundCheck = player2D.transform.Find("GroundCheck");
             state2D = new StationaryRight2D(player2D, this, groundCheck);
+            state2D.StoreState();
             currentState = state3D;
         }
 
