@@ -23,7 +23,6 @@ namespace PlayerStates
         {
             this.groundCheck = groundCheck;
             rb = player.GetComponent<Rigidbody2D>();
-            rb.isKinematic = true;
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
             mc = PlayerObject.GetComponent<Movement2DConfig>();
