@@ -6,11 +6,12 @@ namespace PlayerStates
 {
     public class State3DMove : Base3DState
     {
-        private GameObject player3D;
+        private GameObject player3D, grabField;
         private MasterPlayerStateMachine master;
         private Rigidbody rb;
         private float velocity;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
+        private Grabbing grabScript;
         public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             player3D = player;
@@ -21,6 +22,9 @@ namespace PlayerStates
             rightForce = new Vector3(50f, 0f, 0f);
             leftForce = new Vector3(-50f, 0f, 0f);
             velocity = 5f;
+            Transform dummy = player.transform.Find("3DPlayer");
+            grabField = dummy.Find("3DGrabField").gameObject;
+            grabScript = grabField.GetComponent<Grabbing>();
         }
         public override void Action()
         {

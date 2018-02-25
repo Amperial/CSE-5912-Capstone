@@ -6,14 +6,25 @@ namespace PlayerStates
 {
     public class State3DGrab : Base3DState
     {
-        private GameObject player3D;
+        private GameObject player3D, grabField;
         private MasterPlayerStateMachine master;
         private Rigidbody rb;
+        private Vector3 forwardForce, backForce, rightForce, leftForce;
+        private float velocity;
+        private Grabbing grabScript;
         public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             player3D = player;
             master = playerStateMachine;
             rb = player3D.GetComponent<Rigidbody>();
+            forwardForce = new Vector3(0f, 0f, 60f);
+            backForce = new Vector3(0f, 0f, -45f);
+            rightForce = new Vector3(50f, 0f, 0f);
+            leftForce = new Vector3(-50f, 0f, 0f);
+            velocity = 5f;
+            Transform dummy = player.transform.Find("3DPlayer");
+            grabField = dummy.Find("3DGrabField").gameObject;
+            grabScript = grabField.GetComponent<Grabbing>();
         }
         public override void Action()
         {
@@ -27,27 +38,31 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            throw new System.NotImplementedException();
+            //cant jump while grabbing
         }
 
         public override void MoveDown()
         {
-            throw new System.NotImplementedException();
+            if (rb.velocity.magnitude < velocity)
+                rb.AddForce(backForce);
         }
 
         public override void MoveLeft()
         {
-            throw new System.NotImplementedException();
+            if (rb.velocity.magnitude < velocity)
+                rb.AddForce(backForce);
         }
 
         public override void MoveRight()
         {
-            throw new System.NotImplementedException();
+            if (rb.velocity.magnitude < velocity)
+                rb.AddForce(backForce);
         }
 
         public override void MoveUp()
         {
-            throw new System.NotImplementedException();
+            if (rb.velocity.magnitude < velocity)
+                rb.AddForce(backForce);
         }
 
         public override void Release()

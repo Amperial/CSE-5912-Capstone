@@ -6,7 +6,6 @@ namespace PlayerStates
 {
     public class State3DJump : Base3DState
     {
-        private GameObject player3D;
         private MasterPlayerStateMachine master;
         private Rigidbody rb;
         private float jumpThreshold;
@@ -14,9 +13,8 @@ namespace PlayerStates
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            player3D = player;
             master = playerStateMachine;
-            rb = player3D.GetComponent<Rigidbody>();
+            rb = player.GetComponent<Rigidbody>();
             jumpThreshold = 0.1f;
             forwardForce = new Vector3(0f, 0f, 5f);
             backForce = new Vector3(0f, 0f, -5f);
@@ -73,9 +71,9 @@ namespace PlayerStates
             if (rb.velocity.y < jumpThreshold)
             {
                 if (rb.velocity.magnitude == 0)
-                    master.SetCurrentState(new State3DStand(player3D, master));
+                    setState(new State3DStand(base.PlayerObject, master));
                 else
-                    master.SetCurrentState(new State3DMove(player3D, master));
+                    setState(new State3DMove(base.PlayerObject, master));
             }   
         }
 
