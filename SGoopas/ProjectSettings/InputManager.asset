@@ -58,7 +58,7 @@ InputManager:
     descriptiveName: For doing in game actions such as dashing
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: k
     altNegativeButton: 
     altPositiveButton: mouse 1
     gravity: 1000
