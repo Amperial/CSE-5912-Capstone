@@ -118,10 +118,12 @@ namespace PlayerStates
 
         public override void StoreState()
         {
-            rb.isKinematic = false;
+            rb.isKinematic = true;
 
-            rb.velocity = linearVelocity;
-            rb.angularVelocity = angularVelocity;
+            linearVelocity = rb.velocity;
+            rb.velocity = new Vector2();
+            angularVelocity = rb.angularVelocity;
+            rb.angularVelocity = 0.0f;
         }
 
         public override void RestoreState()
