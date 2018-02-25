@@ -19,8 +19,7 @@ namespace PlayerStates
             rightForce = new Vector3(50f, 0f, 0f);
             leftForce = new Vector3(-50f, 0f, 0f);
             velocity = 5f;
-            Transform dummy = player.transform.Find("3DPlayer");
-            grabField = dummy.Find("3DGrabField").gameObject;
+            grabField = player.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
         public override void Action()

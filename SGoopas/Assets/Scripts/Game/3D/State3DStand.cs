@@ -12,8 +12,7 @@ namespace PlayerStates
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = player.GetComponent<Rigidbody>();
-            Transform dummy = player.transform.Find("3DPlayer");
-            grabField = dummy.Find("3DGrabField").gameObject;
+            grabField = player.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
         public override void Action()
