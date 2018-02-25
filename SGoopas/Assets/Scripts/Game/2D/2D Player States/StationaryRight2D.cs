@@ -37,7 +37,7 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            SetState(new StationaryRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+            SetState(new StationaryLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
         }
 
         public override void MoveRight()
