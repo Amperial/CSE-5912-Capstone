@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Controller {
     Dictionary<string, Action> buttons;
+    Dictionary<string, Action> buttonDowns;
     Dictionary<string, Tuple<Action, Action>> axis;
 	public Controller()
     {
@@ -20,11 +21,18 @@ public class Controller {
         axis.Add(axisName, action);
     }
 
-    public void RegisterButton(string axisName, Action action)
+    public void RegisterButton(string buttonName, Action action)
     {
-        if (buttons.ContainsKey(axisName))
-            buttons.Remove(axisName);
-        buttons.Add(axisName, action);
+        if (buttons.ContainsKey(buttonName))
+            buttons.Remove(buttonName);
+        buttons.Add(buttonName, action);
+    }
+
+    public void RegisterButtonDown(string buttonName, Action action)
+    {
+        if (buttonDowns.ContainsKey(buttonName))
+            buttonDowns.Remove(buttonName);
+        buttonDowns.Add(buttonName, action);
     }
 
     public void Update()
@@ -32,6 +40,13 @@ public class Controller {
         foreach (KeyValuePair<string, Action> entry in buttons)
         {
             if (Input.GetButton(entry.Key))
+            {
+                entry.Value();
+            }
+        }
+        foreach (KeyValuePair<string, Action> entry in buttonDowns)
+        {
+            if (Input.GetButtonDown(entry.Key))
             {
                 entry.Value();
             }
