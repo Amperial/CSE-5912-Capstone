@@ -6,11 +6,13 @@ namespace PlayerStates
 {
     public class StationaryRight2D : Base2DState
     {
+        private Rigidbody2D rb2d;
         public StationaryRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
         {
             Vector3 prevScale = player.transform.localScale;
             prevScale.x = Mathf.Abs(prevScale.x);
             player.transform.localScale = prevScale;
+            rb2d = PlayerObject.GetComponent<Rigidbody2D>();
         }
 
         public override void Action()
@@ -25,7 +27,6 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            Rigidbody2D rb2d = PlayerObject.GetComponent<Rigidbody2D>();
             rb2d.AddForce(new Vector2(0, JumpForce) * rb2d.mass, ForceMode2D.Force);
             SetState(new JumpingRight2D(PlayerObject, MasterStateMachine, GroundCheck));
         }
@@ -42,6 +43,8 @@ namespace PlayerStates
 
         public override void MoveRight()
         {
+            if (rb2d.velocity.x < MaxHoriSpeed)
+                rb2d.AddForce(new Vector2(WalkForce, 0) * rb2d.mass, ForceMode2D.Force);
             SetState(new MovingRight2D(PlayerObject, MasterStateMachine, GroundCheck));
         }
 
