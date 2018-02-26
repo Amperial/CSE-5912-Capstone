@@ -26,6 +26,7 @@ namespace PlayerStates
         public override void Action()
         {
             //interract with other triggers (NOT GRABBING)
+            grabScript.PutDown();
         }
 
         public override void FixedUpdate()
@@ -35,7 +36,7 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            //cant jump while grabbing
+            grabScript.lift();
         }
 
         public override void MoveDown()
