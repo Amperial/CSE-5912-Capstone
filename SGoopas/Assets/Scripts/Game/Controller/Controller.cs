@@ -4,12 +4,10 @@ using System;
 using UnityEngine;
 
 public class Controller {
-    Dictionary<string, Action> buttons;
     Dictionary<string, Action> buttonDowns;
     Dictionary<string, Tuple<Action, Action>> axis;
 	public Controller()
     {
-        buttons = new Dictionary<string, Action>();
         buttonDowns = new Dictionary<string, Action>();
         axis = new Dictionary<string, Tuple<Action, Action>>();
     }
@@ -22,13 +20,6 @@ public class Controller {
         axis.Add(axisName, action);
     }
 
-    public void RegisterButton(string buttonName, Action action)
-    {
-        if (buttons.ContainsKey(buttonName))
-            buttons.Remove(buttonName);
-        buttons.Add(buttonName, action);
-    }
-
     public void RegisterButtonDown(string buttonName, Action action)
     {
         if (buttonDowns.ContainsKey(buttonName))
@@ -38,13 +29,6 @@ public class Controller {
 
     public void Update()
     {
-        foreach (KeyValuePair<string, Action> entry in buttons)
-        {
-            if (Input.GetButton(entry.Key))
-            {
-                entry.Value();
-            }
-        }
         foreach (KeyValuePair<string, Action> entry in buttonDowns)
         {
             if (Input.GetButtonDown(entry.Key))
