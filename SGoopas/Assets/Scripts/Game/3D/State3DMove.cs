@@ -51,6 +51,7 @@ namespace PlayerStates
             if (rb.velocity.magnitude < velocity)
                 rb.AddForce(backForce);
             float curDir = yAngle;
+
             float desDir = 180f;
             if (curDir > (desDir + 5) || curDir < (desDir - 5))
             {
@@ -72,7 +73,7 @@ namespace PlayerStates
             if (curDir > (desDir + 5) || curDir < (desDir - 5))
             {
                 float modDir;
-                if (curDir > desDir)
+                if (curDir > 270 || curDir < 90)
                     modDir = -10f;
                 else
                     modDir = 10f;
@@ -106,10 +107,10 @@ namespace PlayerStates
             if (curDir > (desDir + 5) || curDir < (desDir - 5))
             {
                 float modDir;
-                if (curDir > desDir)
-                    modDir = -10f;
-                else
+                if (curDir > 180f)
                     modDir = 10f;
+                else
+                    modDir = -10f;
                 yAngle = curDir + modDir;
             }
         }
