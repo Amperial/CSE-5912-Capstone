@@ -47,4 +47,8 @@ public class DynamicShadowController : ShadowController {
         shadowCaster.DestroyShadow();
     }
 
+    public override void UpdateShadow()
+    {
+        // No-op. Dynamic shadows don't get updated in real-time.
+    }
 }

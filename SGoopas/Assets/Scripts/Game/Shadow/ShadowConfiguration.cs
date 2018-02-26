@@ -6,7 +6,7 @@ using System.Collections;
  */
 public class ShadowConfiguration : MonoBehaviour
 {
-	public enum ShadowObjectType { Static, Dynamic };
+	public enum ShadowObjectType { Static, Dynamic, Realtime };
 	public enum ShadowCasterType { Polygon };
 
 	public ShadowObjectType objectType;

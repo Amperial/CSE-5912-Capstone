@@ -33,4 +33,10 @@ public class GroupShadowHandler : MonoBehaviour {
             cancellable.PerformCancellable(shadowController.DeconstructShadow, shadowController.ConstructShadow);
         }
 	}
+
+	public void FixedUpdate() {
+		foreach (ShadowController shadowController in shadowControllers) {
+			shadowController.UpdateShadow();
+		}
+	}
 }

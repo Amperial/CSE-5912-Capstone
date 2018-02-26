@@ -5,11 +5,15 @@ public class PolygonShadowCaster : ShadowCaster {
 
     public override void CreateShadow()
     {
-        if(shadowLight.type == LightType.Point){
-            shadow = ShadowPolygonHelper.CreateShadowGameObject(shadowObject, shadowLight.gameObject.transform.position, new Plane(shadowPlane.transform.up.normalized, new Vector3(0, 0, 0)));
-        }
-        else{
-            shadow = ShadowPolygonHelper.CreateDirectionalShadowGameObject(shadowObject, shadowLight.gameObject.transform.forward, new Plane(shadowPlane.transform.up.normalized, new Vector3(0, 0, 0)));
+        base.CreateShadow();
+        shadow = new GameObject();
+        shadow.AddComponent<PolygonCollider2D>();
+        ShadowPolygonHelper.CalculateShadowForGameObject(shadow, shadowObject, shadowLight.gameObject.transform.position, shadowLight.type, new Plane(shadowPlane.transform.up.normalized, new Vector3()));
+    }
+
+    public override void UpdateShadow() {
+        if (shadow != null) {
+            ShadowPolygonHelper.CalculateShadowForGameObject(shadow, shadowObject, shadowLight.gameObject.transform.position, shadowLight.type, new Plane(shadowPlane.transform.up.normalized, new Vector3()));
         }
     }
 }
