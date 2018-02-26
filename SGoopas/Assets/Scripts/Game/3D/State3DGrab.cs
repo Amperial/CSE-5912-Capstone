@@ -47,24 +47,25 @@ namespace PlayerStates
         public override void MoveLeft()
         {
             if (rb.velocity.magnitude < velocity)
-                rb.AddForce(backForce);
+                rb.AddForce(leftForce);
         }
 
         public override void MoveRight()
         {
             if (rb.velocity.magnitude < velocity)
-                rb.AddForce(backForce);
+                rb.AddForce(rightForce);
         }
 
         public override void MoveUp()
         {
             if (rb.velocity.magnitude < velocity)
-                rb.AddForce(backForce);
+                rb.AddForce(forwardForce);
         }
 
         public override void Release()
         {
             grabScript.Release();
+            SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
         }
 
         public override void Update()

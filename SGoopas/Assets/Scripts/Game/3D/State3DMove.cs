@@ -43,31 +43,75 @@ namespace PlayerStates
         public override void Jump()
         {
             rb.AddForce(new Vector3(0f, 300f, 0f));
-           SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
+            SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
         }
 
         public override void MoveDown()
         {
             if (rb.velocity.magnitude < velocity)
                 rb.AddForce(backForce);
+            float curDir = yAngle;
+            float desDir = 180f;
+            if (curDir > (desDir + 5) || curDir < (desDir - 5))
+            {
+                float modDir;
+                if (curDir > desDir)
+                    modDir = -10f;
+                else
+                    modDir = 10f;
+                yAngle = curDir + modDir;
+            }
         }
 
         public override void MoveLeft()
         {
             if (rb.velocity.magnitude < velocity)
                 rb.AddForce(leftForce);
+            float curDir = yAngle;
+            float desDir = 270f;
+            if (curDir > (desDir + 5) || curDir < (desDir - 5))
+            {
+                float modDir;
+                if (curDir > desDir)
+                    modDir = -10f;
+                else
+                    modDir = 10f;
+                yAngle = curDir + modDir;
+            }
         }
 
         public override void MoveRight()
         {
             if (rb.velocity.magnitude < velocity)
                 rb.AddForce(rightForce);
+            float curDir = yAngle;
+            float desDir = 90f;
+            if (curDir > (desDir + 5) || curDir < (desDir - 5))
+            {
+                float modDir;
+                if (curDir > desDir)
+                    modDir = -10f;
+                else
+                    modDir = 10f;
+                yAngle = curDir + modDir;
+            }
         }
 
         public override void MoveUp()
         {
             if (rb.velocity.magnitude < velocity)
                 rb.AddForce(forwardForce);
+            float curDir = yAngle;
+            float desDir = 0f;
+            if (curDir > (desDir + 5) || curDir < (desDir - 5))
+            {
+                float modDir;
+                if (curDir > desDir)
+                    modDir = -10f;
+                else
+                    modDir = 10f;
+                yAngle = curDir + modDir;
+            }
         }
 
         public override void Release()
@@ -79,6 +123,16 @@ namespace PlayerStates
         {
             if (rb.velocity.magnitude == 0)
                 SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+        }
+
+        public float yAngle
+        {
+            get { return base.PlayerObject.transform.rotation.eulerAngles.y; }
+            set
+            {
+                Vector3 v = base.PlayerObject.transform.rotation.eulerAngles;
+                base.PlayerObject.transform.rotation = Quaternion.Euler(v.x, value, v.z);
+            }
         }
     }
 

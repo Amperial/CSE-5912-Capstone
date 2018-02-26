@@ -8,7 +8,9 @@ public class JumpCollider : MonoBehaviour {
     public Collision col;
 	void Start () {
         hit = false;
-	}
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+    }
 
     private void OnCollisionStay(Collision collision)
     {
