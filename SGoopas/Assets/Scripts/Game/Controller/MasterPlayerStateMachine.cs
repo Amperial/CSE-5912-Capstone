@@ -27,6 +27,7 @@ namespace PlayerStates
             //You can't instantiate an abstract class, the initial state of the players will be instantiated here, but for now
             //state3D = new Base3DState(player3D, this);
             //state2D = new Base2DState(player2D, this);
+            //state2D.StoreState();
             currentState = state3D;
         }
 
