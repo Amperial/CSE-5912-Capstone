@@ -14,9 +14,45 @@ public class ShadowPolygonHelper
 
         //Get mesh vertices
         List<Vector3> meshVertices = GetWorldVertices(gameObject);
+        List<Vector3> verticesFront = new List<Vector3>();
+        List<Vector3> verticesBehind = new List<Vector3>();
+
+        foreach(Vector3 v in meshVertices){
+            if(v.z < lightPos.z){
+                verticesBehind.Add(v);
+            }else{
+                verticesFront.Add(v);
+            }
+        }
+
+        //Cancel if object is entirely behind light
+        if(verticesFront.Count == 0){
+            return null;
+        }
+
+        //If there exists polygon points behind the light
+        if(verticesBehind.Count > 0){
+            //tempPlane placed slightly in front of the light
+            Plane tempPlane = new Plane(lightPos + new Vector3(0,0, .001f), 
+                                        lightPos + new Vector3(1,0, .001f), 
+                                        lightPos + new Vector3(0,1, .001f));
+
+            List<Vector3> tempPlaneIntersections = new List<Vector3>();
+
+            //Cast rays from front verteces to back verteces
+            foreach(Vector3 f in verticesFront){
+                foreach(Vector3 b in verticesBehind){
+                    //Get intersection of rays and tempPlane
+                    Vector3 intersection = GetRayPlaneIntersection(f, b-f, tempPlane.normal, tempPlane.distance);
+                    tempPlaneIntersections.Add(intersection);
+                }
+            }
+
+            verticesFront.AddRange(tempPlaneIntersections);         
+        }
 
         //Determine direction of object vertices
-        foreach (Vector3 v in meshVertices)
+        foreach (Vector3 v in verticesFront)
         {
             rays.Add((lightPos - v).normalized);
         }
@@ -73,14 +109,6 @@ public class ShadowPolygonHelper
     }
 
     /*
-		Determines if plane is facing a given point
-	*/
-    private static bool IsPlaneFacingPoint(Plane p, Vector3 point)
-    {
-        return Vector3.Dot(p.normal, point - p.normal) > 0;
-    }
-
-    /*
 		Get ray-plane intersection point given ray starting point, ray direction, 
 		plane's normal, and plane's distance from origin.
 	*/
@@ -103,6 +131,11 @@ public class ShadowPolygonHelper
 
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
+        //Cancel if points are null
+        if(points == null){
+            return null;
+        }
+
         GameObject shadow = new GameObject();
         List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
 
