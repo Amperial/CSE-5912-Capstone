@@ -15,6 +15,8 @@ public abstract class ShadowController {
 		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
 
+	public abstract void UpdateShadow ();
+
     public abstract bool IsShadowOkay(GameObject player);
 
     public virtual void ConstructShadow()

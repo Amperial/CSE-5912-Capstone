@@ -14,9 +14,14 @@ public class ShadowControllerFactory
 		}
 
 		ShadowController controller;
+
 		switch (configuration.objectType) {
 		case ShadowConfiguration.ShadowObjectType.Dynamic:
 			controller = new DynamicShadowController (caster, configuration.gameObject);
+			break;
+
+		case ShadowConfiguration.ShadowObjectType.Realtime:
+			controller = new RealtimeShadowController (caster, configuration.gameObject);
 			break;
 
 		case ShadowConfiguration.ShadowObjectType.Static:

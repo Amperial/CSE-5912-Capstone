@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class ShadowPolygonHelper
 {
+	/*
+	 * Calculates raycast shadow points on a plane for point vs. directional lighting. 
+	 */
+    private static List<Vector3> GetShadowPoints(Light light, GameObject gameObject, Plane wallPlane) {
+        List<Vector3> points;
+        switch (light.type)
+        {
+            case LightType.Directional:
+                points = GetDirectionalLightShadow(light.transform.forward, gameObject, wallPlane);
+                break;
+
+            case LightType.Point:
+            default:
+                points = GetPointLightShadow(light.transform.position, gameObject, wallPlane);
+                break;
+        }
+        return points;
+    }
+
     /*
 		Rerturns the points on wallPlane that represent the shadow casted by the light on the gameObject onto the wallPlane
 	*/
@@ -14,9 +33,45 @@ public class ShadowPolygonHelper
 
         //Get mesh vertices
         List<Vector3> meshVertices = GetWorldVertices(gameObject);
+        List<Vector3> verticesFront = new List<Vector3>();
+        List<Vector3> verticesBehind = new List<Vector3>();
+
+        foreach(Vector3 v in meshVertices){
+            if(v.z < lightPos.z){
+                verticesBehind.Add(v);
+            }else{
+                verticesFront.Add(v);
+            }
+        }
+
+        //Cancel if object is entirely behind light
+        if(verticesFront.Count == 0){
+            return null;
+        }
+
+        //If there exists polygon points behind the light
+        if(verticesBehind.Count > 0){
+            //tempPlane placed slightly in front of the light
+            Plane tempPlane = new Plane(lightPos + new Vector3(0,0, .001f), 
+                                        lightPos + new Vector3(1,0, .001f), 
+                                        lightPos + new Vector3(0,1, .001f));
+
+            List<Vector3> tempPlaneIntersections = new List<Vector3>();
+
+            //Cast rays from front verteces to back verteces
+            foreach(Vector3 f in verticesFront){
+                foreach(Vector3 b in verticesBehind){
+                    //Get intersection of rays and tempPlane
+                    Vector3 intersection = GetRayPlaneIntersection(f, b-f, tempPlane.normal, tempPlane.distance);
+                    tempPlaneIntersections.Add(intersection);
+                }
+            }
+
+            verticesFront.AddRange(tempPlaneIntersections);         
+        }
 
         //Determine direction of object vertices
-        foreach (Vector3 v in meshVertices)
+        foreach (Vector3 v in verticesFront)
         {
             rays.Add((lightPos - v).normalized);
         }
@@ -73,14 +128,6 @@ public class ShadowPolygonHelper
     }
 
     /*
-		Determines if plane is facing a given point
-	*/
-    private static bool IsPlaneFacingPoint(Plane p, Vector3 point)
-    {
-        return Vector3.Dot(p.normal, point - p.normal) > 0;
-    }
-
-    /*
 		Get ray-plane intersection point given ray starting point, ray direction, 
 		plane's normal, and plane's distance from origin.
 	*/
@@ -91,18 +138,28 @@ public class ShadowPolygonHelper
         return rayStart + (t * rayDir);
     }
 
-    public static GameObject CreateShadowGameObject(GameObject gameObject, Vector3 lightPosition, Plane wallPlane)
+	public static void CalculateShadowForGameObject(GameObject shadowWithCollider, GameObject castingObject, Light light, Plane wallPlane)
     {
-        return CreateShadowGameObject(GetPointLightShadow(lightPosition, gameObject, wallPlane), wallPlane);
+        List<Vector3> points = GetShadowPoints(light, castingObject, wallPlane);
+        if(points == null){
+            return;
+        }
+        CalculateShadowFromCastPoints(points, wallPlane, shadowWithCollider);
     }
 
-    public static GameObject CreateDirectionalShadowGameObject(GameObject gameObject, Vector3 lightDir, Plane wallPlane)
+	private static void CalculateShadowFromCastPoints (List<Vector3> points, Plane wallPlane, GameObject shadowWithCollider)
     {
-        return CreateShadowGameObject(GetDirectionalLightShadow(lightDir, gameObject, wallPlane), wallPlane);
+		List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadowWithCollider);
+		ConvexHullPolygon2D(points2D, shadowWithCollider);
     }
 
     public static GameObject CreateShadowGameObject (List<Vector3> points, Plane wallPlane)
     {
+        //Cancel if points are null
+        if(points == null){
+            return null;
+        }
+
         GameObject shadow = new GameObject();
         List<Vector2> points2D = ChangeOfBase3Dto2D(points, wallPlane, shadow);
 
