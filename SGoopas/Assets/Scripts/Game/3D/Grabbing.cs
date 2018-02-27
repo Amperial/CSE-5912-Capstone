@@ -7,21 +7,47 @@ public class Grabbing : MonoBehaviour {
     private bool grab,trigger;
     private Collider item;
 	GameObject parent;
-
+    public bool Grabbable
+    {
+        get
+        {
+            return trigger;
+        }
+    }
 	void Start () {
         grab = false;
         trigger = false;
 		parent = transform.parent.gameObject;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.R) && grab)
+    public void lift()
+    {
+        if(grab)
         {
-            Destroy(parent.GetComponent<HingeJoint>());
-            grab = false;
+            HingeJoint joint = parent.GetComponent<HingeJoint>();
+
+            JointSpring hingeSpring = joint.spring;
+            if (hingeSpring.targetPosition < 60)
+                //increment the angle so that object is lifed. maximum is 60 degree
+                hingeSpring.targetPosition += 10;
+            joint.spring = hingeSpring;
         }
-        if (Input.GetKeyDown(KeyCode.G) && !grab && trigger)
+    }
+    public void PutDown()
+    {
+        if (grab)
+        {
+            HingeJoint joint = parent.GetComponent<HingeJoint>();
+
+            JointSpring hingeSpring = joint.spring;
+            if (hingeSpring.targetPosition > 10)
+                hingeSpring.targetPosition -= 10;
+            joint.spring = hingeSpring;
+        }
+    }
+    public void Grab()
+    {
+        if(!grab && trigger)
         {
             parent.AddComponent<HingeJoint>();
 
@@ -41,27 +67,15 @@ public class Grabbing : MonoBehaviour {
 
             grab = true;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && grab)
+    }
+    public void Release()
+    {
+        if(grab)
         {
-            HingeJoint joint = parent.GetComponent<HingeJoint>();
-
-            JointSpring hingeSpring = joint.spring;
-            if(hingeSpring.targetPosition < 60)
-                //increment the angle so that object is lifed. maximum is 60 degree
-                hingeSpring.targetPosition += 10;
-            joint.spring = hingeSpring;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && grab)
-        {
-            HingeJoint joint = parent.GetComponent<HingeJoint>();
-
-            JointSpring hingeSpring = joint.spring;
-            if(hingeSpring.targetPosition > 10)
-                hingeSpring.targetPosition -= 10;
-            joint.spring = hingeSpring;
+            Destroy(parent.GetComponent<HingeJoint>());
+            grab = false;
         }
     }
-
 	void OnTriggerStay(Collider other){
 
 		if (!grab && other.attachedRigidbody != null) {
