@@ -12,6 +12,7 @@ namespace PlayerStates
         protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = player.GetComponent<Rigidbody>();
+
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }
