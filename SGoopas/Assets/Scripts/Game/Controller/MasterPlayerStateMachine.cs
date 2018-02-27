@@ -25,7 +25,11 @@ namespace PlayerStates
         public MasterPlayerStateMachine(GameObject player2D, GameObject player3D)
         {
             //You can't instantiate an abstract class, the initial state of the players will be instantiated here, but for now
+<<<<<<< HEAD
+            state3D = new Dummy3DState(player3D, this);
+=======
             state3D = new State3DStand(player3D, this);
+>>>>>>> ControlRework/master
             Transform groundCheck = player2D.transform.Find("GroundCheck");
             state2D = new StationaryRight2D(player2D, this, groundCheck);
             state2D.StoreState();
