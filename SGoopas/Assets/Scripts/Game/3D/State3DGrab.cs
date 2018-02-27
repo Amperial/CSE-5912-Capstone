@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PlayerStates
 {
-    public class State3DGrab : Base3DState
+    public class State3DGrab : State3DMove
     {
         private GameObject player3D, grabField;
         private Rigidbody rb;
@@ -29,55 +29,15 @@ namespace PlayerStates
             grabScript.PutDown();
         }
 
-        public override void FixedUpdate()
-        {
-            
-        }
-
         public override void Jump()
         {
             grabScript.lift();
-        }
-
-        public override void MoveDown()
-        {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(backForce);
-        }
-
-        public override void MoveLeft()
-        {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(leftForce);
-        }
-
-        public override void MoveRight()
-        {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(rightForce);
-        }
-
-        public override void MoveUp()
-        {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(forwardForce);
         }
 
         public override void Release()
         {
             grabScript.Release();
             SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
-        }
-
-        public override void Update()
-        {
-            
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-
         }
     }
 

@@ -4,21 +4,23 @@ using UnityEngine;
 
 namespace PlayerStates
 {
-    public class State3DMove : Base3DState
+    public class State3DMove : State3DStand
     {
         private GameObject grabField;
         private Rigidbody rb;
-        private float velocity;
+        private float velocityCap;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         private Grabbing grabScript;
+        float moveForceMagnitude = 50f;
         public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = player.GetComponent<Rigidbody>();
-            forwardForce = new Vector3(0f, 0f, 60f);
-            backForce = new Vector3(0f, 0f, -45f);
-            rightForce = new Vector3(50f, 0f, 0f);
-            leftForce = new Vector3(-50f, 0f, 0f);
-            velocity = 5f;
+           
+            forwardForce = Vector3.forward;
+            backForce = Vector3.back;
+            rightForce = Vector3.right;
+            leftForce = Vector3.left;
+            velocityCap = 8.0f;
             grabField = player.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
@@ -35,84 +37,24 @@ namespace PlayerStates
             }
         }
 
-        public override void FixedUpdate()
-        {
-            
-        }
-
-        public override void Jump()
-        {
-            rb.AddForce(new Vector3(0f, 300f, 0f));
-            SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
-        }
-
         public override void MoveDown()
         {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(backForce);
-            float curDir = yAngle;
-
-            float desDir = 180f;
-            if (curDir > (desDir + 5) || curDir < (desDir - 5))
-            {
-                float modDir;
-                if (curDir > desDir)
-                    modDir = -10f;
-                else
-                    modDir = 10f;
-                yAngle = curDir + modDir;
-            }
+            rb.AddForce(backForce * moveForceMagnitude);
         }
 
         public override void MoveLeft()
         {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(leftForce);
-            float curDir = yAngle;
-            float desDir = 270f;
-            if (curDir > (desDir + 5) || curDir < (desDir - 5))
-            {
-                float modDir;
-                if (curDir > 270 || curDir < 90)
-                    modDir = -10f;
-                else
-                    modDir = 10f;
-                yAngle = curDir + modDir;
-            }
+            rb.AddForce(leftForce * moveForceMagnitude);
         }
 
         public override void MoveRight()
         {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(rightForce);
-            float curDir = yAngle;
-            float desDir = 90f;
-            if (curDir > (desDir + 5) || curDir < (desDir - 5))
-            {
-                float modDir;
-                if (curDir > desDir)
-                    modDir = -10f;
-                else
-                    modDir = 10f;
-                yAngle = curDir + modDir;
-            }
+            rb.AddForce(rightForce * moveForceMagnitude);
         }
 
         public override void MoveUp()
         {
-            if (rb.velocity.magnitude < velocity)
-                rb.AddForce(forwardForce);
-            float curDir = yAngle;
-            float desDir = 0f;
-            if (curDir > (desDir + 5) || curDir < (desDir - 5))
-            {
-                float modDir;
-                if (curDir > 180f)
-                    modDir = 10f;
-                else
-                    modDir = -10f;
-                yAngle = curDir + modDir;
-            }
+            rb.AddForce(forwardForce * moveForceMagnitude);
         }
 
         public override void Release()
@@ -122,8 +64,26 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (rb.velocity.magnitude == 0)
+            //no-op for now.
+        }
+
+        public override void FixedUpdate()
+        {
+            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
+
+            if (nonVerticalVelocity.magnitude > velocityCap) {
+                Vector2 cancelingForce = nonVerticalVelocity.normalized * -moveForceMagnitude;
+                rb.AddForce(new Vector3(cancelingForce.x, 0, cancelingForce.y));
+            }
+
+            if (nonVerticalVelocity.magnitude < 0.001)
+            {
                 SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+            }
+            else {
+                Vector3 velocityDir = rb.velocity.normalized;
+                yAngle = -Mathf.Atan2(-velocityDir.x, velocityDir.z) * Mathf.Rad2Deg;
+            }
         }
 
         public float yAngle
