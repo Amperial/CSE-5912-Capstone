@@ -25,18 +25,6 @@ namespace PlayerStates
             grabField = player.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
-        public override void Action()
-        {
-            if (grabScript.Grabbable)
-            {
-                grabScript.Grab();
-                SetState(new State3DGrab(base.PlayerObject, base.MasterStateMachine));
-            }
-            else
-            {
-                //interact with other object
-            }
-        }
 
         public override void MoveDown()
         {

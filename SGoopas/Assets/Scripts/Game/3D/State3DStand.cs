@@ -19,8 +19,8 @@ namespace PlayerStates
         {
             if (grabScript.Grabbable)
             {
-                grabScript.Grab();
                 SetState(new State3DGrab(base.PlayerObject, base.MasterStateMachine));
+                grabScript.Grab();
             }
             else
             {
