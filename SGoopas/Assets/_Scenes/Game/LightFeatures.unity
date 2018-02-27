@@ -1728,7 +1728,7 @@ MonoBehaviour:
   isLightMovable: 1
   shadowLight: {fileID: 1808279281}
   shadowPlane: {fileID: 1387130232}
-  player2D: {fileID: 0}
+  player2D: {fileID: 1363718318}
 --- !u!1 &1872297805
 GameObject:
   m_ObjectHideFlags: 0
