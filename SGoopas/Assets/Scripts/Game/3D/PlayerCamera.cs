@@ -18,7 +18,7 @@ public class PlayerCamera : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Vector3 posDiv = (relevantGameObject.transform.position - transform.position) - initialCameraOffset3D;
-        transform.Translate(posDiv.x, 0f, posDiv.z, Space.World);
+        transform.Translate(posDiv.x, posDiv.y-4, posDiv.z, Space.World);
     }
 
     private void Follow2DPlayer() {
