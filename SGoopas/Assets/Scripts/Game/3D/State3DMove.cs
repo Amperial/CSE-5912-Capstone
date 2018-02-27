@@ -12,6 +12,7 @@ namespace PlayerStates
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         private Grabbing grabScript;
         float moveForceMagnitude = 50f;
+        int stillFrames = 0;
         public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = player.GetComponent<Rigidbody>();
@@ -76,13 +77,23 @@ namespace PlayerStates
                 rb.AddForce(new Vector3(cancelingForce.x, 0, cancelingForce.y));
             }
 
-            if (nonVerticalVelocity.magnitude < 0.001)
+            CheckForStanding();
+
+            if (nonVerticalVelocity.magnitude > 0.001)
             {
-                SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
-            }
-            else {
                 Vector3 velocityDir = rb.velocity.normalized;
                 yAngle = -Mathf.Atan2(-velocityDir.x, velocityDir.z) * Mathf.Rad2Deg;
+            }
+        }
+
+        private void CheckForStanding() {
+            if (rb.velocity.magnitude < 0.001) {
+                stillFrames++;
+                if (stillFrames > 3) {
+                    SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));   
+                }
+            } else {
+                stillFrames = 0;
             }
         }
 
