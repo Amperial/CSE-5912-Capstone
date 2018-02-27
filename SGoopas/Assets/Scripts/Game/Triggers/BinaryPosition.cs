@@ -47,10 +47,12 @@ public class BinaryPosition : BinaryTriggerable {
         elapsed = 0f;
 
         // Movement is done, return to 2D
-        if (returnTo2D) {
-            TemporaryControllerScript.SwapDimension();
-            returnTo2D = false;
-        }
+
+        // Will be re-implemented with event-based switch
+        //if (returnTo2D) {
+        //    TemporaryControllerScript.SwapDimension();
+        //    returnTo2D = false;
+        //}
     }
 
     public override void Trigger() {
@@ -58,10 +60,12 @@ public class BinaryPosition : BinaryTriggerable {
 
         // Switch to 3D and return to 2D once movement is done.
         // TODO: Replace with general system to focus on world changes & remove player control
-        if (TemporaryControllerScript.is2D) {
-            TemporaryControllerScript.SwapDimension();
-            returnTo2D = true;
-        }
+
+        // Will be re-implemented with event-based switch
+        //if (TemporaryControllerScript.is2D) {
+        //    TemporaryControllerScript.SwapDimension();
+        //    returnTo2D = true;
+        //}
 
         // Check if coroutine is still running or stopped for some reason
         if (IsMoving) {
