@@ -35,28 +35,36 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            rb.AddForce(new Vector3(0f, 300f, 0f));
+            rb.AddForce(new Vector3(0f, 10, 0f), ForceMode.Impulse);
             SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
         }
 
         public override void MoveDown()
         {
-            SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            SetState(newState);
+            newState.MoveDown();
         }
 
         public override void MoveLeft()
         {
-            SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            SetState(newState);
+            newState.MoveLeft();
         }
 
         public override void MoveRight()
         {
-            SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            SetState(newState);
+            newState.MoveRight();
         }
 
         public override void MoveUp()
         {
-            SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            SetState(newState);
+            newState.MoveUp();
         }
 
         public override void Release()
@@ -66,7 +74,6 @@ namespace PlayerStates
 
         public override void Update()
         {
-            
         }
     }
 

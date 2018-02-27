@@ -2,14 +2,11 @@
 
 public class Player3D2DSwap : MonoBehaviour {
 
-    private Player3DControl controller;
     private Rigidbody rb;
     private Vector3 linearVelocity;
     private Vector3 angularVelocity;
 
     void Start() {
-        controller = this.gameObject.GetComponent<Player3DControl>();
-        controller.enabled = false;
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.isKinematic = true;
         linearVelocity = new Vector3();
@@ -17,7 +14,6 @@ public class Player3D2DSwap : MonoBehaviour {
     }
 
     public void Enable3DPlayer() {
-        controller.enabled = true;
         rb.isKinematic = false;
 
         rb.velocity = linearVelocity;
@@ -25,8 +21,6 @@ public class Player3D2DSwap : MonoBehaviour {
     }
 
     public void Disable3DPlayer() {
-        controller.enabled = false;
-
         linearVelocity = rb.velocity;
         rb.velocity = new Vector3();
         angularVelocity = rb.angularVelocity;
