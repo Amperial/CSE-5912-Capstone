@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player2D3DSwap : MonoBehaviour {
+
     private Player2DControl controller;
     private Rigidbody2D rb;
     private Vector2 linearVelocity;
     private float angularVelocity;
-    void Start()
-    {
+
+    void Start() {
         controller = this.gameObject.GetComponent<Player2DControl>();
         controller.enabled = false;
         rb = this.gameObject.GetComponent<Rigidbody2D>();
@@ -16,8 +15,8 @@ public class Player2D3DSwap : MonoBehaviour {
         linearVelocity = new Vector2();
         angularVelocity = 0.0f;
     }
-    public void SwitchTo2D()
-    {
+
+    public void Enable2DPlayer() {
         controller.enabled = true;
         rb.isKinematic = false;
 
@@ -25,8 +24,7 @@ public class Player2D3DSwap : MonoBehaviour {
         rb.angularVelocity = angularVelocity;
     }
 
-    public void SwitchTo3D()
-    {
+    public void Disable2DPlayer() {
         controller.enabled = false;
 
         linearVelocity = rb.velocity;
@@ -36,5 +34,13 @@ public class Player2D3DSwap : MonoBehaviour {
 
         rb.isKinematic = true;
     }
-	
+
+    public void SwitchTo2D(Cancellable cancellable) {
+        cancellable.PerformCancellable(Enable2DPlayer, Disable2DPlayer);
+    }
+
+    public void SwitchTo3D(Cancellable cancellable) {
+        cancellable.PerformCancellable(Disable2DPlayer, Enable2DPlayer);
+    }
+
 }
