@@ -4,11 +4,11 @@ public class PlayerCamera : MonoBehaviour {
 
     public GameObject player3D;
     public GameObject player2D;
-
     private bool is2D;
     
     [Range(0, 1)]
     public float cameraStiffness = .1f;
+    public int maxLookDistance = 5;
     private GameObject relevantGameObject;
     public Vector3 distanceFromTarget;
 
@@ -18,9 +18,22 @@ public class PlayerCamera : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector3 target = relevantGameObject.transform.position - distanceFromTarget; //10
-        Vector3 translation = (target - transform.position) * cameraStiffness;
-        transform.position += translation;
+        Vector3 target = relevantGameObject.transform.position - distanceFromTarget;
+        Vector3 center = target;
+        if(Input.GetKey(KeyCode.I)){
+            target += Vector3.up*maxLookDistance;
+        }else if(Input.GetKey(KeyCode.K)){
+            target += Vector3.down*maxLookDistance;
+        }
+
+        if(Input.GetKey(KeyCode.J)){
+            target += Vector3.left*maxLookDistance;
+        }else if(Input.GetKey(KeyCode.L)){
+            target += Vector3.right*maxLookDistance;
+        }
+        
+        //This will rubberband the camera around the center
+        transform.position += (center + target - 2*transform.position) * cameraStiffness;
     }
 
     private void Follow2DPlayer() {
