@@ -7,10 +7,10 @@ public class PlayerCamera : MonoBehaviour {
     private bool is2D;
     
     [Range(0, 1)]
-    public float cameraStiffness = .1f;
+    public float cameraStiffness = .05f;
     public int maxLookDistance = 5;
     private GameObject relevantGameObject;
-    public Vector3 distanceFromTarget;
+    public Vector3 distanceFromTarget = new Vector3(0, -8, 10);
 
     void Start() {
         relevantGameObject = player3D;
