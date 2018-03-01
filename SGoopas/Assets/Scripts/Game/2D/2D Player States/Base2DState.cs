@@ -112,7 +112,8 @@ namespace PlayerStates
         }
         public override void MoveUp()
         {
-            Jump();
+            // Commented out because MoveUp() is handled in the controller as an axis and will continually call Jump() while held down
+            // Jump();
         }
 
         public override void StoreState()
