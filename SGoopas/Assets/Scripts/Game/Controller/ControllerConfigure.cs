@@ -58,12 +58,12 @@ public class ControllerConfigure : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        controller.Update();
         playerStateMachine.Update();
     }
 
     void FixedUpdate()
     {
-        controller.Update();
         playerStateMachine.FixedUpdate();
     }
 }
