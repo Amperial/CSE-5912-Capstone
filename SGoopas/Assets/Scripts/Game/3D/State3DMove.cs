@@ -58,19 +58,23 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
-            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
-
-            if (nonVerticalVelocity.magnitude > velocityCap) {
-                Vector2 cancelingForce = nonVerticalVelocity.normalized * -moveForceMagnitude;
-                rb.AddForce(new Vector3(cancelingForce.x, 0, cancelingForce.y));
-            }
-
+            ClipVelocity();
             CheckForStanding();
-
+            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
             if (nonVerticalVelocity.magnitude > 0.001)
             {
                 Vector3 velocityDir = rb.velocity.normalized;
                 yAngle = -Mathf.Atan2(-velocityDir.x, velocityDir.z) * Mathf.Rad2Deg;
+            }
+        }
+
+        protected void ClipVelocity() {
+            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
+
+            if (nonVerticalVelocity.magnitude > velocityCap)
+            {
+                Vector2 cancelingForce = nonVerticalVelocity.normalized * -moveForceMagnitude;
+                rb.AddForce(new Vector3(cancelingForce.x, 0, cancelingForce.y));
             }
         }
 
