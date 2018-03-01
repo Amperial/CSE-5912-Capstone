@@ -6,19 +6,21 @@ public class PlayerCamera : MonoBehaviour {
     public GameObject player2D;
 
     private bool is2D;
-    Vector3 initialCameraOffset3D;
-
+    
+    [Range(0, 1)]
+    public float cameraStiffness = .1f;
     private GameObject relevantGameObject;
+    public Vector3 distanceFromTarget;
 
     void Start() {
         relevantGameObject = player3D;
-        initialCameraOffset3D = player3D.transform.position - transform.position;
     }
 
     // Update is called once per frame
     void Update() {
-        Vector3 posDiv = (relevantGameObject.transform.position - transform.position) - initialCameraOffset3D;
-        transform.Translate(posDiv.x, 0f, posDiv.z, Space.World);
+        Vector3 target = relevantGameObject.transform.position - distanceFromTarget; //10
+        Vector3 translation = (target - transform.position) * cameraStiffness;
+        transform.position += translation;
     }
 
     private void Follow2DPlayer() {
