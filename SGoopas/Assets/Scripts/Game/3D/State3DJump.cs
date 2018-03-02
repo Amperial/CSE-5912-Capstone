@@ -7,7 +7,6 @@ namespace PlayerStates
     public class State3DJump : State3DMove
     {
         private JumpCollider jumpScript;
-        private Rigidbody rb;
         private float airVelocity, height, sides;
         private bool descending = false;
         public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)

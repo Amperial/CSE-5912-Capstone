@@ -6,31 +6,29 @@ namespace PlayerStates
 {
     public class State3DGrab : State3DMove
     {
-        private GameObject player3D, grabField;
-        private Rigidbody rb;
-        private Grabbing grabScript;
-        public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
-        {
-            player3D = player;
-            rb = player3D.GetComponent<Rigidbody>();
-            grabField = player.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
+        private Joint grabJoint;
+        public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
+
+        public override void TransitionFromState(IPlayerState previousState) {
+            base.TransitionFromState(previousState);
+            grabJoint = PlayerObject.AddComponent<FixedJoint>();
+            grabJoint.connectedBody = grabObject.attachedRigidbody;
         }
+
         public override void Action()
         {
-            //interract with other triggers (NOT GRABBING)
-            grabScript.PutDown();
+            // No-op, disable action while grabbing.
         }
 
         public override void Jump()
         {
-            grabScript.lift();
+            // No-op, disable jumping while grabbing.
         }
 
         public override void Release()
         {
-            grabScript.Release();
-            SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+            Object.Destroy(grabJoint);
+            SetState(new State3DStand(PlayerObject, MasterStateMachine));
         }
 
         public override void FixedUpdate() {

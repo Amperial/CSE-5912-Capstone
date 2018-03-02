@@ -6,31 +6,27 @@ namespace PlayerStates
 {
     public class State3DStand : Base3DState
     {
-        private GameObject grabField;
-        private Rigidbody rb;
-        private Grabbing grabScript;
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = player.GetComponent<Rigidbody>();
-            grabField = player.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
         }
+
+        public override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject) {
+            this.grabAvailable = grabAvailable;
+            this.grabObject = grabObject;
+        }
+
         public override void Action()
         {
-            if (grabScript.Grabbable)
+            if (grabAvailable)
             {
-                SetState(new State3DGrab(base.PlayerObject, base.MasterStateMachine));
-                grabScript.Grab();
-            }
-            else
-            {
-                //interact with other object
+                SetState(new State3DGrab(PlayerObject, MasterStateMachine));
             }
         }
 
         public override void FixedUpdate()
         {
-            
+            // No-op.
         }
 
         public override void Jump()
@@ -74,6 +70,7 @@ namespace PlayerStates
 
         public override void Update()
         {
+            // No-op.
         }
     }
 

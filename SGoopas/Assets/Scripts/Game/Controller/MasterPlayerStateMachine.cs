@@ -19,6 +19,7 @@ namespace PlayerStates
 
         public void SetCurrentState(IPlayerState newState)
         {
+            newState.TransitionFromState(currentState);
             currentState = newState;
         }
 
@@ -75,6 +76,11 @@ namespace PlayerStates
         public void FixedUpdate()
         {
             currentState.FixedUpdate();
+        }
+
+        public void GrabAvailabilityChanged(bool grabAvailability, Object grabObject)       
+        {
+            currentState.GrabAvailabilityChanged(grabAvailability, (Collider)grabObject);
         }
 
         public void SwitchDimension()
