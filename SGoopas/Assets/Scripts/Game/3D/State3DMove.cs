@@ -6,8 +6,6 @@ namespace PlayerStates
 {
     public class State3DMove : State3DStand
     {
-        private GameObject grabField;
-        private Rigidbody rb;
         private float velocityCap;
         private Vector3 forwardForce, backForce, rightForce, leftForce;
         private Grabbing grabScript;
@@ -22,8 +20,6 @@ namespace PlayerStates
             rightForce = Vector3.right;
             leftForce = Vector3.left;
             velocityCap = 8.0f;
-            grabField = player.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
         }
 
         public override void MoveDown()

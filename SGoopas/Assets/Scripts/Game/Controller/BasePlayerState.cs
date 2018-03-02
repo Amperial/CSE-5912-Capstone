@@ -33,6 +33,7 @@ namespace PlayerStates
             playerStateMachine.SetCurrentState(newState);
         }
 
+        public abstract void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
         public abstract void Action();
         public abstract void Jump();
         public abstract void MoveDown();
@@ -44,5 +45,6 @@ namespace PlayerStates
         public abstract void FixedUpdate();
         public abstract void StoreState();
         public abstract void RestoreState();
+        public abstract void TransitionFromState(IPlayerState previousState);
     }
 }
