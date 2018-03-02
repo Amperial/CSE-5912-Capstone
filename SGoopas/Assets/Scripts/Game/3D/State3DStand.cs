@@ -8,17 +8,25 @@ namespace PlayerStates
     {
         private GameObject grabField;
         private Grabbing grabScript;
-        public State3DStand(BasePlayerState previousState) : base(previousState) {}
+        protected List<Collider> grabbableObjects = new List<Collider>();
+
+        public State3DStand(BasePlayerState previousState) : base(previousState) {
+            if (previousState is State3DStand)
+            {
+                grabbableObjects = ((State3DStand)previousState).grabbableObjects;
+            }
+        }
+
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
 
-        protected override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject) {
-            this.grabAvailable = grabAvailable;
-            this.grabObject = grabObject;
+        protected override void GrabAvailabilityChanged(List<Collider> availableObjects) 
+        {
+            grabbableObjects = availableObjects;
         }
 
         public override void Action()
         {
-            if (grabAvailable)
+            if (grabbableObjects.Count > 0)
             {
                 SetState(new State3DGrab(this));
             }

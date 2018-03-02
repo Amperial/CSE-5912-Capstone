@@ -10,8 +10,6 @@ namespace PlayerStates
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
         protected Rigidbody rb;
-        protected bool grabAvailable;
-        protected Collider grabObject;
 
         protected Base3DState(BasePlayerState previousState) : base(previousState)
         {
@@ -21,8 +19,6 @@ namespace PlayerStates
                 rb = previousState3D.rb;
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
-                grabObject = previousState3D.grabObject;
-                grabAvailable = previousState3D.grabAvailable;
                 Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
                 Grabbing.grabEvent += this.GrabAvailabilityChanged;
             }
@@ -35,7 +31,7 @@ namespace PlayerStates
             angularVelocity = new Vector3();
         }
 
-        protected abstract void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
+        protected abstract void GrabAvailabilityChanged(List<Collider> availableObjects);
 
         public override void StoreState()
         {

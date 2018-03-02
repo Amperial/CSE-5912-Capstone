@@ -18,7 +18,7 @@ namespace PlayerStates
         private void startGrab()
         {
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
-            grabJoint.connectedBody = grabObject.attachedRigidbody;
+            grabJoint.connectedBody = grabbableObjects[0].attachedRigidbody;
         }
 
         public override void Action()
