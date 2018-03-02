@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
@@ -53,5 +53,4 @@ public class PlayerCamera : MonoBehaviour {
     public void SwitchTo3D(Cancellable cancellable) {
         cancellable.PerformCancellable(Follow3DPlayer, Follow2DPlayer);
     }
-
 }
