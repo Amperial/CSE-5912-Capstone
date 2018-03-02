@@ -26,10 +26,8 @@ namespace PlayerStates
         {
             //You can't instantiate an abstract class, the initial state of the players will be instantiated here, but for now
             state3D = new State3DStand(player3D, this);
-            state3D.StartAsFirstState(player3D, this);
             Transform groundCheck = player2D.transform.Find("GroundCheck");
             state2D = new StationaryRight2D(player2D, this, groundCheck);
-            state2D.StartAsFirstState(player2D, this);
             state2D.StoreState();
             currentState = state3D;
         }

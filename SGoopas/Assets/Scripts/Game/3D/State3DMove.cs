@@ -6,20 +6,22 @@ namespace PlayerStates
 {
     public class State3DMove : State3DStand
     {
-        private GameObject grabField;
-        private float velocityCap;
-        private Vector3 forwardForce, backForce, rightForce, leftForce;
+        private float velocityCap = 8.0f;
+        private Vector3 forwardForce = Vector3.forward;
+        private Vector3 backForce = Vector3.back;
+        private Vector3 rightForce = Vector3.right;
+        private Vector3 leftForce = Vector3.left;
         private Grabbing grabScript;
+        private GameObject grabField;
         float moveForceMagnitude = 50f;
         int stillFrames = 0;
-        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
-        {
-            forwardForce = Vector3.forward;
-            backForce = Vector3.back;
-            rightForce = Vector3.right;
-            leftForce = Vector3.left;
-            velocityCap = 8.0f;
-            grabField = player.transform.Find("3DGrabField").gameObject;
+
+        public State3DMove(BasePlayerState previousState) : base(previousState) {
+            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
+            grabScript = grabField.GetComponent<Grabbing>();
+        }
+        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
 
@@ -79,7 +81,7 @@ namespace PlayerStates
             if (rb.velocity.magnitude < 0.001) {
                 stillFrames++;
                 if (stillFrames > 3) {
-                    SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));   
+                    SetState(new State3DStand(this));   
                 }
             } else {
                 stillFrames = 0;

@@ -9,24 +9,9 @@ namespace PlayerStates
         protected Rigidbody rb;
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
-        protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
-        {
-        }
 
-        public override void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        protected Base3DState(BasePlayerState previousState) : base(previousState)
         {
-            base.StartAsFirstState(player, playerStateMachine);
-            rb = PlayerObject.GetComponent<Rigidbody>();
-            linearVelocity = new Vector3();
-            angularVelocity = new Vector3();
-        }
-
-        /*
-         * Transfer over any information that should be preserved across 3D states.
-         */
-        public override void TransitionFromState(IPlayerState previousState)
-        {
-            base.TransitionFromState(previousState);
             if (previousState is Base3DState)
             {
                 Base3DState previousState3D = (Base3DState)previousState;
@@ -34,6 +19,13 @@ namespace PlayerStates
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
             }
+        }
+
+        protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        {
+            rb = PlayerObject.GetComponent<Rigidbody>();
+            linearVelocity = new Vector3();
+            angularVelocity = new Vector3();
         }
 
         public override void StoreState()
