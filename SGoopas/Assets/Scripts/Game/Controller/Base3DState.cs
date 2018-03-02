@@ -6,9 +6,11 @@ namespace PlayerStates
 {
     public abstract class Base3DState : BasePlayerState
     {
-        protected Rigidbody rb;
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
+        protected Rigidbody rb;
+        protected bool grabAvailable;
+        protected Collider grabObject;
 
         protected Base3DState(BasePlayerState previousState) : base(previousState)
         {
@@ -18,6 +20,8 @@ namespace PlayerStates
                 rb = previousState3D.rb;
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
+                grabObject = previousState3D.grabObject;
+                grabAvailable = previousState3D.grabAvailable;
             }
         }
 
@@ -26,6 +30,19 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody>();
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
+        }
+
+        /*
+         * Transfer over any information that should be preserved across 3D states.
+         */
+        public override void TransitionFromState(IPlayerState previousState)
+        {
+            if (previousState is Base3DState)
+            {
+                Base3DState previousState3D = (Base3DState)previousState;
+                grabAvailable = previousState3D.grabAvailable;
+                grabObject = previousState3D.grabObject;
+            }
         }
 
         public override void StoreState()

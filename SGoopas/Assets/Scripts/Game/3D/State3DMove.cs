@@ -16,14 +16,8 @@ namespace PlayerStates
         float moveForceMagnitude = 50f;
         int stillFrames = 0;
 
-        public State3DMove(BasePlayerState previousState) : base(previousState) {
-            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
-        }
-        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
-            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
-        }
+        public State3DMove(BasePlayerState previousState) : base(previousState) {}
+        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
 
         public override void MoveDown()
         {

@@ -2,54 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grabbing : MonoBehaviour {
+public class Grabbing : MonoBehaviour, IStateEventDelegate {
+    public static Grabbing Instance;
 
-    private bool grab,trigger;
+    private bool trigger;
     private Collider item;
-    GameObject parent;
-    Transform previousParentTransform;
-    public bool Grabbable
-    {
-        get
-        {
-            return trigger;
-        }
-    }
-	void Start () {
-        grab = false;
-        trigger = false;
-		parent = transform.parent.gameObject;
-	}
-	
-    public void lift()
-    {
-        // No-op.
-    }
-    public void PutDown()
-    {
-        // No-op.
-    }
-    public void Grab()
-    {
-        if(!grab && trigger)
-        {
-            parent.AddComponent<FixedJoint>();
-            Joint joint = parent.GetComponent<Joint>();
-            joint.connectedBody = item.attachedRigidbody;
-            grab = true;
-        }
-    }
-    public void Release()
-    {
-        if(grab)
-        {
-            Destroy(parent.GetComponent<Joint>());
-            grab = false;
-        }
-    }
-	void OnTriggerStay(Collider other){
 
-		if (!grab && other.attachedRigidbody != null) {
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public bool CurrentState() {
+        return trigger;
+    }
+
+    public Object StateObject() {
+        return item;
+    }
+
+	void OnTriggerStay(Collider other){
+		if (other.attachedRigidbody != null) {
 			trigger = true;
 			item = other;
 		}
@@ -59,5 +32,4 @@ public class Grabbing : MonoBehaviour {
     {
         trigger = false;
     }
-
 }

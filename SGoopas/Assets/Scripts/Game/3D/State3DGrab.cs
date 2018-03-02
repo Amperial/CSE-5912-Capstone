@@ -6,8 +6,6 @@ namespace PlayerStates
 {
     public class State3DGrab : State3DMove
     {
-        private GameObject grabField;
-        private Grabbing grabScript;
         private Joint grabJoint;
         public State3DGrab(BasePlayerState previousState) : base(previousState) {
             startGrab();
@@ -19,23 +17,23 @@ namespace PlayerStates
 
         private void startGrab()
         {
-            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
-            grabScript = grabField.GetComponent<Grabbing>();
+            grabJoint = PlayerObject.AddComponent<FixedJoint>();
+            grabJoint.connectedBody = grabObject.attachedRigidbody;
         }
+
         public override void Action()
         {
-            //interract with other triggers (NOT GRABBING)
-            grabScript.PutDown();
+            // No-op, disable action while grabbing.
         }
 
         public override void Jump()
         {
-            grabScript.lift();
+            // No-op, disable jumping while grabbing.
         }
 
         public override void Release()
         {
-            grabScript.Release();  
+            Object.Destroy(grabJoint);
             SetState(new State3DStand(this));
         }
 

@@ -41,6 +41,7 @@ public class ControllerConfigure : MonoBehaviour {
 
     private void ConfigureControls()
     {
+        controller.RegisterStateEvent(Grabbing.Instance, playerStateMachine.GrabAvailabilityChanged);
         controller.RegisterButtonDown("Jump", playerStateMachine.Jump);
         controller.RegisterButtonDown("Action", playerStateMachine.Action);
         controller.RegisterButtonDown("SwapDimension", SwapDimension);
