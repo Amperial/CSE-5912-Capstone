@@ -9,17 +9,15 @@ namespace PlayerStates
         private GameObject player;
         private MasterPlayerStateMachine playerStateMachine;
 
-        protected BasePlayerState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        protected BasePlayerState(BasePlayerState previousState)
         {
+            player = previousState.player;
+            playerStateMachine = previousState.playerStateMachine;
+        }
+
+        protected BasePlayerState(GameObject player, MasterPlayerStateMachine playerStateMachine) {
             this.player = player;
             this.playerStateMachine = playerStateMachine;
-        }
-        
-        protected MasterPlayerStateMachine MasterStateMachine {
-            get
-            {
-                return playerStateMachine;
-            }
         }
 
         protected GameObject PlayerObject {
@@ -31,6 +29,11 @@ namespace PlayerStates
         protected void SetState(IPlayerState newState)
         {
             playerStateMachine.SetCurrentState(newState);
+        }
+
+        public virtual void TransitionFromState(IPlayerState previousState) {
+            // All states at this point should derive from BasePlayerState.
+            UnityEngine.Assertions.Assert.IsTrue(previousState is BasePlayerState);
         }
 
         public abstract void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
@@ -45,6 +48,5 @@ namespace PlayerStates
         public abstract void FixedUpdate();
         public abstract void StoreState();
         public abstract void RestoreState();
-        public abstract void TransitionFromState(IPlayerState previousState);
     }
 }

@@ -7,16 +7,18 @@ namespace PlayerStates
     public class State3DJump : State3DMove
     {
         private JumpCollider jumpScript;
-        private float airVelocity, height, sides;
+        private float airVelocity = 3.0f;
+        private float height = 0.499f;
+        private float sides = 0.99f;
         private bool descending = false;
-        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        public State3DJump(BasePlayerState previousState) : base(previousState) 
         {
-            rb = player.GetComponent<Rigidbody>();
-            airVelocity = 3.0f;
-            height = 0.499f;
-            sides = 0.99f;
-            jumpScript = player.GetComponent<JumpCollider>();
+            jumpScript = PlayerObject.GetComponent<JumpCollider>();
         }
+        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            jumpScript = PlayerObject.GetComponent<JumpCollider>();
+        }
+
         public override void Action()
         {
             //cant interact while jumping
@@ -53,10 +55,10 @@ namespace PlayerStates
                 if (land)
                 {
                     if (rb.velocity.magnitude < 0.01) {
-                        SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+                        SetState(new State3DStand(this));
                     }   
                     else {
-                        SetState(new State3DMove(base.PlayerObject, base.MasterStateMachine));
+                        SetState(new State3DMove(this));
                     }
                         
                 }

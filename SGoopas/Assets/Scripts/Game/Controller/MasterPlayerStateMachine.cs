@@ -19,7 +19,6 @@ namespace PlayerStates
 
         public void SetCurrentState(IPlayerState newState)
         {
-            newState.TransitionFromState(currentState);
             currentState = newState;
         }
 
