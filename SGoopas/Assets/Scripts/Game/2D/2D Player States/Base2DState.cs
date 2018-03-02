@@ -150,10 +150,5 @@ namespace PlayerStates
         { 
             // No-op.
         }
-
-        public override void TransitionFromState(IPlayerState previousState) 
-        {
-            // No-op until we have information that needs transferred between 2D states.
-        }
     }
 }

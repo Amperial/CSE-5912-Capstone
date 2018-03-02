@@ -43,6 +43,5 @@ namespace PlayerStates
         public abstract void FixedUpdate();
         public abstract void StoreState();
         public abstract void RestoreState();
-        public abstract void TransitionFromState(IPlayerState previousState);
     }
 }

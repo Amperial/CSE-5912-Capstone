@@ -32,19 +32,6 @@ namespace PlayerStates
             angularVelocity = new Vector3();
         }
 
-        /*
-         * Transfer over any information that should be preserved across 3D states.
-         */
-        public override void TransitionFromState(IPlayerState previousState)
-        {
-            if (previousState is Base3DState)
-            {
-                Base3DState previousState3D = (Base3DState)previousState;
-                grabAvailable = previousState3D.grabAvailable;
-                grabObject = previousState3D.grabObject;
-            }
-        }
-
         public override void StoreState()
         {
             linearVelocity = rb.velocity;

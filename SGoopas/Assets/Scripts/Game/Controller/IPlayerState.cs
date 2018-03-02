@@ -17,7 +17,6 @@ namespace PlayerStates
         void Jump();
         void Action();
         void Release();
-        void TransitionFromState(IPlayerState previousState);
         void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
     }
 }
