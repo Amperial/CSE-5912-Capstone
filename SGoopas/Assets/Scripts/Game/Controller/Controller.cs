@@ -3,30 +3,13 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public interface IStateEventDelegate {
-    bool CurrentState();
-    UnityEngine.Object StateObject();
-}
-
 public class Controller {
     Dictionary<string, Action> buttonDowns;
     Dictionary<string, Tuple<Action, Action>> axis;
-    Dictionary<IStateEventDelegate, Tuple<bool, Action<bool, UnityEngine.Object>>> events;
-	public Controller()
+    public Controller()
     {
         buttonDowns = new Dictionary<string, Action>();
         axis = new Dictionary<string, Tuple<Action, Action>>();
-        events = new Dictionary<IStateEventDelegate, Tuple<bool, Action<bool, UnityEngine.Object>>>();
-    }
-
-    /*
-     * Watches a state value for change.
-     */
-    public void RegisterStateEvent(IStateEventDelegate eventDelegate, Action<bool, UnityEngine.Object> action) {
-        Tuple<bool, Action<bool, UnityEngine.Object>> stateAction = new Tuple<bool, Action<bool, UnityEngine.Object>>(eventDelegate.CurrentState(), action);
-        if (events.ContainsKey(eventDelegate))
-            events.Remove(eventDelegate);
-        events.Add(eventDelegate, stateAction);
     }
  
     public void RegisterAxis(string axisName, Action negativeAction, Action positiveAction)
@@ -46,16 +29,6 @@ public class Controller {
 
     public void Update()
     {
-        foreach (KeyValuePair<IStateEventDelegate, Tuple<bool, Action<bool, UnityEngine.Object>>> entry in events)
-        {
-            Tuple<bool, Action<bool, UnityEngine.Object>> stateEvent = entry.Value;
-            IStateEventDelegate eventDelegate = entry.Key;
-            if (eventDelegate.CurrentState() != stateEvent.Item1)
-            {
-                stateEvent.Item1 = eventDelegate.CurrentState();
-                stateEvent.Item2(eventDelegate.CurrentState(), eventDelegate.StateObject());
-            }
-        }
         foreach (KeyValuePair<string, Action> entry in buttonDowns)
         {
             if (Input.GetButtonDown(entry.Key))

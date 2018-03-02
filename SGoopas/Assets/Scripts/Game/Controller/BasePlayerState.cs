@@ -31,7 +31,6 @@ namespace PlayerStates
             playerStateMachine.SetCurrentState(newState);
         }
 
-        public abstract void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
         public abstract void Action();
         public abstract void Jump();
         public abstract void MoveDown();

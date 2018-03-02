@@ -145,10 +145,5 @@ namespace PlayerStates
             rb.velocity = linearVelocity;
             rb.angularVelocity = angularVelocity;
         }
-
-        public override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject)
-        { 
-            // No-op.
-        }
     }
 }

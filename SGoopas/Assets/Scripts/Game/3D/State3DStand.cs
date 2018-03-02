@@ -11,7 +11,7 @@ namespace PlayerStates
         public State3DStand(BasePlayerState previousState) : base(previousState) {}
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
 
-        public override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject) {
+        protected override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject) {
             this.grabAvailable = grabAvailable;
             this.grabObject = grabObject;
         }

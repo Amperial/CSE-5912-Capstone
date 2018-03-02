@@ -1,35 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Grabbing : MonoBehaviour, IStateEventDelegate {
+public class Grabbing : MonoBehaviour {
     public static Grabbing Instance;
 
-    private bool trigger;
+    private bool triggerActivated;
     private Collider item;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    public bool CurrentState() {
-        return trigger;
-    }
-
-    public Object StateObject() {
-        return item;
-    }
+    public delegate void GrabAvailabilityChanged(bool availability, Collider grabbableObject);
+    public static event GrabAvailabilityChanged grabEvent;
 
 	void OnTriggerStay(Collider other){
-		if (other.attachedRigidbody != null) {
-			trigger = true;
-			item = other;
+		if (other.attachedRigidbody != null && !triggerActivated) {
+            grabEvent(true, other);
+            triggerActivated = true;
 		}
 	}
 
     void OnTriggerExit(Collider other)
     {
-        trigger = false;
+        grabEvent(false, other);
+        triggerActivated = false;
     }
 }

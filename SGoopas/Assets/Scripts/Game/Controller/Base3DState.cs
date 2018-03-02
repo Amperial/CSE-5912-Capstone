@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace PlayerStates
 {
@@ -22,6 +23,8 @@ namespace PlayerStates
                 angularVelocity = previousState3D.angularVelocity;
                 grabObject = previousState3D.grabObject;
                 grabAvailable = previousState3D.grabAvailable;
+                Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
+                Grabbing.grabEvent += this.GrabAvailabilityChanged;
             }
         }
 
@@ -31,6 +34,8 @@ namespace PlayerStates
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }
+
+        protected abstract void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
 
         public override void StoreState()
         {

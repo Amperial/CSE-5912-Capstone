@@ -17,6 +17,5 @@ namespace PlayerStates
         void Jump();
         void Action();
         void Release();
-        void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
     }
 }

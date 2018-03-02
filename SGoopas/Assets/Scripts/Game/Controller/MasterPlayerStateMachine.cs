@@ -77,11 +77,6 @@ namespace PlayerStates
             currentState.FixedUpdate();
         }
 
-        public void GrabAvailabilityChanged(bool grabAvailability, Object grabObject)       
-        {
-            currentState.GrabAvailabilityChanged(grabAvailability, (Collider)grabObject);
-        }
-
         public void SwitchDimension()
         {
             currentState.StoreState();
