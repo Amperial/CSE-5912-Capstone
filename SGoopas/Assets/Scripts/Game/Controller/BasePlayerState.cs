@@ -31,11 +31,6 @@ namespace PlayerStates
             playerStateMachine.SetCurrentState(newState);
         }
 
-        public virtual void TransitionFromState(IPlayerState previousState) {
-            // All states at this point should derive from BasePlayerState.
-            UnityEngine.Assertions.Assert.IsTrue(previousState is BasePlayerState);
-        }
-
         public abstract void Action();
         public abstract void Jump();
         public abstract void MoveDown();
