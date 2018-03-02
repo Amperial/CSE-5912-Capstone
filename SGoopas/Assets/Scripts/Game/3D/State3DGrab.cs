@@ -39,6 +39,10 @@ namespace PlayerStates
             grabScript.Release();
             SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
         }
+
+        public override void FixedUpdate() {
+            // Disallow rotation while grabbing...
+        }
     }
 
 }
