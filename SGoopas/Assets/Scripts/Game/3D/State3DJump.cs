@@ -11,7 +11,6 @@ namespace PlayerStates
         private bool descending = false;
         public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            rb = player.GetComponent<Rigidbody>();
             airVelocity = 3.0f;
             height = 0.499f;
             sides = 0.99f;

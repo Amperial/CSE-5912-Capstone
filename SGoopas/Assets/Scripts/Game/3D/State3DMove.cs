@@ -13,8 +13,6 @@ namespace PlayerStates
         int stillFrames = 0;
         public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            rb = player.GetComponent<Rigidbody>();
-           
             forwardForce = Vector3.forward;
             backForce = Vector3.back;
             rightForce = Vector3.right;

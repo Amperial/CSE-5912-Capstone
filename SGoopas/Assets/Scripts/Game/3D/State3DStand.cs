@@ -8,7 +8,7 @@ namespace PlayerStates
     {
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            rb = player.GetComponent<Rigidbody>();
+            
         }
 
         public override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject) {

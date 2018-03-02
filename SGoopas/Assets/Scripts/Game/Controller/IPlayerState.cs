@@ -19,5 +19,6 @@ namespace PlayerStates
         void Release();
         void TransitionFromState(IPlayerState previousState);
         void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject);
+        void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine);
     }
 }

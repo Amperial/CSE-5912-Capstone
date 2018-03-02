@@ -14,8 +14,12 @@ namespace PlayerStates
 
         protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            rb = player.GetComponent<Rigidbody>();
+        }
 
+        public override void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        {
+            base.StartAsFirstState(player, playerStateMachine);
+            rb = PlayerObject.GetComponent<Rigidbody>();
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }
@@ -25,11 +29,15 @@ namespace PlayerStates
          */
         public override void TransitionFromState(IPlayerState previousState)
         {
+            base.TransitionFromState(previousState);
             if (previousState is Base3DState)
             {
                 Base3DState previousState3D = (Base3DState)previousState;
                 grabAvailable = previousState3D.grabAvailable;
                 grabObject = previousState3D.grabObject;
+                rb = previousState3D.rb;
+                linearVelocity = previousState3D.linearVelocity;
+                angularVelocity = previousState3D.angularVelocity;
             }
         }
 

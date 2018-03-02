@@ -14,7 +14,7 @@ namespace PlayerStates
         private float maxHoriSpeed = 1f;
         private float maxVertSpeed = 1f;
 
-        private Rigidbody2D rb;
+        protected Rigidbody2D rb;
         private Vector2 linearVelocity;
         private float angularVelocity;
         private Transform groundCheck;
@@ -22,12 +22,30 @@ namespace PlayerStates
         protected Base2DState(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine)
         {
             this.groundCheck = groundCheck;
-            rb = player.GetComponent<Rigidbody2D>();
-            linearVelocity = new Vector2();
-            angularVelocity = 0.0f;
-            mc = PlayerObject.GetComponent<Movement2DConfig>();
         }
 
+        public override void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        {
+            base.StartAsFirstState(player, playerStateMachine);
+            mc = PlayerObject.GetComponent<Movement2DConfig>();
+            rb = PlayerObject.GetComponent<Rigidbody2D>();
+            linearVelocity = new Vector2();
+            angularVelocity = 0.0f;
+        }
+
+        public override void TransitionFromState(IPlayerState previousState)
+        {
+            base.TransitionFromState(previousState);
+            if (previousState is Base2DState)
+            {
+                Base2DState previousState2D = (Base2DState)previousState;
+                mc = previousState2D.mc;
+                rb = previousState2D.rb;
+                linearVelocity = previousState2D.linearVelocity;
+                angularVelocity = previousState2D.angularVelocity;
+                groundCheck = previousState2D.groundCheck;
+            }
+        }
 
         protected Transform GroundCheck {
             get
@@ -119,7 +137,6 @@ namespace PlayerStates
         public override void StoreState()
         {
             rb.isKinematic = true;
-
             linearVelocity = rb.velocity;
             rb.velocity = new Vector2();
             angularVelocity = rb.angularVelocity;
@@ -137,11 +154,6 @@ namespace PlayerStates
         public override void GrabAvailabilityChanged(bool grabAvailable, Collider grabObject)
         { 
             // No-op.
-        }
-
-        public override void TransitionFromState(IPlayerState previousState) 
-        {
-            // No-op until we have information that needs transferred between 2D states.
         }
     }
 }
