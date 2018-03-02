@@ -8,10 +8,8 @@ namespace PlayerStates
     {
         private bool dJump = true;
         private bool airDash = true;
-        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
-        {
-            
-        }
+        public JumpingRight2D(BasePlayerState previousState) : base(previousState) { }
+        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
 
         public override void Action()
         {
@@ -59,7 +57,7 @@ namespace PlayerStates
         {
             if (Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
-                SetState(new StationaryRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+                SetState(new StationaryRight2D(this));
             }
         }
     }

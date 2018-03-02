@@ -19,23 +19,9 @@ namespace PlayerStates
         private float angularVelocity;
         private Transform groundCheck;
         private Movement2DConfig mc;
-        protected Base2DState(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine)
-        {
-            this.groundCheck = groundCheck;
-        }
 
-        public override void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        protected Base2DState(BasePlayerState previousState) : base(previousState)
         {
-            base.StartAsFirstState(player, playerStateMachine);
-            mc = PlayerObject.GetComponent<Movement2DConfig>();
-            rb = PlayerObject.GetComponent<Rigidbody2D>();
-            linearVelocity = new Vector2();
-            angularVelocity = 0.0f;
-        }
-
-        public override void TransitionFromState(IPlayerState previousState)
-        {
-            base.TransitionFromState(previousState);
             if (previousState is Base2DState)
             {
                 Base2DState previousState2D = (Base2DState)previousState;
@@ -45,6 +31,15 @@ namespace PlayerStates
                 angularVelocity = previousState2D.angularVelocity;
                 groundCheck = previousState2D.groundCheck;
             }
+        }
+
+        protected Base2DState(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine)
+        {
+            mc = PlayerObject.GetComponent<Movement2DConfig>();
+            rb = PlayerObject.GetComponent<Rigidbody2D>();
+            linearVelocity = new Vector2();
+            angularVelocity = 0.0f;
+            this.groundCheck = groundCheck;
         }
 
         protected Transform GroundCheck {

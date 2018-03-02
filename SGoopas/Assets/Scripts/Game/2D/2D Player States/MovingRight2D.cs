@@ -6,10 +6,8 @@ namespace PlayerStates
 {
     public class MovingRight2D : Base2DState
     {
-        public MovingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
-        {
-            
-        }
+        public MovingRight2D(BasePlayerState previousState) : base(previousState) { }
+        public MovingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
 
         public override void Action()
         {
@@ -19,13 +17,13 @@ namespace PlayerStates
         public override void FixedUpdate()
         {
             if(rb.velocity.x <= 0)
-                SetState(new StationaryRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+                SetState(new StationaryRight2D(this));
         }
 
         public override void Jump()
         {
             rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
-            SetState(new JumpingRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+            SetState(new JumpingRight2D(this));
         }
 
         public override void MoveDown()
@@ -35,7 +33,7 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            SetState(new StationaryRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+            SetState(new StationaryRight2D(this));
         }
 
         public override void MoveRight()
@@ -48,7 +46,7 @@ namespace PlayerStates
         {
             if (!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
-                SetState(new JumpingRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+                SetState(new JumpingRight2D(this));
             }
         }
     }
