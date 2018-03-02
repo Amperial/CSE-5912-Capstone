@@ -7,18 +7,18 @@ namespace PlayerStates
     public class State3DGrab : State3DMove
     {
         private Joint grabJoint;
-        public State3DGrab(BasePlayerState previousState) : base(previousState) {
-            startGrab();
+        public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
+            startGrab(objectToGrab);
         }
 
-        public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
-            startGrab();
+        public State3DGrab(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            startGrab(objectToGrab);
         }
 
-        private void startGrab()
+        private void startGrab(Collider objectToGrab)
         {
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
-            grabJoint.connectedBody = grabbableObjects[0].attachedRigidbody;
+            grabJoint.connectedBody = objectToGrab.attachedRigidbody;
         }
 
         public override void Action()

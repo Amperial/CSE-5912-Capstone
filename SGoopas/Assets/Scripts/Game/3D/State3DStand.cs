@@ -28,7 +28,7 @@ namespace PlayerStates
         {
             if (grabbableObjects.Count > 0)
             {
-                SetState(new State3DGrab(this));
+                SetState(new State3DGrab(grabbableObjects[0], this));
             }
         }
 
