@@ -6,10 +6,8 @@ namespace PlayerStates
 {
     public class MovingLeft2D : Base2DState
     {
-        private Rigidbody2D rb2d;
         public MovingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
         {
-            rb2d = player.GetComponent<Rigidbody2D>();
         }
 
         public override void Action()
@@ -19,13 +17,13 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
-            if (rb2d.velocity.x >= 0)
+            if (rb.velocity.x >= 0)
                 SetState(new StationaryLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
         }
 
         public override void Jump()
         {
-            rb2d.AddForce(new Vector2(0, JumpForce) * rb2d.mass, ForceMode2D.Force);
+            rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
             SetState(new JumpingLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
         }
 
@@ -36,8 +34,8 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            if (rb2d.velocity.x > -MaxHoriSpeed)
-                rb2d.AddForce(new Vector2(-AirMoveForce, 0) * rb2d.mass, ForceMode2D.Force);
+            if (rb.velocity.x > -MaxHoriSpeed)
+                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
         }
 
         public override void MoveRight()

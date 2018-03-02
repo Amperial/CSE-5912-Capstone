@@ -7,7 +7,6 @@ namespace PlayerStates
     public class State3DGrab : State3DMove
     {
         private GameObject player3D, grabField;
-        private Rigidbody rb;
         private Grabbing grabScript;
         public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {

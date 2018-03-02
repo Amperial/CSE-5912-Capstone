@@ -11,6 +11,9 @@ namespace PlayerStates
 
         protected BasePlayerState(GameObject player, MasterPlayerStateMachine playerStateMachine)
         {
+        }
+
+        public virtual void StartAsFirstState(GameObject player, MasterPlayerStateMachine playerStateMachine) {
             this.player = player;
             this.playerStateMachine = playerStateMachine;
         }
@@ -31,6 +34,14 @@ namespace PlayerStates
         protected void SetState(IPlayerState newState)
         {
             playerStateMachine.SetCurrentState(newState);
+        }
+
+        public virtual void TransitionFromState(IPlayerState previousState) {
+            // All states at this point should derive from BasePlayerState.
+            UnityEngine.Assertions.Assert.IsTrue(previousState is BasePlayerState);
+            BasePlayerState previousStateBase = (BasePlayerState)previousState;
+            player = previousStateBase.player;
+            playerStateMachine = previousStateBase.playerStateMachine;
         }
 
         public abstract void Action();
