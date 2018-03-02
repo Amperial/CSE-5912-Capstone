@@ -11,8 +11,6 @@ namespace PlayerStates
         private Vector3 backForce = Vector3.back;
         private Vector3 rightForce = Vector3.right;
         private Vector3 leftForce = Vector3.left;
-        private Grabbing grabScript;
-        private GameObject grabField;
         float moveForceMagnitude = 50f;
         int stillFrames = 0;
 

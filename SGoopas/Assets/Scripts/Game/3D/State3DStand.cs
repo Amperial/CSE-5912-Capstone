@@ -6,9 +6,7 @@ namespace PlayerStates
 {
     public class State3DStand : Base3DState
     {
-        private GameObject grabField;
-        private Grabbing grabScript;
-        protected List<Collider> grabbableObjects = new List<Collider>();
+        private List<Collider> grabbableObjects = new List<Collider>();
 
         public State3DStand(BasePlayerState previousState) : base(previousState) {
             if (previousState is State3DStand)
