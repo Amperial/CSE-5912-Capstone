@@ -6,7 +6,7 @@ using UnityEngine;
 public class Controller {
     Dictionary<string, Action> buttonDowns;
     Dictionary<string, Tuple<Action, Action>> axis;
-	public Controller()
+    public Controller()
     {
         buttonDowns = new Dictionary<string, Action>();
         axis = new Dictionary<string, Tuple<Action, Action>>();

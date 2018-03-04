@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace PlayerStates
 {
     public abstract class Base3DState : BasePlayerState
     {
-        protected Rigidbody rb;
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
+        protected Rigidbody rb;
 
         protected Base3DState(BasePlayerState previousState) : base(previousState)
         {
@@ -18,6 +19,8 @@ namespace PlayerStates
                 rb = previousState3D.rb;
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
+                Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
+                Grabbing.grabEvent += this.GrabAvailabilityChanged;
             }
         }
 
@@ -27,6 +30,8 @@ namespace PlayerStates
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }
+
+        protected abstract void GrabAvailabilityChanged(List<Collider> availableObjects);
 
         public override void StoreState()
         {
