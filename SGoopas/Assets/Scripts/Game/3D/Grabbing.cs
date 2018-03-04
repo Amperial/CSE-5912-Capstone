@@ -6,7 +6,8 @@ public class Grabbing : MonoBehaviour {
 
     private bool grab,trigger;
     private Collider item;
-	GameObject parent;
+    GameObject parent;
+    Transform previousParentTransform;
     public bool Grabbable
     {
         get
@@ -22,49 +23,19 @@ public class Grabbing : MonoBehaviour {
 	
     public void lift()
     {
-        if(grab)
-        {
-            HingeJoint joint = parent.GetComponent<HingeJoint>();
-
-            JointSpring hingeSpring = joint.spring;
-            if (hingeSpring.targetPosition < 60)
-                //increment the angle so that object is lifed. maximum is 60 degree
-                hingeSpring.targetPosition += 10;
-            joint.spring = hingeSpring;
-        }
+        // No-op.
     }
     public void PutDown()
     {
-        if (grab)
-        {
-            HingeJoint joint = parent.GetComponent<HingeJoint>();
-
-            JointSpring hingeSpring = joint.spring;
-            if (hingeSpring.targetPosition > 10)
-                hingeSpring.targetPosition -= 10;
-            joint.spring = hingeSpring;
-        }
+        // No-op.
     }
     public void Grab()
     {
         if(!grab && trigger)
         {
-            parent.AddComponent<HingeJoint>();
-
-            HingeJoint joint = parent.GetComponent<HingeJoint>();
+            parent.AddComponent<FixedJoint>();
+            Joint joint = parent.GetComponent<Joint>();
             joint.connectedBody = item.attachedRigidbody;
-
-            //added spring element to the joint so that the weight of the lifted object can have gameplay effect
-            JointSpring hingeSpring = joint.spring;
-            //spring coefficient
-            hingeSpring.spring = 20;
-            //damping coefficient
-            hingeSpring.damper = 3;
-            //initial joint angle when grabbing; object right in front of player
-            hingeSpring.targetPosition = 0;
-            joint.spring = hingeSpring;
-            joint.useSpring = true;
-
             grab = true;
         }
     }
@@ -72,7 +43,7 @@ public class Grabbing : MonoBehaviour {
     {
         if(grab)
         {
-            Destroy(parent.GetComponent<HingeJoint>());
+            Destroy(parent.GetComponent<Joint>());
             grab = false;
         }
     }

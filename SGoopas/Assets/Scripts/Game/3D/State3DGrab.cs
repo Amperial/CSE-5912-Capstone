@@ -8,18 +8,11 @@ namespace PlayerStates
     {
         private GameObject player3D, grabField;
         private Rigidbody rb;
-        private Vector3 forwardForce, backForce, rightForce, leftForce;
-        private float velocity;
         private Grabbing grabScript;
         public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             player3D = player;
             rb = player3D.GetComponent<Rigidbody>();
-            forwardForce = new Vector3(0f, 0f, 60f);
-            backForce = new Vector3(0f, 0f, -45f);
-            rightForce = new Vector3(50f, 0f, 0f);
-            leftForce = new Vector3(-50f, 0f, 0f);
-            velocity = 5f;
             grabField = player.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
@@ -42,6 +35,7 @@ namespace PlayerStates
 
         public override void FixedUpdate() {
             // Disallow rotation while grabbing...
+            ClipVelocity();
         }
     }
 
