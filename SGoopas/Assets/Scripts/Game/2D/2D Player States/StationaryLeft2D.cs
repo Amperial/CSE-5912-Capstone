@@ -6,13 +6,17 @@ namespace PlayerStates
 {
     public class StationaryLeft2D : Base2DState
     {
-        private Rigidbody2D rb2d;
-        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
-        {
-            Vector3 prevScale = player.transform.localScale;
-            prevScale.x = -1 * Mathf.Abs(prevScale.x);
-            player.transform.localScale = prevScale;
-            rb2d = PlayerObject.GetComponent<Rigidbody2D>();
+        public StationaryLeft2D(BasePlayerState previousState) : base(previousState) { 
+            FlipSprite();
+        }
+        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { 
+            FlipSprite();
+        }
+
+        private void FlipSprite() {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = -Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
         }
 
         public override void Action()
@@ -27,8 +31,8 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            rb2d.AddForce(new Vector2(0, JumpForce) * rb2d.mass, ForceMode2D.Force);
-            SetState(new JumpingLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
+            rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
+            SetState(new JumpingLeft2D(this));
         }
 
         public override void MoveDown()
@@ -38,20 +42,20 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            if (rb2d.velocity.x > -MaxHoriSpeed)
-                rb2d.AddForce(new Vector2(-AirMoveForce, 0) * rb2d.mass, ForceMode2D.Force);
-            SetState(new MovingLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
+            if (rb.velocity.x > -MaxHoriSpeed)
+                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
+            SetState(new MovingLeft2D(this));
         }
 
         public override void MoveRight()
         {
-            SetState(new StationaryRight2D(PlayerObject, MasterStateMachine, GroundCheck));
+            SetState(new StationaryRight2D(this));
         }
 
         public override void Update()
         {
             if(!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player")))){
-                SetState(new JumpingLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
+                SetState(new JumpingLeft2D(this));
             }
         }
     }

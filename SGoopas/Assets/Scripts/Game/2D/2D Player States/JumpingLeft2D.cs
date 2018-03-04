@@ -8,19 +8,17 @@ namespace PlayerStates
     {
         private bool dJump = true;
         private bool airDash = true;
-        private Rigidbody2D rb2d;
-        public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
-        {
-            rb2d = player.GetComponent<Rigidbody2D>();
-        }
+
+        public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {}
+        public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
 
         public override void Action()
         {
             if (airDash)
             {
                 airDash = false;
-                if (rb2d.velocity.x > -MaxHoriSpeed)
-                    rb2d.AddForce(new Vector2(-AirDashForce, 0) * rb2d.mass, ForceMode2D.Force);
+                if (rb.velocity.x > -MaxHoriSpeed)
+                    rb.AddForce(new Vector2(-AirDashForce, 0) * rb.mass, ForceMode2D.Force);
             }
         }
 
@@ -34,8 +32,8 @@ namespace PlayerStates
             if (dJump)
             {
                 dJump = false;
-                if(rb2d.velocity.y <= MaxVertSpeed)
-                    rb2d.AddForce(new Vector2(0, JumpForce) * rb2d.mass, ForceMode2D.Force);
+                if(rb.velocity.y <= MaxVertSpeed)
+                    rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
             }
         }
 
@@ -46,21 +44,21 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            if(rb2d.velocity.x > -MaxHoriSpeed)
-                rb2d.AddForce(new Vector2(-AirMoveForce, 0) * rb2d.mass, ForceMode2D.Force);
+            if(rb.velocity.x > -MaxHoriSpeed)
+                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
         }
 
         public override void MoveRight()
         {
-            if (rb2d.velocity.x < MaxHoriSpeed)
-                rb2d.AddForce(new Vector2(AirMoveForce, 0) * rb2d.mass, ForceMode2D.Force);
+            if (rb.velocity.x < MaxHoriSpeed)
+                rb.AddForce(new Vector2(AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
         }
 
         public override void Update()
         {
             if (Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
-                SetState(new StationaryLeft2D(PlayerObject, MasterStateMachine, GroundCheck));
+                SetState(new StationaryLeft2D(this));
             }
         }
     }

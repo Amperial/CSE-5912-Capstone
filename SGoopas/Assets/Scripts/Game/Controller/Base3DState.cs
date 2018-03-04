@@ -6,13 +6,24 @@ namespace PlayerStates
 {
     public abstract class Base3DState : BasePlayerState
     {
-        private Rigidbody rb;
+        protected Rigidbody rb;
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
+
+        protected Base3DState(BasePlayerState previousState) : base(previousState)
+        {
+            if (previousState is Base3DState)
+            {
+                Base3DState previousState3D = (Base3DState)previousState;
+                rb = previousState3D.rb;
+                linearVelocity = previousState3D.linearVelocity;
+                angularVelocity = previousState3D.angularVelocity;
+            }
+        }
+
         protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
-            rb = player.GetComponent<Rigidbody>();
-
+            rb = PlayerObject.GetComponent<Rigidbody>();
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }

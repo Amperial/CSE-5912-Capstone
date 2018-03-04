@@ -6,14 +6,20 @@ namespace PlayerStates
 {
     public class State3DGrab : State3DMove
     {
-        private GameObject player3D, grabField;
-        private Rigidbody rb;
+        private GameObject grabField;
         private Grabbing grabScript;
-        public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
+        private Joint grabJoint;
+        public State3DGrab(BasePlayerState previousState) : base(previousState) {
+            startGrab();
+        }
+
+        public State3DGrab(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            startGrab();
+        }
+
+        private void startGrab()
         {
-            player3D = player;
-            rb = player3D.GetComponent<Rigidbody>();
-            grabField = player.transform.Find("3DGrabField").gameObject;
+            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
         public override void Action()
@@ -29,8 +35,8 @@ namespace PlayerStates
 
         public override void Release()
         {
-            grabScript.Release();
-            SetState(new State3DStand(base.PlayerObject, base.MasterStateMachine));
+            grabScript.Release();  
+            SetState(new State3DStand(this));
         }
 
         public override void FixedUpdate() {

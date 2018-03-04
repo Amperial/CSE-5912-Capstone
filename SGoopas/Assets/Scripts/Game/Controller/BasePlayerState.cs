@@ -9,17 +9,15 @@ namespace PlayerStates
         private GameObject player;
         private MasterPlayerStateMachine playerStateMachine;
 
-        protected BasePlayerState(GameObject player, MasterPlayerStateMachine playerStateMachine)
+        protected BasePlayerState(BasePlayerState previousState)
         {
+            player = previousState.player;
+            playerStateMachine = previousState.playerStateMachine;
+        }
+
+        protected BasePlayerState(GameObject player, MasterPlayerStateMachine playerStateMachine) {
             this.player = player;
             this.playerStateMachine = playerStateMachine;
-        }
-        
-        protected MasterPlayerStateMachine MasterStateMachine {
-            get
-            {
-                return playerStateMachine;
-            }
         }
 
         protected GameObject PlayerObject {

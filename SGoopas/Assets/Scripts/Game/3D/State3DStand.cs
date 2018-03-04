@@ -7,19 +7,21 @@ namespace PlayerStates
     public class State3DStand : Base3DState
     {
         private GameObject grabField;
-        private Rigidbody rb;
         private Grabbing grabScript;
-        public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
-        {
-            rb = player.GetComponent<Rigidbody>();
-            grabField = player.transform.Find("3DGrabField").gameObject;
+        public State3DStand(BasePlayerState previousState) : base(previousState) {
+            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
             grabScript = grabField.GetComponent<Grabbing>();
         }
+        public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            grabField = PlayerObject.transform.Find("3DGrabField").gameObject;
+            grabScript = grabField.GetComponent<Grabbing>();
+        }
+
         public override void Action()
         {
             if (grabScript.Grabbable)
             {
-                SetState(new State3DGrab(base.PlayerObject, base.MasterStateMachine));
+                SetState(new State3DGrab(this));
                 grabScript.Grab();
             }
             else
@@ -36,33 +38,33 @@ namespace PlayerStates
         public override void Jump()
         {
             rb.AddForce(new Vector3(0f, 10, 0f), ForceMode.Impulse);
-            SetState(new State3DJump(base.PlayerObject, base.MasterStateMachine));
+            SetState(new State3DJump(this));
         }
 
         public override void MoveDown()
         {
-            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            IPlayerState newState = new State3DMove(this);
             SetState(newState);
             newState.MoveDown();
         }
 
         public override void MoveLeft()
         {
-            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            IPlayerState newState = new State3DMove(this);
             SetState(newState);
             newState.MoveLeft();
         }
 
         public override void MoveRight()
         {
-            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            IPlayerState newState = new State3DMove(this);
             SetState(newState);
             newState.MoveRight();
         }
 
         public override void MoveUp()
         {
-            IPlayerState newState = new State3DMove(base.PlayerObject, base.MasterStateMachine);
+            IPlayerState newState = new State3DMove(this);
             SetState(newState);
             newState.MoveUp();
         }
