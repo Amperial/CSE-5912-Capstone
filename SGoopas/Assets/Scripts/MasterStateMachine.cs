@@ -54,4 +54,30 @@ public class MasterStateMachine
             SceneManager.UnloadSceneAsync(pauseScene);
         }
     }
+
+    public void GoToFirstLevel() {
+        MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState()));
+    }
+
+    public void GoToNextLevel() {
+        if (currentState is GameMainState) {
+            GameMainState newLevel = ((GameMainState)currentState).GetStateForNextLevel();
+            MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
+        }
+    }
+
+    public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
+        float progress;
+        AsyncOperation operation = loading.loadAsynchronously();
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
+        while (!operation.isDone)
+        {
+            progress = Mathf.Clamp01(operation.progress / .9f);
+            MasterMonoBehaviour.Instance.slider.value = progress;
+            MasterMonoBehaviour.Instance.progressTxt.text = progress * 100f + "%";
+            yield return null;
+        }
+        setState(loading);
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
+    }
 }

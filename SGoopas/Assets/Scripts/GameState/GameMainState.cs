@@ -5,7 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameMainState : IGameState
 {
-    private const string sceneName = "GameMain";
+    private string sceneName;
+    private static List<string> levels = new List<string>{"GameMain", "LightFeatures"};
+    private int levelNumber;
+
+    public GameMainState(int levelNumber = 0) {
+        this.levelNumber = levelNumber;
+        sceneName = levels[Mathf.Min(levelNumber, levels.Count)];
+    }
+
+    public GameMainState GetStateForNextLevel() {
+        return new GameMainState(levelNumber + 1);
+    }
 
     /*
      * Load this scene asynchronously.
