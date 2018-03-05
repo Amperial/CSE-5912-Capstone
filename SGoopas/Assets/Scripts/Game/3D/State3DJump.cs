@@ -31,38 +31,26 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
+            
             base.FixedUpdate();
-
-            if (rb.velocity.y < 0)
-                descending = true;
-
-            if (jumpScript.hit)
+            if(rb.velocity.y <= 0)
             {
-                Vector3 playerPos = base.PlayerObject.transform.position;
-                float playerbase = playerPos.y - height;
-                bool land = false;
-                foreach (ContactPoint contact in jumpScript.col.contacts)
-                {
-                    Vector3 cp = contact.point;
-                    float xRange = Mathf.Abs(cp.x - playerPos.x);
-                    float zRange = Mathf.Abs(cp.z - playerPos.z);
-                    if (cp.y < playerbase && xRange < sides && zRange < sides && descending)
-                    {
-                        land = true;
-                        break;
-                    }
-                }
+                bool land = Physics.Raycast(base.PlayerObject.transform.position, Vector3.down, 0.1f);
+
                 if (land)
                 {
-                    if (rb.velocity.magnitude < 0.01) {
+                    if (rb.velocity.magnitude < 0.01)
+                    {
                         SetState(new State3DStand(this));
-                    }   
-                    else {
+                    }
+                    else
+                    {
                         SetState(new State3DMove(this));
                     }
-                        
+
                 }
-            }   
+            }
+
         }
     }
 

@@ -26,6 +26,8 @@ namespace PlayerStates
         {
             if (grabbableObjects.Count > 0)
             {
+                anim.SetBool("grab", true);
+                anim.SetBool("run", false);
                 SetState(new State3DGrab(grabbableObjects[0], this));
             }
         }

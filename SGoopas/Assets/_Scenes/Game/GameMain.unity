@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dade8a353130e254d92209f7289f2b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player3D: {fileID: 0}
+  player3D: {fileID: 1460304745}
   player2D: {fileID: 1630547697}
   cameraStiffness: 1.5
   maxLookDistance: 10

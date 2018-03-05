@@ -14,8 +14,8 @@ namespace PlayerStates
         float moveForceMagnitude = 20f;
         int stillFrames = 0;
 
-        public State3DMove(BasePlayerState previousState) : base(previousState) { anim.SetBool("run", true); }
-        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { anim.SetBool("run", true); }
+        public State3DMove(BasePlayerState previousState) : base(previousState) {}
+        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
 
         public override void MoveDown()
         {
@@ -78,6 +78,7 @@ namespace PlayerStates
                 }
             } else {
                 stillFrames = 0;
+                anim.SetBool("run", true);
             }
         }
 
