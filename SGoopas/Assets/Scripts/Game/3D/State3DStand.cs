@@ -37,7 +37,11 @@ namespace PlayerStates
 
         public override void Jump()
         {
-            rb.AddForce(new Vector3(0f, 10, 0f), ForceMode.Impulse);
+            rb.AddForce(new Vector3(0f, 5, 0f), ForceMode.Impulse);
+            if (this is State3DMove)
+                anim.SetTrigger("jump");
+            else
+                anim.SetTrigger("JIP");
             SetState(new State3DJump(this));
         }
 

@@ -6,16 +6,16 @@ namespace PlayerStates
 {
     public class State3DMove : State3DStand
     {
-        private float velocityCap = 8.0f;
+        private float velocityCap = 5.0f;
         private Vector3 forwardForce = Vector3.forward;
         private Vector3 backForce = Vector3.back;
         private Vector3 rightForce = Vector3.right;
         private Vector3 leftForce = Vector3.left;
-        float moveForceMagnitude = 50f;
+        float moveForceMagnitude = 20f;
         int stillFrames = 0;
 
-        public State3DMove(BasePlayerState previousState) : base(previousState) {}
-        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
+        public State3DMove(BasePlayerState previousState) : base(previousState) { anim.SetBool("run", true); }
+        public State3DMove(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { anim.SetBool("run", true); }
 
         public override void MoveDown()
         {
@@ -73,6 +73,7 @@ namespace PlayerStates
             if (rb.velocity.magnitude < 0.001) {
                 stillFrames++;
                 if (stillFrames > 3) {
+                    anim.SetBool("run", false);
                     SetState(new State3DStand(this));   
                 }
             } else {
