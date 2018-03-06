@@ -7,11 +7,11 @@ namespace PlayerStates
     public class State3DMove : State3DStand
     {
         private float velocityCap = 5.0f;
-        private Vector3 forwardForce = Vector3.forward;
-        private Vector3 backForce = Vector3.back;
-        private Vector3 rightForce = Vector3.right;
-        private Vector3 leftForce = Vector3.left;
-        float moveForceMagnitude = 20f;
+        protected Vector3 forwardForce = Vector3.forward;
+        protected Vector3 backForce = Vector3.back;
+        protected Vector3 rightForce = Vector3.right;
+        protected Vector3 leftForce = Vector3.left;
+        private float moveForceMagnitude = 20f;
         int stillFrames = 0;
 
         public State3DMove(BasePlayerState previousState) : base(previousState) {}
