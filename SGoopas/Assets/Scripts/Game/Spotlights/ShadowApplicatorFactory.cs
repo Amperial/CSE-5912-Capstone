@@ -11,7 +11,7 @@ public class ShadowApplicatorFactory
                 break;
             case Spotlight.ShadowApplicatorType.Hazard:
             default:
-			    applicator = new PolygonShadowCaster(shadowLight, shadowPlane, configuration.gameObject);
+			    applicator = new HazardApplicator();
 			    break;
 		}
 
