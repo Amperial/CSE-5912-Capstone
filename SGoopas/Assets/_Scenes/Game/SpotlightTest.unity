@@ -376,6 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415606612}
   - component: {fileID: 415606613}
+  - component: {fileID: 415606614}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -389,13 +390,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 415606611}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.56, y: 10.13, z: -9.39}
+  m_LocalRotation: {x: -0.21429478, y: -0, z: -0, w: 0.9767691}
+  m_LocalPosition: {x: 27.56, y: 5.55, z: -9.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1934856849}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -24.748001, y: 0, z: 0}
 --- !u!108 &415606613
 Light:
   m_ObjectHideFlags: 0
@@ -432,6 +433,21 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &415606614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 415606611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5558e95cbf927043983287f487a056d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planeObject: {fileID: 1387130232}
+  planeChild: {fileID: 0}
+  generated: 0
+  applicatorType: 0
 --- !u!1 &562374659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,9 +2219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player3D: {fileID: 1886843200}
   player2D: {fileID: 1630547697}
-  cameraStiffness: 1.5
-  maxLookDistance: 10
-  distanceFromTarget: {x: 0, y: -8, z: 10}
 --- !u!1 &2117129139
 GameObject:
   m_ObjectHideFlags: 0
