@@ -78,6 +78,7 @@ public class MasterStateMachine
             yield return null;
         }
         setState(loading);
+        loading.SetAsActiveScene();
         MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
     }
 }

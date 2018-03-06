@@ -18,6 +18,10 @@ public class GameMainState : IGameState
         return new GameMainState(levelNumber + 1);
     }
 
+    public void SetAsActiveScene() {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
+    }
+
     /*
      * Load this scene asynchronously.
      */
