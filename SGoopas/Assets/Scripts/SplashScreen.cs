@@ -15,6 +15,15 @@ public class SplashScreen : MonoBehaviour {
         StartCoroutine("RunFadeAnimation");
     }
 
+    private void Update()
+    {
+        // Skip the intro with space.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MasterStateMachine.Instance.setState(new MainMenuState());
+        }
+    }
+
     IEnumerator RunFadeAnimation() {
         FadeIn(unity);
         yield return new WaitForSeconds(2.5f);
