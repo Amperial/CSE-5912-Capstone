@@ -9,7 +9,7 @@ public class ControllerConfigure : MonoBehaviour {
     private MasterPlayerStateMachine playerStateMachine;
     private Controller controller;
 
-    public static bool is2D = false;
+    public bool is2D = false;
     private static GameObject gameSingleton;
 
     void Awake()
