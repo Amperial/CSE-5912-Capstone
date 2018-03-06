@@ -33,6 +33,7 @@ namespace PlayerStates
 
         public override void Release()
         {
+            anim.SetBool("grabAct", false);
             anim.SetBool("grab", false);
             Object.Destroy(grabJoint);
             SetState(new State3DStand(this));
