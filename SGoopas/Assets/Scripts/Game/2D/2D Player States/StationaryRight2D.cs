@@ -22,7 +22,6 @@ namespace PlayerStates
 
         public override void Action()
         {
-
         }
 
         public override void FixedUpdate()
@@ -58,7 +57,11 @@ namespace PlayerStates
             if (!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
                 SetState(new JumpingRight2D(this));
+                anim.SetBool("grounded", false);
             }
+            //Sets animator's x and y speeds for the animations to use
+            anim.SetFloat("speedX", System.Math.Abs(rb.velocity.x));
+            anim.SetFloat("speedY", rb.velocity.y);
         }
     }
 }

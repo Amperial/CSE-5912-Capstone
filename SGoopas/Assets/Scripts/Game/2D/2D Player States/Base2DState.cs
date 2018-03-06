@@ -19,6 +19,8 @@ namespace PlayerStates
         private float angularVelocity;
         private Transform groundCheck;
         private Movement2DConfig mc;
+        //
+        protected Animator anim;
 
         protected Base2DState(BasePlayerState previousState) : base(previousState)
         {
@@ -27,6 +29,8 @@ namespace PlayerStates
                 Base2DState previousState2D = (Base2DState)previousState;
                 mc = previousState2D.mc;
                 rb = previousState2D.rb;
+                //
+                anim = previousState2D.anim;
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
                 groundCheck = previousState2D.groundCheck;
@@ -37,6 +41,8 @@ namespace PlayerStates
         {
             mc = PlayerObject.GetComponent<Movement2DConfig>();
             rb = PlayerObject.GetComponent<Rigidbody2D>();
+            //
+            anim = PlayerObject.GetComponent<Animator>();
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
             this.groundCheck = groundCheck;

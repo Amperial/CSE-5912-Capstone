@@ -50,13 +50,19 @@ namespace PlayerStates
         public override void MoveRight()
         {
             SetState(new StationaryRight2D(this));
+            
         }
 
         public override void Update()
         {
-            if(!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player")))){
+            if(!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            {
                 SetState(new JumpingLeft2D(this));
+                anim.SetBool("grounded", false);
             }
+            //Sets animator's x and y speeds for the animations to use
+            anim.SetFloat("speedX", System.Math.Abs(rb.velocity.x));
+            anim.SetFloat("speedY", rb.velocity.y);
         }
     }
 }
