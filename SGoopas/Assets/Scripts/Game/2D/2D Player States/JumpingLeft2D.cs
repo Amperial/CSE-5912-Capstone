@@ -45,14 +45,28 @@ namespace PlayerStates
         {
             if(rb.velocity.x > -MaxHoriSpeed)
                 rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
+            FlipSpriteRight(false);
         }
 
         public override void MoveRight()
         {
             if (rb.velocity.x < MaxHoriSpeed)
                 rb.AddForce(new Vector2(AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
+            FlipSpriteRight(true);
         }
-
+        private void FlipSpriteRight(bool right)
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            if (right)
+            {
+                prevScale.x = Mathf.Abs(prevScale.x);
+            }
+            else
+            {
+                prevScale.x = -Mathf.Abs(prevScale.x);
+            }
+            PlayerObject.transform.localScale = prevScale;
+        }
         public override void Update()
         {
             if (Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
