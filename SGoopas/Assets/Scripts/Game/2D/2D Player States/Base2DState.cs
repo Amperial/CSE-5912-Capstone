@@ -20,6 +20,9 @@ namespace PlayerStates
         private Transform groundCheck;
         private Movement2DConfig mc;
 
+        protected Animator anim;
+        protected float characterWidth;
+
         protected Base2DState(BasePlayerState previousState) : base(previousState)
         {
             if (previousState is Base2DState)
@@ -27,6 +30,9 @@ namespace PlayerStates
                 Base2DState previousState2D = (Base2DState)previousState;
                 mc = previousState2D.mc;
                 rb = previousState2D.rb;
+
+                anim = previousState2D.anim;
+                characterWidth = previousState2D.characterWidth;
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
                 groundCheck = previousState2D.groundCheck;
@@ -37,6 +43,10 @@ namespace PlayerStates
         {
             mc = PlayerObject.GetComponent<Movement2DConfig>();
             rb = PlayerObject.GetComponent<Rigidbody2D>();
+
+            anim = PlayerObject.GetComponent<Animator>();
+            characterWidth = PlayerObject.GetComponent<SpriteRenderer>().bounds.size.x/1.2f;
+
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
             this.groundCheck = groundCheck;
