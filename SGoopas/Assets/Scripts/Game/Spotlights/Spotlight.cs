@@ -14,6 +14,8 @@ public class Spotlight : MonoBehaviour {
 
     public ShadowApplicatorType applicatorType;
 
+    public Material shadowMaterial;
+
     void Start()
     {
         if(player2D == null)
@@ -34,6 +36,7 @@ public class Spotlight : MonoBehaviour {
         SpotlightCollider colliderScript = planeChild.AddComponent<SpotlightCollider>();
         colliderScript.applicatorType = this.applicatorType;
         colliderScript.player2D = this.player2D;
+        colliderScript.shadowMaterial = this.shadowMaterial;
     }
 
     private void ActivateCollider()
