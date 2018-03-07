@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -937,7 +937,8 @@ Prefab:
       propertyPath: m_Name
       value: 3DPlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114797524839308134, guid: 50039ef672729064a8d7e1dcaa83d21d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 50039ef672729064a8d7e1dcaa83d21d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &789856167
@@ -2146,6 +2147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player2D: {fileID: 1630547697}
   player3D: {fileID: 1460304745}
+  is2D: 0
 --- !u!1 &1982187253
 GameObject:
   m_ObjectHideFlags: 0
