@@ -70,7 +70,10 @@ public class Physics2DApplicator : ShadowApplicator
     {
         if (collider.gameObject != player)
         {
-            Rigidbody2D rb2d = collider.gameObject.AddComponent<Rigidbody2D>();
+            Rigidbody2D rb2d = collider.gameObject.GetComponent<Rigidbody2D>();
+            if(!rb2d)
+                rb2d = collider.gameObject.AddComponent<Rigidbody2D>();
+
             rb2d.bodyType = RigidbodyType2D.Dynamic;
 
             MeshFilter meshFilter = collider.gameObject.GetComponent<MeshFilter>();
