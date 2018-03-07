@@ -65,6 +65,10 @@ public class MasterStateMachine
             MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
         }
     }
+    public void GoToSpotlightLevel()
+    {
+        MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(2)));
+    }
 
     public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
         float progress;
