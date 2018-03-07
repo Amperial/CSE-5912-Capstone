@@ -10,7 +10,7 @@ namespace PlayerStates
         private bool airDash = true;
         public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {}
         public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
-
+        
         public override void Action()
         {
             if (airDash)
