@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Hazard : MonoBehaviour
+{
+    [HideInInspector]
+    public GameObject spotlightCollider;
+    [HideInInspector]
+    public GameObject player2D;
+
+    private ShadowApplicator applicator;
+    private Collider2D spotlightC;
+
+    // Use this for initialization
+    void Start()
+    {
+        spotlightC = spotlightCollider.GetComponent<Collider2D>();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player2D)
+        {
+            foreach (ContactPoint2D point in collision.contacts)
+            {
+                if (spotlightC.OverlapPoint(point.point))
+                {
+                    Debug.Log("ouchie, my player got hurt");
+                    return;
+                }
+            }
+        }
+    }
+
+ 
+}

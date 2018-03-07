@@ -6,17 +6,21 @@ using UnityEngine;
 
 public class Physics2DApplicator : ShadowApplicator
 {
-    public void OnTriggerEnter(Collider collider)
+    public Physics2DApplicator()
+    {
+
+    }
+    public void OnTriggerEnter2D(Collider2D collider)
     {
 
     }
 
-    public void OnTriggerExit(Collider collider)
+    public void OnTriggerExit2D(Collider2D collider)
     {
 
     }
 
-    public void OnTriggerStay(Collider collider)
+    public void OnTriggerStay2D(Collider2D collider)
     {
 
     }

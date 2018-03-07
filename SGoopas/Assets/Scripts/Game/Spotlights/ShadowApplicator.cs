@@ -6,10 +6,10 @@ using UnityEngine;
 
 public interface ShadowApplicator
  {
-    void OnTriggerEnter(Collider collider);
+    void OnTriggerEnter2D(Collider2D collider);
 
-    void OnTriggerExit(Collider collider);
+    void OnTriggerExit2D(Collider2D collider);
 
-    void OnTriggerStay(Collider collider);
+    void OnTriggerStay2D(Collider2D collider);
  }
 

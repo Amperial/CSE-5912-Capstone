@@ -5,24 +5,28 @@ using UnityEngine;
 public class SpotlightCollider : MonoBehaviour {
     [HideInInspector]
     public Spotlight.ShadowApplicatorType applicatorType;
+    [HideInInspector]
+    public GameObject player2D;
+
     private ShadowApplicator applicator;
+
 	// Use this for initialization
 	void Start () {
-        applicator = ShadowApplicatorFactory.CreateApplicatorFromType(applicatorType, this.gameObject);
+        applicator = ShadowApplicatorFactory.CreateApplicatorFromType(this.applicatorType, this.gameObject, this.player2D);
 	}
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        applicator.OnTriggerEnter(other);
+        applicator.OnTriggerEnter2D(other);
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        applicator.OnTriggerStay(other);
+        applicator.OnTriggerStay2D(other);
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        applicator.OnTriggerExit(other);
+        applicator.OnTriggerExit2D(other);
     }
 }

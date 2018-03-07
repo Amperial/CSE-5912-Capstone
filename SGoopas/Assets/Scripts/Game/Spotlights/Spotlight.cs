@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spotlight : MonoBehaviour {
     public GameObject planeObject;
+    public GameObject player2D;
     private GameObject planeChild;
     private bool generated;
     private Plane plane;
@@ -15,6 +16,10 @@ public class Spotlight : MonoBehaviour {
 
     void Start()
     {
+        if(player2D == null)
+        {
+            player2D = GameObject.Find("Player");
+        }
         planeChild = new GameObject(this.gameObject.name + " plane collider");
         planeChild.transform.parent = transform;
         generated = false;
@@ -28,6 +33,7 @@ public class Spotlight : MonoBehaviour {
         rb2d.isKinematic = true;
         SpotlightCollider colliderScript = planeChild.AddComponent<SpotlightCollider>();
         colliderScript.applicatorType = this.applicatorType;
+        colliderScript.player2D = this.player2D;
     }
 
     private void ActivateCollider()

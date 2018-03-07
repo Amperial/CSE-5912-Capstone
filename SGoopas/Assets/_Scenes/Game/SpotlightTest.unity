@@ -445,8 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeObject: {fileID: 1387130232}
-  planeChild: {fileID: 0}
-  generated: 0
+  player2D: {fileID: 1630547697}
   applicatorType: 0
 --- !u!1 &562374659
 GameObject:
@@ -2219,6 +2218,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player3D: {fileID: 1886843200}
   player2D: {fileID: 1630547697}
+  cameraStiffness: 1.5
+  maxLookDistance: 10
+  distanceFromTarget: {x: 0, y: -8, z: 10}
 --- !u!1 &2117129139
 GameObject:
   m_ObjectHideFlags: 0
