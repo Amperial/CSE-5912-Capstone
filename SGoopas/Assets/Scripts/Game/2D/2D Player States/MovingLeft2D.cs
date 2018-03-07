@@ -6,6 +6,7 @@ namespace PlayerStates
 {
     public class MovingLeft2D : Base2DState
     {
+        private Vector3 tempVR, tempVL;
         public MovingLeft2D(BasePlayerState previousState) : base(previousState) { }
         public MovingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
 
@@ -44,7 +45,11 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            tempVL = PlayerObject.transform.position;
+            tempVR = PlayerObject.transform.position;
+            tempVL.x = PlayerObject.transform.position.x - (characterWidth / 2.0f);
+            tempVR.x = PlayerObject.transform.position.x + (characterWidth / 2.0f);
+            if (!Physics2D.Linecast(tempVL, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))) || !Physics2D.Linecast(tempVR, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
                 SetState(new JumpingLeft2D(this));
                 anim.SetBool("grounded", false);

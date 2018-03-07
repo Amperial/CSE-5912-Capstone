@@ -6,6 +6,8 @@ namespace PlayerStates
 {
     public class StationaryRight2D : Base2DState
     {
+        private Vector3 tempVR, tempVL;
+
         public StationaryRight2D(BasePlayerState previousState) : base(previousState) {
             FlipSprite();
         }
@@ -54,7 +56,13 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            tempVL = PlayerObject.transform.position;
+            tempVR = PlayerObject.transform.position;
+            tempVL.x = PlayerObject.transform.position.x - (characterWidth / 2.0f);
+            tempVR.x = PlayerObject.transform.position.x + (characterWidth / 2.0f);
+
+
+            if (!Physics2D.Linecast(tempVL, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))) || !Physics2D.Linecast(tempVR, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
                 SetState(new JumpingRight2D(this));
                 anim.SetBool("grounded", false);
