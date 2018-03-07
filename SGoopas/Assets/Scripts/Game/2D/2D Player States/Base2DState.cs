@@ -45,7 +45,7 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody2D>();
             //
             anim = PlayerObject.GetComponent<Animator>();
-            characterWidth = PlayerObject.GetComponent<SpriteRenderer>().bounds.size.x;
+            characterWidth = PlayerObject.GetComponent<SpriteRenderer>().bounds.size.x/1.5f;
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;

@@ -60,9 +60,13 @@ namespace PlayerStates
             tempVR = PlayerObject.transform.position;
             tempVL.x = PlayerObject.transform.position.x - (characterWidth / 2.0f);
             tempVR.x = PlayerObject.transform.position.x + (characterWidth / 2.0f);
-
-
-            if (!Physics2D.Linecast(tempVL, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))) || !Physics2D.Linecast(tempVR, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            /*
+             * Raycast for debugging
+            Debug.DrawRay(tempVL, PlayerObject.transform.TransformDirection(GroundCheck.forward) * 10, Color.red);
+            Debug.DrawRay(tempVR, PlayerObject.transform.TransformDirection(GroundCheck.forward) * 10, Color.red);
+            Debug.DrawRay(PlayerObject.transform.position, PlayerObject.transform.TransformDirection(GroundCheck.forward)*10, Color.red);
+            */
+            if (!Physics2D.Linecast(tempVL, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))) || !Physics2D.Linecast(tempVR, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))) || !Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
             {
                 SetState(new JumpingRight2D(this));
                 anim.SetBool("grounded", false);
