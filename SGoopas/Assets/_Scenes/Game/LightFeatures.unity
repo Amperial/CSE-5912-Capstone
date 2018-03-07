@@ -1990,7 +1990,7 @@ MonoBehaviour:
   player2D: {fileID: 2113500433}
   cameraStiffness: 1.5
   maxLookDistance: 10
-  distanceFromTarget: {x: 0, y: -8, z: 10}
+  distanceFromTarget: {x: 0, y: -8, z: 15}
 --- !u!1001 &2054946855
 Prefab:
   m_ObjectHideFlags: 0

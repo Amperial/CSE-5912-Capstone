@@ -2291,8 +2291,8 @@ Transform:
   - {fileID: 1872297806}
   - {fileID: 404211623}
   - {fileID: 1604130467}
-  - {fileID: 1762653653}
   - {fileID: 2018204272}
+  - {fileID: 1762653653}
   - {fileID: 648675408}
   - {fileID: 1386295785}
   m_Father: {fileID: 0}
@@ -2490,7 +2490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1934856849}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &2018204273
 MonoBehaviour:
@@ -2507,7 +2507,7 @@ MonoBehaviour:
   player2D: {fileID: 1762653652}
   cameraStiffness: 1.5
   maxLookDistance: 10
-  distanceFromTarget: {x: 0, y: -8, z: 10}
+  distanceFromTarget: {x: 0, y: -8, z: 15}
 --- !u!1 &2117129139
 GameObject:
   m_ObjectHideFlags: 0

@@ -2344,7 +2344,7 @@ MonoBehaviour:
   player2D: {fileID: 1131129089}
   cameraStiffness: 1.5
   maxLookDistance: 10
-  distanceFromTarget: {x: 0, y: -8, z: 10}
+  distanceFromTarget: {x: 0, y: -8, z: 15}
 --- !u!1 &2117129139
 GameObject:
   m_ObjectHideFlags: 0
