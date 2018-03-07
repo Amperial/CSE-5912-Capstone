@@ -9,6 +9,7 @@ public class Hazard : MonoBehaviour
     [HideInInspector]
     public GameObject player2D;
 
+    private bool hasHurtPlayer;
     private ShadowApplicator applicator;
     private Collider2D spotlightC;
 
@@ -16,9 +17,10 @@ public class Hazard : MonoBehaviour
     void Start()
     {
         spotlightC = spotlightCollider.GetComponent<Collider2D>();
+        hasHurtPlayer = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private bool shouldPlayerHurt(Collision2D collision)
     {
         if (collision.gameObject == player2D)
         {
@@ -26,12 +28,32 @@ public class Hazard : MonoBehaviour
             {
                 if (spotlightC.OverlapPoint(point.point))
                 {
-                    Debug.Log("ouchie, my player got hurt");
-                    return;
+                    hasHurtPlayer = true;
+                    return true;
                 }
             }
         }
+        return false;
     }
 
- 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(shouldPlayerHurt(collision))
+            Debug.Log("ouchie, my player got hurt");
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if(!hasHurtPlayer && shouldPlayerHurt(collision))
+            Debug.Log("ouchie, my player got hurt");            
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject == player2D)
+        {
+            hasHurtPlayer = false;
+        }
+    }
+
 }
