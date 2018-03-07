@@ -8,9 +8,9 @@ namespace PlayerStates
     {
         private bool dJump = true;
         private bool airDash = true;
-        public JumpingRight2D(BasePlayerState previousState) : base(previousState) { }
-        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
-
+        public JumpingRight2D(BasePlayerState previousState) : base(previousState) {}
+        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
+       
         public override void Action()
         {
             if (airDash)
@@ -55,10 +55,13 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            if (Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
             {
                 SetState(new StationaryRight2D(this));
+                Animator2D.updateGroundedParam(anim, true);
             }
+            //Sets animator's x and y speeds for the animations to use
+            Animator2D.updateXYParam(anim, rb);
         }
     }
 }

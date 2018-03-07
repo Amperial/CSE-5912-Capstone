@@ -6,10 +6,10 @@ namespace PlayerStates
 {
     public class StationaryLeft2D : Base2DState
     {
-        public StationaryLeft2D(BasePlayerState previousState) : base(previousState) { 
+        public StationaryLeft2D(BasePlayerState previousState) : base(previousState) {
             FlipSprite();
         }
-        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { 
+        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
             FlipSprite();
         }
 
@@ -50,13 +50,18 @@ namespace PlayerStates
         public override void MoveRight()
         {
             SetState(new StationaryRight2D(this));
+            
         }
 
         public override void Update()
         {
-            if(!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player")))){
+            if (!Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
+            {
                 SetState(new JumpingLeft2D(this));
+                Animator2D.updateGroundedParam(anim, false);
             }
+            //Sets animator's x and y speeds for the animations to use
+            Animator2D.updateXYParam(anim, rb);
         }
     }
 }

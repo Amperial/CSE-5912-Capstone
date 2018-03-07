@@ -22,7 +22,6 @@ namespace PlayerStates
 
         public override void Action()
         {
-
         }
 
         public override void FixedUpdate()
@@ -55,10 +54,13 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (!Physics2D.Linecast(PlayerObject.transform.position, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            if (!Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
             {
                 SetState(new JumpingRight2D(this));
+                Animator2D.updateGroundedParam(anim, false);
             }
+            //Sets animator's x and y speeds for the animations to use
+            Animator2D.updateXYParam(anim, rb);
         }
     }
 }
