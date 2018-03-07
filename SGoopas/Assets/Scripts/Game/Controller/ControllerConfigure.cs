@@ -10,12 +10,6 @@ public class ControllerConfigure : MonoBehaviour {
     private Controller controller;
 
     public bool is2D = false;
-    private static GameObject gameSingleton;
-
-    void Awake()
-    {
-        gameSingleton = gameObject;
-    }
 
     public MasterPlayerStateMachine PlayerStateMachine
     {
