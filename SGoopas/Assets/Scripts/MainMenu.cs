@@ -12,6 +12,12 @@ public class MainMenu : MonoBehaviour {
         MasterStateMachine.Instance.GoToFirstLevel();
     }
 
+    public void PlayTestLevel()
+    {
+        buttonPress.Play();
+        MasterStateMachine.Instance.GoToTestLevel();
+    }
+
     public void Credits()
     {
         buttonPress.Play();
