@@ -4,7 +4,86 @@ using UnityEngine;
 
 public class ShadowPolygonHelper
 {
-	/*
+    /*
+	 * Calculates and places in the scene a circle collider on the gameObject, scaled to represent the ellipse formed by the intersection of the spotlight light and the plane wallPlane
+	 */
+    public static void MakeSpotlightCollider(Light light, Plane wallPlane, GameObject gameObject)
+    {
+        Vector3 lightDir = light.transform.forward.normalized;
+        float spotAngle = light.spotAngle/2;
+        Vector3 wallNormal = wallPlane.normal;
+        if (lightDir == -wallNormal)
+        {
+            CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
+            collider.isTrigger = true;
+            collider.radius = 1.0f;
+            Vector3 centerPoint = GetRayPlaneIntersection(light.transform.position, lightDir, wallPlane.normal, wallPlane.distance);
+            float height = (light.transform.position - centerPoint).magnitude;
+            float scale = height * Mathf.Tan(Mathf.Deg2Rad * spotAngle);
+            gameObject.transform.position = centerPoint;
+            gameObject.transform.localScale = new Vector3(scale, scale, 1);
+            Debug.Log("Circle Option");
+        }
+        else
+        {
+            PolygonCollider2D collider = gameObject.AddComponent<PolygonCollider2D>();
+            collider.isTrigger = true;
+
+            MakeJankCircle(collider, 100);
+
+            Vector3 minorAxis = Vector3.Cross(wallNormal, lightDir);
+            Vector3 majorAxis = Vector3.Cross(wallNormal, minorAxis);
+            Vector3 firstMajorVector, secondMajorVector, firstMinorVector, secondMinorVector;
+            firstMajorVector = Quaternion.AngleAxis(spotAngle, minorAxis) * lightDir;
+            secondMajorVector = Quaternion.AngleAxis(-spotAngle, minorAxis) * lightDir;
+            firstMinorVector = Quaternion.AngleAxis(spotAngle, majorAxis) * lightDir;
+            secondMinorVector = Quaternion.AngleAxis(-spotAngle, majorAxis) * lightDir;
+            firstMajorVector.Normalize();
+            secondMajorVector.Normalize();
+            firstMinorVector.Normalize();
+            secondMinorVector.Normalize();
+
+            Vector3 firstMajorPoint, secondMajorPoint, firstMinorPoint, secondMinorPoint;
+            firstMajorPoint = GetRayPlaneIntersection(light.transform.position, firstMajorVector, wallPlane.normal, wallPlane.distance);
+            secondMajorPoint = GetRayPlaneIntersection(light.transform.position, secondMajorVector, wallPlane.normal, wallPlane.distance);
+            firstMinorPoint = GetRayPlaneIntersection(light.transform.position, firstMinorVector, wallPlane.normal, wallPlane.distance);
+            secondMinorPoint = GetRayPlaneIntersection(light.transform.position, secondMinorVector, wallPlane.normal, wallPlane.distance);
+
+            Vector3 centerPoint = (firstMajorPoint + secondMajorPoint) / 2;
+
+            float rotateAngle = Vector3.SignedAngle(Vector3.up, minorAxis, Vector3.forward);
+            gameObject.transform.Rotate(Vector3.forward, rotateAngle);
+            gameObject.transform.position = centerPoint;
+
+            float xScale = (firstMajorPoint - centerPoint).magnitude;
+            float yScale = (firstMinorPoint - centerPoint).magnitude;
+
+            gameObject.transform.localScale = new Vector3(xScale, yScale, 1);
+            Debug.Log("Ellipse option");
+        }
+    }
+
+    //Unity won't allow circle colliders to be skewed, so here's a unit "circle" collider implemented using a PolygonCollider2D that CAN be skewed
+    private static void MakeJankCircle(PolygonCollider2D collider, int numPoints)
+    {
+        List<Vector2> points = new List<Vector2>();
+
+        float angle = 0;
+
+        for (int i = 0; i <= numPoints; i++)
+        {
+
+            float x = Mathf.Cos(angle * Mathf.Deg2Rad);
+            float y = Mathf.Sin(angle * Mathf.Deg2Rad);
+
+            points.Add(new Vector2(x, y));
+            angle += 360f / numPoints;
+        }
+
+        collider.points = points.ToArray();
+    }
+
+    /*
 	 * Calculates raycast shadow points on a plane for point vs. directional lighting. 
 	 */
     private static List<Vector3> GetShadowPoints(Light light, GameObject gameObject, Plane wallPlane) {
@@ -24,7 +103,7 @@ public class ShadowPolygonHelper
     }
 
     /*
-		Rerturns the points on wallPlane that represent the shadow casted by the light on the gameObject onto the wallPlane
+		Returns the points on wallPlane that represent the shadow casted by the light on the gameObject onto the wallPlane
 	*/
     public static List<Vector3> GetPointLightShadow(Vector3 lightPos, GameObject gameObject, Plane wallPlane)
     {
