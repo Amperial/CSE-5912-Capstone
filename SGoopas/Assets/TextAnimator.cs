@@ -4,32 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextAnimator : MonoBehaviour {
-	//Constants
 	private const int POSITION_SPEED = 500;
 	private const int SCALE_SPEED = 2;
-
 	private Text messageText;
 	private string finalText;
-	public RawImage messageHolder;
-	public RawImage messageIcon;
-	public RawImage messageActionIcon;
 	private RectTransform holderTransform;
 	private RectTransform iconTransform;
 	private RectTransform actionIconTransform;
 	private Vector3 iconTargetPosition;
-	private string[] messageLines = new string[]{"This is a sample message. The quick brown fox jumps over the lazy dog.", 
-		"This is a second sample message. The quick brown fox jumps over the lazy dog."};
+	private string[] messageLines;
 	private int currentLineIndex;
-
 	private float messageIconTimer = -Mathf.PI/2;
 	private float actionIconTimer = -Mathf.PI/2;
-
 	private bool isClosing;
 
+	public RawImage messageHolder;
+	public RawImage messageIcon;
+	public RawImage messageActionIcon;
 
 	// Use this for initialization
-	void Start () {
-		messageText = gameObject.GetComponent<Text> ();
+	public void init (string[] lines) {
+		messageLines = lines;
+		messageText = messageHolder.GetComponentInChildren<Text> ();
 		messageText.text = "";
 
 		finalText = messageLines[0];
@@ -53,9 +49,11 @@ public class TextAnimator : MonoBehaviour {
 		actionIconTransform.localScale = new Vector3 ();
 
 		isClosing = false;
+
+		messageHolder.enabled = true;
+		messageActionIcon.enabled = true;
 	}
 		
-	
 	// Update is called once per frame
 	void Update () {
 		if (isClosing) {
@@ -95,7 +93,7 @@ public class TextAnimator : MonoBehaviour {
 				return;
 			}
 
-			messageIcon.enabled = false;
+			MasterMonoBehaviour.Instance.TerminateMessage ();
 		} 
 		else {
 			//Icon grows
