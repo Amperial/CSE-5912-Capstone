@@ -6,9 +6,9 @@ namespace PlayerStates
 {
     public class MovingRight2D : Base2DState
     {
-        public MovingRight2D(BasePlayerState previousState) : base(previousState) { }
+        public MovingRight2D(BasePlayerState previousState) : base(previousState) {}
         public MovingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
-
+        
         public override void Action()
         {
            

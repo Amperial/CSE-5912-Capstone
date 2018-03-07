@@ -6,10 +6,10 @@ namespace PlayerStates
 {
     public class StationaryLeft2D : Base2DState
     {
-        public StationaryLeft2D(BasePlayerState previousState) : base(previousState) { 
+        public StationaryLeft2D(BasePlayerState previousState) : base(previousState) {
             FlipSprite();
         }
-        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { 
+        public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
             FlipSprite();
         }
 

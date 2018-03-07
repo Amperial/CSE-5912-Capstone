@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animator2D : MonoBehaviour {
+public class Animator2D {
 
     //Updates the speedX and speedY parameters for the Animator state machine
     public static void updateXYParam(Animator anim, Rigidbody2D rb)
@@ -16,4 +16,5 @@ public class Animator2D : MonoBehaviour {
     {
         anim.SetBool("grounded", grounded);
     }
+
 }

@@ -8,9 +8,9 @@ namespace PlayerStates
     {
         private bool dJump = true;
         private bool airDash = true;
-        public JumpingRight2D(BasePlayerState previousState) : base(previousState) { }
-        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
-
+        public JumpingRight2D(BasePlayerState previousState) : base(previousState) {}
+        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
+       
         public override void Action()
         {
             if (airDash)
