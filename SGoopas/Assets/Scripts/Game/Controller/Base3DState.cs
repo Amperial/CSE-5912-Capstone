@@ -10,6 +10,7 @@ namespace PlayerStates
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
         protected Rigidbody rb;
+        protected Animator3D animation3D;
 
         protected Base3DState(BasePlayerState previousState) : base(previousState)
         {
@@ -17,6 +18,7 @@ namespace PlayerStates
             {
                 Base3DState previousState3D = (Base3DState)previousState;
                 rb = previousState3D.rb;
+                animation3D = previousState3D.animation3D;
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
                 Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
@@ -27,6 +29,8 @@ namespace PlayerStates
         protected Base3DState(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
             rb = PlayerObject.GetComponent<Rigidbody>();
+            rb.freezeRotation = true;
+            animation3D = new Animator3D(PlayerObject);
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
         }
