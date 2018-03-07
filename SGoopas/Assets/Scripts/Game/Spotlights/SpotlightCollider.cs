@@ -7,12 +7,14 @@ public class SpotlightCollider : MonoBehaviour {
     public Spotlight.ShadowApplicatorType applicatorType;
     [HideInInspector]
     public GameObject player2D;
+    [HideInInspector]
+    public Material shadowMaterial;
 
     private ShadowApplicator applicator;
 
 	// Use this for initialization
 	void Start () {
-        applicator = ShadowApplicatorFactory.CreateApplicatorFromType(this.applicatorType, this.gameObject, this.player2D);
+        applicator = ShadowApplicatorFactory.CreateApplicatorFromType(this.applicatorType, this.gameObject, this.player2D, this.shadowMaterial);
 	}
 
     void OnTriggerEnter2D(Collider2D other)

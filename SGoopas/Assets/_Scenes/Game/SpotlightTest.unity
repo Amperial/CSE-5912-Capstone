@@ -446,7 +446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planeObject: {fileID: 1387130232}
   player2D: {fileID: 1630547697}
-  applicatorType: 0
+  applicatorType: 1
+  shadowMaterial: {fileID: 2100000, guid: 55b875329630f6c4581eed66417f57a7, type: 2}
 --- !u!1 &562374659
 GameObject:
   m_ObjectHideFlags: 0
