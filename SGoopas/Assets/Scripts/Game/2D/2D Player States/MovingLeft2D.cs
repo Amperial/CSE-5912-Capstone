@@ -44,14 +44,13 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (!Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position, ~(1 << LayerMask.NameToLayer("Player"))))
+            if (!Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
             {
                 SetState(new JumpingLeft2D(this));
-                anim.SetBool("grounded", false);
+                Animator2D.updateGroundedParam(anim, false);
             }
             //Sets animator's x and y speeds for the animations to use
-            anim.SetFloat("speedX", System.Math.Abs(rb.velocity.x));
-            anim.SetFloat("speedY", rb.velocity.y);
+            Animator2D.updateXYParam(anim, rb);
         }
     }
 }

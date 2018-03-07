@@ -19,7 +19,7 @@ namespace PlayerStates
         private float angularVelocity;
         private Transform groundCheck;
         private Movement2DConfig mc;
-        //
+
         protected Animator anim;
         protected float characterWidth;
 
@@ -30,7 +30,7 @@ namespace PlayerStates
                 Base2DState previousState2D = (Base2DState)previousState;
                 mc = previousState2D.mc;
                 rb = previousState2D.rb;
-                //
+
                 anim = previousState2D.anim;
                 characterWidth = previousState2D.characterWidth;
                 linearVelocity = previousState2D.linearVelocity;
@@ -43,7 +43,7 @@ namespace PlayerStates
         {
             mc = PlayerObject.GetComponent<Movement2DConfig>();
             rb = PlayerObject.GetComponent<Rigidbody2D>();
-            //
+
             anim = PlayerObject.GetComponent<Animator>();
             characterWidth = PlayerObject.GetComponent<SpriteRenderer>().bounds.size.x/1.2f;
 
