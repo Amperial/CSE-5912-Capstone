@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 14d2c4907d8e53b4e98bcb2ffd57d4b1
-timeCreated: 1520207049
+guid: a69ffa7e8c3a5bf489087551969f5329
+timeCreated: 1520289006
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -89,8 +89,7 @@ ModelImporter:
     400078: Spine
     400080: Spine1
     400082: Spine2
-    7400000: JumpInPlace
-    7400002: JumpInPlace (1)
+    7400000: Pull Heavy Object
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -120,18 +119,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: JumpInPlace
+      name: Pull Heavy Object
       takeName: mixamo.com
-      firstFrame: 43
-      lastFrame: 90
+      firstFrame: 0
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -193,7 +192,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a3813d90b046d744fba8f6bd90f8bcdb,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: c348214e1fd5d8e49853a0c0d8bc32fa,
     type: 3}
   animationType: 2
   humanoidOversampling: 1

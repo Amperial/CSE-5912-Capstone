@@ -33,6 +33,8 @@ namespace PlayerStates
 
         public override void Release()
         {
+            animation3D.StopPush();
+            animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);
             SetState(new State3DStand(this));
         }
@@ -40,6 +42,11 @@ namespace PlayerStates
         public override void FixedUpdate() {
             // Disallow rotation while grabbing...
             ClipVelocity();
+            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
+            if (nonVerticalVelocity.magnitude > 0.0001f)
+                animation3D.StartPush();
+            else
+                animation3D.StopPush();
         }
     }
 
