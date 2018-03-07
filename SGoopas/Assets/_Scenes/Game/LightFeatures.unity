@@ -1306,7 +1306,7 @@ Transform:
   - {fileID: 751788783}
   - {fileID: 2054946856}
   m_Father: {fileID: 1934856849}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612737810
 GameObject:
@@ -1616,7 +1616,7 @@ MonoBehaviour:
   isLightMovable: 1
   shadowLight: {fileID: 1808279281}
   shadowPlane: {fileID: 1387130232}
-  player2D: {fileID: 0}
+  player2D: {fileID: 2113500433}
 --- !u!1 &1872297805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,8 +1873,8 @@ Transform:
   - {fileID: 1387130233}
   - {fileID: 1872297806}
   - {fileID: 404211623}
-  - {fileID: 2113500432}
   - {fileID: 1604130467}
+  - {fileID: 2113500432}
   - {fileID: 2018204272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
