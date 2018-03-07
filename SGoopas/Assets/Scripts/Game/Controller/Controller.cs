@@ -36,7 +36,11 @@ public class Controller {
                 entry.Value();
             }
         }
-        foreach (KeyValuePair<string, Tuple<Action,Action>> entry in axis)
+    }
+
+    public void FixedUpdate()
+    {
+        foreach (KeyValuePair<string, Tuple<Action, Action>> entry in axis)
         {
             float axisValue = Input.GetAxis(entry.Key);
             if (axisValue > 0)
