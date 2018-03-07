@@ -52,6 +52,10 @@ public class TextAnimator : MonoBehaviour {
 
 		messageHolder.enabled = true;
 		messageActionIcon.enabled = true;
+
+		Color textColor = messageText.color;
+		textColor.a = 1;
+		messageText.color = textColor;
 	}
 		
 	// Update is called once per frame
@@ -93,6 +97,7 @@ public class TextAnimator : MonoBehaviour {
 				return;
 			}
 
+			iconTransform.localPosition = iconTargetPosition;
 			MasterMonoBehaviour.Instance.TerminateMessage ();
 		} 
 		else {

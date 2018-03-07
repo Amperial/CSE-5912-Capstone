@@ -58,6 +58,7 @@ public class ControllerConfigure : MonoBehaviour {
 
     void FixedUpdate()
     {
+        controller.FixedUpdate();
         playerStateMachine.FixedUpdate();
     }
 }
