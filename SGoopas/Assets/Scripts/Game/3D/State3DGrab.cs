@@ -33,8 +33,8 @@ namespace PlayerStates
 
         public override void Release()
         {
-            anim.SetBool("grabAct", false);
-            anim.SetBool("grab", false);
+            animation3D.StopPush();
+            animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);
             SetState(new State3DStand(this));
         }
@@ -44,9 +44,9 @@ namespace PlayerStates
             ClipVelocity();
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
             if (nonVerticalVelocity.magnitude > 0.0001f)
-                anim.SetBool("grabAct", true);
+                animation3D.StartPush();
             else
-                anim.SetBool("grabAct", false);
+                animation3D.StopPush();
         }
     }
 
