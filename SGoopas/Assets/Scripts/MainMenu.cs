@@ -5,18 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
-    public GameObject loadScreen;
-    public Slider slider;
-    public Text progressTxt;
     public AudioSource buttonPress;
-    void Start()
-    {
-        loadScreen.SetActive(false);
-    }
-	public void Play(int level)
+	public void Play()
     {
         buttonPress.Play();
-        StartCoroutine(LoadLevel(level));
+        MasterStateMachine.Instance.GoToFirstLevel();
     }
 
     public void Credits()
@@ -29,24 +22,5 @@ public class MainMenu : MonoBehaviour {
     {
         buttonPress.Play();
         MasterStateMachine.Instance.setState(new QuitState());
-    }
-
-    IEnumerator LoadLevel(int level)
-    {
-        GameMainState loading;
-        loading = new GameMainState();
-
-        float progress;
-        AsyncOperation operation = loading.loadAsynchronously();
-        loadScreen.SetActive(true);
-        while (!operation.isDone)
-        {
-            progress = Mathf.Clamp01(operation.progress / .9f);
-            slider.value = progress;
-            progressTxt.text = progress * 100f + "%";
-
-            yield return null;
-        }
-        MasterStateMachine.Instance.setState(loading);
     }
 }
