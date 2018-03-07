@@ -6,9 +6,9 @@ namespace PlayerStates
 {
     public class State3DJump : State3DMove
     {
-        private float moveForceMagnitude = 5f;
-        public State3DJump(BasePlayerState previousState) : base(previousState) { }
-        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { }
+
+        public State3DJump(BasePlayerState previousState) : base(previousState) { moveForceMagnitude = 5f; }
+        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { moveForceMagnitude = 5f; }
 
         public override void Action()
         {
@@ -20,25 +20,6 @@ namespace PlayerStates
             //could not double jump
         }
 
-        public override void MoveDown()
-        {
-            rb.AddForce(backForce * moveForceMagnitude);
-        }
-
-        public override void MoveLeft()
-        {
-            rb.AddForce(leftForce * moveForceMagnitude);
-        }
-
-        public override void MoveRight()
-        {
-            rb.AddForce(rightForce * moveForceMagnitude);
-        }
-
-        public override void MoveUp()
-        {
-            rb.AddForce(forwardForce * moveForceMagnitude);
-        }
 
         public override void FixedUpdate()
         {

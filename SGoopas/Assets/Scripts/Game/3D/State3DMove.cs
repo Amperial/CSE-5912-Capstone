@@ -11,7 +11,7 @@ namespace PlayerStates
         protected Vector3 backForce = Vector3.back;
         protected Vector3 rightForce = Vector3.right;
         protected Vector3 leftForce = Vector3.left;
-        private float moveForceMagnitude = 20f;
+        protected float moveForceMagnitude = 20f;
         int stillFrames = 0;
 
         public State3DMove(BasePlayerState previousState) : base(previousState) {}
