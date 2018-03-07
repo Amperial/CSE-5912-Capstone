@@ -6,7 +6,6 @@ namespace PlayerStates
 {
     public class StationaryLeft2D : Base2DState
     {
-        private Vector3 tempVR, tempVL;
         public StationaryLeft2D(BasePlayerState previousState) : base(previousState) { 
             FlipSprite();
         }

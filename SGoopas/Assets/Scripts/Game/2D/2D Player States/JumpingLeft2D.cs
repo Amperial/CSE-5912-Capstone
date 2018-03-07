@@ -8,8 +8,6 @@ namespace PlayerStates
     {
         private bool dJump = true;
         private bool airDash = true;
-        private Vector3 tempVR, tempVL;
-
         public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {}
         public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
 

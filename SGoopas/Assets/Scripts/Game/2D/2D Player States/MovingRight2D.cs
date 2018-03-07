@@ -6,7 +6,6 @@ namespace PlayerStates
 {
     public class MovingRight2D : Base2DState
     {
-        private Vector3 tempVR, tempVL;
         public MovingRight2D(BasePlayerState previousState) : base(previousState) { }
         public MovingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
 
