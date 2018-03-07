@@ -12,6 +12,12 @@ public class MainMenu : MonoBehaviour {
         MasterStateMachine.Instance.GoToFirstLevel();
     }
 
+    public void Spotlight()
+    {
+        buttonPress.Play();
+        MasterStateMachine.Instance.GoToSpotlightLevel();
+    }
+
     public void Credits()
     {
         buttonPress.Play();
