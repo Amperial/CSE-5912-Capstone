@@ -81,8 +81,10 @@ public class Physics2DApplicator : ShadowApplicator
             if (!renderer)
                 renderer = collider.gameObject.AddComponent<MeshRenderer>();
 
-            shadowMaterial.color = spotlightColor;
             renderer.material = shadowMaterial;
+
+            renderer.material.color = spotlightColor;
+            
 
             Mesh mesh = new Mesh();
             meshFilter.mesh = mesh;
