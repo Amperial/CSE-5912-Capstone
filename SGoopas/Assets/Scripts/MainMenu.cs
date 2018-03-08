@@ -12,10 +12,10 @@ public class MainMenu : MonoBehaviour {
         MasterStateMachine.Instance.GoToFirstLevel();
     }
 
-    public void PlayTestLevel()
+    public void Spotlight()
     {
         buttonPress.Play();
-        MasterStateMachine.Instance.GoToTestLevel();
+        MasterStateMachine.Instance.GoToSpotlightLevel();
     }
 
     public void Credits()
