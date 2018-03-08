@@ -59,15 +59,8 @@ public class MasterStateMachine
         MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState()));
     }
 
-    public void GoToTestLevel()
-    {
-        MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(2)));
-    }
-
-    public void GoToNextLevel()
-    {
-        if (currentState is GameMainState)
-        {
+    public void GoToNextLevel() {
+        if (currentState is GameMainState) {
             GameMainState newLevel = ((GameMainState)currentState).GetStateForNextLevel();
             MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
         }
