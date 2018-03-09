@@ -7,8 +7,6 @@ public class ControllerConfigure : MonoBehaviour {
     private MasterPlayerStateMachine playerStateMachine;
     private Controller controller;
 
-    public bool is2D = false;
-
     public MasterPlayerStateMachine PlayerStateMachine
     {
         get
