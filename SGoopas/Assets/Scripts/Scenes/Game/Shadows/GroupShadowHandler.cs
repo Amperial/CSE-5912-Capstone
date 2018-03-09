@@ -20,26 +20,27 @@ public class GroupShadowHandler : MonoBehaviour {
 			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, shadowPlane);
 			shadowControllers.Add (controller);
 		}
-	}
+    }
 
-	public void SwitchTo2D(Cancellable cancellable) {
-		foreach (ShadowController shadowController in shadowControllers) {
-            cancellable.PerformCancellable(shadowController.ConstructShadow, shadowController.DeconstructShadow);
-
-            if (!cancellable.IsCancelled && !shadowController.IsShadowOkay(player2D))
-                cancellable.Cancel();
-		}
-	}
-
-	public void SwitchTo3D(Cancellable cancellable) { 
-		foreach (ShadowController shadowController in shadowControllers) {
-            cancellable.PerformCancellable(shadowController.DeconstructShadow, shadowController.ConstructShadow);
+    public void FixedUpdate() {
+        foreach (ShadowController shadowController in shadowControllers) {
+            shadowController.UpdateShadow();
         }
-	}
+    }
 
-	public void FixedUpdate() {
-		foreach (ShadowController shadowController in shadowControllers) {
-			shadowController.UpdateShadow();
-		}
-	}
+    void OnEnable() {
+        DimensionControl.OnSwitchDimension += OnSwitchDimension;
+    }
+
+    void OnDisable() {
+        DimensionControl.OnSwitchDimension -= OnSwitchDimension;
+    }
+
+    public void OnSwitchDimension(Dimension dimension, Cancellable cancellable) {
+        foreach (ShadowController shadowController in shadowControllers) {
+            cancellable.PerformCancellable(dimension, shadowController.ConstructShadow, shadowController.DeconstructShadow);
+
+            cancellable.CancelIf(() => dimension == Dimension.TWO_D && !shadowController.IsShadowOkay(player2D));
+        }
+    }
 }

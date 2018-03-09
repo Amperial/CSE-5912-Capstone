@@ -54,13 +54,15 @@ public class Spotlight : MonoBehaviour {
         planeChild.SetActive(false);
     }
 
-    public void SwitchTo2D(Cancellable cancellable)
-    {
-        cancellable.PerformCancellable(ActivateCollider, DeactivateCollider);
+    void OnEnable() {
+        DimensionControl.OnSwitchDimension += OnSwitchDimension;
     }
 
-    public void SwitchTo3D(Cancellable cancellable)
-    {
-        cancellable.PerformCancellable(DeactivateCollider, ActivateCollider);
+    void OnDisable() {
+        DimensionControl.OnSwitchDimension -= OnSwitchDimension;
+    }
+
+    public void OnSwitchDimension(Dimension dimension, Cancellable cancellable) {
+        cancellable.PerformCancellable(dimension, ActivateCollider, DeactivateCollider);
     }
 }

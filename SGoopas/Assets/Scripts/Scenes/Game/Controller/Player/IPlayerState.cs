@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace PlayerStates
+﻿namespace PlayerStates
 {
     public interface IPlayerState
     {
@@ -17,5 +13,6 @@ namespace PlayerStates
         void Jump();
         void Action();
         void Release();
+        void SwitchDimension();
     }
 }

@@ -31,6 +31,12 @@ namespace PlayerStates
             playerStateMachine.SetCurrentState(newState);
         }
 
+        public virtual void SwitchDimension()
+        {
+            // Attempt to switch to opposite dimension
+            DimensionControl.Instance.SwitchDimension();
+        }
+
         public abstract void Action();
         public abstract void Jump();
         public abstract void MoveDown();

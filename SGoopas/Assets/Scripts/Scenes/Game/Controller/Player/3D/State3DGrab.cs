@@ -31,6 +31,11 @@ namespace PlayerStates
             // No-op, disable jumping while grabbing.
         }
 
+        public override void SwitchDimension()
+        {
+            // No-op, disable switching dimensions while grabbing.
+        }
+
         public override void Release()
         {
             animation3D.StopPush();
