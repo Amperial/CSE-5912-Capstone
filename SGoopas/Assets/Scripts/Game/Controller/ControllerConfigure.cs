@@ -4,8 +4,6 @@ using UnityEngine;
 using PlayerStates;
 
 public class ControllerConfigure : MonoBehaviour {
-    public GameObject player2D;
-    public GameObject player3D;
     private MasterPlayerStateMachine playerStateMachine;
     private Controller controller;
 
@@ -45,8 +43,9 @@ public class ControllerConfigure : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("new controller configure");
         controller = new Controller();
-        playerStateMachine = new MasterPlayerStateMachine(player2D, player3D);
+        playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
     }
 	

@@ -634,8 +634,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 751788782}
   isLightMovable: 1
   shadowLight: {fileID: 664801369}
-  shadowPlane: {fileID: 1387130232}
-  player2D: {fileID: 2113500433}
 --- !u!1 &686493301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,8 +1613,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 751788782}
   isLightMovable: 1
   shadowLight: {fileID: 1808279281}
-  shadowPlane: {fileID: 1387130232}
-  player2D: {fileID: 2113500433}
 --- !u!1 &1872297805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,8 +1657,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 751788782}
   isLightMovable: 0
   shadowLight: {fileID: 1872297808}
-  shadowPlane: {fileID: 1387130232}
-  player2D: {fileID: 2113500433}
 --- !u!108 &1872297808
 Light:
   m_ObjectHideFlags: 0
@@ -1841,6 +1835,7 @@ GameObject:
   - component: {fileID: 1934856849}
   - component: {fileID: 1934856848}
   - component: {fileID: 1934856850}
+  - component: {fileID: 1934856851}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -1890,9 +1885,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f71793caf17414ebe3ac2a283353aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2D: {fileID: 2113500433}
-  player3D: {fileID: 2054946857}
   is2D: 0
+--- !u!114 &1934856851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1934856847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebbe4ee20b9a45128171b3a6d4addd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player2D: {fileID: 2113500433}
+  Player3D: {fileID: 2054946857}
+  ShadowPlane: {fileID: 1387130232}
 --- !u!1 &2018204268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,8 +1993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dade8a353130e254d92209f7289f2b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player3D: {fileID: 2054946857}
-  player2D: {fileID: 2113500433}
   cameraStiffness: 1.5
   maxLookDistance: 10
   distanceFromTarget: {x: 0, y: -8, z: 15}
