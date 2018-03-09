@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PlayerStates
 {
     public class MasterPlayerStateMachine
     {
 
-        private IPlayerState currentState, state3D, state2D, stateDisable;
+        private IPlayerState currentState, state2D, state3D, stateDisable;
         public IPlayerState CurrentPlayerState
         {
             get
@@ -17,9 +15,20 @@ namespace PlayerStates
 
         }
 
-        public void SetCurrentState(IPlayerState newState)
+        public void SetCurrentState(IPlayerState newState, bool store = false)
         {
-            currentState = newState;
+            if (store) {
+                if (currentState is Base2DState) {
+                    state2D = currentState;
+                } else if (currentState is Base3DState) {
+                    state3D = currentState;
+                }
+                currentState.StoreState();
+                currentState = newState;
+                currentState.RestoreState();
+            } else {
+                currentState = newState;
+            }
         }
 
         public MasterPlayerStateMachine(GameObject player2D, GameObject player3D)
@@ -29,6 +38,7 @@ namespace PlayerStates
             Transform groundCheck = player2D.transform.Find("GroundCheck");
             state2D = new StationaryRight2D(player2D, this, groundCheck);
             state2D.StoreState();
+            stateDisable = new DisabledPlayerState();
             currentState = state3D;
         }
 
@@ -67,6 +77,11 @@ namespace PlayerStates
             currentState.Release();
         }
 
+        public void SwitchDimension()
+        {
+            currentState.SwitchDimension();
+        }
+
         public void Update()
         {
             currentState.Update();
@@ -77,22 +92,13 @@ namespace PlayerStates
             currentState.FixedUpdate();
         }
 
-        public void SwitchDimension()
-        {
-            currentState.StoreState();
+        public void OnSwitchDimension(Dimension dimension, Cancellable cancellable) {
+            // Determine new state and old state
+            IPlayerState newState = dimension == Dimension.TWO_D ? state2D : state3D;
+            IPlayerState oldState = currentState;
 
-            if (currentState is Base2DState)
-            {
-                state2D = currentState;
-                currentState = state3D;
-            }
-            else
-            {
-                state3D = currentState;
-                currentState = state2D;
-            }
-
-            currentState.RestoreState();
+            // Perform state switch
+            cancellable.PerformCancellable(() => SetCurrentState(newState, true), () => SetCurrentState(oldState, true));
         }
     }
 }

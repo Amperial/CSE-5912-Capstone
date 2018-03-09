@@ -11,6 +11,15 @@ public class Cancellable {
         }
     }
 
+    // Alternate PerformCancellable method for simplified use in specifying action and callback when switching dimensions.
+    public void PerformCancellable(Dimension target, System.Action to2D, System.Action to3D) {
+        if (target == Dimension.TWO_D) {
+            PerformCancellable(to2D, to3D);
+        } else if (target == Dimension.THREE_D) {
+            PerformCancellable(to3D, to2D);
+        }
+    }
+
     // Invoke the given action if the cancellable hasn't cancelled, and register OnCancel callback.
     // Essentially combines Perform(action) and OnCancel(callback) methods into one.
     public void PerformCancellable(System.Action action, System.Action callback) {
@@ -45,6 +54,13 @@ public class Cancellable {
             callback();
         }
         callbacks.Clear();
+    }
+
+    // Cancels the cancellable if a condition evaluates to true
+    public void CancelIf(System.Func<bool> condition) {
+        if (!IsCancelled && condition()) {
+            Cancel();
+        }
     }
 
 }

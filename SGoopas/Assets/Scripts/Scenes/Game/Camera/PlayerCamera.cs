@@ -38,19 +38,19 @@ public class PlayerCamera : MonoBehaviour {
         transform.position += (center + target - 2*transform.position) * cameraStiffness * Time.deltaTime;
     }
 
-    private void Follow2DPlayer() {
-        relevantGameObject = player2D;
+    private void FollowObject(GameObject gameObject) {
+        relevantGameObject = gameObject;
     }
 
-    private void Follow3DPlayer() {
-        relevantGameObject = player3D;
+    void OnEnable() {
+        DimensionControl.OnSwitchDimension += OnSwitchDimension;
     }
 
-    public void SwitchTo2D(Cancellable cancellable) {
-        cancellable.PerformCancellable(Follow2DPlayer, Follow3DPlayer);
+    void OnDisable() {
+        DimensionControl.OnSwitchDimension -= OnSwitchDimension;
     }
 
-    public void SwitchTo3D(Cancellable cancellable) {
-        cancellable.PerformCancellable(Follow3DPlayer, Follow2DPlayer);
+    public void OnSwitchDimension(Dimension dimension, Cancellable cancellable) {
+        cancellable.PerformCancellable(dimension, () => FollowObject(player2D), () => FollowObject(player3D));
     }
 }

@@ -79,11 +79,4 @@ public class BinaryPosition : BinaryTriggerable {
         coroutine = StartCoroutine(StepToPosition());
     }
 
-    public void SwitchTo2D(Cancellable cancellable) {
-        // Prevent switching to 2D while moving between positions
-        if (IsMoving) {
-            cancellable.Cancel();
-        }
-    }
-
 }
