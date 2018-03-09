@@ -43,7 +43,6 @@ public class ControllerConfigure : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("new controller configure");
         controller = new Controller();
         playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
