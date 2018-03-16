@@ -26,9 +26,16 @@ namespace PlayerStates
         {
             if (grabbableObjects.Count > 0)
             {
-                animation3D.StartGrab();
-                animation3D.StopRun();
-                SetState(new State3DGrab(grabbableObjects[0], this));
+                if(grabbableObjects[0].gameObject.GetComponent<ObjInteractable>().objType == ObjInteractable.ObjectType.pushPull)
+                {
+                    animation3D.StartGrab();
+                    animation3D.StopRun();
+                    SetState(new State3DGrab(grabbableObjects[0], this));
+                }
+                else
+                {
+                    Debug.Log("START LIFTING BRO");
+                }
             }
         }
 
