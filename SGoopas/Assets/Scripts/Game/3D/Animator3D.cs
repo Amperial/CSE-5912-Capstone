@@ -42,4 +42,13 @@ public class Animator3D{
     {
         anim.SetBool("grabAct", false);
     }
+
+    public void StopCarry()
+    {
+        anim.SetBool("Carry", false);
+    }
+    public void StartCarry()
+    {
+        anim.SetBool("Carry", true);
+    }
 }

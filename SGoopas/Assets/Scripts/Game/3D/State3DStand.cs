@@ -34,7 +34,9 @@ namespace PlayerStates
                 }
                 else
                 {
-                    Debug.Log("START LIFTING BRO");
+                    animation3D.StartCarry();
+                    animation3D.StopRun();
+                    SetState(new State3DLift(grabbableObjects[0], this));
                 }
             }
         }
