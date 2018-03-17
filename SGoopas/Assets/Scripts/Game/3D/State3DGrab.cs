@@ -7,16 +7,20 @@ namespace PlayerStates
     public class State3DGrab : State3DMove
     {
         private Joint grabJoint;
+        private Vector2 objDir;
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
             startGrab(objectToGrab);
+            moveForceMagnitude = 30f;
         }
 
         public State3DGrab(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
             startGrab(objectToGrab);
+            moveForceMagnitude = 30f;
         }
 
         private void startGrab(Collider objectToGrab)
         {
+            objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.y - rb.gameObject.transform.position.y);
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
             grabJoint.connectedBody = objectToGrab.attachedRigidbody;
         }
@@ -44,7 +48,17 @@ namespace PlayerStates
             ClipVelocity();
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
             if (nonVerticalVelocity.magnitude > 0.0001f)
+            {
                 animation3D.StartPush();
+                if (Vector2.Dot(nonVerticalVelocity,objDir) < 0)
+                {
+                    animation3D.pullTrue();
+                }
+                else
+                {
+                    animation3D.pullFalse();
+                }
+            }
             else
                 animation3D.StopPush();
         }
