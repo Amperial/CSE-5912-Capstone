@@ -29,13 +29,13 @@ namespace PlayerStates
         }
         private void repositionObj()
         {
-            grabObj.transform.localRotation = Quaternion.identity;
+            grabObj.transform.localRotation = rb.gameObject.transform.rotation;
             grabObj.transform.position = rb.gameObject.transform.position;
             float height =  grabObj.GetComponent<Renderer>().bounds.size.y;
             height /= 2f;
             height += 1.2f;
-            Vector3 range = new Vector3(0.8f, height, 0f);
-            grabObj.transform.Translate(range);
+            Vector3 range = new Vector3(0f, height, 0.8f);
+            grabObj.transform.Translate(range,Space.Self);
         }
         public override void Action()
         {
