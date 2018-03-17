@@ -23,7 +23,7 @@ public class Grabbing : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (availableObjects.Count > 0)
+        if (availableObjects.Count > 0 && other.gameObject.GetComponent<ObjInteractable>() != null)
         {
             ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
             other.gameObject.GetComponent<Renderer>().material.shader = script.normal;
