@@ -8,9 +8,11 @@ namespace PlayerStates
     {
         private Joint grabJoint;
         private Vector2 objDir;
+        private bool upDown;
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
             animation3D.StartGrab();
             animation3D.StopRun();
+            upDown = false;
             startGrab(objectToGrab);
             moveForceMagnitude = 30f;
         }
@@ -18,17 +20,42 @@ namespace PlayerStates
         public State3DGrab(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
             animation3D.StartGrab();
             animation3D.StopRun();
+            upDown = false;
             startGrab(objectToGrab);
             moveForceMagnitude = 30f;
         }
 
         private void startGrab(Collider objectToGrab)
         {
-            objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.y - rb.gameObject.transform.position.y);
+            objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.z - rb.gameObject.transform.position.z);
+            if(Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
+                upDown = true;
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
             grabJoint.connectedBody = objectToGrab.attachedRigidbody;
         }
+        public override void MoveDown()
+        {
+            if(upDown)
+                rb.AddForce(backForce * moveForceMagnitude);
+        }
 
+        public override void MoveLeft()
+        {
+            if (!upDown)
+                rb.AddForce(leftForce * moveForceMagnitude);
+        }
+
+        public override void MoveRight()
+        {
+            if (!upDown)
+                rb.AddForce(rightForce * moveForceMagnitude);
+        }
+
+        public override void MoveUp()
+        {
+            if (upDown)
+                rb.AddForce(forwardForce * moveForceMagnitude);
+        }
         public override void Action()
         {
             // No-op, disable action while grabbing.
