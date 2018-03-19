@@ -13,7 +13,7 @@ namespace PlayerStates
             animation3D.StartCarry();
             animation3D.StopRun();
             startGrab(objectToGrab);
-        }
+    }
 
         public State3DLift(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
@@ -36,9 +36,10 @@ namespace PlayerStates
             grabObj.transform.localRotation = rb.gameObject.transform.rotation;
             grabObj.transform.position = rb.gameObject.transform.position;
             float height =  grabObj.GetComponent<Renderer>().bounds.size.y;
-            height /= 2f;
-            height += 1.2f;
-            Vector3 range = new Vector3(0f, height, 0.8f);
+            float width = grabObj.GetComponent<Renderer>().bounds.size.x;
+            height = width / 2f + 1.2f;
+            width = width / 2f -0.6f;
+            Vector3 range = new Vector3(0f, height, width);
             grabObj.transform.Translate(range,Space.Self);
         }
         public override void Action()
