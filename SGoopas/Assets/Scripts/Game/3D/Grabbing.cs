@@ -6,10 +6,9 @@ public class Grabbing : MonoBehaviour {
 
     public delegate void GrabAvailabilityChanged(List<Collider> availableObjects);
     public static event GrabAvailabilityChanged grabEvent;
-    Shader normal, highlight;
+    Shader highlight;
     public void Awake()
     {
-        normal = Shader.Find("Diffuse");
         highlight = Shader.Find("Outlined/Silhouetted Diffuse"); ;
     }
     private void OnTriggerEnter(Collider other)
@@ -26,7 +25,8 @@ public class Grabbing : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<ObjInteractable>() != null)
         {
-            other.gameObject.GetComponent<Renderer>().material.shader = normal;
+            ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
+            other.gameObject.GetComponent<Renderer>().material.shader = script.original;
             availableObjects.Remove(other);
             grabEvent(availableObjects);
         }
