@@ -51,11 +51,11 @@ public class Animator3D{
     {
         anim.SetBool("Carry", true);
     }
-    public void pullTrue()
+    public void PullTrue()
     {
         anim.SetBool("pull", true);
     }
-    public void pullFalse()
+    public void PullFalse()
     {
         anim.SetBool("pull", false);
     }

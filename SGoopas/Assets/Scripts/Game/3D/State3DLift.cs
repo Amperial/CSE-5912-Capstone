@@ -10,11 +10,15 @@ namespace PlayerStates
         private Rigidbody grabRb;
         public State3DLift(Collider objectToGrab, BasePlayerState previousState) : base(previousState)
         {
+            animation3D.StartCarry();
+            animation3D.StopRun();
             startGrab(objectToGrab);
         }
 
         public State3DLift(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine)
         {
+            animation3D.StartCarry();
+            animation3D.StopRun();
             startGrab(objectToGrab);
         }
 

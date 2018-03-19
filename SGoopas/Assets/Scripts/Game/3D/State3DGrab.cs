@@ -9,11 +9,15 @@ namespace PlayerStates
         private Joint grabJoint;
         private Vector2 objDir;
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
+            animation3D.StartGrab();
+            animation3D.StopRun();
             startGrab(objectToGrab);
             moveForceMagnitude = 30f;
         }
 
         public State3DGrab(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
+            animation3D.StartGrab();
+            animation3D.StopRun();
             startGrab(objectToGrab);
             moveForceMagnitude = 30f;
         }
@@ -52,11 +56,11 @@ namespace PlayerStates
                 animation3D.StartPush();
                 if (Vector2.Dot(nonVerticalVelocity,objDir) < 0)
                 {
-                    animation3D.pullTrue();
+                    animation3D.PullTrue();
                 }
                 else
                 {
-                    animation3D.pullFalse();
+                    animation3D.PullFalse();
                 }
             }
             else
