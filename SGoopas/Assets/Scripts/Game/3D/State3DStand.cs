@@ -41,11 +41,6 @@ namespace PlayerStates
             }
         }
 
-        //public override void FixedUpdate()
-        //{
-
-        //}
-
         public override void Jump()
         {
             rb.AddForce(new Vector3(0f, 5, 0f), ForceMode.Impulse);
