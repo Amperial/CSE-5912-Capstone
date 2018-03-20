@@ -61,4 +61,9 @@ public class ControllerConfigure : MonoBehaviour {
         controller.FixedUpdate();
         playerStateMachine.FixedUpdate();
     }
+
+    void LateUpdate()
+    {
+        playerStateMachine.LateUpdate();
+    }
 }

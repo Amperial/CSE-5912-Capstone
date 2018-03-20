@@ -6,16 +6,14 @@ namespace PlayerStates
 {
     public class JumpingRight2D : Base2DState
     {
-        private bool dJump = true;
-        private bool airDash = true;
         public JumpingRight2D(BasePlayerState previousState) : base(previousState) {}
         public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
        
         public override void Action()
         {
-            if (airDash)
+            if (dash)
             {
-                airDash = false;
+                dash = false;
                 if (rb.velocity.x < MaxHoriSpeed)
                     rb.AddForce(new Vector2(AirDashForce, 0) * rb.mass, ForceMode2D.Force);
             }
@@ -31,8 +29,8 @@ namespace PlayerStates
             if (dJump)
             {
                 dJump = false;
-                if (rb.velocity.y <= MaxVertSpeed)
-                    rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                rb.AddForce(new Vector2(0, JumpForce) * rb.mass, ForceMode2D.Force);
             }
         }
 
@@ -44,20 +42,20 @@ namespace PlayerStates
         public override void MoveLeft()
         {
             if (rb.velocity.x > -MaxHoriSpeed)
-                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
+                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass * Time.deltaTime, ForceMode2D.Force);
         }
 
         public override void MoveRight()
         {
             if (rb.velocity.x < MaxHoriSpeed)
-                rb.AddForce(new Vector2(AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
+                rb.AddForce(new Vector2(AirMoveForce, 0) * rb.mass * Time.deltaTime, ForceMode2D.Force);
         }
 
         public override void Update()
         {
-            if (Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
+            if (IsGrounded)
             {
-                SetState(new StationaryRight2D(this));
+                SetState(new MovingRight2D(this));
                 Animator2D.updateGroundedParam(anim, true);
             }
             //Sets animator's x and y speeds for the animations to use
