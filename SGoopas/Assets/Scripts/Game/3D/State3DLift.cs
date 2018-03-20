@@ -62,20 +62,22 @@ namespace PlayerStates
             SetState(new State3DStand(this));
         }
 
-        public override void FixedUpdate()
+        public override void Update()
         {
-            // Disallow rotation while grabbing...
-            ClipVelocity();
+            ApplyMovementForces();
+
+            ChangeRotation();
+
+            CheckForStanding();
+        }
+
+        private void CheckForStanding()
+        {
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
             if (nonVerticalVelocity.magnitude > 0.0001f)
                 animation3D.StartRun();
             else
                 animation3D.StopRun();
-            if (nonVerticalVelocity.magnitude > 0.001)
-            {
-                Vector3 velocityDir = rb.velocity.normalized;
-                yAngle = -Mathf.Atan2(-velocityDir.x, velocityDir.z) * Mathf.Rad2Deg;
-            }
         }
     }
 

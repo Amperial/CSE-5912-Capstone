@@ -71,7 +71,7 @@ namespace PlayerStates
             }
         }
 
-        private void ChangeRotation()
+        protected void ChangeRotation()
         {
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
 

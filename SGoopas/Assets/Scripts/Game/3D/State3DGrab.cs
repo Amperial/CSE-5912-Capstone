@@ -14,7 +14,7 @@ namespace PlayerStates
             animation3D.StopRun();
             upDown = false;
             startGrab(objectToGrab);
-            moveForceMagnitude = 30f;
+            moveForceMagnitude = 1200f;
         }
 
         public State3DGrab(Collider objectToGrab, GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {
@@ -22,7 +22,7 @@ namespace PlayerStates
             animation3D.StopRun();
             upDown = false;
             startGrab(objectToGrab);
-            moveForceMagnitude = 30f;
+            moveForceMagnitude = 1200f;
         }
 
         private void startGrab(Collider objectToGrab)
@@ -37,26 +37,26 @@ namespace PlayerStates
         }
         public override void MoveDown()
         {
-            if(upDown)
-                rb.AddForce(backForce * moveForceMagnitude);
+            if (upDown)
+                base.MoveDown();
         }
 
         public override void MoveLeft()
         {
             if (!upDown)
-                rb.AddForce(leftForce * moveForceMagnitude);
+                base.MoveLeft();
         }
 
         public override void MoveRight()
         {
             if (!upDown)
-                rb.AddForce(rightForce * moveForceMagnitude);
+                base.MoveRight();
         }
 
         public override void MoveUp()
         {
             if (upDown)
-                rb.AddForce(forwardForce * moveForceMagnitude);
+                base.MoveUp();
         }
         public override void Action()
         {
