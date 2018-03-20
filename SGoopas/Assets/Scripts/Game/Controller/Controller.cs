@@ -36,10 +36,6 @@ public class Controller {
                 entry.Value();
             }
         }
-    }
-
-    public void FixedUpdate()
-    {
         foreach (KeyValuePair<string, Tuple<Action, Action>> entry in axis)
         {
             float axisValue = Input.GetAxis(entry.Key);
@@ -52,6 +48,11 @@ public class Controller {
                 entry.Value.Item1();
             }
         }
+    }
+
+    public void FixedUpdate()
+    {
+        
     }
 
     /** If unity ever upgrades their .NET framework, we can use the tuples detailed here:

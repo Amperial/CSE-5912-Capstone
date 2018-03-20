@@ -6,11 +6,17 @@ namespace PlayerStates
 {
     public class StationaryLeft2D : Base2DState
     {
+
+
         public StationaryLeft2D(BasePlayerState previousState) : base(previousState) {
             FlipSprite();
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            dash = true;
+            dJump = true;
         }
         public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
             FlipSprite();
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
         private void FlipSprite() {
@@ -42,9 +48,9 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            if (rb.velocity.x > -MaxHoriSpeed)
-                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass, ForceMode2D.Force);
-            SetState(new MovingLeft2D(this));
+            MovingLeft2D left = new MovingLeft2D(this);
+            SetState(left);
+            left.MoveLeft();
         }
 
         public override void MoveRight()
@@ -55,7 +61,7 @@ namespace PlayerStates
 
         public override void Update()
         {
-            if (!Grounded.IsGrounded(PlayerObject.transform.position, characterWidth, GroundCheck.position))
+            if (!IsGrounded)
             {
                 SetState(new JumpingLeft2D(this));
                 Animator2D.updateGroundedParam(anim, false);

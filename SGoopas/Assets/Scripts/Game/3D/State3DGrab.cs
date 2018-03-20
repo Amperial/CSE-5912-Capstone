@@ -39,14 +39,23 @@ namespace PlayerStates
             SetState(new State3DStand(this));
         }
 
-        public override void FixedUpdate() {
-            // Disallow rotation while grabbing...
-            ClipVelocity();
+        public override void Update()
+        {
+            ApplyMovementForces();
+
+            CheckForPushing();
+        }
+
+        private void CheckForPushing()
+        {
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
             if (nonVerticalVelocity.magnitude > 0.0001f)
                 animation3D.StartPush();
             else
                 animation3D.StopPush();
+        }
+        public override void FixedUpdate() {
+            
         }
     }
 
