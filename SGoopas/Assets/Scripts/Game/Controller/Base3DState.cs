@@ -9,6 +9,7 @@ namespace PlayerStates
     {
         private Vector3 linearVelocity;
         private Vector3 angularVelocity;
+        private Collider guardCollider;
         protected Rigidbody rb;
         protected Animator3D animation3D;
 
@@ -23,6 +24,7 @@ namespace PlayerStates
                 angularVelocity = previousState3D.angularVelocity;
                 Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
                 Grabbing.grabEvent += this.GrabAvailabilityChanged;
+                guardCollider = previousState3D.guardCollider;
             }
         }
 
@@ -33,6 +35,7 @@ namespace PlayerStates
             animation3D = new Animator3D(PlayerObject);
             linearVelocity = new Vector3();
             angularVelocity = new Vector3();
+            guardCollider = player.GetComponent<Collider>();
         }
 
         protected abstract void GrabAvailabilityChanged(List<Collider> availableObjects);
@@ -54,5 +57,22 @@ namespace PlayerStates
             rb.velocity = linearVelocity;
             rb.angularVelocity = angularVelocity;
         }
+
+        public override void LateUpdate()
+        {
+
+        }
+
+        protected bool IsGrounded {
+            get
+            {
+                return Physics.Raycast(new Vector3(guardCollider.bounds.center.x, guardCollider.bounds.min.y + 0.1f, guardCollider.bounds.center.z), Vector3.down, 0.2f) || 
+                    Physics.Raycast(new Vector3(guardCollider.bounds.min.x, guardCollider.bounds.min.y + 0.1f, guardCollider.bounds.min.z), Vector3.down, 0.2f)  || 
+                    Physics.Raycast(new Vector3(guardCollider.bounds.min.x, guardCollider.bounds.min.y + 0.1f, guardCollider.bounds.max.z), Vector3.down, 0.2f) || 
+                    Physics.Raycast(new Vector3(guardCollider.bounds.max.x, guardCollider.bounds.min.y + 0.1f, guardCollider.bounds.min.z), Vector3.down, 0.2f)  || 
+                    Physics.Raycast(new Vector3(guardCollider.bounds.max.x, guardCollider.bounds.min.y + 0.1f, guardCollider.bounds.max.z), Vector3.down, 0.2f);
+            }
+        }
+
     }
 }

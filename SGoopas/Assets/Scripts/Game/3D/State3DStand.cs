@@ -34,7 +34,11 @@ namespace PlayerStates
 
         public override void FixedUpdate()
         {
-            // No-op.
+            bool land = IsGrounded;
+            if (!land)
+            {
+                SetState(new State3DJump(this));
+            }
         }
 
         public override void Jump()

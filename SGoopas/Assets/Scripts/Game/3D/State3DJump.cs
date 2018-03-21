@@ -7,8 +7,8 @@ namespace PlayerStates
     public class State3DJump : State3DMove
     {
 
-        public State3DJump(BasePlayerState previousState) : base(previousState) { moveForceMagnitude = 5f; }
-        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { moveForceMagnitude = 5f; }
+        public State3DJump(BasePlayerState previousState) : base(previousState) { moveForceMagnitude = 300f; }
+        public State3DJump(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) { moveForceMagnitude = 300f; }
 
         public override void Action()
         {
@@ -27,8 +27,7 @@ namespace PlayerStates
             base.FixedUpdate();
             if(rb.velocity.y < 0)
             {
-                bool land = Physics.Raycast(base.PlayerObject.transform.position, Vector3.down, 0.1f);
-
+                bool land = IsGrounded;
                 if (land)
                 {
                     if (rb.velocity.magnitude < 0.01)
