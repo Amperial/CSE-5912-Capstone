@@ -65,6 +65,14 @@ public class MasterStateMachine
             MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
         }
     }
+
+    public void ResetLevel() {
+        if (currentState is GameMainState)
+        {
+            MasterMonoBehaviour.Instance.StartCoroutine(ReloadLevelAsynchronously());
+        }
+    }
+
     public void GoToSpotlightLevel()
     {
         MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(2)));
@@ -83,6 +91,28 @@ public class MasterStateMachine
             yield return null;
         }
         setState(loading);
+        loading.SetAsActiveScene();
+      
+
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
+    }
+
+
+    public IEnumerator ReloadLevelAsynchronously()
+    {
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
+        MainObjectContainer.Reset();
+        currentState.onExit();
+        GameMainState loading = (GameMainState)currentState;
+        float progress;
+        AsyncOperation operation = loading.loadAsynchronously();
+        while (!operation.isDone)
+        {
+            progress = Mathf.Clamp01(operation.progress / .9f);
+            MasterMonoBehaviour.Instance.slider.value = progress;
+            MasterMonoBehaviour.Instance.progressTxt.text = progress * 100f + "%";
+            yield return null;
+        }
         loading.SetAsActiveScene();
         MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
     }
