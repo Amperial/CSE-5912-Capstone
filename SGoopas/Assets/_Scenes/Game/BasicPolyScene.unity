@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731316, g: 0.38074902, b: 0.3587254, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -4108,8 +4108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dade8a353130e254d92209f7289f2b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player3D: {fileID: 147745660}
-  player2D: {fileID: 1286561178}
   cameraStiffness: 1.5
   maxLookDistance: 10
   distanceFromTarget: {x: 0, y: -8, z: 10}
@@ -4390,8 +4388,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 1639704365}
   isLightMovable: 0
   shadowLight: {fileID: 395033994}
-  shadowPlane: {fileID: 2123878148}
-  player2D: {fileID: 1286561178}
 --- !u!108 &395033994
 Light:
   m_ObjectHideFlags: 0
@@ -4892,8 +4888,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 1639704365}
   isLightMovable: 1
   shadowLight: {fileID: 449737890}
-  shadowPlane: {fileID: 2123878148}
-  player2D: {fileID: 1286561178}
 --- !u!108 &449737890
 Light:
   m_ObjectHideFlags: 0
@@ -9826,8 +9820,6 @@ MonoBehaviour:
   shadowObjectsParent: {fileID: 1639704365}
   isLightMovable: 1
   shadowLight: {fileID: 928469997}
-  shadowPlane: {fileID: 2123878148}
-  player2D: {fileID: 0}
 --- !u!108 &928469997
 Light:
   m_ObjectHideFlags: 0
@@ -10310,6 +10302,7 @@ GameObject:
   - component: {fileID: 951349267}
   - component: {fileID: 951349266}
   - component: {fileID: 951349265}
+  - component: {fileID: 951349268}
   m_Layer: 0
   m_Name: GameState
   m_TagString: Untagged
@@ -10329,8 +10322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f71793caf17414ebe3ac2a283353aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2D: {fileID: 1286561178}
-  player3D: {fileID: 147745660}
   is2D: 0
 --- !u!114 &951349266
 MonoBehaviour:
@@ -10365,6 +10356,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &951349268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 951349264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ebbe4ee20b9a45128171b3a6d4addd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player2D: {fileID: 1286561178}
+  Player3D: {fileID: 147745660}
+  ShadowPlane: {fileID: 792206576}
 --- !u!1 &952101568
 GameObject:
   m_ObjectHideFlags: 0
