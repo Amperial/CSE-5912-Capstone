@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour {
-
+	public enum MovementDirection { Vertical, Horizontal };
+	public MovementDirection movementDirection;
     public float speed; //replace with privates, instantiated in Start()?
     public float travelDistance; //replace with privates, instantiated in Start()?
-    //Starting position
-    private float minHeight;
-    //Max height position
-    private float maxHeight;
-    private Vector3 velocity;
     private Rigidbody platform;
-	
+	private float angle = 0;
+	private Vector3 origin;
 	void Start () {
-        //get the starting position as a point of reference
-        minHeight = gameObject.transform.position.y;
-        maxHeight = travelDistance + minHeight;
-        velocity = new Vector3(0, speed, 0);
+        platform = gameObject.AddComponent<Rigidbody>();
+		platform.useGravity = false;
+		platform.isKinematic = true;
+		origin = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+	}
 
-        gameObject.AddComponent<Rigidbody>();
-        platform = gameObject.GetComponent<Rigidbody>();
+	void Update(){
+		angle += speed * Time.deltaTime;
+		if (angle > 2 * Mathf.PI) {
+			angle = 0;
+		}
 	}
 
     
     private void FixedUpdate()
     {
-        if (gameObject.transform.position.y < minHeight)
-        {
-            velocity = new Vector3(0, speed, 0);
-        }else if(gameObject.transform.position.y > maxHeight)
-        {
-            velocity = new Vector3(0, -speed, 0);
-        }
-
-        platform.velocity = velocity;
-    }
+		if (movementDirection == MovementDirection.Vertical) {
+			platform.position = new Vector3(origin.x, 
+											origin.y + (Mathf.Sin (angle) * travelDistance), 
+											origin.z);
+		} else {
+			platform.position = new Vector3(origin.x + (Mathf.Sin (angle) * travelDistance), 
+				origin.y, 
+				origin.z);
+		}
+	}
 }
