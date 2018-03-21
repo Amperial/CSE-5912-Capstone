@@ -369,7 +369,7 @@ MonoBehaviour:
   airMoveForce: 1140
   jumpForce: 700
   airDashForce: 1000
-  walkForce: 300
+  walkForce: 3000
   dJumpForce: 500
   maxHoriSpeed: 10
   maxVertSpeed: 100
