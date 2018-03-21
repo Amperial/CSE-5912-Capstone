@@ -26,14 +26,21 @@ namespace PlayerStates
         {
             if (grabbableObjects.Count > 0)
             {
-                switch (grabbableObjects[0].gameObject.GetComponent<ObjInteractable>().objType)
+                if (grabbableObjects[0].gameObject.GetComponent<IInteractable>() != null)
                 {
-                    case ObjInteractable.ObjectType.pushPull:
-                        SetState(new State3DGrab(grabbableObjects[0], this));
-                        break;
-                    case ObjInteractable.ObjectType.lift:
-                        SetState(new State3DLift(grabbableObjects[0], this));
-                        break;
+                    grabbableObjects[0].gameObject.GetComponent<IInteractable>().Interact();
+                }
+                else
+                {
+                    switch (grabbableObjects[0].gameObject.GetComponent<ObjInteractable>().objType)
+                    {
+                        case ObjInteractable.ObjectType.pushPull:
+                            SetState(new State3DGrab(grabbableObjects[0], this));
+                            break;
+                        case ObjInteractable.ObjectType.lift:
+                            SetState(new State3DLift(grabbableObjects[0], this));
+                            break;
+                    }
                 }
             }
         }

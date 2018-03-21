@@ -22,7 +22,7 @@ namespace PlayerStates
             currentState = newState;
         }
 
-        public MasterPlayerStateMachine(GameObject player2D, GameObject player3D)
+		public MasterPlayerStateMachine(GameObject player2D, GameObject player3D)
         {
             //You can't instantiate an abstract class, the initial state of the players will be instantiated here, but for now
             state3D = new State3DStand(player3D, this);
@@ -30,6 +30,16 @@ namespace PlayerStates
             state2D = new StationaryRight2D(player2D, this, groundCheck);
             state2D.StoreState();
             currentState = state3D;
+            PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
+        }
+
+        ~MasterPlayerStateMachine() {
+            // Unsubscribe from death event when this object is destroyed.
+            PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+        }
+
+        public void PlayerDeathOccurred() {
+            currentState.Death();
         }
 
         public void Action()

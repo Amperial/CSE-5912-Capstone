@@ -63,6 +63,11 @@ namespace PlayerStates
 
         }
 
+        public override void Death()
+        {
+            // No-op, you can't die in 3D.
+        }
+
         protected bool IsGrounded {
             get
             {

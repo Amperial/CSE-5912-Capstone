@@ -61,6 +61,7 @@ namespace PlayerStates
 
         public override void Update()
         {
+            base.Update();
             if (!IsGrounded)
             {
                 SetState(new JumpingLeft2D(this));

@@ -39,7 +39,8 @@ public class ControllerConfigure : MonoBehaviour {
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
         controller.RegisterButtonDown("Release", playerStateMachine.Release);
-    }
+        controller.RegisterButtonDown("Reset", MasterStateMachine.Instance.ResetLevel);
+;    }
 
 	// Use this for initialization
 	void Start () {

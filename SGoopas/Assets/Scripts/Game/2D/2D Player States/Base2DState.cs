@@ -18,7 +18,9 @@ namespace PlayerStates
         private Vector2 linearVelocity;
         private float angularVelocity;
         private Transform groundCheck;
+        private Vector3 original2DPosition;
         private Movement2DConfig mc;
+        private bool lookingForGroundedPosition = true;
 
         protected Animator anim;
         protected float characterWidth;
@@ -40,6 +42,8 @@ namespace PlayerStates
                 groundCheck = previousState2D.groundCheck;
                 dJump = previousState2D.dJump;
                 dash = previousState2D.dash;
+                original2DPosition = previousState2D.original2DPosition;
+                lookingForGroundedPosition = previousState2D.lookingForGroundedPosition;
             }
         }
 
@@ -160,11 +164,33 @@ namespace PlayerStates
 
             rb.velocity = linearVelocity;
             rb.angularVelocity = angularVelocity;
+            lookingForGroundedPosition = true;
+        }
+
+        public override void Update()
+        {
+            if (IsGrounded && lookingForGroundedPosition) {
+                // Respawn player 2D at the first ground position found after a switch.
+                // This prevents the case where the player gets stuck in the spot of death due to the user switching to 3D right beforehand.
+                original2DPosition = rb.gameObject.transform.position;
+                lookingForGroundedPosition = false;
+            }
         }
 
         public override void LateUpdate()
         {
             
+        }
+
+        public override void Death() {
+            SetState(new DeadState2D(this));
+        }
+
+        protected void ResetState()
+        {
+            rb.velocity = new Vector2();
+            rb.angularVelocity = 0;
+            rb.gameObject.transform.position = original2DPosition;
         }
 
         protected bool IsGrounded

@@ -65,16 +65,22 @@ public class MasterStateMachine
             MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
         }
     }
+
+    public void ResetLevel() {
+        if (currentState is GameMainState)
+        {
+            MasterMonoBehaviour.Instance.StartCoroutine(ReloadLevelAsynchronously());
+        }
+    }
+
     public void GoToSpotlightLevel()
     {
         MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(2)));
     }
 
-    public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
-        MainObjectContainer.Reset();
+    private IEnumerator UpdateLoadingWithProgress(AsyncOperation operation)
+    {
         float progress;
-        AsyncOperation operation = loading.loadAsynchronously();
-        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
         while (!operation.isDone)
         {
             progress = Mathf.Clamp01(operation.progress / .9f);
@@ -82,7 +88,26 @@ public class MasterStateMachine
             MasterMonoBehaviour.Instance.progressTxt.text = progress * 100f + "%";
             yield return null;
         }
+    }
+
+    public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
+        MainObjectContainer.Reset();
+        AsyncOperation operation = loading.loadAsynchronously();
+        yield return UpdateLoadingWithProgress(operation);
         setState(loading);
+        loading.SetAsActiveScene();
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
+    }
+
+    public IEnumerator ReloadLevelAsynchronously()
+    {
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
+        MainObjectContainer.Reset();
+        currentState.onExit();
+        GameMainState loading = (GameMainState)currentState;
+        AsyncOperation operation = loading.loadAsynchronously();
+        yield return UpdateLoadingWithProgress(operation);
         loading.SetAsActiveScene();
         MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
     }

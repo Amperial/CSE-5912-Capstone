@@ -38,15 +38,14 @@ public class Hazard : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-		if (shouldPlayerHurt (collision))
-			MasterMonoBehaviour.Instance.DisplayMessage (new string[]{"ouchie, my player got hurt"});
-            //Debug.Log("ouchie, my player got hurt");
+        if (shouldPlayerHurt(collision))
+            PlayerDeathHandler.TriggerPlayerDeath();
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if(!hasHurtPlayer && shouldPlayerHurt(collision))
-            Debug.Log("ouchie, my player got hurt");            
+        if (!hasHurtPlayer && shouldPlayerHurt(collision))
+            PlayerDeathHandler.TriggerPlayerDeath();       
     }
 
     void OnCollisionExit2D(Collision2D collision)
