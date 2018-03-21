@@ -26,9 +26,15 @@ namespace PlayerStates
         {
             if (grabbableObjects.Count > 0)
             {
-                animation3D.StartGrab();
-                animation3D.StopRun();
-                SetState(new State3DGrab(grabbableObjects[0], this));
+                switch (grabbableObjects[0].gameObject.GetComponent<ObjInteractable>().objType)
+                {
+                    case ObjInteractable.ObjectType.pushPull:
+                        SetState(new State3DGrab(grabbableObjects[0], this));
+                        break;
+                    case ObjInteractable.ObjectType.lift:
+                        SetState(new State3DLift(grabbableObjects[0], this));
+                        break;
+                }
             }
         }
 
