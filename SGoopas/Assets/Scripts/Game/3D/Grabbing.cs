@@ -13,7 +13,9 @@ public class Grabbing : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
+
         ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
+        InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
         if (script != null)
         {
             switch (script.objType)
@@ -39,6 +41,11 @@ public class Grabbing : MonoBehaviour {
             //other.gameObject.GetComponent<Renderer>().material.shader = highlight;
             //availableObjects.Add(other);
             //grabEvent(availableObjects);
+        }else if(buttonObj != null)
+        {
+            other.gameObject.GetComponent<Renderer>().material.shader = highlight;
+            availableObjects.Add(other);
+            grabEvent(availableObjects);
         }
     }
 
@@ -48,6 +55,13 @@ public class Grabbing : MonoBehaviour {
         {
             ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
             other.gameObject.GetComponent<Renderer>().material.shader = script.original;
+            if (availableObjects.Contains(other))
+                availableObjects.Remove(other);
+            grabEvent(availableObjects);
+        }else if(other.gameObject.GetComponent<InteractTrigger>() != null)
+        {
+            InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
+            other.gameObject.GetComponent<Renderer>().material.shader = buttonObj.original;
             if (availableObjects.Contains(other))
                 availableObjects.Remove(other);
             grabEvent(availableObjects);
