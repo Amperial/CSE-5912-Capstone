@@ -22,6 +22,8 @@ namespace PlayerStates
 
         protected Animator anim;
         protected float characterWidth;
+        protected bool dJump;
+        protected bool dash;
 
         protected Base2DState(BasePlayerState previousState) : base(previousState)
         {
@@ -36,6 +38,8 @@ namespace PlayerStates
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
                 groundCheck = previousState2D.groundCheck;
+                dJump = previousState2D.dJump;
+                dash = previousState2D.dash;
             }
         }
 
@@ -45,11 +49,13 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody2D>();
 
             anim = PlayerObject.GetComponent<Animator>();
-            characterWidth = PlayerObject.GetComponent<SpriteRenderer>().bounds.size.x/1.2f;
+            characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x/1.2f;
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
             this.groundCheck = groundCheck;
+            dash = true;
+            dJump = true;
         }
 
         protected Transform GroundCheck {
@@ -154,6 +160,32 @@ namespace PlayerStates
 
             rb.velocity = linearVelocity;
             rb.angularVelocity = angularVelocity;
+        }
+
+        public override void LateUpdate()
+        {
+            
+        }
+
+        protected bool IsGrounded
+        {
+            get {
+                Vector3 playerPosition = PlayerObject.transform.position;
+                Vector3 ground = GroundCheck.position;
+                Vector3 tempVL = playerPosition;
+                Vector3 tempVR = playerPosition;
+                tempVL.x = playerPosition.x - (characterWidth / 2.0f);
+                tempVR.x = playerPosition.x + (characterWidth / 2.0f);
+
+                if (Physics2D.Linecast(playerPosition, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVL, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVR, ground, ~(1 << LayerMask.NameToLayer("Player"))))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
     }
