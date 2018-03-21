@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
-    public GameObject player3D;
-    public GameObject player2D;
     private bool is2D;
     
     [Range(0, 3)]
@@ -13,7 +11,7 @@ public class PlayerCamera : MonoBehaviour {
     public Vector3 distanceFromTarget = new Vector3(0, -8, 10);
 
     void Start() {
-        relevantGameObject = player3D;
+        relevantGameObject = MainObjectContainer.Instance.Player3D;
     }
 
     // Update is called once per frame
@@ -39,11 +37,11 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     private void Follow2DPlayer() {
-        relevantGameObject = player2D;
+        relevantGameObject = MainObjectContainer.Instance.Player2D;
     }
 
     private void Follow3DPlayer() {
-        relevantGameObject = player3D;
+        relevantGameObject = MainObjectContainer.Instance.Player3D;
     }
 
     public void SwitchTo2D(Cancellable cancellable) {
