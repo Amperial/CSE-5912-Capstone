@@ -6,12 +6,13 @@ namespace PlayerStates
 {
     public class State3DMove : State3DStand
     {
-        private float velocityCap = 5.0f;
+        private Vector3 moveDir = new Vector3();
+        private float velocityCap = 6.0f;
         protected Vector3 forwardForce = Vector3.forward;
         protected Vector3 backForce = Vector3.back;
         protected Vector3 rightForce = Vector3.right;
         protected Vector3 leftForce = Vector3.left;
-        protected float moveForceMagnitude = 20f;
+        protected float moveForceMagnitude = 1200f;
         int stillFrames = 0;
 
         public State3DMove(BasePlayerState previousState) : base(previousState) {}
@@ -24,22 +25,22 @@ namespace PlayerStates
         }
         public override void MoveDown()
         {
-            rb.AddForce(backForce * moveForceMagnitude);
+            moveDir += backForce;
         }
 
         public override void MoveLeft()
         {
-            rb.AddForce(leftForce * moveForceMagnitude);
+            moveDir += leftForce;
         }
 
         public override void MoveRight()
         {
-            rb.AddForce(rightForce * moveForceMagnitude);
+            moveDir += rightForce;
         }
 
         public override void MoveUp()
         {
-            rb.AddForce(forwardForce * moveForceMagnitude);
+            moveDir += forwardForce;
         }
 
         public override void Release()
@@ -49,14 +50,31 @@ namespace PlayerStates
 
         public override void Update()
         {
-            //no-op for now.
+            ApplyMovementForces();
+
+            ChangeRotation();
+
+            CheckForStanding();
         }
 
-        public override void FixedUpdate()
+        protected void ApplyMovementForces()
         {
-            ClipVelocity();
-            CheckForStanding();
             Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
+            if (!(nonVerticalVelocity.magnitude > velocityCap))
+            {
+                rb.AddForce(moveDir.normalized * moveForceMagnitude * Time.deltaTime);
+                moveDir.Set(0, 0, 0);
+            }
+            else
+            {
+                ClipVelocity(nonVerticalVelocity);
+            }
+        }
+
+        protected void ChangeRotation()
+        {
+            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
+
             if (nonVerticalVelocity.magnitude > 0.001)
             {
                 Vector3 velocityDir = rb.velocity.normalized;
@@ -64,14 +82,9 @@ namespace PlayerStates
             }
         }
 
-        protected void ClipVelocity() {
-            Vector2 nonVerticalVelocity = new Vector2(rb.velocity.x, rb.velocity.z);
-
-            if (nonVerticalVelocity.magnitude > velocityCap)
-            {
-                Vector2 cancelingForce = nonVerticalVelocity.normalized * -moveForceMagnitude;
-                rb.AddForce(new Vector3(cancelingForce.x, 0, cancelingForce.y));
-            }
+        private void ClipVelocity(Vector2 nonVerticalVelocity) {
+            Vector2 newVelocity = nonVerticalVelocity.normalized * velocityCap;
+            rb.velocity = new Vector3(newVelocity.x, rb.velocity.y, newVelocity.y);
         }
 
         private void CheckForStanding() {

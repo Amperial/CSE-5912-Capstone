@@ -6,16 +6,51 @@ public class Grabbing : MonoBehaviour {
 
     public delegate void GrabAvailabilityChanged(List<Collider> availableObjects);
     public static event GrabAvailabilityChanged grabEvent;
-
+    Shader highlight;
+    public void Awake()
+    {
+        highlight = Shader.Find("Outlined/Silhouetted Diffuse");
+    }
     private void OnTriggerEnter(Collider other)
     {
-        availableObjects.Add(other);
-        grabEvent(availableObjects);
+        ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
+        if (script != null)
+        {
+            switch (script.objType)
+            {
+                case ObjInteractable.ObjectType.pushPull:
+                    Vector2 objDir = new Vector2(other.gameObject.transform.position.x - gameObject.transform.parent.position.x, other.gameObject.transform.position.z - gameObject.transform.parent.position.z);
+                    if (Vector2.Angle(objDir.normalized, Vector2.up) < 15f || Vector2.Angle(objDir.normalized, Vector2.down) < 15f || Vector2.Angle(objDir.normalized, Vector2.left) < 15f || Vector2.Angle(objDir.normalized, Vector2.right) < 15f)
+                    {
+                        other.gameObject.GetComponent<Renderer>().material.shader = highlight;
+                        availableObjects.Add(other);
+                        grabEvent(availableObjects);
+                    }
+                    break;
+
+                case ObjInteractable.ObjectType.lift:
+                    other.gameObject.GetComponent<Renderer>().material.shader = highlight;
+                    availableObjects.Add(other);
+                    grabEvent(availableObjects);
+                    break;
+
+            }
+
+            //other.gameObject.GetComponent<Renderer>().material.shader = highlight;
+            //availableObjects.Add(other);
+            //grabEvent(availableObjects);
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        availableObjects.Remove(other);
-        grabEvent(availableObjects);
+        if (other.gameObject.GetComponent<ObjInteractable>() != null)
+        {
+            ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
+            other.gameObject.GetComponent<Renderer>().material.shader = script.original;
+            if (availableObjects.Contains(other))
+                availableObjects.Remove(other);
+            grabEvent(availableObjects);
+        }
     }
 }

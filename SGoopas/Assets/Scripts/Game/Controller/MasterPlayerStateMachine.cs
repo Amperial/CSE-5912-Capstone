@@ -77,6 +77,11 @@ namespace PlayerStates
             currentState.FixedUpdate();
         }
 
+        public void LateUpdate()
+        {
+            currentState.LateUpdate();
+        }
+
         public void SwitchDimension()
         {
             currentState.StoreState();

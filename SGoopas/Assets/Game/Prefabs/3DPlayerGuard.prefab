@@ -655,7 +655,6 @@ GameObject:
   - component: {fileID: 95321433429178502}
   - component: {fileID: 54825979962339418}
   - component: {fileID: 65209993218645870}
-  - component: {fileID: 114797524839308134}
   m_Layer: 0
   m_Name: 3DPlayerGuard
   m_TagString: Untagged
@@ -1365,17 +1364,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba4e8de943bad774d924a198247cf252, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114797524839308134
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1987816124777644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414cdb76f6377394fbac28296295392d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!137 &137508145055056828

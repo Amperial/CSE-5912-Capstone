@@ -91,7 +91,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &60046550662720774
 PolygonCollider2D:
@@ -366,10 +366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56815dd3b98a8240ba64626fbb7696d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airMoveForce: 40
+  airMoveForce: 1140
   jumpForce: 1000
   airDashForce: 1000
-  walkForce: 70
+  walkForce: 2000
   dJumpForce: 500
   maxHoriSpeed: 100
   maxVertSpeed: 100
