@@ -8,7 +8,8 @@ public class PlatformMovement : MonoBehaviour {
     public float speed; //replace with privates, instantiated in Start()?
     public float travelDistance; //replace with privates, instantiated in Start()?
     private Rigidbody platform;
-	private float angle = 0;
+	[Range(-3.14f, 3.14f)]
+	public float angle = 0;
 	private Vector3 origin;
 	void Start () {
         platform = gameObject.AddComponent<Rigidbody>();
