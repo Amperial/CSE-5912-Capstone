@@ -4395,6 +4395,11 @@ Prefab:
       propertyPath: maxVertSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 212019515826915774, guid: 5d99f28ab87b6ba409cbabed2ed5f86b,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.484
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
   m_IsPrefabParent: 0
