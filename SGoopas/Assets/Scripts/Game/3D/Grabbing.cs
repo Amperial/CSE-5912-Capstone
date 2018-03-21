@@ -9,7 +9,7 @@ public class Grabbing : MonoBehaviour {
     Shader highlight;
     public void Awake()
     {
-        highlight = Shader.Find("Outlined/Silhouetted Diffuse"); ;
+        highlight = Shader.Find("Outlined/Silhouetted Diffuse");
     }
     private void OnTriggerEnter(Collider other)
     {
