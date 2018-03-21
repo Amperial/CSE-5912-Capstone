@@ -6,6 +6,7 @@ namespace PlayerStates
 {
     public class State3DLift : State3DMove
     {
+        private Transform oldParent;
         private GameObject grabObj;
         private Rigidbody grabRb;
         public State3DLift(Collider objectToGrab, BasePlayerState previousState) : base(previousState)
@@ -29,6 +30,7 @@ namespace PlayerStates
             grabRb.isKinematic = true;
             grabRb.detectCollisions = false;
             repositionObj();
+            oldParent = grabObj.transform.parent;
             grabObj.transform.parent = rb.gameObject.transform;
         }
         private void repositionObj()
@@ -58,7 +60,7 @@ namespace PlayerStates
             animation3D.StopCarry();
             grabRb.isKinematic = false;
             grabRb.detectCollisions = true;
-            grabObj.transform.parent = null;
+            grabObj.transform.parent = oldParent;
             SetState(new State3DStand(this));
         }
 
