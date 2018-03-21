@@ -367,11 +367,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airMoveForce: 1140
-  jumpForce: 1000
+  jumpForce: 700
   airDashForce: 1000
-  walkForce: 2000
+  walkForce: 300
   dJumpForce: 500
-  maxHoriSpeed: 100
+  maxHoriSpeed: 10
   maxVertSpeed: 100
 --- !u!212 &212019515826915774
 SpriteRenderer:
