@@ -467,7 +467,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 562374659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.6, y: 0.5063423, z: -46.068245}
+  m_LocalPosition: {x: 23.38, y: 0.5063423, z: -46.068245}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 1699924562}
@@ -662,7 +662,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686493301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.57, y: 4.77, z: -39.91}
+  m_LocalPosition: {x: 23.57, y: 2.48, z: -39.91}
   m_LocalScale: {x: 5.9, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 1881638049}
@@ -1076,7 +1076,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810903889}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.46, y: 0.006342292, z: -38.6}
+  m_LocalPosition: {x: 11.09, y: 0.006342292, z: -38.6}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1699924562}
@@ -1206,23 +1206,7 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 114346495154319522, guid: 5d99f28ab87b6ba409cbabed2ed5f86b,
-        type: 2}
-      propertyPath: maxHoriSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114346495154319522, guid: 5d99f28ab87b6ba409cbabed2ed5f86b,
-        type: 2}
-      propertyPath: jumpForce
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 114346495154319522, guid: 5d99f28ab87b6ba409cbabed2ed5f86b,
-        type: 2}
-      propertyPath: walkForce
-      value: 3000
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114346495154319522, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1376290851
@@ -1252,7 +1236,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1376290851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.33, y: 7.0063424, z: -39.348248}
+  m_LocalPosition: {x: 31.09999, y: 7.0063424, z: -39.348248}
   m_LocalScale: {x: 1, y: 17, z: 1}
   m_Children: []
   m_Father: {fileID: 1699924562}
@@ -1648,7 +1632,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520072824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.53, y: 7, z: -41.31}
+  m_LocalPosition: {x: 17.53, y: 2.73, z: -41.31}
   m_LocalScale: {x: 5.8999996, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 1881638049}
@@ -1860,24 +1844,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4887621969671440, guid: 5d99f28ab87b6ba409cbabed2ed5f86b,
     type: 2}
   m_PrefabInternal: {fileID: 1342850573}
---- !u!114 &1630547699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1630547697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e56815dd3b98a8240ba64626fbb7696d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  airMoveForce: 1140
-  jumpForce: 700
-  airDashForce: 1000
-  walkForce: 3000
-  dJumpForce: 500
-  maxHoriSpeed: 10
-  maxVertSpeed: 100
 --- !u!1 &1699924561
 GameObject:
   m_ObjectHideFlags: 0
