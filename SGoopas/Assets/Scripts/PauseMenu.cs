@@ -7,6 +7,11 @@ public class PauseMenu : MonoBehaviour {
 		MasterStateMachine.Instance.unpause();
 	}
 
+    public void ResetLevel() {
+        Unpause();
+        MasterStateMachine.Instance.ResetLevel();
+    }
+
     public void GotoMainMenu () {
         MasterStateMachine.Instance.unpause();
         MasterStateMachine.Instance.setState(new MainMenuState());
