@@ -17,6 +17,7 @@ namespace PlayerStates
         void Jump();
         void Action();
         void Release();
+        void Death();
 
         void LateUpdate();
     }
