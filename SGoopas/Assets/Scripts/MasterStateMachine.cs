@@ -71,6 +71,7 @@ public class MasterStateMachine
     }
 
     public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
+        MainObjectContainer.Reset();
         float progress;
         AsyncOperation operation = loading.loadAsynchronously();
         MasterMonoBehaviour.Instance.loadScreen.SetActive(true);

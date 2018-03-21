@@ -7,8 +7,6 @@ public class GroupShadowHandler : MonoBehaviour {
 	public bool isLightMovable = false;
 	// Be explicit with reference to the light in the editor.
 	public Light shadowLight;
-	public GameObject shadowPlane;
-    public GameObject player2D;
 
 	private List<ShadowController> shadowControllers = new List<ShadowController>();
 
@@ -17,7 +15,7 @@ public class GroupShadowHandler : MonoBehaviour {
 			if(isLightMovable && configuration.objectType == ShadowConfiguration.ShadowObjectType.Static){
 				configuration.objectType = ShadowConfiguration.ShadowObjectType.Dynamic;
 			}
-			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, shadowPlane);
+			ShadowController controller = ShadowControllerFactory.CreateControllerFromConfiguration (configuration, shadowLight, MainObjectContainer.Instance.ShadowPlane);
 			shadowControllers.Add (controller);
 		}
 	}
@@ -26,7 +24,7 @@ public class GroupShadowHandler : MonoBehaviour {
 		foreach (ShadowController shadowController in shadowControllers) {
             cancellable.PerformCancellable(shadowController.ConstructShadow, shadowController.DeconstructShadow);
 
-            if (!cancellable.IsCancelled && !shadowController.IsShadowOkay(player2D))
+            if (!cancellable.IsCancelled && !shadowController.IsShadowOkay(MainObjectContainer.Instance.Player2D))
                 cancellable.Cancel();
 		}
 	}

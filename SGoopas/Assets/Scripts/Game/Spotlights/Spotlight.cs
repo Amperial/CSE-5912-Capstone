@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spotlight : MonoBehaviour {
-    public GameObject planeObject;
-    public GameObject player2D;
     private GameObject planeChild;
     private bool generated;
     private Plane plane;
@@ -18,14 +16,10 @@ public class Spotlight : MonoBehaviour {
 
     void Start()
     {
-        if(player2D == null)
-        {
-            player2D = GameObject.Find("Player");
-        }
         planeChild = new GameObject(this.gameObject.name + " plane collider");
         planeChild.transform.parent = transform;
         generated = false;
-        plane = new Plane(planeObject.transform.up, planeObject.transform.position);
+        plane = new Plane(MainObjectContainer.Instance.ShadowPlane.transform.up, MainObjectContainer.Instance.ShadowPlane.transform.position);
     }
 
     private void CreateCollider()
@@ -35,7 +29,7 @@ public class Spotlight : MonoBehaviour {
         rb2d.isKinematic = true;
         SpotlightCollider colliderScript = planeChild.AddComponent<SpotlightCollider>();
         colliderScript.applicatorType = this.applicatorType;
-        colliderScript.player2D = this.player2D;
+        colliderScript.player2D = MainObjectContainer.Instance.Player2D;
         colliderScript.shadowMaterial = this.shadowMaterial;
     }
 
