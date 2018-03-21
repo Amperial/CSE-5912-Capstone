@@ -62,4 +62,11 @@ public class FloatingEnemy : MonoBehaviour {
     {
         cancellable.PerformCancellable(() => move = true, () => move = false);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject == MainObjectContainer.Instance.Player2D)
+            PlayerDeathHandler.TriggerPlayerDeath();
+    }
+
 }
