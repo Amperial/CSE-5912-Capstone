@@ -43,11 +43,10 @@ public class ShadowPolygonHelper
             firstMinorVector.Normalize();
             secondMinorVector.Normalize();
 
-            Vector3 firstMajorPoint, secondMajorPoint, firstMinorPoint, secondMinorPoint;
+            Vector3 firstMajorPoint, secondMajorPoint, firstMinorPoint;
             firstMajorPoint = GetRayPlaneIntersection(light.transform.position, firstMajorVector, wallPlane.normal, wallPlane.distance);
             secondMajorPoint = GetRayPlaneIntersection(light.transform.position, secondMajorVector, wallPlane.normal, wallPlane.distance);
             firstMinorPoint = GetRayPlaneIntersection(light.transform.position, firstMinorVector, wallPlane.normal, wallPlane.distance);
-            secondMinorPoint = GetRayPlaneIntersection(light.transform.position, secondMinorVector, wallPlane.normal, wallPlane.distance);
 
             Vector3 centerPoint = (firstMajorPoint + secondMajorPoint) / 2;
 
