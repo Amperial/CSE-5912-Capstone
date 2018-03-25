@@ -19,6 +19,14 @@ public class Grabbing : MonoBehaviour {
         highlight = new Material(highlightShader);
         highlight.name = highlightName;
     }
+
+    private void Update()
+    {
+        if (highlightedObject != null && !highlightedObject.GetComponent<ObjInteractable>().IsPlayerAbleToInteract(gameObject)) {
+            UnhighlightObject(highlightedObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ObjInteractable objInteractable = other.gameObject.GetComponent<ObjInteractable>();
@@ -27,8 +35,6 @@ public class Grabbing : MonoBehaviour {
         if (objInteractableAvailable || trigger != null)
         {
             HighlightObject(other.gameObject);
-            availableObjects.Add(other);
-            grabEvent(availableObjects);
         }
     }
 
@@ -43,6 +49,8 @@ public class Grabbing : MonoBehaviour {
         Material[] highligtMaterialSet = {ogMaterial, highlight};
         highlightObj.GetComponent<Renderer>().materials = highligtMaterialSet;
         highlightedObject = highlightObj;
+        availableObjects.Add(highlightObj.GetComponent<Collider>());
+        grabEvent(availableObjects);
     }
 
     void UnhighlightObject(GameObject unhighlightObj) 
@@ -50,14 +58,14 @@ public class Grabbing : MonoBehaviour {
         highlightedObject = null;
         Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] {};
         unhighlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
+        availableObjects.Remove(unhighlightObj.GetComponent<Collider>());
+        grabEvent(availableObjects);
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.Equals(highlightedObject)) {
             UnhighlightObject(other.gameObject);
-            availableObjects.Remove(other);
-            grabEvent(availableObjects);
         }
     }
 }
