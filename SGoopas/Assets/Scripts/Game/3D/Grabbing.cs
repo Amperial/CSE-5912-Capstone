@@ -37,6 +37,7 @@ public class Grabbing : MonoBehaviour {
         if (highlightedObject != null)
         {
             UnhighlightObject(highlightObj);
+            availableObjects.Remove(highlightObj.GetComponent<Collider>());
         }
         ogMaterial = highlightObj.GetComponent<Renderer>().material;
         Material[] highligtMaterialSet = {ogMaterial, highlight};
