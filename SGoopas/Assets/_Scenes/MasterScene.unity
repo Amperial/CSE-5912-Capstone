@@ -1086,7 +1086,6 @@ MonoBehaviour:
   slider: {fileID: 222333923}
   progressTxt: {fileID: 1883978965}
   messageContainer: {fileID: 1520114304}
-  canvas: {fileID: 1939808389}
 --- !u!1 &1883978963
 GameObject:
   m_ObjectHideFlags: 0
