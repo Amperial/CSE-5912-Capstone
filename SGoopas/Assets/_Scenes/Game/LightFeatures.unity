@@ -789,8 +789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a22163d37d014f2f86847495bf1fe6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementDirection: 0
   speed: 2
   travelDistance: 5
+  angle: 0
 --- !u!23 &710670772
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1897,7 +1899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebbe4ee20b9a45128171b3a6d4addd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player2D: {fileID: 2113500433}
+  Player2D: {fileID: 2127530946}
   Player3D: {fileID: 2054946857}
   ShadowPlane: {fileID: 1387130232}
 --- !u!1 &2018204268
