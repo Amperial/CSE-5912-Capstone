@@ -1,70 +1,71 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Grabbing : MonoBehaviour {
     List<Collider> availableObjects = new List<Collider>();
 
     public delegate void GrabAvailabilityChanged(List<Collider> availableObjects);
     public static event GrabAvailabilityChanged grabEvent;
-    Shader highlight;
+    Material highlight;
+    Material ogMaterial;
+    GameObject highlightedObject;
+    static string highlightName = "HighlightMaterial"; 
+
     public void Awake()
     {
-        highlight = Shader.Find("Outlined/Silhouetted Diffuse");
+        Shader highlightShader = Shader.Find("Outline/Transparent");
+        Assert.IsNotNull(highlightShader, "Could not load highlight shader");
+        highlight = new Material(highlightShader);
+        highlight.name = highlightName;
     }
+
+    private void Update()
+    {
+        if (highlightedObject != null && !highlightedObject.GetComponent<ObjInteractable>().IsPlayerAbleToInteract(gameObject)) {
+            UnhighlightObject(highlightedObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-
-        ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
-        InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
-        if (script != null)
+        ObjInteractable objInteractable = other.gameObject.GetComponent<ObjInteractable>();
+        InteractTrigger trigger = other.gameObject.GetComponent<InteractTrigger>();
+        bool objInteractableAvailable = objInteractable != null && objInteractable.IsPlayerAbleToInteract(gameObject);
+        if (objInteractableAvailable || trigger != null)
         {
-            switch (script.objType)
-            {
-                case ObjInteractable.ObjectType.pushPull:
-                    Vector2 objDir = new Vector2(other.gameObject.transform.position.x - gameObject.transform.parent.position.x, other.gameObject.transform.position.z - gameObject.transform.parent.position.z);
-                    if (Vector2.Angle(objDir.normalized, Vector2.up) < 15f || Vector2.Angle(objDir.normalized, Vector2.down) < 15f || Vector2.Angle(objDir.normalized, Vector2.left) < 15f || Vector2.Angle(objDir.normalized, Vector2.right) < 15f)
-                    {
-                        other.gameObject.GetComponent<Renderer>().material.shader = highlight;
-                        availableObjects.Add(other);
-                        grabEvent(availableObjects);
-                    }
-                    break;
-
-                case ObjInteractable.ObjectType.lift:
-                    other.gameObject.GetComponent<Renderer>().material.shader = highlight;
-                    availableObjects.Add(other);
-                    grabEvent(availableObjects);
-                    break;
-
-            }
-
-            //other.gameObject.GetComponent<Renderer>().material.shader = highlight;
-            //availableObjects.Add(other);
-            //grabEvent(availableObjects);
-        }else if(buttonObj != null)
-        {
-            other.gameObject.GetComponent<Renderer>().material.shader = highlight;
-            availableObjects.Add(other);
-            grabEvent(availableObjects);
+            HighlightObject(other.gameObject);
         }
+    }
+
+    void HighlightObject(GameObject highlightObj) 
+    {
+        if (highlightedObject != null)
+        {
+            UnhighlightObject(highlightObj);
+            availableObjects.Remove(highlightObj.GetComponent<Collider>());
+        }
+        ogMaterial = highlightObj.GetComponent<Renderer>().material;
+        Material[] highligtMaterialSet = {ogMaterial, highlight};
+        highlightObj.GetComponent<Renderer>().materials = highligtMaterialSet;
+        highlightedObject = highlightObj;
+        availableObjects.Add(highlightObj.GetComponent<Collider>());
+        grabEvent(availableObjects);
+    }
+
+    void UnhighlightObject(GameObject unhighlightObj) 
+    {
+        highlightedObject = null;
+        Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] {};
+        unhighlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
+        availableObjects.Remove(unhighlightObj.GetComponent<Collider>());
+        grabEvent(availableObjects);
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<ObjInteractable>() != null)
-        {
-            ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
-            other.gameObject.GetComponent<Renderer>().material.shader = script.original;
-            if (availableObjects.Contains(other))
-                availableObjects.Remove(other);
-            grabEvent(availableObjects);
-        }else if(other.gameObject.GetComponent<InteractTrigger>() != null)
-        {
-            InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
-            other.gameObject.GetComponent<Renderer>().material.shader = buttonObj.original;
-            if (availableObjects.Contains(other))
-                availableObjects.Remove(other);
-            grabEvent(availableObjects);
+        if (other.gameObject.Equals(highlightedObject)) {
+            UnhighlightObject(other.gameObject);
         }
     }
 }

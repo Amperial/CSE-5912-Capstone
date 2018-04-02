@@ -9,6 +9,9 @@ namespace PlayerStates
         private Joint grabJoint;
         private Vector2 objDir;
         private bool upDown;
+        private float originalMass;
+        Collider grabObject;
+
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
             animation3D.StartGrab();
             animation3D.StopRun();
@@ -27,13 +30,17 @@ namespace PlayerStates
 
         private void startGrab(Collider objectToGrab)
         {
+            grabObject = objectToGrab;
             objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.z - rb.gameObject.transform.position.z);
             if (Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
                 upDown = true;
-            
+
+            originalMass = grabObject.attachedRigidbody.mass;
+            grabObject.attachedRigidbody.mass = 0.4F;
+
             rb.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(objDir.x,0,objDir.y));
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
-            grabJoint.connectedBody = objectToGrab.attachedRigidbody;
+            grabJoint.connectedBody = grabObject.attachedRigidbody;
         }
         public override void MoveDown()
         {
@@ -70,6 +77,7 @@ namespace PlayerStates
 
         public override void Release()
         {
+            grabObject.attachedRigidbody.mass = originalMass;
             animation3D.StopPush();
             animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);
