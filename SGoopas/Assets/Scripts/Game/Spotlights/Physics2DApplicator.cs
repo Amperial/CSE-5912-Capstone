@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Physics2DApplicator : ShadowApplicator
 {
-    private GameObject spotLightCollider;
     private GameObject player;
     private Color spotlightColor;
     private Material shadowMaterial;
@@ -15,7 +14,6 @@ public class Physics2DApplicator : ShadowApplicator
     public Physics2DApplicator(GameObject spotLightCollider, GameObject player, Material shadowMaterial)
     {
         this.shadowMaterial = shadowMaterial;
-        this.spotLightCollider = spotLightCollider;
         Light light = spotLightCollider.transform.parent.gameObject.GetComponent<Light>(); ;
         spotlightColor = light.color;
         spotlightColor.r *= .8f;

@@ -14,7 +14,6 @@ public class BinaryPosition : BinaryTriggerable {
 
     // Reference to coroutine
     private Coroutine coroutine;
-    private bool returnTo2D = false;
     // Elapsed time moving between positions used by coroutine
     private float elapsed = 0f;
     private bool IsMoving {
