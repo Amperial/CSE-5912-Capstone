@@ -29,8 +29,8 @@ public class ObjInteractable : MonoBehaviour {
                 // Don't apply if the player is too close or not dead-on facing the box.
                 Vector2 objDir = new Vector2(gameObject.transform.position.x - player.transform.parent.position.x, gameObject.transform.position.z - player.transform.parent.position.z);
                 bool angleCorrect = Vector2.Angle(objDir.normalized, Vector2.up) < 15f || Vector2.Angle(objDir.normalized, Vector2.down) < 15f || Vector2.Angle(objDir.normalized, Vector2.left) < 15f || Vector2.Angle(objDir.normalized, Vector2.right) < 15f;
-                float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
-                return distance > 1.1 && angleCorrect;
+                float distance = Vector2.Distance(new Vector2(player.transform.position.x, player.transform.position.z), new Vector2(gameObject.transform.position.x, gameObject.transform.position.z));
+                return distance > 0.5 && angleCorrect;
             case ObjectType.lift:
             default:
                 return true;
