@@ -4,7 +4,10 @@ public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
 
     public GameObject target;
     private ITriggerable triggerable;
-    public Shader original;
+    private Shader original;
+	private SwitchContainer container;
+	private int indexInParent;
+
     public void Awake()
     {
         original = gameObject.GetComponent<Renderer>().material.shader;
@@ -22,4 +25,7 @@ public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
         triggerable.Trigger();
     }
 
+	public Shader GetOriginalShader(){
+		return original;
+	}
 }
