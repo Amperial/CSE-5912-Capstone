@@ -4,7 +4,7 @@ public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
 
     public GameObject target;
     private ITriggerable triggerable;
-    private Shader original;
+    public Shader original;
 	private SwitchContainer container;
 	private int indexInParent;
 
