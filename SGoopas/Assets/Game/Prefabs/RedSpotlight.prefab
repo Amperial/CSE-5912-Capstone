@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 108273890588788462}
   - component: {fileID: 114438017775671402}
   m_Layer: 0
-  m_Name: Spotlight
+  m_Name: RedSpotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
