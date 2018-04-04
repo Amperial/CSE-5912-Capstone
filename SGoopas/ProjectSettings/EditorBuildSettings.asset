@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Game/GameMain.unity
     guid: 435065ff2dc228e45b02cfc7db0c862d
   - enabled: 1
-    path: Assets/_Scenes/Game/BasicPolyScene.unity
+    path: Assets/_Scenes/Game/RSLevel.unity
     guid: 9f9d6ba980565a04a9d7c2c7f1605d0d
   - enabled: 1
     path: Assets/_Scenes/Game/BinaryTriggers.unity
