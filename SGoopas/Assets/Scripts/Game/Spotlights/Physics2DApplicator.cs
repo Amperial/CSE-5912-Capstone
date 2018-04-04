@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Physics2DApplicator : ShadowApplicator
+public class Physics2DApplicator : MonoBehaviour, ShadowApplicator
 {
     private GameObject spotLightCollider;
     private GameObject player;
