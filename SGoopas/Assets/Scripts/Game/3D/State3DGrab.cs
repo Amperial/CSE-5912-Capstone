@@ -30,7 +30,8 @@ namespace PlayerStates
         private void startGrab(Collider objectToGrab)
         {
             grabObject = objectToGrab;
-            objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.z - rb.gameObject.transform.position.z);
+            float rAngle = Mathf.Deg2Rad * (90 - rb.gameObject.transform.rotation.eulerAngles.y);
+            objDir = new Vector2(Mathf.Cos(rAngle), Mathf.Sin(rAngle));
             if (Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
                 upDown = true;
 
