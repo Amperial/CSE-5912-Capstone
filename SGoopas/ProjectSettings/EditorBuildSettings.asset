@@ -38,3 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/Test.unity
     guid: 968855205e938844e8a5397275985f6a
+  - enabled: 1
+    path: Assets/_Scenes/Game/IanOne.unity
+    guid: 0b05ad5666be085408729fc91963b7df
+  - enabled: 1
+    path: Assets/_Scenes/Game/IanTwo.unity
+    guid: 7673af1e4af6f754396626a57f042fa8
