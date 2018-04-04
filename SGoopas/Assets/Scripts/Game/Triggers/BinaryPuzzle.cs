@@ -21,12 +21,14 @@ public class BinaryPuzzle : SwitchContainer
 		};
 	}
 
-	public override void NotifyTriggerStateChange(int index){
+	public override bool NotifyTriggerStateChange(int index){
 		triggerStates[index] = !triggerStates[index];
 		if (GetBinaryInput() == solution) {
 			Debug.Log ("solved!");
 			isSolved = true;
 		}
+
+		return triggerStates [index];
 	}
 
 	// Update is called once per frame
