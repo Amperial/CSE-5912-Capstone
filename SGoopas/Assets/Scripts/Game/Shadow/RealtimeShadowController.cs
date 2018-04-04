@@ -7,7 +7,6 @@ public class RealtimeShadowController : ShadowController {
 
 	public override void ConstructShadow()
 	{
-		base.ConstructShadow();
 		shadowCaster.CreateShadow();
 	}
 
@@ -21,7 +20,6 @@ public class RealtimeShadowController : ShadowController {
 
 	public override void DeconstructShadow()
 	{
-		base.DeconstructShadow();
 		shadowCaster.DestroyShadow();
 	}
 

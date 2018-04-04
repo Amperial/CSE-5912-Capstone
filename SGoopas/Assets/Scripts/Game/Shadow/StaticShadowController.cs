@@ -9,8 +9,7 @@ public class StaticShadowController : ShadowController {
 
     public override void ConstructShadow()
     {
-		base.ConstructShadow();
-        shadowCaster.ShowShadow();
+		shadowCaster.ShowShadow();
     }
 
     public override bool IsShadowOkay(GameObject player)
@@ -20,8 +19,6 @@ public class StaticShadowController : ShadowController {
 
     public override void DeconstructShadow()
     {
-        base.DeconstructShadow();
-
         shadowCaster.HideShadow();
     }
 

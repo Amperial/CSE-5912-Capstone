@@ -23,8 +23,6 @@ public class DynamicShadowController : ShadowController {
 
     public override void ConstructShadow()
     {
-        base.ConstructShadow();
-
         //Freezes rigid body if one exists
         /*
             NOTE: with movable lights, objects without rigidbodies 
@@ -44,8 +42,6 @@ public class DynamicShadowController : ShadowController {
 
     public override void DeconstructShadow()
     {
-        base.DeconstructShadow();
-
         //Unfreezes rigid body if one exists
         if(rb != null){
             rb.isKinematic = false;
