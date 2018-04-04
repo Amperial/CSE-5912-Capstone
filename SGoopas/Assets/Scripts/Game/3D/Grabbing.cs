@@ -3,69 +3,53 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class Grabbing : MonoBehaviour {
-    List<Collider> availableObjects = new List<Collider>();
 
-    public delegate void GrabAvailabilityChanged(List<Collider> availableObjects);
-    public static event GrabAvailabilityChanged grabEvent;
+    public delegate void GrabbableObjectChanged(ObjInteractableBase grabbableObject);
+    public static event GrabbableObjectChanged grabEvent;
     Material highlight;
     Material ogMaterial;
-    GameObject highlightedObject;
-    static string highlightName = "HighlightMaterial"; 
-
-    public void Awake()
-    {
-        Shader highlightShader = Shader.Find("Outline/Transparent");
-        Assert.IsNotNull(highlightShader, "Could not load highlight shader");
-        highlight = new Material(highlightShader);
-        highlight.name = highlightName;
-    }
+    ObjInteractableBase highlightedObject;
 
     private void Update()
     {
-        if (highlightedObject != null && !highlightedObject.GetComponent<ObjInteractable>().IsPlayerAbleToInteract(gameObject)) {
+        if (highlightedObject != null && !highlightedObject.IsPlayerAbleToInteract(gameObject)) {
             UnhighlightObject(highlightedObject);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        ObjInteractable objInteractable = other.gameObject.GetComponent<ObjInteractable>();
-        InteractTrigger trigger = other.gameObject.GetComponent<InteractTrigger>();
+        ObjInteractableBase objInteractable = other.gameObject.GetComponent<ObjInteractableBase>();
         bool objInteractableAvailable = objInteractable != null && objInteractable.IsPlayerAbleToInteract(gameObject);
-        if (objInteractableAvailable || trigger != null)
+        if (objInteractableAvailable)
         {
-            HighlightObject(other.gameObject);
+            HighlightObject(objInteractable);
         }
     }
 
-    void HighlightObject(GameObject highlightObj) 
+    void HighlightObject(ObjInteractableBase newlyHighlightedObject) 
     {
         if (highlightedObject != null)
         {
-            UnhighlightObject(highlightObj);
-            availableObjects.Remove(highlightObj.GetComponent<Collider>());
+            highlightedObject.UnhighlightObject();
         }
-        ogMaterial = highlightObj.GetComponent<Renderer>().material;
-        Material[] highligtMaterialSet = {ogMaterial, highlight};
-        highlightObj.GetComponent<Renderer>().materials = highligtMaterialSet;
-        highlightedObject = highlightObj;
-        availableObjects.Add(highlightObj.GetComponent<Collider>());
-        grabEvent(availableObjects);
+        newlyHighlightedObject.HighlightObject();
+        highlightedObject = newlyHighlightedObject;
+        grabEvent(highlightedObject);
     }
 
-    void UnhighlightObject(GameObject unhighlightObj) 
+    void UnhighlightObject(ObjInteractableBase unhighlightObj) 
     {
         highlightedObject = null;
-        Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] {};
-        unhighlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
-        availableObjects.Remove(unhighlightObj.GetComponent<Collider>());
-        grabEvent(availableObjects);
+        unhighlightObj.UnhighlightObject();
+        grabEvent(null);
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.Equals(highlightedObject)) {
-            UnhighlightObject(other.gameObject);
+        ObjInteractableBase interactable =  other.GetComponent<ObjInteractableBase>();
+        if (interactable != null && interactable.Equals(highlightedObject)) {
+            UnhighlightObject(interactable);
         }
     }
 }

@@ -35,9 +35,12 @@ namespace PlayerStates
             if (Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
                 upDown = true;
 
+<<<<<<< HEAD
             originalMass = grabObject.attachedRigidbody.mass;
             grabObject.attachedRigidbody.mass = 0.4F;
 
+=======
+>>>>>>> fdc8b34... Interactables overhaul
             rb.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(objDir.x,0,objDir.y));
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
             grabJoint.connectedBody = grabObject.attachedRigidbody;
@@ -77,7 +80,11 @@ namespace PlayerStates
 
         public override void Release()
         {
+<<<<<<< HEAD
             grabObject.attachedRigidbody.mass = originalMass;
+=======
+            grabObject.GetComponent<ObjInteractableBase>().InteractionEnded();
+>>>>>>> fdc8b34... Interactables overhaul
             animation3D.StopPush();
             animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);

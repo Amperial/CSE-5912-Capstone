@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using PlayerStates;
+using UnityEngine;
 
-public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
+public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable {
 
     public GameObject target;
     private ITriggerable triggerable;
     public Shader original;
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         original = gameObject.GetComponent<Renderer>().material.shader;
     }
 
@@ -22,4 +24,19 @@ public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
         triggerable.Trigger();
     }
 
+    public override IPlayerState PlayerBeganInteraction(BasePlayerState currentState)
+    {
+        Interact();
+        return null;
+    }
+
+    public override void InteractionEnded()
+    {
+        // No-op.
+    }
+
+    public override bool IsPlayerAbleToInteract(GameObject player)
+    {
+        return true;
+    }
 }

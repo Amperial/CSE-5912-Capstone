@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjInteractable : MonoBehaviour {
+public class ObjInteractable : ObjInteractableBase {
 
     public enum ObjectType { pushPull, lift};
     public ObjectType objType;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         if (objType == ObjectType.pushPull)
         {
             // Push objects don't have rotation and are really heavy until you interact with them.
@@ -17,11 +18,34 @@ public class ObjInteractable : MonoBehaviour {
         }
     }
 
-    /*
-     * Implementation of interaction restrictions that are more complicated than proximity 
-     * (e.g. for push pull, the player needs to be facing one of the object's faces)
-     */
-    public bool IsPlayerAbleToInteract(GameObject player) {
+    public override void InteractionEnded()
+    {
+        if (objType == ObjectType.pushPull)
+        {
+            foreach (GameObject pullObject in associatedObjects)
+            {
+                pullObject.GetComponent<Rigidbody>().mass = 10.0F / associatedObjects.Length;
+            }
+        }
+    }
+
+    public override PlayerStates.IPlayerState PlayerBeganInteraction(PlayerStates.BasePlayerState currentState) {
+        switch (objType)
+        {
+            case ObjectType.pushPull:
+                foreach (GameObject pullObject in associatedObjects)
+                {
+                    pullObject.GetComponent<Rigidbody>().mass = 0.4F / associatedObjects.Length;
+                }
+                return new PlayerStates.State3DGrab(gameObject.GetComponent<Collider>(), currentState);
+            case ObjectType.lift:
+                return new PlayerStates.State3DLift(gameObject.GetComponent<Collider>(), currentState);
+            default:
+                return null;
+        }
+    }
+
+    public override bool IsPlayerAbleToInteract(GameObject player) {
         switch (objType)
         {
             case ObjectType.pushPull:
