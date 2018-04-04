@@ -15,7 +15,7 @@ public class Grabbing : MonoBehaviour {
     {
 
         ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
-        InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
+        IInteractable buttonObj = other.gameObject.GetComponent<IInteractable>();
         if (script != null)
         {
             switch (script.objType)
