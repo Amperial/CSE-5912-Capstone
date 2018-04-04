@@ -7,7 +7,7 @@ public class SwitchTrigger : MonoBehaviour, IInteractable, ITriggerable
 	private SwitchContainer container;
 	private int indexInParent;
 	private Shader original;
-
+	public Shader activeShader;
 	public void Awake()
 	{
 		original = gameObject.GetComponent<Renderer>().material.shader;
@@ -34,7 +34,11 @@ public class SwitchTrigger : MonoBehaviour, IInteractable, ITriggerable
 	public void Trigger() {
 		//triggerable.Trigger();
 		if (container != null && container is BinaryPuzzle) {
-			((BinaryPuzzle)container).NotifyTriggerStateChange (indexInParent);
+			if (((BinaryPuzzle)container).NotifyTriggerStateChange (indexInParent)) {
+				gameObject.transform.localScale = new Vector3 (gameObject.transform.localScale.x, .6f, .6f); 
+			} else {
+				gameObject.transform.localScale = new Vector3 (gameObject.transform.localScale.x, .3f, .3f); 
+			}
 		}
 	}
 
