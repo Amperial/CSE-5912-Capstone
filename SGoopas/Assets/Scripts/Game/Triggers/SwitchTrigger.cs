@@ -33,7 +33,11 @@ public class SwitchTrigger : ObjInteractableBase, IInteractable, ITriggerable
 
 	public void Trigger() {
 		if (container != null && container is BinaryPuzzle) {
-			((BinaryPuzzle)container).NotifyTriggerStateChange (indexInParent);
+			if (((BinaryPuzzle)container).NotifyTriggerStateChange (indexInParent)) {
+				gameObject.transform.localScale = new Vector3 (gameObject.transform.localScale.x, .6f, .6f); 
+			} else {
+				gameObject.transform.localScale = new Vector3 (gameObject.transform.localScale.x, .3f, .3f); 
+			}
 		}
 	}
 

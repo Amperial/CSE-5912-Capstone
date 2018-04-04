@@ -25,5 +25,7 @@ public class SwitchContainer : MonoBehaviour {
 		
 	}
 
-	public virtual void NotifyTriggerStateChange(int index){}
+	public virtual bool NotifyTriggerStateChange(int index){
+		return false;
+	}
 }
