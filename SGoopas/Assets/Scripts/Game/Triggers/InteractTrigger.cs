@@ -5,12 +5,9 @@ public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable 
 
     public GameObject target;
     private ITriggerable triggerable;
-    public Shader original;
-    public override void Awake()
-    {
-        base.Awake();
-        original = gameObject.GetComponent<Renderer>().material.shader;
-    }
+
+    private SwitchContainer container;
+    private int indexInParent;
 
     void Start() {
         triggerable = target.GetComponent<ITriggerable>();
