@@ -9,7 +9,6 @@ namespace PlayerStates
         private Joint grabJoint;
         private Vector2 objDir;
         private bool upDown;
-        private float originalMass;
         Collider grabObject;
 
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {

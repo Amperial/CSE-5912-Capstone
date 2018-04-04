@@ -6,8 +6,6 @@ public class Grabbing : MonoBehaviour {
 
     public delegate void GrabbableObjectChanged(ObjInteractableBase grabbableObject);
     public static event GrabbableObjectChanged grabEvent;
-    Material highlight;
-    Material ogMaterial;
     ObjInteractableBase highlightedObject;
 
     private void Update()
