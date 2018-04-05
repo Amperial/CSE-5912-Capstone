@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class GameMainState : IGameState
@@ -12,6 +13,14 @@ public class GameMainState : IGameState
     public GameMainState(int levelNumber = 0) {
         this.levelNumber = levelNumber;
         sceneName = levels[Mathf.Min(levelNumber, levels.Count)];
+    }
+
+    public static void CheckForLevelIntegrity()
+    {
+        foreach (string levelName in levels)
+        {
+            Assert.IsTrue(Application.CanStreamedLevelBeLoaded(levelName), "Level " + levelName + " was listed in GameMain.cs but cannot be loaded.");
+        }
     }
 
     public GameMainState GetStateForNextLevel() {
