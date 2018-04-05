@@ -34,6 +34,12 @@ namespace PlayerStates
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
         }
 
+        ~MasterPlayerStateMachine()
+        {
+            // Unsubscribe from death event when this object is destroyed.
+            PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+        }
+
         public void PlayerDeathOccurred() {
             currentState.Death();
         }
