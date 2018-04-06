@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
     Vector3[] points;
     public GameObject enemyPrefab;
-    private GameObject enemy;
     private FloatingEnemy enemyScript;
     // Use this for initialization
     void Start () {
@@ -15,16 +14,12 @@ public class EnemySpawner : MonoBehaviour {
             points[i] = transform.GetChild(i).position;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
     void MakeEnemy()
     {
-        if(enemy == null)
+        if(enemyScript == null)
         {
-            enemy = Instantiate(enemyPrefab, gameObject.transform.position, gameObject.transform.rotation);
+            GameObject enemy = Instantiate(enemyPrefab, gameObject.transform.position, gameObject.transform.rotation);
             enemy.transform.parent = transform.parent;
             foreach (Vector3 point in points)
             {
