@@ -10,7 +10,6 @@ echo "Attempting to build $project for Windows"
   -nographics \
   -silent-crashes \
   -logFile "$(pwd)/$project/unity-windows.log" \
-  -projectPath "$(pwd)/$project" \
   -buildWindowsPlayer "$(pwd)/$project/Build/windows/$project.exe" \
   -quit
 
