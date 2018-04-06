@@ -4,6 +4,11 @@ project="SGoopas"
 
 ls -a $(pwd)/$project
 
+#
+# This is a hack!
+# For some reason the 'projectPath' var does not get set the first time you open Unity.
+# The workaround is to open Unity and start a new project in the desired path.
+#
 echo "Opening Unity for first time"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
@@ -14,12 +19,13 @@ echo "Opening Unity for first time"
   -stackTraceLogType Full \
   -quit
 
+cat $(pwd)/$project/unity-first-open.log
+
 echo "Attempting to build $project for Windows"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
   -nographics \
   -silent-crashes \
-  -projectPath "$(pwd)/$project" \
   -logFile "$(pwd)/$project/unity-windows.log" \
   -buildWindowsPlayer "$(pwd)/$project/Build/windows/$project.exe" \
   -quit
@@ -35,7 +41,6 @@ echo "Attempting to build $project for OS X"
   -nographics \
   -silent-crashes \
   -logFile "$(pwd)/$project/unity-mac.log" \
-  -projectPath "$(pwd)/$project" \
   -buildOSXUniversalPlayer "$(pwd)/$project/Build/osx/$project.app" \
   -quit
 
@@ -50,7 +55,6 @@ echo "Attempting to build $project for Linux"
   -nographics \
   -silent-crashes \
   -logFile "$(pwd)/$project/unity-linux.log" \
-  -projectPath "$(pwd)/$project" \
   -buildLinuxUniversalPlayer "$(pwd)/$project/Build/linux/$project.exe" \
   -quit
 
