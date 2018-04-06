@@ -10,7 +10,7 @@ echo "Opening Unity for first time"
   -nographics \
   -silent-crashes \
   -logFile "$(pwd)/$project/unity-first-open.log" \
-  -createProject "test" \
+  -createProject "$(pwd)/$project" \
   -stackTraceLogType Full \
   -quit
 
