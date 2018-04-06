@@ -11256,7 +11256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18184ddba51793c4bba62978c73bd2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePosition: {x: 6.71, y: -0.4, z: 2.270356}
+  activePosition: {x: 6.71, y: -0.5, z: 2.270356}
   activeRotation: {x: 0, y: 0, z: 0}
   moveTime: 1
 --- !u!114 &565221999
@@ -15063,7 +15063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18184ddba51793c4bba62978c73bd2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePosition: {x: 5.71, y: -0.4, z: 2.270356}
+  activePosition: {x: 5.71, y: -0.5, z: 2.270356}
   activeRotation: {x: 0, y: 0, z: 0}
   moveTime: 1
 --- !u!114 &779147034
@@ -26905,7 +26905,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.2711938, g: 0.9705882, b: 0.47860038, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_Range: 30
   m_SpotAngle: 15
   m_CookieSize: 10
@@ -28458,7 +28458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18184ddba51793c4bba62978c73bd2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePosition: {x: 6.21, y: -0.4, z: 2.270356}
+  activePosition: {x: 6.21, y: -0.5, z: 2.270356}
   activeRotation: {x: 0, y: 0, z: 0}
   moveTime: 1
 --- !u!114 &1502171778
@@ -37051,7 +37051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18184ddba51793c4bba62978c73bd2f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activePosition: {x: 5.21, y: -0.4, z: 2.270356}
+  activePosition: {x: 5.21, y: -0.5, z: 2.270356}
   activeRotation: {x: 0, y: 0, z: 0}
   moveTime: 1
 --- !u!1001 &1976944225
