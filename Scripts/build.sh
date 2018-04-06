@@ -10,7 +10,7 @@ echo "Opening Unity for first time"
   -nographics \
   -silent-crashes \
   -logFile "$(pwd)/$project/unity-first-open.log" \
-  -projectPath "$(pwd)/$project" \
+  -createProject "test" \
   -stackTraceLogType Full \
   -quit
 
@@ -19,6 +19,7 @@ echo "Attempting to build $project for Windows"
   -batchmode \
   -nographics \
   -silent-crashes \
+  -projectPath "$(pwd)/$project" \
   -logFile "$(pwd)/$project/unity-windows.log" \
   -buildWindowsPlayer "$(pwd)/$project/Build/windows/$project.exe" \
   -quit
