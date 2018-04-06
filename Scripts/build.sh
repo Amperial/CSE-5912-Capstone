@@ -2,6 +2,8 @@
 
 project="SGoopas"
 
+ls -a $(pwd)/$project
+
 echo "Attempting to build $project for Windows"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
