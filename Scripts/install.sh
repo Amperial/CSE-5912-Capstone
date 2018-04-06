@@ -1,7 +1,8 @@
 #! /bin/sh
 
 BASE_URL=http://download.unity3d.com/download_unity
-HASH=bfcbae508940
+HASH=7f25373c3e03
+
 
 download() {
   file=$1
@@ -23,5 +24,5 @@ install() {
 # of available packages, where PLATFORM is `osx` or `win`
 
 install "MacEditorInstaller/Unity.pkg"
-install "MacEditorTargetInstaller/UnitySetup-Windows-Support-for-Editor-2017.3.0p3.pkg"
-install "MacEditorTargetInstaller/UnitySetup-Linux-Support-for-Editor-2017.3.0p3.pkg"
+install "MacEditorTargetInstaller/UnitySetup-Windows-Support-for-Editor-2017.3.1p4.pkg"
+install "MacEditorTargetInstaller/UnitySetup-Linux-Support-for-Editor-2017.3.1p4.pkg"
