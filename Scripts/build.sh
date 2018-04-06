@@ -4,6 +4,16 @@ project="SGoopas"
 
 ls -a $(pwd)/$project
 
+echo "Opening Unity for first time"
+/Applications/Unity/Unity.app/Contents/MacOS/Unity \
+  -batchmode \
+  -nographics \
+  -silent-crashes \
+  -logFile "$(pwd)/$project/unity-first-open.log" \
+  -projectPath "$(pwd)/$project" \
+  -stackTraceLogType Full \
+  -quit
+
 echo "Attempting to build $project for Windows"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
