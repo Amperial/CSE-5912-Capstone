@@ -19,8 +19,6 @@ echo "Opening Unity for first time"
   -stackTraceLogType Full \
   -quit
 
-cat $(pwd)/$project/unity-first-open.log
-
 echo "Attempting to build $project for Windows"
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
@@ -62,3 +60,6 @@ echo "Linux build:"
 cat $(pwd)/$project/unity-linux.log
 
 zip -r $(pwd)/Build/linux.zip $(pwd)/Build/linux/
+
+echo "Log from Unity Open:"
+cat $(pwd)/$project/unity-first-open.log
