@@ -4,30 +4,18 @@ using UnityEngine;
 
 namespace PlayerStates
 {
-    public class JumpingRight2D : Base2DState
+    public class BaseDashingState : Base2DState
     {
-        public JumpingRight2D(BasePlayerState previousState) : base(previousState) {
-            FlipSprite();
-        }
-        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
-            FlipSprite();
-        }
-
-
-        private void FlipSprite()
-        {
-            Vector3 prevScale = PlayerObject.transform.localScale;
-            prevScale.x = Mathf.Abs(prevScale.x);
-            PlayerObject.transform.localScale = prevScale;
-        }
+        public BaseDashingState(BasePlayerState previousState) : base(previousState) { }
+        public BaseDashingState(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) { }
 
         public override void Action()
         {
             if (dash)
             {
                 dash = false;
-                if (rb.velocity.x < MaxHoriSpeed)
-                    rb.AddForce(new Vector2(AirDashForce, 0) * rb.mass, ForceMode2D.Force);
+                if (rb.velocity.x > -MaxHoriSpeed)
+                    rb.AddForce(new Vector2(-AirDashForce, 0) * rb.mass, ForceMode2D.Force);
             }
         }
 
@@ -53,9 +41,8 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            JumpingLeft2D left = new JumpingLeft2D(this);
-            SetState(left);
-            left.MoveLeft();
+            if (rb.velocity.x > -MaxHoriSpeed)
+                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass * Time.deltaTime, ForceMode2D.Force);
         }
 
         public override void MoveRight()
@@ -69,7 +56,7 @@ namespace PlayerStates
             base.Update();
             if (IsGrounded)
             {
-                SetState(new MovingRight2D(this));
+                SetState(new MovingLeft2D(this));
                 Animator2D.updateGroundedParam(anim, true);
             }
             //Sets animator's x and y speeds for the animations to use

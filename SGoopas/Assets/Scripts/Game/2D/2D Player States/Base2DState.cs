@@ -13,6 +13,9 @@ namespace PlayerStates
         private float dJumpForce = 1f;
         private float maxHoriSpeed = 1f;
         private float maxVertSpeed = 1f;
+        private float dashStartAngle = 90f;
+        private float dashDistance = 5f;
+        private float enemyDetectionAngle = 15f;
 
         protected Rigidbody2D rb;
         private Vector2 linearVelocity;
@@ -78,6 +81,35 @@ namespace PlayerStates
                 return airMoveForce;
             }
         }
+
+        public float DashStartAngle
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashStartAngle;
+                return dashStartAngle;
+            }
+        }
+        public float DashDistance
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashDistance;
+                return dashDistance;
+            }
+        }
+        public float EnemyDetectionAngle
+        {
+            get
+            {
+                if (mc)
+                    return mc.enemyDetectionAngle;
+                return enemyDetectionAngle;
+            }
+        }
+
 
         public float JumpForce
         {
@@ -211,6 +243,43 @@ namespace PlayerStates
                 {
                     return false;
                 }
+                
+            }
+        }
+
+        protected Vector2 DashVector
+        {
+            get
+            {
+                Vector2 dashVector;
+                if(Vector2.SignedAngle(PlayerObject.transform.up, PlayerObject.transform.right) > 0)
+                    dashVector = Quaternion.Euler(0, 0, DashStartAngle) * PlayerObject.transform.up;
+                else
+                    dashVector = Quaternion.Euler(0, 0, -DashStartAngle) * PlayerObject.transform.up;
+                Collider2D[] enemies = Physics2D.OverlapCircleAll(PlayerObject.transform.position, DashDistance, 1 << LayerMask.NameToLayer("Enemy"));
+                if (enemies != null)
+                {
+                    Dictionary<Collider2D, float> angleEnemies = new Dictionary<Collider2D, float>();
+                    foreach(Collider2D enemy in enemies)
+                    {
+                        float angle = Vector2.Angle((enemy.transform.position - PlayerObject.transform.position), dashVector);
+                        if (angle <= EnemyDetectionAngle)
+                            angleEnemies.Add(enemy, angle);
+                    }
+                    Collider2D minEnemy = null;
+                    float minAngle = float.MaxValue;
+                    foreach(KeyValuePair<Collider2D, float> enemy in angleEnemies)
+                    {
+                        if(enemy.Value <= minAngle)
+                        {
+                            minAngle = enemy.Value;
+                            minEnemy = enemy.Key;
+                        }
+                    }
+                    if (minEnemy != null)
+                        dashVector = minEnemy.transform.position - PlayerObject.transform.position;
+                }
+                return dashVector.normalized;
             }
         }
 

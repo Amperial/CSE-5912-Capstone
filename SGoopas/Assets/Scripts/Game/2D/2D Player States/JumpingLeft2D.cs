@@ -6,9 +6,20 @@ namespace PlayerStates
 {
     public class JumpingLeft2D : Base2DState
     {
-        public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {}
-        public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
-        
+        public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {
+            FlipSprite();
+        }
+        public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
+            FlipSprite();
+        }
+
+
+        private void FlipSprite()
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = -Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
+        }
         public override void Action()
         {
             if (dash)
@@ -47,8 +58,9 @@ namespace PlayerStates
 
         public override void MoveRight()
         {
-            if (rb.velocity.x < MaxHoriSpeed)
-                rb.AddForce(new Vector2(AirMoveForce, 0) * rb.mass * Time.deltaTime, ForceMode2D.Force);
+            JumpingRight2D right = new JumpingRight2D(this);
+            SetState(right);
+            right.MoveRight();
         }
 
         public override void Update()

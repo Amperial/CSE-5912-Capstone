@@ -10,4 +10,7 @@ public class Movement2DConfig : MonoBehaviour {
     public float dJumpForce = 500f;
     public float maxHoriSpeed = 10f;
     public float maxVertSpeed = 100f;
+    public float dashStartAngle = 90f;
+    public float dashDistance = 5f;
+    public float enemyDetectionAngle = 15f;
 }
