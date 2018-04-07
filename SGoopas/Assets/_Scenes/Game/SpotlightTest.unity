@@ -38,7 +38,9 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -651,8 +653,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5558e95cbf927043983287f487a056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applicatorType: 0
-  shadowMaterial: {fileID: 2100000, guid: 55b875329630f6c4581eed66417f57a7, type: 2}
+  ApplicatorType: 0
+  ShadowMaterial: {fileID: 0}
+  IndicatorMaterial: {fileID: 0}
 --- !u!108 &648675410
 Light:
   m_ObjectHideFlags: 0
@@ -1451,8 +1454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5558e95cbf927043983287f487a056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applicatorType: 1
-  shadowMaterial: {fileID: 2100000, guid: 55b875329630f6c4581eed66417f57a7, type: 2}
+  ApplicatorType: 1
+  ShadowMaterial: {fileID: 0}
+  IndicatorMaterial: {fileID: 0}
 --- !u!108 &1386295787
 Light:
   m_ObjectHideFlags: 0
@@ -1846,7 +1850,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6f3d6d4b07fd35248bd739b8562273fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

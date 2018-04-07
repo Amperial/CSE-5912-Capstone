@@ -15,7 +15,7 @@ public class Grabbing : MonoBehaviour {
     {
 
         ObjInteractable script = other.gameObject.GetComponent<ObjInteractable>();
-        InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
+		IInteractable buttonObj = other.gameObject.GetComponent<IInteractable>();
         if (script != null)
         {
             switch (script.objType)
@@ -58,10 +58,10 @@ public class Grabbing : MonoBehaviour {
             if (availableObjects.Contains(other))
                 availableObjects.Remove(other);
             grabEvent(availableObjects);
-        }else if(other.gameObject.GetComponent<InteractTrigger>() != null)
+		}else if(other.gameObject.GetComponent<IInteractable>() != null)
         {
-            InteractTrigger buttonObj = other.gameObject.GetComponent<InteractTrigger>();
-            other.gameObject.GetComponent<Renderer>().material.shader = buttonObj.original;
+			IInteractable buttonObj = other.gameObject.GetComponent<IInteractable>();
+			other.gameObject.GetComponent<Renderer>().material.shader = buttonObj.GetOriginalShader();
             if (availableObjects.Contains(other))
                 availableObjects.Remove(other);
             grabEvent(availableObjects);

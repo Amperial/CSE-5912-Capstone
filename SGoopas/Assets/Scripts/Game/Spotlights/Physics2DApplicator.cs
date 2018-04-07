@@ -6,22 +6,16 @@ using UnityEngine;
 
 public class Physics2DApplicator : ShadowApplicator
 {
-    private GameObject spotLightCollider;
     private GameObject player;
-    private Color spotlightColor;
     private Material shadowMaterial;
+    private Material indicatorMaterial;
 
     private float offset = 0.1f;
-    public Physics2DApplicator(GameObject spotLightCollider, GameObject player, Material shadowMaterial)
+    public Physics2DApplicator(GameObject spotLightCollider, Material shadowMaterial, Material indicatorMaterial)
     {
         this.shadowMaterial = shadowMaterial;
-        this.spotLightCollider = spotLightCollider;
-        Light light = spotLightCollider.transform.parent.gameObject.GetComponent<Light>(); ;
-        spotlightColor = light.color;
-        spotlightColor.r *= .8f;
-        spotlightColor.g *= .8f;
-        spotlightColor.b *= .8f;
-        this.player = player;
+        this.indicatorMaterial = indicatorMaterial;
+        player = MainObjectContainer.Instance.Player2D;
     }
 
 
@@ -70,39 +64,62 @@ public class Physics2DApplicator : ShadowApplicator
     {
         if (collider.gameObject != player)
         {
-            Rigidbody2D rb2d = collider.gameObject.GetComponent<Rigidbody2D>();
-            if(!rb2d)
-                rb2d = collider.gameObject.AddComponent<Rigidbody2D>();
-
-            rb2d.bodyType = RigidbodyType2D.Dynamic;
-
-            MeshFilter meshFilter = collider.gameObject.GetComponent<MeshFilter>();
-            if (!meshFilter)
-                meshFilter = collider.gameObject.AddComponent<MeshFilter>();
-
-            MeshRenderer renderer = collider.gameObject.GetComponent<MeshRenderer>();
-            if (!renderer)
-                renderer = collider.gameObject.AddComponent<MeshRenderer>();
-
-            renderer.material = shadowMaterial;
-
-            renderer.material.color = spotlightColor;
-            
-
-            Mesh mesh = new Mesh();
-            meshFilter.mesh = mesh;
-
-            PolygonCollider2D poly = collider as PolygonCollider2D;
-            if (poly)
+            if (collider.gameObject.tag != "Physics2D")
             {
-                buildPolyMesh(poly, mesh);
-            }
-            else
-            {
-                //maybe add some logic for other colliders here, if we ever have them
+                ChangeObject(collider);
+                GenerateIndicator(collider.gameObject);
+                collider.gameObject.tag = "Physics2D";
             }
         }
     }
+
+    private void GenerateIndicator(GameObject original)
+    {
+        GameObject indicator = UnityEngine.Object.Instantiate(original, player.transform.root);
+        UnityEngine.Object.Destroy(indicator.GetComponent<Rigidbody2D>());
+
+        MeshRenderer renderer = indicator.GetComponent<MeshRenderer>();
+        renderer.material = indicatorMaterial;
+
+        indicator.GetComponent<Collider2D>().isTrigger = true;
+
+        indicator.AddComponent<Physics2DIndicator>();
+        indicator.tag = "Physics2D";
+    }
+
+    private void ChangeObject(Collider2D collider)
+    {
+        Rigidbody2D rb2d = collider.gameObject.GetComponent<Rigidbody2D>();
+        if (!rb2d)
+            rb2d = collider.gameObject.AddComponent<Rigidbody2D>();
+
+        rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+        MeshFilter meshFilter = collider.gameObject.GetComponent<MeshFilter>();
+        if (!meshFilter)
+            meshFilter = collider.gameObject.AddComponent<MeshFilter>();
+
+        MeshRenderer renderer = collider.gameObject.GetComponent<MeshRenderer>();
+        if (!renderer)
+            renderer = collider.gameObject.AddComponent<MeshRenderer>();
+
+        renderer.material = shadowMaterial;
+
+
+        Mesh mesh = new Mesh();
+        meshFilter.mesh = mesh;
+
+        PolygonCollider2D poly = collider as PolygonCollider2D;
+        if (poly)
+        {
+            buildPolyMesh(poly, mesh);
+        }
+        else
+        {
+            //maybe add some logic for other colliders here, if we ever have them
+        }
+    }
+
 
     public void OnTriggerExit2D(Collider2D collider)
     {

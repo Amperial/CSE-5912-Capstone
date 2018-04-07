@@ -6,8 +6,8 @@ public class Hazard : MonoBehaviour
 {
     [HideInInspector]
     public GameObject spotlightCollider;
-    [HideInInspector]
-    public GameObject player2D;
+
+    private GameObject player2D;
 
     private bool hasHurtPlayer;
     private ShadowApplicator applicator;
@@ -16,6 +16,7 @@ public class Hazard : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        player2D = MainObjectContainer.Instance.Player2D;
         spotlightC = spotlightCollider.GetComponent<Collider2D>();
         hasHurtPlayer = false;
     }

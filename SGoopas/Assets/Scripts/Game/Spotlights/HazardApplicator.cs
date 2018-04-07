@@ -8,10 +8,10 @@ public class HazardApplicator : ShadowApplicator
 {
     private GameObject spotLightCollider;
     private GameObject player;
-    public HazardApplicator(GameObject spotLightCollider, GameObject player)
+    public HazardApplicator(GameObject spotLightCollider)
     {
         this.spotLightCollider = spotLightCollider;
-        this.player = player;
+        player = MainObjectContainer.Instance.Player2D;
     }
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -19,7 +19,6 @@ public class HazardApplicator : ShadowApplicator
         {
             Hazard hazard = collider.gameObject.AddComponent<Hazard>();
             hazard.spotlightCollider = spotLightCollider;
-            hazard.player2D = player;
         }
     }
 
