@@ -35,10 +35,11 @@ public abstract class ObjInteractableBase : MonoBehaviour
         }
     }
 
-    public virtual void HighlightObject() {
+    public void HighlightObject() {
         originalMaterials = new List<Material>();
-        foreach (GameObject highlightObj in associatedObjects)
+        for (int i = 0; i < associatedObjects.Length; i++)
         {
+            GameObject highlightObj = associatedObjects[i];
             Material ogMaterial = highlightObj.GetComponent<Renderer>().material;
             Material[] highlightMaterialSet = {ogMaterial, GetHighlightMaterial()};
             highlightObj.GetComponent<Renderer>().materials = highlightMaterialSet;
@@ -49,9 +50,9 @@ public abstract class ObjInteractableBase : MonoBehaviour
     public virtual void UnhighlightObject() {
         if (originalMaterials.Count == associatedObjects.Length)
         {
-            int i = 0;
-            foreach (GameObject highlightObj in associatedObjects) 
+            for (int i = 0; i < associatedObjects.Length; i++)
             {
+                GameObject highlightObj = associatedObjects[i];
                 Material ogMaterial = originalMaterials[i];
                 Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] { };
                 highlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
