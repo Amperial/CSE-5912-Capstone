@@ -30,10 +30,12 @@ namespace PlayerStates
             state2D = new StationaryRight2D(player2D, this, groundCheck);
             state2D.StoreState();
             currentState = state3D;
+            PlayerDeathHandler.ResetDeathEvent();
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
         }
 
-        ~MasterPlayerStateMachine() {
+        ~MasterPlayerStateMachine()
+        {
             // Unsubscribe from death event when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
         }

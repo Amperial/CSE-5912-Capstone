@@ -8,4 +8,7 @@ public class PlayerDeathHandler {
     public static void TriggerPlayerDeath() {
         PlayerDeathEvent();
     }
+    public static void ResetDeathEvent() {
+        PlayerDeathEvent = null;
+    }
 }
