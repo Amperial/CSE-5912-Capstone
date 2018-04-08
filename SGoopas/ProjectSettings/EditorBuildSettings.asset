@@ -41,3 +41,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/BinaryLevel.unity
     guid: 072e802cc5e844649a6afdbf1a34a5d3
+  - enabled: 1
+    path: Assets/_Scenes/Game/TetrisLevel.unity
+    guid: 4194ef8564207457384578e77679027d

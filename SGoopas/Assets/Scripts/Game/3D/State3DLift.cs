@@ -56,6 +56,7 @@ namespace PlayerStates
 
         public override void Release()
         {
+            grabObj.GetComponent<ObjInteractableBase>().InteractionEnded();
             animation3D.StopRun();
             animation3D.StopCarry();
             grabRb.isKinematic = false;

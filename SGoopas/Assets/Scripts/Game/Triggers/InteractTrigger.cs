@@ -1,17 +1,13 @@
-﻿using UnityEngine;
+﻿using PlayerStates;
+using UnityEngine;
 
-public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
+public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable {
 
     public GameObject target;
     private ITriggerable triggerable;
-    public Shader original;
-	private SwitchContainer container;
-	private int indexInParent;
 
-    public void Awake()
-    {
-        original = gameObject.GetComponent<Renderer>().material.shader;
-    }
+    private SwitchContainer container;
+    private int indexInParent;
 
     void Start() {
         triggerable = target.GetComponent<ITriggerable>();
@@ -25,7 +21,19 @@ public class InteractTrigger : MonoBehaviour, IInteractable, ITriggerable {
         triggerable.Trigger();
     }
 
-	public Shader GetOriginalShader(){
-		return original;
-	}
+    public override IPlayerState PlayerBeganInteraction(BasePlayerState currentState)
+    {
+        Interact();
+        return null;
+    }
+
+    public override void InteractionEnded()
+    {
+        // No-op.
+    }
+
+    public override bool IsPlayerAbleToInteract(GameObject player)
+    {
+        return true;
+    }
 }
