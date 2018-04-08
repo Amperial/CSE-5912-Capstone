@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StaticShadowController : ShadowController {
-	public StaticShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {
-		shadowCaster.CreateShadow ();
-	}
+	public StaticShadowController(ShadowCaster caster, GameObject gameObject) : base(caster, gameObject) {}
 
     public override void ConstructShadow()
     {
