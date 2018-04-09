@@ -47,3 +47,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/TetrisLevel.unity
     guid: 4194ef8564207457384578e77679027d
+  - enabled: 1
+    path: Assets/_Scenes/Game/HighWalls.unity
+    guid: 2123a4dd7cb5b40e5848e90996114ea2
