@@ -5,7 +5,9 @@ using UnityEngine;
 public class ObjInteractable : ObjInteractableBase {
 
     public enum ObjectType { pushPull, lift};
+    public enum AttachmentType { joints, hierarchy};
     public ObjectType objType;
+    public AttachmentType attachmentType;
 
     public override void Awake()
     {
@@ -14,10 +16,7 @@ public class ObjInteractable : ObjInteractableBase {
         {
             // Push objects don't have rotation and are really heavy until you interact with them.
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            foreach (GameObject pullObject in associatedObjects)
-            {
-                pullObject.GetComponent<Rigidbody>().mass = 10.0F / associatedObjects.Length;
-            }
+            ChangeNetMass(10.0f);
         }
     }
 
@@ -25,10 +24,7 @@ public class ObjInteractable : ObjInteractableBase {
     {
         if (objType == ObjectType.pushPull)
         {
-            foreach (GameObject pullObject in associatedObjects)
-            {
-                pullObject.GetComponent<Rigidbody>().mass = 10.0F / associatedObjects.Length;
-            }
+            ChangeNetMass(10.0f);
         }
     }
 
@@ -36,15 +32,28 @@ public class ObjInteractable : ObjInteractableBase {
         switch (objType)
         {
             case ObjectType.pushPull:
-                foreach (GameObject pullObject in associatedObjects)
-                {
-                    pullObject.GetComponent<Rigidbody>().mass = 0.4F / associatedObjects.Length;
-                }
+                ChangeNetMass(0.4f);
                 return new PlayerStates.State3DGrab(gameObject.GetComponent<Collider>(), currentState);
             case ObjectType.lift:
                 return new PlayerStates.State3DLift(gameObject.GetComponent<Collider>(), currentState);
             default:
                 return null;
+        }
+    }
+
+    private void ChangeNetMass(float netMass) {
+        switch (attachmentType)
+        {
+            case AttachmentType.hierarchy:
+                gameObject.GetComponent<Rigidbody>().mass = netMass;
+                break;
+            case AttachmentType.joints:
+            default:
+                foreach (GameObject pullObject in associatedObjects)
+                {
+                    pullObject.GetComponent<Rigidbody>().mass = netMass / associatedObjects.Length;
+                }
+                break;
         }
     }
 
