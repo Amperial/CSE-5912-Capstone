@@ -22,8 +22,8 @@ namespace PlayerStates
                 animation3D = previousState3D.animation3D;
                 linearVelocity = previousState3D.linearVelocity;
                 angularVelocity = previousState3D.angularVelocity;
-                Grabbing.grabEvent -= previousState3D.GrabAvailabilityChanged;
-                Grabbing.grabEvent += this.GrabAvailabilityChanged;
+                Grabbing.grabEvent -= previousState3D.GrabbableObjectChanged;
+                Grabbing.grabEvent += this.GrabbableObjectChanged;
                 guardCollider = previousState3D.guardCollider;
             }
         }
@@ -38,7 +38,7 @@ namespace PlayerStates
             guardCollider = player.GetComponent<Collider>();
         }
 
-        protected abstract void GrabAvailabilityChanged(List<Collider> availableObjects);
+        protected abstract void GrabbableObjectChanged(ObjInteractableBase grabbableObject);
 
         public override void StoreState()
         {

@@ -9,6 +9,8 @@ namespace PlayerStates
         private Joint grabJoint;
         private Vector2 objDir;
         private bool upDown;
+        Collider grabObject;
+
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
             animation3D.StartGrab();
             animation3D.StopRun();
@@ -27,13 +29,15 @@ namespace PlayerStates
 
         private void startGrab(Collider objectToGrab)
         {
-            objDir = new Vector2(objectToGrab.gameObject.transform.position.x - rb.gameObject.transform.position.x, objectToGrab.gameObject.transform.position.z - rb.gameObject.transform.position.z);
+            grabObject = objectToGrab;
+            float rAngle = Mathf.Deg2Rad * (90 - rb.gameObject.transform.rotation.eulerAngles.y);
+            objDir = new Vector2(Mathf.Cos(rAngle), Mathf.Sin(rAngle));
             if (Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
                 upDown = true;
-            
+
             rb.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(objDir.x,0,objDir.y));
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
-            grabJoint.connectedBody = objectToGrab.attachedRigidbody;
+            grabJoint.connectedBody = grabObject.attachedRigidbody;
         }
         public override void MoveDown()
         {
@@ -70,6 +74,7 @@ namespace PlayerStates
 
         public override void Release()
         {
+            grabObject.GetComponent<ObjInteractableBase>().InteractionEnded();
             animation3D.StopPush();
             animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);

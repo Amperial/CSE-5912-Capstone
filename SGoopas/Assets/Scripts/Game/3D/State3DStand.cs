@@ -6,41 +6,30 @@ namespace PlayerStates
 {
     public class State3DStand : Base3DState
     {
-        private List<Collider> grabbableObjects = new List<Collider>();
+        private ObjInteractableBase grabbableObject;
 
         public State3DStand(BasePlayerState previousState) : base(previousState) {
             if (previousState is State3DStand)
             {
-                grabbableObjects = ((State3DStand)previousState).grabbableObjects;
+                grabbableObject = ((State3DStand)previousState).grabbableObject;
             }
         }
 
         public State3DStand(GameObject player, MasterPlayerStateMachine playerStateMachine) : base(player, playerStateMachine) {}
 
-        protected override void GrabAvailabilityChanged(List<Collider> availableObjects) 
+        protected override void GrabbableObjectChanged(ObjInteractableBase grabbableObject) 
         {
-            grabbableObjects = availableObjects;
+            this.grabbableObject = grabbableObject;
         }
 
         public override void Action()
         {
-            if (grabbableObjects.Count > 0)
+            if (grabbableObject != null)
             {
-                if (grabbableObjects[0].gameObject.GetComponent<IInteractable>() != null)
+                IPlayerState interactState = grabbableObject.PlayerBeganInteraction(this);
+                if (interactState != null)
                 {
-                    grabbableObjects[0].gameObject.GetComponent<IInteractable>().Interact();
-                }
-                else
-                {
-                    switch (grabbableObjects[0].gameObject.GetComponent<ObjInteractable>().objType)
-                    {
-                        case ObjInteractable.ObjectType.pushPull:
-                            SetState(new State3DGrab(grabbableObjects[0], this));
-                            break;
-                        case ObjInteractable.ObjectType.lift:
-                            SetState(new State3DLift(grabbableObjects[0], this));
-                            break;
-                    }
+                    SetState(interactState);
                 }
             }
         }
