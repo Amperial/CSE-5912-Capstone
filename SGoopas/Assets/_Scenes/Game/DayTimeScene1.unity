@@ -4477,11 +4477,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4887621969671440, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.75
+      value: 45.86
       objectReference: {fileID: 0}
     - target: {fileID: 4887621969671440, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 2.24
       objectReference: {fileID: 0}
     - target: {fileID: 4887621969671440, guid: 5d99f28ab87b6ba409cbabed2ed5f86b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6079,7 +6079,7 @@ PolygonCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -6115,8 +6115,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316804261}
   m_LocalRotation: {x: -0, y: 1, z: -0.000000059604638, w: 0}
-  m_LocalPosition: {x: 8.8, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 49.53, y: -0.55, z: 2.85}
+  m_LocalScale: {x: 0.03, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60916597}
   m_RootOrder: 17
@@ -11976,7 +11976,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 20
   m_SpotAngle: 103
   m_CookieSize: 10
@@ -12920,7 +12920,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4372640459459168, guid: 50039ef672729064a8d7e1dcaa83d21d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.7
+      value: 44.89
       objectReference: {fileID: 0}
     - target: {fileID: 4372640459459168, guid: 50039ef672729064a8d7e1dcaa83d21d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13082,7 +13082,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4236721106889796, guid: aa304ea7f817f42d49b584e0de1c7a68, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: 4236721106889796, guid: aa304ea7f817f42d49b584e0de1c7a68, type: 2}
       propertyPath: m_LocalPosition.z
@@ -13110,7 +13110,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4236721106889796, guid: aa304ea7f817f42d49b584e0de1c7a68, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4236721106889796, guid: aa304ea7f817f42d49b584e0de1c7a68, type: 2}
       propertyPath: m_LocalScale.y
@@ -13746,7 +13746,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 25
   m_SpotAngle: 103
   m_CookieSize: 10
@@ -14888,13 +14888,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772124416}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.782351, y: 0.31, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1236621521}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &772124418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14919,8 +14919,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.9
-  m_Range: 13
+  m_Intensity: 1
+  m_Range: 20
   m_SpotAngle: 131
   m_CookieSize: 10
   m_Shadows:
@@ -16449,7 +16449,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 15
   m_SpotAngle: 75.87891
   m_CookieSize: 10
@@ -22770,8 +22770,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 0
-  original: {fileID: 4800000, guid: 1837c4dba4fcf474f887c8d895e2cbf5, type: 3}
 --- !u!23 &1172389075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23950,8 +23950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d109f27177301646b24545c4b3f38ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   target: {fileID: 1227685791}
-  original: {fileID: 4800000, guid: 1837c4dba4fcf474f887c8d895e2cbf5, type: 3}
 --- !u!23 &1248919599
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26344,8 +26344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 0
-  original: {fileID: 4800000, guid: 1837c4dba4fcf474f887c8d895e2cbf5, type: 3}
 --- !u!114 &1355021139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26893,8 +26893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5558e95cbf927043983287f487a056d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applicatorType: 1
-  shadowMaterial: {fileID: 2100000, guid: 55b875329630f6c4581eed66417f57a7, type: 2}
+  ApplicatorType: 1
+  ShadowMaterial: {fileID: 0}
+  IndicatorMaterial: {fileID: 0}
 --- !u!108 &1369718623
 Light:
   m_ObjectHideFlags: 0
@@ -26905,7 +26906,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.2711938, g: 0.9705882, b: 0.47860038, a: 1}
-  m_Intensity: 10
+  m_Intensity: 2
   m_Range: 30
   m_SpotAngle: 15
   m_CookieSize: 10
@@ -27584,7 +27585,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 20
   m_SpotAngle: 102
   m_CookieSize: 10
@@ -29323,7 +29324,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 25
   m_SpotAngle: 105.59699
   m_CookieSize: 10
@@ -31449,8 +31450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 0
-  original: {fileID: 4800000, guid: 1837c4dba4fcf474f887c8d895e2cbf5, type: 3}
 --- !u!114 &1690859873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32029,7 +32030,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 1.5
   m_Range: 20
   m_SpotAngle: 103
   m_CookieSize: 10
