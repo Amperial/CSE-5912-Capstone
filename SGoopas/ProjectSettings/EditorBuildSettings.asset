@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Game/LightFeatures.unity
     guid: 01af8f3fbc73c422c8ece08e2088c48b
   - enabled: 1
+    path: Assets/_Scenes/MainMenu2.unity
+    guid: bdff94fd3d8774f3fa9418c446feaaaf
+  - enabled: 1
     path: Assets/_Scenes/Game/SpotlightTest.unity
     guid: b06145ecb51a9454fa2f7d03d8fc079a
   - enabled: 1
