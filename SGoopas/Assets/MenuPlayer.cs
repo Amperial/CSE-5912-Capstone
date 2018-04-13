@@ -29,21 +29,20 @@ public class MenuPlayer : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D other){
 		selection = other.gameObject.name;
+
+		quitText.color = unselected;
+		creditsText.color = unselected;
+		playText.color = unselected;
+
 		switch (selection) {
 		case "Menu Play Shadow":
 			playText.color = selected;
-			creditsText.color = unselected;
-			quitText.color = unselected;
 			break;
 		case "Menu Credits Shadow":
 			creditsText.color = selected;
-			quitText.color = unselected;
-			playText.color = unselected;
 			break;
 		case "Menu Quit Shadow":
 			quitText.color = selected;
-			creditsText.color = unselected;
-			playText.color = unselected;
 			break;
 		}
 	}
@@ -57,10 +56,10 @@ public class MenuPlayer : MonoBehaviour {
 			Debug.Log ("level select");
 			break;
 		case "Menu Credits Shadow":
-			//Credits ();
+			Instance.Credits ();
 			break;
 		case "Menu Quit Shadow":
-			//Quit ();
+			Instance.Quit ();
 			break;
 		}
 	}
