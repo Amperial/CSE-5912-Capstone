@@ -144,7 +144,7 @@ Transform:
   - {fileID: 647359282}
   - {fileID: 456730294}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1558653
 GameObject:
@@ -2112,7 +2112,7 @@ Transform:
   m_Children:
   - {fileID: 1700981818}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269732714
 GameObject:
@@ -2552,6 +2552,72 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.35238478, z: 1.9999986}
   m_Center: {x: 1, y: -0.00075303036, z: 0.99999875}
+--- !u!1001 &286210893
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 27.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -18.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[1]
+      value: TEST2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[2]
+      value: TEST3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[0]
+      value: This structure was built by Samwell Foxe. He loved mazes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213959037559204, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_Name
+      value: HelpSign (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &293020877
 GameObject:
   m_ObjectHideFlags: 0
@@ -6664,7 +6730,7 @@ Transform:
   - {fileID: 801648405}
   - {fileID: 1033126732}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966213326
 GameObject:
@@ -7617,6 +7683,68 @@ Transform:
   m_Father: {fileID: 177952453}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0.42100003}
+--- !u!1001 &1155807656
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -19.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[1]
+      value: TEST2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[2]
+      value: TEST3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[0]
+      value: Some walls hold secrets... but their shadows give them away...
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1172707948
 GameObject:
   m_ObjectHideFlags: 0
