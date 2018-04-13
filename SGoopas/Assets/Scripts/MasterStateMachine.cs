@@ -42,7 +42,11 @@ public class MasterStateMachine
         {
             isPaused = true;
             currentState.onPause();
-            SceneManager.LoadScene(pauseScene, LoadSceneMode.Additive);
+			if (MasterMonoBehaviour.Instance != null) {
+				MasterMonoBehaviour.Instance.FadeScreen (.4f, () => {
+					MasterMonoBehaviour.Instance.ShowPauseMenu ();
+				});
+			}
         }
     }
 
@@ -51,8 +55,11 @@ public class MasterStateMachine
         {
             isPaused = false;
             currentState.onUnpause();
-            SceneManager.UnloadSceneAsync(pauseScene);
-        }
+			if (MasterMonoBehaviour.Instance != null) {
+				MasterMonoBehaviour.Instance.HidePauseMenu ();
+				MasterMonoBehaviour.Instance.FadeScreen (0f);
+			}
+		}
     }
 
     public void GoToFirstLevel() {
