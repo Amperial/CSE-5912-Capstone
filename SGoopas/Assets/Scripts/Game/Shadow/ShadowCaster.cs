@@ -32,8 +32,12 @@ public abstract class ShadowCaster {
 
     public void ShowShadow()
     {
-        if (shadow != null)
+        if (shadow == null)
         {
+            // You can call ShowShadow without having to call CreateShadow.
+            // This allows for lazy initialization.
+            CreateShadow();
+        } else {
             shadow.SetActive(true);
         }
     }
