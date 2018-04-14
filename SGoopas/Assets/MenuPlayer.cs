@@ -66,17 +66,10 @@ public class MenuPlayer : MonoBehaviour {
 
 	public void Play()
 	{
-		//buttonPress.Play();
+		buttonPress.Play();
 		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
 			MasterStateMachine.Instance.GoToFirstLevel();
-			MasterMonoBehaviour.Instance.FadeScreen (0f);
 		});
-	}
-
-	public void Spotlight()
-	{
-		buttonPress.Play();
-		MasterStateMachine.Instance.GoToSpotlightLevel();
 	}
 
 	public void Credits()
@@ -84,7 +77,6 @@ public class MenuPlayer : MonoBehaviour {
 		buttonPress.Play();
 		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
 			MasterStateMachine.Instance.setState(new CreditsState());
-			MasterMonoBehaviour.Instance.FadeScreen (0f);
 		});
 	}
 
@@ -93,7 +85,6 @@ public class MenuPlayer : MonoBehaviour {
 		buttonPress.Play();
 		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
 			MasterStateMachine.Instance.setState(new QuitState());
-			MasterMonoBehaviour.Instance.FadeScreen (0f);
 		});
 	}
 }

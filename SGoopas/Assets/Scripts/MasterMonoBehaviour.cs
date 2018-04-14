@@ -65,9 +65,11 @@ public class MasterMonoBehaviour : MonoBehaviour {
 
 	public void ShowPauseMenu(){
 		pauseMenu.SetActive (true);
+		Time.timeScale = 0;
 	}
 
 	public void HidePauseMenu(){
 		pauseMenu.SetActive (false);
+		Time.timeScale = 1;
 	}
 }
