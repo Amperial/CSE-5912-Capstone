@@ -32151,7 +32151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 800915921}
   - component: {fileID: 800915924}
-  - component: {fileID: 800915923}
   - component: {fileID: 800915922}
   m_Layer: 0
   m_Name: Plate
@@ -32210,19 +32209,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &800915923
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65358390198396508, guid: 06ff8c160a352ef47bd8a9781367fc2d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 800915920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &800915924
 MeshFilter:
   m_ObjectHideFlags: 0
