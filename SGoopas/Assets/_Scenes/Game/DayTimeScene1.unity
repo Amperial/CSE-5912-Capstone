@@ -2890,10 +2890,10 @@ Transform:
   - {fileID: 1271282500}
   - {fileID: 2002747785}
   - {fileID: 684708870}
-  - {fileID: 722710039}
   - {fileID: 1369718621}
   - {fileID: 156145670}
   - {fileID: 1243086927}
+  - {fileID: 722710039}
   - {fileID: 667447148}
   - {fileID: 1377623153}
   - {fileID: 492417010}
@@ -6542,7 +6542,7 @@ Transform:
   - {fileID: 124155159}
   - {fileID: 800915921}
   m_Father: {fileID: 60916597}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &157057782
 Prefab:
@@ -20894,7 +20894,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 50
   m_SpotAngle: 91.5
   m_CookieSize: 10
@@ -23665,7 +23665,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 60
   m_SpotAngle: 90.7
   m_CookieSize: 10
@@ -28142,7 +28142,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 60
   m_SpotAngle: 77.5
   m_CookieSize: 10
@@ -40524,7 +40524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60916597}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!114 &1243086928
 MonoBehaviour:
@@ -45172,7 +45172,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60916597}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1369718622
 MonoBehaviour:
@@ -49982,7 +49982,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.5
+  m_Intensity: 1
   m_Range: 100
   m_SpotAngle: 76
   m_CookieSize: 10
@@ -53875,7 +53875,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1690859870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.11, y: 1, z: -0.75}
+  m_LocalPosition: {x: 5.26, y: 1, z: -0.75}
   m_LocalScale: {x: 0.5, y: 2, z: 0.5}
   m_Children: []
   m_Father: {fileID: 334745655}
@@ -53936,7 +53936,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 52d4c24573a4df94b809465c8173fc90, type: 2}
+  - {fileID: 2100000, guid: dd2ee8d09222eba4d8cba82004db702b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
