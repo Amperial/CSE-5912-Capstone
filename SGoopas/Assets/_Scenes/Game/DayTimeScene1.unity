@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 8783579}
   - component: {fileID: 8783578}
   - component: {fileID: 8783577}
+  - component: {fileID: 8783580}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (4)
   m_TagString: Untagged
@@ -333,6 +334,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 8783575}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &8783580
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8783575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &11543954
 GameObject:
@@ -881,6 +896,7 @@ GameObject:
   - component: {fileID: 17264580}
   - component: {fileID: 17264579}
   - component: {fileID: 17264578}
+  - component: {fileID: 17264581}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (23)
   m_TagString: Untagged
@@ -956,6 +972,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17264576}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &17264581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17264576}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &19517785
 GameObject:
@@ -2562,6 +2592,7 @@ GameObject:
   - component: {fileID: 56673920}
   - component: {fileID: 56673919}
   - component: {fileID: 56673918}
+  - component: {fileID: 56673921}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (26)
   m_TagString: Untagged
@@ -2637,6 +2668,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 56673916}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &56673921
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 56673916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &57103019 stripped
 Transform:
@@ -3407,6 +3452,7 @@ GameObject:
   - component: {fileID: 66642515}
   - component: {fileID: 66642514}
   - component: {fileID: 66642513}
+  - component: {fileID: 66642516}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (16)
   m_TagString: Untagged
@@ -3482,6 +3528,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 66642511}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &66642516
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66642511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &69504794
 Prefab:
@@ -4210,6 +4270,7 @@ GameObject:
   - component: {fileID: 80812734}
   - component: {fileID: 80812733}
   - component: {fileID: 80812732}
+  - component: {fileID: 80812735}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (22)
   m_TagString: Untagged
@@ -4285,6 +4346,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 80812730}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &80812735
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80812730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &81713962
 Prefab:
@@ -5283,6 +5358,7 @@ GameObject:
   - component: {fileID: 127544730}
   - component: {fileID: 127544729}
   - component: {fileID: 127544728}
+  - component: {fileID: 127544731}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (25)
   m_TagString: Untagged
@@ -5358,6 +5434,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127544726}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &127544731
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127544726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &128774528
 Prefab:
@@ -5534,6 +5624,7 @@ GameObject:
   - component: {fileID: 131736891}
   - component: {fileID: 131736890}
   - component: {fileID: 131736889}
+  - component: {fileID: 131736892}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (10)
   m_TagString: Untagged
@@ -5609,6 +5700,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 131736887}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &131736892
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131736887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &131955686
 GameObject:
@@ -9203,6 +9308,7 @@ GameObject:
   - component: {fileID: 246546813}
   - component: {fileID: 246546812}
   - component: {fileID: 246546811}
+  - component: {fileID: 246546814}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (27)
   m_TagString: Untagged
@@ -9278,6 +9384,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 246546809}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &246546814
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246546809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &248104796 stripped
 Transform:
@@ -9508,6 +9628,7 @@ GameObject:
   - component: {fileID: 255373616}
   - component: {fileID: 255373615}
   - component: {fileID: 255373614}
+  - component: {fileID: 255373617}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (11)
   m_TagString: Untagged
@@ -9583,6 +9704,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 255373612}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &255373617
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 255373612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &255778102
 Prefab:
@@ -15261,6 +15396,7 @@ GameObject:
   - component: {fileID: 434729406}
   - component: {fileID: 434729405}
   - component: {fileID: 434729404}
+  - component: {fileID: 434729407}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (12)
   m_TagString: Untagged
@@ -15336,6 +15472,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434729402}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &434729407
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434729402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &437391734
 Prefab:
@@ -16163,6 +16313,7 @@ GameObject:
   - component: {fileID: 461092103}
   - component: {fileID: 461092102}
   - component: {fileID: 461092101}
+  - component: {fileID: 461092104}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (17)
   m_TagString: Untagged
@@ -16238,6 +16389,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 461092099}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &461092104
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461092099}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &461976015 stripped
 Transform:
@@ -16452,6 +16617,7 @@ GameObject:
   - component: {fileID: 466777879}
   - component: {fileID: 466777878}
   - component: {fileID: 466777877}
+  - component: {fileID: 466777880}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (14)
   m_TagString: Untagged
@@ -16527,6 +16693,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 466777875}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &466777880
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466777875}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &468120289
 Prefab:
@@ -17711,6 +17891,7 @@ GameObject:
   - component: {fileID: 503617885}
   - component: {fileID: 503617884}
   - component: {fileID: 503617883}
+  - component: {fileID: 503617886}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (18)
   m_TagString: Untagged
@@ -17786,6 +17967,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503617881}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &503617886
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503617881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &504246732
 Prefab:
@@ -18485,6 +18680,7 @@ GameObject:
   - component: {fileID: 530586760}
   - component: {fileID: 530586759}
   - component: {fileID: 530586758}
+  - component: {fileID: 530586761}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (24)
   m_TagString: Untagged
@@ -18560,6 +18756,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 530586756}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &530586761
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 530586756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &532223340
 GameObject:
@@ -19418,6 +19628,7 @@ GameObject:
   - component: {fileID: 564591667}
   - component: {fileID: 564591666}
   - component: {fileID: 564591665}
+  - component: {fileID: 564591668}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (15)
   m_TagString: Untagged
@@ -19493,6 +19704,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 564591663}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &564591668
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564591663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &565221996
 GameObject:
@@ -24191,6 +24416,7 @@ GameObject:
   - component: {fileID: 742836355}
   - component: {fileID: 742836354}
   - component: {fileID: 742836353}
+  - component: {fileID: 742836356}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (6)
   m_TagString: Untagged
@@ -24266,6 +24492,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 742836351}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &742836356
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742836351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &744258256
 Prefab:
@@ -26388,6 +26628,7 @@ GameObject:
   - component: {fileID: 815320955}
   - component: {fileID: 815320954}
   - component: {fileID: 815320953}
+  - component: {fileID: 815320956}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (8)
   m_TagString: Untagged
@@ -26463,6 +26704,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 815320951}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &815320956
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815320951}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &815477294
 Prefab:
@@ -27584,6 +27839,7 @@ GameObject:
   - component: {fileID: 853908216}
   - component: {fileID: 853908215}
   - component: {fileID: 853908214}
+  - component: {fileID: 853908217}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (3)
   m_TagString: Untagged
@@ -27659,6 +27915,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853908212}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &853908217
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853908212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &855473032 stripped
 Transform:
@@ -33234,6 +33504,7 @@ GameObject:
   - component: {fileID: 1023277121}
   - component: {fileID: 1023277120}
   - component: {fileID: 1023277119}
+  - component: {fileID: 1023277122}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (2)
   m_TagString: Untagged
@@ -33309,6 +33580,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023277117}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1023277122
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023277117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1029793973
 Prefab:
@@ -34453,6 +34738,7 @@ GameObject:
   - component: {fileID: 1053527044}
   - component: {fileID: 1053527043}
   - component: {fileID: 1053527042}
+  - component: {fileID: 1053527045}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (5)
   m_TagString: Untagged
@@ -34528,6 +34814,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1053527040}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1053527045
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053527040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &1054916468
 GameObject:
@@ -42530,6 +42830,7 @@ GameObject:
   - component: {fileID: 1302991825}
   - component: {fileID: 1302991824}
   - component: {fileID: 1302991823}
+  - component: {fileID: 1302991826}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (20)
   m_TagString: Untagged
@@ -42605,6 +42906,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302991821}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1302991826
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302991821}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1303072318
 Prefab:
@@ -45959,6 +46274,7 @@ GameObject:
   - component: {fileID: 1391550767}
   - component: {fileID: 1391550766}
   - component: {fileID: 1391550765}
+  - component: {fileID: 1391550768}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (21)
   m_TagString: Untagged
@@ -46034,6 +46350,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1391550763}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1391550768
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1391550763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &1395746529
 GameObject:
@@ -50710,6 +51040,7 @@ GameObject:
   - component: {fileID: 1564936907}
   - component: {fileID: 1564936906}
   - component: {fileID: 1564936905}
+  - component: {fileID: 1564936908}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (13)
   m_TagString: Untagged
@@ -50785,6 +51116,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564936903}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1564936908
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564936903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1565620007
 Prefab:
@@ -52630,6 +52975,7 @@ GameObject:
   - component: {fileID: 1655572029}
   - component: {fileID: 1655572028}
   - component: {fileID: 1655572027}
+  - component: {fileID: 1655572030}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (9)
   m_TagString: Untagged
@@ -52705,6 +53051,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655572025}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1655572030
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655572025}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &1655725941 stripped
 Transform:
@@ -62117,6 +62477,7 @@ GameObject:
   - component: {fileID: 1950188534}
   - component: {fileID: 1950188533}
   - component: {fileID: 1950188532}
+  - component: {fileID: 1950188535}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (28)
   m_TagString: Untagged
@@ -62192,6 +62553,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1950188530}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &1950188535
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1950188530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1953860999
 Prefab:
@@ -64425,6 +64800,7 @@ GameObject:
   - component: {fileID: 2011761883}
   - component: {fileID: 2011761882}
   - component: {fileID: 2011761881}
+  - component: {fileID: 2011761884}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (19)
   m_TagString: Untagged
@@ -64500,6 +64876,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011761879}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &2011761884
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2011761879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &2014899845 stripped
 Transform:
@@ -65376,6 +65766,7 @@ GameObject:
   - component: {fileID: 2053351837}
   - component: {fileID: 2053351836}
   - component: {fileID: 2053351835}
+  - component: {fileID: 2053351838}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (7)
   m_TagString: Untagged
@@ -65451,6 +65842,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053351833}
+  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
+--- !u!64 &2053351838
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2053351833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &2065119267
 Transform:
