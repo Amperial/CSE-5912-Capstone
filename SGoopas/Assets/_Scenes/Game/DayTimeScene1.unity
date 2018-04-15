@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 8783576}
   - component: {fileID: 8783579}
   - component: {fileID: 8783578}
-  - component: {fileID: 8783580}
+  - component: {fileID: 8783577}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (4)
   m_TagString: Untagged
@@ -278,6 +278,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8783577
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8783575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 0.44999993, z: -0.000002577901}
 --- !u!23 &8783578
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -320,20 +333,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 8783575}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &8783580
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 8783575}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &11543954
 GameObject:
@@ -881,7 +880,7 @@ GameObject:
   - component: {fileID: 17264577}
   - component: {fileID: 17264580}
   - component: {fileID: 17264579}
-  - component: {fileID: 17264581}
+  - component: {fileID: 17264578}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (23)
   m_TagString: Untagged
@@ -902,6 +901,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &17264578
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17264576}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.000005438924}
 --- !u!23 &17264579
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -944,20 +956,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17264576}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &17264581
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 17264576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &19517785
 GameObject:
@@ -2563,7 +2561,7 @@ GameObject:
   - component: {fileID: 56673917}
   - component: {fileID: 56673920}
   - component: {fileID: 56673919}
-  - component: {fileID: 56673921}
+  - component: {fileID: 56673918}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (26)
   m_TagString: Untagged
@@ -2584,6 +2582,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &56673918
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 56673916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &56673919
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2626,20 +2637,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 56673916}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &56673921
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 56673916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &57103019 stripped
 Transform:
@@ -3410,7 +3407,7 @@ GameObject:
   - component: {fileID: 66642512}
   - component: {fileID: 66642515}
   - component: {fileID: 66642514}
-  - component: {fileID: 66642516}
+  - component: {fileID: 66642513}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (16)
   m_TagString: Untagged
@@ -3431,6 +3428,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &66642513
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66642511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -0.00000047683716, y: 0.44999993, z: -0.000002577901}
 --- !u!23 &66642514
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3473,20 +3483,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 66642511}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &66642516
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 66642511}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &69504794
 Prefab:
@@ -4129,7 +4125,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 6cd553ad437b6b442a6935ffb9c3a54d, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -4168,12 +4164,12 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 8375e6d8d37b09e4dbd274ed75ab6fbd, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 6cd553ad437b6b442a6935ffb9c3a54d, type: 2}
     - target: {fileID: 23428177947549062, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
@@ -4214,7 +4210,7 @@ GameObject:
   - component: {fileID: 80812731}
   - component: {fileID: 80812734}
   - component: {fileID: 80812733}
-  - component: {fileID: 80812735}
+  - component: {fileID: 80812732}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (22)
   m_TagString: Untagged
@@ -4235,6 +4231,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &80812732
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 80812730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.000005438924}
 --- !u!23 &80812733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4277,20 +4286,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 80812730}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &80812735
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 80812730}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &81713962
 Prefab:
@@ -4546,7 +4541,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 739c25416b979d74b9eaf4b193494aa8, type: 2}
     - target: {fileID: 23428177947549062, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
@@ -5288,7 +5283,7 @@ GameObject:
   - component: {fileID: 127544727}
   - component: {fileID: 127544730}
   - component: {fileID: 127544729}
-  - component: {fileID: 127544731}
+  - component: {fileID: 127544728}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (25)
   m_TagString: Untagged
@@ -5309,6 +5304,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &127544728
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127544726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.000005438924}
 --- !u!23 &127544729
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5351,20 +5359,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 127544726}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &127544731
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 127544726}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &128774528
 Prefab:
@@ -5540,7 +5534,7 @@ GameObject:
   - component: {fileID: 131736888}
   - component: {fileID: 131736891}
   - component: {fileID: 131736890}
-  - component: {fileID: 131736892}
+  - component: {fileID: 131736889}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (10)
   m_TagString: Untagged
@@ -5561,6 +5555,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &131736889
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 131736887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &131736890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5603,20 +5610,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 131736887}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &131736892
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 131736887}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &131955686
 GameObject:
@@ -9210,7 +9203,7 @@ GameObject:
   - component: {fileID: 246546810}
   - component: {fileID: 246546813}
   - component: {fileID: 246546812}
-  - component: {fileID: 246546814}
+  - component: {fileID: 246546811}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (27)
   m_TagString: Untagged
@@ -9231,6 +9224,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &246546811
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 246546809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &246546812
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9273,20 +9279,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 246546809}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &246546814
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 246546809}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &248104796 stripped
 Transform:
@@ -9516,7 +9508,7 @@ GameObject:
   - component: {fileID: 255373613}
   - component: {fileID: 255373616}
   - component: {fileID: 255373615}
-  - component: {fileID: 255373617}
+  - component: {fileID: 255373614}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (11)
   m_TagString: Untagged
@@ -9537,6 +9529,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &255373614
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 255373612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000044852495}
 --- !u!23 &255373615
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9579,20 +9584,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 255373612}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &255373617
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 255373612}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &255778102
 Prefab:
@@ -15270,7 +15261,7 @@ GameObject:
   - component: {fileID: 434729403}
   - component: {fileID: 434729406}
   - component: {fileID: 434729405}
-  - component: {fileID: 434729407}
+  - component: {fileID: 434729404}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (12)
   m_TagString: Untagged
@@ -15291,6 +15282,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &434729404
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434729402}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000014305115, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &434729405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15333,20 +15337,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434729402}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &434729407
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 434729402}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &437391734
 Prefab:
@@ -16173,7 +16163,7 @@ GameObject:
   - component: {fileID: 461092100}
   - component: {fileID: 461092103}
   - component: {fileID: 461092102}
-  - component: {fileID: 461092104}
+  - component: {fileID: 461092101}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (17)
   m_TagString: Untagged
@@ -16194,6 +16184,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &461092101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 461092099}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -0.00000047683716, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &461092102
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16236,20 +16239,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 461092099}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &461092104
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 461092099}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &461976015 stripped
 Transform:
@@ -16463,7 +16452,7 @@ GameObject:
   - component: {fileID: 466777876}
   - component: {fileID: 466777879}
   - component: {fileID: 466777878}
-  - component: {fileID: 466777880}
+  - component: {fileID: 466777877}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (14)
   m_TagString: Untagged
@@ -16484,6 +16473,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &466777877
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 466777875}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000014305115, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &466777878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16526,20 +16528,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 466777875}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &466777880
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 466777875}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &468120289
 Prefab:
@@ -17723,7 +17711,7 @@ GameObject:
   - component: {fileID: 503617882}
   - component: {fileID: 503617885}
   - component: {fileID: 503617884}
-  - component: {fileID: 503617886}
+  - component: {fileID: 503617883}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (18)
   m_TagString: Untagged
@@ -17744,6 +17732,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &503617883
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503617881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000014305115, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &503617884
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17786,20 +17787,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 503617881}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &503617886
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 503617881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &504246732
 Prefab:
@@ -18498,7 +18485,7 @@ GameObject:
   - component: {fileID: 530586757}
   - component: {fileID: 530586760}
   - component: {fileID: 530586759}
-  - component: {fileID: 530586761}
+  - component: {fileID: 530586758}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (24)
   m_TagString: Untagged
@@ -18519,6 +18506,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &530586758
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 530586756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000076293945, y: 0.44999993, z: -0.000005438924}
 --- !u!23 &530586759
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18561,20 +18561,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 530586756}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &530586761
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 530586756}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &532223340
 GameObject:
@@ -19432,7 +19418,7 @@ GameObject:
   - component: {fileID: 564591664}
   - component: {fileID: 564591667}
   - component: {fileID: 564591666}
-  - component: {fileID: 564591668}
+  - component: {fileID: 564591665}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (15)
   m_TagString: Untagged
@@ -19453,6 +19439,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &564591665
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564591663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000014305115, y: 0.44999993, z: -0.000002577901}
 --- !u!23 &564591666
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19495,20 +19494,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 564591663}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &564591668
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 564591663}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &565221996
 GameObject:
@@ -20896,7 +20881,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 50
-  m_SpotAngle: 91.5
+  m_SpotAngle: 92.3
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -24179,7 +24164,7 @@ GameObject:
   - component: {fileID: 742836352}
   - component: {fileID: 742836355}
   - component: {fileID: 742836354}
-  - component: {fileID: 742836356}
+  - component: {fileID: 742836353}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (6)
   m_TagString: Untagged
@@ -24200,6 +24185,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &742836353
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742836351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &742836354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24242,20 +24240,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 742836351}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &742836356
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 742836351}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &744258256
 Prefab:
@@ -26377,7 +26361,7 @@ GameObject:
   - component: {fileID: 815320952}
   - component: {fileID: 815320955}
   - component: {fileID: 815320954}
-  - component: {fileID: 815320956}
+  - component: {fileID: 815320953}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (8)
   m_TagString: Untagged
@@ -26398,6 +26382,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &815320953
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815320951}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &815320954
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26440,20 +26437,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 815320951}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &815320956
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 815320951}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &815477294
 Prefab:
@@ -27574,7 +27557,7 @@ GameObject:
   - component: {fileID: 853908213}
   - component: {fileID: 853908216}
   - component: {fileID: 853908215}
-  - component: {fileID: 853908217}
+  - component: {fileID: 853908214}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (3)
   m_TagString: Untagged
@@ -27595,6 +27578,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &853908214
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 853908212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 0.44999993, z: -0.000002577901}
 --- !u!23 &853908215
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27637,20 +27633,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 853908212}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &853908217
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 853908212}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &855473032 stripped
 Transform:
@@ -28142,7 +28124,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 60
   m_SpotAngle: 77.5
   m_CookieSize: 10
@@ -33224,7 +33206,7 @@ GameObject:
   - component: {fileID: 1023277118}
   - component: {fileID: 1023277121}
   - component: {fileID: 1023277120}
-  - component: {fileID: 1023277122}
+  - component: {fileID: 1023277119}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (2)
   m_TagString: Untagged
@@ -33245,6 +33227,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1023277119
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023277117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000038146973, y: 0.4499999, z: -0.000002577901}
 --- !u!23 &1023277120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33287,20 +33282,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023277117}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1023277122
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1023277117}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1029793973
 Prefab:
@@ -34444,7 +34425,7 @@ GameObject:
   - component: {fileID: 1053527041}
   - component: {fileID: 1053527044}
   - component: {fileID: 1053527043}
-  - component: {fileID: 1053527045}
+  - component: {fileID: 1053527042}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (5)
   m_TagString: Untagged
@@ -34465,6 +34446,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1053527042
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1053527040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &1053527043
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34507,20 +34501,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1053527040}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1053527045
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1053527040}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &1054916468
 GameObject:
@@ -35982,7 +35962,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: dd2ee8d09222eba4d8cba82004db702b, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -36021,7 +36001,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: dd2ee8d09222eba4d8cba82004db702b, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
@@ -42522,7 +42502,7 @@ GameObject:
   - component: {fileID: 1302991822}
   - component: {fileID: 1302991825}
   - component: {fileID: 1302991824}
-  - component: {fileID: 1302991826}
+  - component: {fileID: 1302991823}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (20)
   m_TagString: Untagged
@@ -42543,6 +42523,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1302991823
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302991821}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.4499999, z: -0.0000035315752}
 --- !u!23 &1302991824
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42585,20 +42578,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302991821}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1302991826
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1302991821}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1303072318
 Prefab:
@@ -45952,7 +45931,7 @@ GameObject:
   - component: {fileID: 1391550764}
   - component: {fileID: 1391550767}
   - component: {fileID: 1391550766}
-  - component: {fileID: 1391550768}
+  - component: {fileID: 1391550765}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (21)
   m_TagString: Untagged
@@ -45973,6 +45952,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1391550765
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1391550763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999993, z: -0.000005438924}
 --- !u!23 &1391550766
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46015,20 +46007,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1391550763}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1391550768
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1391550763}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1 &1395746529
 GameObject:
@@ -50704,7 +50682,7 @@ GameObject:
   - component: {fileID: 1564936904}
   - component: {fileID: 1564936907}
   - component: {fileID: 1564936906}
-  - component: {fileID: 1564936908}
+  - component: {fileID: 1564936905}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (13)
   m_TagString: Untagged
@@ -50725,6 +50703,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1564936905
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564936903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -0.00000047683716, y: 0.44999993, z: -0.000002577901}
 --- !u!23 &1564936906
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50767,20 +50758,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1564936903}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1564936908
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1564936903}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1565620007
 Prefab:
@@ -51171,7 +51148,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: dcade7c5c70be7a4f8524207ae563196, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -51210,12 +51187,12 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 739c25416b979d74b9eaf4b193494aa8, type: 2}
     - target: {fileID: 23979672340035546, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67799c7110dd5bb43b961fd698513167, type: 2}
+      objectReference: {fileID: 2100000, guid: 199ae8dbe83c78d44bd2418a8897aa9c, type: 2}
     - target: {fileID: 23428177947549062, guid: 55afdd82c87803841ba88f20c0fac491,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
@@ -52625,7 +52602,7 @@ GameObject:
   - component: {fileID: 1655572026}
   - component: {fileID: 1655572029}
   - component: {fileID: 1655572028}
-  - component: {fileID: 1655572030}
+  - component: {fileID: 1655572027}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (9)
   m_TagString: Untagged
@@ -52646,6 +52623,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1655572027
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1655572025}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &1655572028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52688,20 +52678,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655572025}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1655572030
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1655572025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &1655725941 stripped
 Transform:
@@ -62140,7 +62116,7 @@ GameObject:
   - component: {fileID: 1950188531}
   - component: {fileID: 1950188534}
   - component: {fileID: 1950188533}
-  - component: {fileID: 1950188535}
+  - component: {fileID: 1950188532}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (28)
   m_TagString: Untagged
@@ -62161,6 +62137,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1950188532
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1950188530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: -2.753345e-15, y: 0.44999996, z: -0.000005438924}
 --- !u!23 &1950188533
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62203,20 +62192,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1950188530}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &1950188535
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1950188530}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!1001 &1953860999
 Prefab:
@@ -64449,7 +64424,7 @@ GameObject:
   - component: {fileID: 2011761880}
   - component: {fileID: 2011761883}
   - component: {fileID: 2011761882}
-  - component: {fileID: 2011761884}
+  - component: {fileID: 2011761881}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (19)
   m_TagString: Untagged
@@ -64470,6 +64445,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2011761881
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2011761879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000076293945, y: 0.4499999, z: -0.0000035315752}
 --- !u!23 &2011761882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64512,20 +64500,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011761879}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &2011761884
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2011761879}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &2014899845 stripped
 Transform:
@@ -65401,7 +65375,7 @@ GameObject:
   - component: {fileID: 2053351834}
   - component: {fileID: 2053351837}
   - component: {fileID: 2053351836}
-  - component: {fileID: 2053351838}
+  - component: {fileID: 2053351835}
   m_Layer: 0
   m_Name: drum_barrel_1_lod_2 (7)
   m_TagString: Untagged
@@ -65422,6 +65396,19 @@ Transform:
   m_Father: {fileID: 1770664135}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2053351835
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2053351833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.30000156
+  m_Height: 0.88646054
+  m_Direction: 1
+  m_Center: {x: 0.0000019073486, y: 0.44999993, z: -0.0000035315752}
 --- !u!23 &2053351836
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65464,20 +65451,6 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2053351833}
-  m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
---- !u!64 &2053351838
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2053351833}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 8501e3f6acc385741a6e9eaaabdbb9f6, type: 3}
 --- !u!4 &2065119267
 Transform:
