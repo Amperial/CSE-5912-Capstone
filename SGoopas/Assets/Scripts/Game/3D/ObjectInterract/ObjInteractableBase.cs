@@ -48,16 +48,14 @@ public abstract class ObjInteractableBase : MonoBehaviour
     }
 
     public virtual void UnhighlightObject() {
-        if (originalMaterials.Count == associatedObjects.Length)
+        Assert.AreEqual(originalMaterials.Count, associatedObjects.Length, "All associated objects must have a renderer for highlighting to work.");
+
+        for (int i = 0; i < originalMaterials.Count; i++)
         {
-            for (int i = 0; i < associatedObjects.Length; i++)
-            {
-                GameObject highlightObj = associatedObjects[i];
-                Material ogMaterial = originalMaterials[i];
-                Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] { };
-                highlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
-                i++;
-            }
+            GameObject highlightObj = associatedObjects[i];
+            Material ogMaterial = originalMaterials[i];
+            Material[] defaultMaterialSet = ogMaterial != null ? new Material[] { ogMaterial } : new Material[] { };
+            highlightObj.GetComponent<Renderer>().materials = defaultMaterialSet;
         }
     }
 

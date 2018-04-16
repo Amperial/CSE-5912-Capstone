@@ -222,7 +222,8 @@ public class ShadowPolygonHelper
         if(points == null){
             return;
         }
-        CalculateShadowFromCastPoints(points, wallPlane, shadowWithCollider);
+		CalculateShadowFromCastPoints(points, wallPlane, shadowWithCollider);
+		shadowWithCollider.name = castingObject.name + " Shadow";
     }
 
 	private static void CalculateShadowFromCastPoints (List<Vector3> points, Plane wallPlane, GameObject shadowWithCollider)
