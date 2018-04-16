@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class MenuPlayer : MonoBehaviour {
 	public static string selection = "Menu Play Shadow";
@@ -12,6 +14,7 @@ public class MenuPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu2"));
 		Instance = this;
 		if (MasterMonoBehaviour.Instance != null) {
 			MasterMonoBehaviour.Instance.SetFade (1f);
