@@ -40,26 +40,25 @@ public class MasterStateMachine
     public void pause() {
         if (!isPaused)
         {
-            isPaused = true;
-            currentState.onPause();
-			if (MasterMonoBehaviour.Instance != null) {
-				MasterMonoBehaviour.Instance.FadeScreen (.4f, () => {
-					MasterMonoBehaviour.Instance.ShowPauseMenu ();
-				});
-			}
+            if (MasterMonoBehaviour.Instance != null)
+            {
+                isPaused = true;
+                currentState.onPause();
+                MasterMonoBehaviour.Instance.ShowPauseMenu();
+            }
         }
     }
 
     public void unpause() {
         if (isPaused)
         {
-            isPaused = false;
-            currentState.onUnpause();
-			if (MasterMonoBehaviour.Instance != null) {
-				MasterMonoBehaviour.Instance.HidePauseMenu ();
-				MasterMonoBehaviour.Instance.FadeScreen (0f);
-			}
-		}
+            if (MasterMonoBehaviour.Instance != null)
+            {
+                isPaused = false;
+                currentState.onUnpause();
+                MasterMonoBehaviour.Instance.HidePauseMenu();
+            }
+        }
     }
 
     public void GoToFirstLevel() {
@@ -90,24 +89,32 @@ public class MasterStateMachine
         float progress;
         while (!operation.isDone)
         {
+            progress = Mathf.Clamp01(operation.progress / .9f);
+            MasterMonoBehaviour.Instance.slider.value = progress;
+            MasterMonoBehaviour.Instance.progressTxt.text = progress * 100f + "%";
             yield return null;
         }
-
-		MasterMonoBehaviour.Instance.FadeScreen(0);
     }
 
     public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
         MainObjectContainer.Reset();
         AsyncOperation operation = loading.loadAsynchronously();
         yield return UpdateLoadingWithProgress(operation);
+        setState(loading);
+        loading.SetAsActiveScene();
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
     }
 
     public IEnumerator ReloadLevelAsynchronously()
     {
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(true);
         MainObjectContainer.Reset();
         currentState.onExit();
         GameMainState loading = (GameMainState)currentState;
         AsyncOperation operation = loading.loadAsynchronously();
         yield return UpdateLoadingWithProgress(operation);
+        loading.SetAsActiveScene();
+        MasterMonoBehaviour.Instance.loadScreen.SetActive(false);
     }
 }

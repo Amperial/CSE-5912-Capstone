@@ -14,8 +14,6 @@ public class PauseMenu : MonoBehaviour {
 
     public void GotoMainMenu () {
         MasterStateMachine.Instance.unpause();
-		MasterMonoBehaviour.Instance.FadeScreen (1, () => {
-			MasterStateMachine.Instance.setState(new MainMenuState());
-		});
+        MasterStateMachine.Instance.setState(new MainMenuState());
     }
 }
