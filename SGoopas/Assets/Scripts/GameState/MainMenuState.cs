@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuState : IGameState {
-    private const string sceneName = "MainMenu2";
+    private const string sceneName = "MainMenu";
 
     void IGameState.onEnter()
     {
