@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45138693, g: 0.5009054, b: 0.572471, a: 1}
+  m_IndirectSpecularColor: {r: 0.4514025, g: 0.500925, b: 0.57247865, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7259,6 +7259,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745678866}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1752186932
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -7.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762824817429260, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[1]
+      value: TEST2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[2]
+      value: TEST3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114232395513604126, guid: af12cb6a3247f9744acdfeae1912be88,
+        type: 2}
+      propertyPath: msg.Array.data[0]
+      value: Ancient proverbs say that 1 1 0 = 6...
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: af12cb6a3247f9744acdfeae1912be88, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1789357383
 Prefab:
   m_ObjectHideFlags: 0
