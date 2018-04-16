@@ -1512,6 +1512,7 @@ GameObject:
   - component: {fileID: 1809804948}
   - component: {fileID: 1809804947}
   - component: {fileID: 1809804949}
+  - component: {fileID: 1809804950}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1623,6 +1624,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1809804950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1809804946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e9cf1e34b5742089478be4f7480c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageContainer: {fileID: 1520114304}
+  FaderHolder: {fileID: 2077675354}
+  pauseMenu: {fileID: 1484291909}
 --- !u!1 &1939808386
 GameObject:
   m_ObjectHideFlags: 0
