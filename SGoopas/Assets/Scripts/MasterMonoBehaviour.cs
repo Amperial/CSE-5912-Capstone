@@ -24,6 +24,7 @@ public class MasterMonoBehaviour : MonoBehaviour {
 	}
 
 	public void TerminateMessage(){
+        Debug.Log("message terminated");
 		animator.enabled = false;
 		messageContainer.SetActive (false);
 	}

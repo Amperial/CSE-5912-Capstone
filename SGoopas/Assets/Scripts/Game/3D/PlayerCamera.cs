@@ -8,7 +8,9 @@ public class PlayerCamera : MonoBehaviour {
     public float cameraStiffness = 1.5f;
     public int maxLookDistance = 10;
     private GameObject relevantGameObject;
+    private GameObject unfocusedObject;
     public Vector3 distanceFromTarget = new Vector3(0, -8, 10);
+    private Vector3 originalDistance;
 
     void Start() {
         relevantGameObject = MainObjectContainer.Instance.Player3D;
@@ -50,5 +52,18 @@ public class PlayerCamera : MonoBehaviour {
 
     public void SwitchTo3D(Cancellable cancellable) {
         cancellable.PerformCancellable(Follow3DPlayer, Follow2DPlayer);
+    }
+
+    public void FocusOnObject(GameObject focusObject) {
+        unfocusedObject = relevantGameObject;
+        relevantGameObject = focusObject;
+        originalDistance = distanceFromTarget;
+        distanceFromTarget = new Vector3(0, -2, 3);
+    }
+
+    public void RestoreFocus()
+    {
+        relevantGameObject = unfocusedObject;
+        distanceFromTarget = originalDistance;
     }
 }
