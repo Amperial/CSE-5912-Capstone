@@ -13,4 +13,5 @@ public class Movement2DConfig : MonoBehaviour {
     public float dashStartAngle = 90f;
     public float dashDistance = 5f;
     public float enemyDetectionAngle = 15f;
+    public float dashTime = 0f;
 }

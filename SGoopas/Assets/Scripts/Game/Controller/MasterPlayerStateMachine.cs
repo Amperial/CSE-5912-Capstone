@@ -80,7 +80,7 @@ namespace PlayerStates
         }
 
         public void Update()
-        {
+        { 
             currentState.Update();
         }
 

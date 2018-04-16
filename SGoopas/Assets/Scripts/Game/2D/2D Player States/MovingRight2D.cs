@@ -19,7 +19,7 @@ namespace PlayerStates
 
         public override void Action()
         {
-            if (dash)
+            if (DashTime != 0 && dash)
             {
                 dash = false;
                 Vector2 dashVec = DashVector;

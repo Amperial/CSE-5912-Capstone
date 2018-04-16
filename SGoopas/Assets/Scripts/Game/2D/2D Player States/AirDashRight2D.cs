@@ -6,7 +6,6 @@ namespace PlayerStates
 {
     public class AirDashRight2D : Base2DState
     {
-        private float dashTime = 0.3f;
         private float afterImageTime = 0.1f;
         private float timeEllapsed;
         private GameObject afterimage;
@@ -38,15 +37,15 @@ namespace PlayerStates
 
         private void PseudoConstructor()
         {
-            afterimage = (GameObject)Resources.Load("AfterImage");
-            timeEllapsed = 0.0f;
-            rigidbody = PlayerObject.GetComponent<Rigidbody2D>();
-            origGrav = rigidbody.gravityScale;
-            rigidbody.gravityScale = 0.0f;
-            rigidbody.velocity = direction.normalized * DashDistance / dashTime;
-            coroutine = AfterImage();
-            if(MasterMonoBehaviour.Instance != null)
-             MasterMonoBehaviour.Instance.StartCoroutine(coroutine);
+                afterimage = (GameObject)Resources.Load("AfterImage");
+                timeEllapsed = 0.0f;
+                rigidbody = PlayerObject.GetComponent<Rigidbody2D>();
+                origGrav = rigidbody.gravityScale;
+                rigidbody.gravityScale = 0.0f;
+                rigidbody.velocity = direction.normalized * DashDistance / DashTime;
+                coroutine = AfterImage();
+                if (MasterMonoBehaviour.Instance != null)
+                    MasterMonoBehaviour.Instance.StartCoroutine(coroutine);
         }
 
         private void PseudoDestructor()
@@ -90,7 +89,7 @@ namespace PlayerStates
         public override void Update()
         {
             timeEllapsed += Time.deltaTime;
-            if (timeEllapsed >= dashTime)
+            if (timeEllapsed >= DashTime)
                 PseudoDestructor();
         }
 
@@ -112,7 +111,7 @@ namespace PlayerStates
         {
             GameObject tempAfterImage = Object.Instantiate(afterimage, PlayerObject.transform.root);
             tempAfterImage.transform.position = PlayerObject.transform.position;
-            Object.Destroy(tempAfterImage, dashTime);
+            Object.Destroy(tempAfterImage, DashTime);
         }
 
         public override void EnemyCollision(GameObject Enemy)

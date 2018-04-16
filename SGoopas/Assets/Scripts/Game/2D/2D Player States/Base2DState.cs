@@ -16,6 +16,7 @@ namespace PlayerStates
         private float dashStartAngle = 90f;
         private float dashDistance = 5f;
         private float enemyDetectionAngle = 15f;
+        private float dashTime = 0.0f;
 
         protected Rigidbody2D rb;
         private Vector2 linearVelocity;
@@ -89,6 +90,15 @@ namespace PlayerStates
                 if (mc)
                     return mc.dashStartAngle;
                 return dashStartAngle;
+            }
+        }
+        public float DashTime
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashTime;
+                return dashTime;
             }
         }
         public float DashDistance
