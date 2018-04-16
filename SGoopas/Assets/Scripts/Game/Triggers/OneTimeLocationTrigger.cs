@@ -14,7 +14,16 @@ public class OneTimeLocationTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!triggered)
+        if (!triggered && other.gameObject.Equals(MainObjectContainer.Instance.Player3D))
+        {
+            triggerable.Trigger();
+            triggered = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!triggered && other.gameObject.Equals(MainObjectContainer.Instance.Player2D))
         {
             triggerable.Trigger();
             triggered = true;
