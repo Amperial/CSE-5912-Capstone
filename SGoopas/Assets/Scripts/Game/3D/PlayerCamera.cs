@@ -59,11 +59,11 @@ public class PlayerCamera : MonoBehaviour {
         cancellable.PerformCancellable(Follow3DPlayer, Follow2DPlayer);
     }
 
-    public void FocusOnObject(GameObject focusObject) {
+    public void FocusOnObject(GameObject focusObject, Vector3 focusDistance) {
         unfocusedObject = relevantGameObject;
         relevantGameObject = focusObject;
         originalDistance = distanceFromTarget;
-        distanceFromTarget = new Vector3(0, -2, 3);
+        distanceFromTarget = focusDistance;
     }
 
     public void RestoreFocus()
