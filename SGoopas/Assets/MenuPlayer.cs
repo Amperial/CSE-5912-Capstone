@@ -24,11 +24,6 @@ public class MenuPlayer : MonoBehaviour {
 		unselected = new Color (.2f, .2f, .2f);
 		selected = new Color (.9f, .2f, .2f);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnCollisionEnter2D(Collision2D other){
 		selection = other.gameObject.name;

@@ -44,7 +44,7 @@ public class ControllerConfigure : MonoBehaviour {
 		} else {
 			controller.RegisterButtonDown ("SwapDimension", SwapDimension);
 		}
-;    }
+    }
 
 	// Use this for initialization
 	void Start () {
