@@ -12,7 +12,7 @@ public class ShadowIntroduction : MonoBehaviour, ITriggerable {
 
     void ITriggerable.Trigger()
     {
-        playerCamera.FocusOnObject(MainObjectContainer.Instance.Player2D);
+        playerCamera.FocusOnObject(MainObjectContainer.Instance.Player2D, new Vector3(0, -2, 3));
         MasterMonoBehaviour.Instance.DisplayMessage(introductionText, () => {
             playerCamera.RestoreFocus();
         });

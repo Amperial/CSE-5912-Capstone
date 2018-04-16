@@ -23,8 +23,6 @@ GameObject:
   - component: {fileID: 65298032174463304}
   - component: {fileID: 23265107507224662}
   - component: {fileID: 114877009836020502}
-  - component: {fileID: 54467294827203210}
-  - component: {fileID: 138963955096382928}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -44,7 +42,6 @@ GameObject:
   - component: {fileID: 65514183336149176}
   - component: {fileID: 23186308078131442}
   - component: {fileID: 114098622860345752}
-  - component: {fileID: 54183277224692730}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -63,8 +60,6 @@ GameObject:
   - component: {fileID: 33781699502392296}
   - component: {fileID: 65485184039870960}
   - component: {fileID: 23551872404978536}
-  - component: {fileID: 54968053497258228}
-  - component: {fileID: 138681751608047216}
   - component: {fileID: 114314921727589900}
   m_Layer: 0
   m_Name: Platform
@@ -81,6 +76,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4250957667181980}
+  - component: {fileID: 54453788516586380}
   m_Layer: 0
   m_Name: TPlatformGlass
   m_TagString: Untagged
@@ -266,44 +262,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574804387273702}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54183277224692730
+--- !u!54 &54453788516586380
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374762315803058}
+  m_GameObject: {fileID: 1893611211951304}
   serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &54467294827203210
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1103961090088336}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &54968053497258228
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574804387273702}
-  serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -384,34 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objType: 0
   associatedObjects:
   - {fileID: 1103961090088336}
   - {fileID: 1574804387273702}
   - {fileID: 1374762315803058}
---- !u!138 &138681751608047216
-FixedJoint:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574804387273702}
-  m_ConnectedBody: {fileID: 54183277224692730}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
---- !u!138 &138963955096382928
-FixedJoint:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1103961090088336}
-  m_ConnectedBody: {fileID: 54968053497258228}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  objType: 0
