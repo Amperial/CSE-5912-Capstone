@@ -51,11 +51,11 @@ public class GameMainState : IGameState
 
     void IGameState.onPause()
     {
-        SceneManager.GetSceneByName(sceneName).GetRootGameObjects()[0].SetActive(false);
+        //No op
     }
 
     void IGameState.onUnpause()
     {
-        SceneManager.GetSceneByName(sceneName).GetRootGameObjects()[0].SetActive(true);
+        //No op
     }
 }
