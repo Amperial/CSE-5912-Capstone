@@ -252,12 +252,15 @@ namespace PlayerStates
             get
             {
                 Vector2 dashVector;
-                if(Vector2.SignedAngle(PlayerObject.transform.up, PlayerObject.transform.right) > 0)
+                if(PlayerObject.transform.localScale.x < 0)
                     dashVector = Quaternion.Euler(0, 0, DashStartAngle) * PlayerObject.transform.up;
                 else
                     dashVector = Quaternion.Euler(0, 0, -DashStartAngle) * PlayerObject.transform.up;
+                bool trig = Physics2D.queriesHitTriggers;
+                Physics2D.queriesHitTriggers = true;
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(PlayerObject.transform.position, DashDistance, 1 << LayerMask.NameToLayer("Enemy"));
-                if (enemies != null)
+                Physics2D.queriesHitTriggers = trig;
+                if (enemies.Length != 0)
                 {
                     Dictionary<Collider2D, float> angleEnemies = new Dictionary<Collider2D, float>();
                     foreach(Collider2D enemy in enemies)
@@ -281,6 +284,11 @@ namespace PlayerStates
                 }
                 return dashVector.normalized;
             }
+        }
+
+        public override void EnemyCollision(GameObject Enemy)
+        {
+
         }
 
     }

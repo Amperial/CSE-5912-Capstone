@@ -31,11 +31,13 @@ namespace PlayerStates
             state2D.StoreState();
             currentState = state3D;
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
+            EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
         }
 
         ~MasterPlayerStateMachine() {
             // Unsubscribe from death event when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+            EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
         }
 
         public void PlayerDeathOccurred() {
@@ -108,6 +110,11 @@ namespace PlayerStates
             }
 
             currentState.RestoreState();
+        }
+
+        public void EnemyCollision(GameObject Enemy)
+        {
+            currentState.EnemyCollision(Enemy);
         }
     }
 }

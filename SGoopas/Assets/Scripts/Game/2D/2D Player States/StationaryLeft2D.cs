@@ -27,7 +27,13 @@ namespace PlayerStates
 
         public override void Action()
         {
-            
+            if (dash)
+            {
+                dash = false;
+                Vector2 dashVec = DashVector;
+                Vector3 dashVect = new Vector3(dashVec.x, dashVec.y, 0);
+                SetState(new AirDashLeft2D(this, dashVect));
+            }
         }
 
         public override void FixedUpdate()

@@ -26,8 +26,9 @@ namespace PlayerStates
             if (dash)
             {
                 dash = false;
-                if (rb.velocity.x < MaxHoriSpeed)
-                    rb.AddForce(new Vector2(AirDashForce, 0) * rb.mass, ForceMode2D.Force);
+                Vector2 dashVec = DashVector;
+                Vector3 dashVect = new Vector3(dashVec.x, dashVec.y, 0);
+                SetState(new AirDashRight2D(this, dashVect));
             }
         }
 

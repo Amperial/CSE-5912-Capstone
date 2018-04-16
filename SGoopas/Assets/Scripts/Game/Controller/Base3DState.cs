@@ -79,5 +79,10 @@ namespace PlayerStates
             }
         }
 
+        public override void EnemyCollision(GameObject Enemy)
+        {
+
+        }
+
     }
 }

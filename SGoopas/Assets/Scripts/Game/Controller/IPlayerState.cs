@@ -20,5 +20,6 @@ namespace PlayerStates
         void Death();
 
         void LateUpdate();
+        void EnemyCollision(GameObject Enemy);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameMainState : IGameState
 {
     private string sceneName;
-    private static List<string> levels = new List<string>{"RSLevel", "LightFeatures", "SpotlightTest"};
+    private static List<string> levels = new List<string>{"Test", "LightFeatures", "SpotlightTest"};
     private int levelNumber;
 
     public GameMainState(int levelNumber = 0) {
