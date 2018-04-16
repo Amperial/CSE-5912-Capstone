@@ -13,11 +13,6 @@ public class MenuPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Instance = this;
-		if (MasterMonoBehaviour.Instance != null) {
-			MasterMonoBehaviour.Instance.SetFade (1f);
-			MasterMonoBehaviour.Instance.FadeScreen (0f);
-		}
-
 		unselected = new Color (.2f, .2f, .2f);
 		selected = new Color (.9f, .2f, .2f);
 	}
@@ -67,24 +62,18 @@ public class MenuPlayer : MonoBehaviour {
 	public void Play()
 	{
 		buttonPress.Play();
-		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
-			MasterStateMachine.Instance.GoToFirstLevel();
-		});
+        MasterStateMachine.Instance.GoToFirstLevel();
 	}
 
 	public void Credits()
 	{
 		buttonPress.Play();
-		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
-			MasterStateMachine.Instance.setState(new CreditsState());
-		});
+        MasterStateMachine.Instance.setState(new CreditsState());
 	}
 
 	public void Quit()
 	{
 		buttonPress.Play();
-		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
-			MasterStateMachine.Instance.setState(new QuitState());
-		});
+        MasterStateMachine.Instance.setState(new QuitState());
 	}
 }
