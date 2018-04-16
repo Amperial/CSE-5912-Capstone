@@ -1389,8 +1389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageContainer: {fileID: 1520114304}
-  FaderHolder: {fileID: 0}
-  pauseMenu: {fileID: 0}
+  FaderHolder: {fileID: 2077675354}
+  pauseMenu: {fileID: 1484291909}
 --- !u!4 &1634903633
 Transform:
   m_ObjectHideFlags: 0
@@ -1679,8 +1679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageContainer: {fileID: 1520114304}
-  FaderHolder: {fileID: 2077675354}
-  pauseMenu: {fileID: 1484291909}
+  FaderHolder: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!1 &1939808386
 GameObject:
   m_ObjectHideFlags: 0
