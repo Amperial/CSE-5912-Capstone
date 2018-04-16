@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class ShadowIntroduction : MonoBehaviour, ITriggerable {
     public PlayerCamera playerCamera;
+    private static string[] introductionText = new string[] {
+        "Hello there! My name is Echo. I'm trying to get home, but I can't seem to make the jump across these blocks.",
+        "Maybe you can help me out? I think if you move that blue column over there, I'll be able to make it across.",
+        "Press the action button when you're nearby to push it, and when you think I can make it, press X and I'll give it a shot."
+    };
+
     void ITriggerable.Trigger()
     {
         playerCamera.FocusOnObject(MainObjectContainer.Instance.Player2D);
-        MasterMonoBehaviour.Instance.DisplayMessage(new string[]{"Hello there!"});
-
-        //playerCamera.SeekObject(MainObjectContainer.Instance.Player3D);
+        MasterMonoBehaviour.Instance.DisplayMessage(introductionText, () => {
+            playerCamera.RestoreFocus();
+        });
     }
 }

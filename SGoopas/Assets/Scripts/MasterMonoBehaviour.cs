@@ -10,6 +10,7 @@ public class MasterMonoBehaviour : MonoBehaviour {
     public Text progressTxt;
 	public GameObject messageContainer;
 	private TextAnimator animator;
+    private System.Action messageCloseAction;
 
     void Awake()
     {
@@ -18,14 +19,20 @@ public class MasterMonoBehaviour : MonoBehaviour {
     }
 
 	public void DisplayMessage(string[] messageLines){
-		animator.init (messageLines);
-		messageContainer.SetActive (true);
-		animator.enabled = true;
+        DisplayMessage(messageLines, () => {});
 	}
 
+    public void DisplayMessage(string[] messageLines, System.Action onMessageClosed)
+    {
+        animator.init(messageLines);
+        messageContainer.SetActive(true);
+        animator.enabled = true;
+        messageCloseAction = onMessageClosed;
+    }
+
 	public void TerminateMessage(){
-        Debug.Log("message terminated");
 		animator.enabled = false;
 		messageContainer.SetActive (false);
+        messageCloseAction();
 	}
 }
