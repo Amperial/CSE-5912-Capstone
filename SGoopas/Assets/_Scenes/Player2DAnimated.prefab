@@ -120,7 +120,9 @@ PolygonCollider2D:
     - - {x: -4, y: -7.5}
       - {x: -4, y: 7}
       - {x: 4, y: 7}
+      - {x: -4, y: -7.5}
       - {x: 4, y: -7.5}
+      - {x: 4, y: 7.5}
 --- !u!95 &95221784832528712
 Animator:
   serializedVersion: 3
