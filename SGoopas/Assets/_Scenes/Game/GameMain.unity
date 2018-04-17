@@ -583,8 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 0
-  original: {fileID: 0}
 --- !u!114 &420655649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,8 +797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 1
-  original: {fileID: 0}
 --- !u!1 &664801367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,8 +1418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2bb6d851ed334397c4ce4170950ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedObjects: []
   objType: 0
-  original: {fileID: 0}
 --- !u!1001 &1267467540
 Prefab:
   m_ObjectHideFlags: 0
@@ -1429,11 +1429,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4778625477115008, guid: 0343244df72194f4caedc38bb8ced60a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 40.02
+      value: 39.34
       objectReference: {fileID: 0}
     - target: {fileID: 4778625477115008, guid: 0343244df72194f4caedc38bb8ced60a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.01
+      value: 12.36
       objectReference: {fileID: 0}
     - target: {fileID: 4778625477115008, guid: 0343244df72194f4caedc38bb8ced60a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1459,6 +1459,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114556393549637968, guid: 0343244df72194f4caedc38bb8ced60a,
+        type: 2}
+      propertyPath: PlayerObject
+      value: 
+      objectReference: {fileID: 190823500}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0343244df72194f4caedc38bb8ced60a, type: 2}
   m_IsPrefabParent: 0
@@ -2396,6 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is2D: 0
+  mainMenu: 0
 --- !u!114 &1934856851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,6 +2609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraStiffness: 1.5
   maxLookDistance: 10
+  target: 0
   distanceFromTarget: {x: 0, y: -8, z: 10}
 --- !u!4 &2117129140 stripped
 Transform:
