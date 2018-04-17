@@ -39,6 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4743100882434422}
+  - component: {fileID: 114100460434292100}
   m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -138,6 +139,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114100460434292100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422466671065378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760bbf3b28c6da74bb65194329f87d90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114346495154319522
 MonoBehaviour:
   m_ObjectHideFlags: 1
