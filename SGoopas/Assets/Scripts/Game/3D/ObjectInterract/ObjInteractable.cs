@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ObjInteractable : ObjInteractableBase {
 
@@ -13,11 +14,8 @@ public class ObjInteractable : ObjInteractableBase {
         if (objType == ObjectType.pushPull)
         {
             // Push objects don't have rotation and are really heavy until you interact with them.
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            foreach (GameObject pullObject in associatedObjects)
-            {
-                pullObject.GetComponent<Rigidbody>().mass = 10.0F / associatedObjects.Length;
-            }
+            GetRootRigidBody().constraints = RigidbodyConstraints.FreezeRotation;
+            ChangeNetMass(10.0f);
         }
     }
 
@@ -25,10 +23,7 @@ public class ObjInteractable : ObjInteractableBase {
     {
         if (objType == ObjectType.pushPull)
         {
-            foreach (GameObject pullObject in associatedObjects)
-            {
-                pullObject.GetComponent<Rigidbody>().mass = 10.0F / associatedObjects.Length;
-            }
+            ChangeNetMass(10.0f);
         }
     }
 
@@ -36,16 +31,29 @@ public class ObjInteractable : ObjInteractableBase {
         switch (objType)
         {
             case ObjectType.pushPull:
-                foreach (GameObject pullObject in associatedObjects)
-                {
-                    pullObject.GetComponent<Rigidbody>().mass = 0.4F / associatedObjects.Length;
-                }
+                ChangeNetMass(0.4f);
                 return new PlayerStates.State3DGrab(gameObject.GetComponent<Collider>(), currentState);
             case ObjectType.lift:
                 return new PlayerStates.State3DLift(gameObject.GetComponent<Collider>(), currentState);
             default:
                 return null;
         }
+    }
+
+    private void ChangeNetMass(float netMass) {
+        GetRootRigidBody().mass = netMass;
+    }
+
+    private Rigidbody GetRootRigidBody() {
+        Rigidbody rootRigidBody = null;
+        GameObject currentObject = gameObject;
+        while (rootRigidBody == null && currentObject != null)
+        {
+            rootRigidBody = currentObject.GetComponent<Rigidbody>();
+            currentObject = currentObject.transform.parent.gameObject;
+        }
+        Assert.IsNotNull(currentObject, "Your ObjInteractable must have a root rigidbody.");
+        return rootRigidBody;
     }
 
     public override bool IsPlayerAbleToInteract(GameObject player) {
