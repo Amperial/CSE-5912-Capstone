@@ -6,11 +6,13 @@ public class EndTrigger : MonoBehaviour
 {
     private Animator anim;
     //private GameObject player;
+    private bool exit;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
         //player = MainObjectContainer.Instance.Player2D;
+        exit = false;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -24,8 +26,13 @@ public class EndTrigger : MonoBehaviour
     
     IEnumerator ExitLevel()
     {
-        yield return new WaitForSeconds(1);
-        MasterStateMachine.Instance.GoToNextLevel();
+        //This solution is awful and won't work in an asynchronous environment. Thankfully, coroutines aren't actually asynchronous
+        if (!exit)
+        {
+            exit = true;
+            yield return new WaitForSeconds(1);
+            MasterStateMachine.Instance.GoToNextLevel();
+        }
 
     }
     
