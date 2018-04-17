@@ -32,16 +32,25 @@ namespace PlayerStates
             currentState = state3D;
             PlayerDeathHandler.ResetDeathEvent();
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
+            ExitHandler.ResetExitEvent();
+            ExitHandler.ExitEvent += PlayerExitsLevel;
         }
 
         ~MasterPlayerStateMachine()
         {
-            // Unsubscribe from death event when this object is destroyed.
+            // Unsubscribe from death and exit events when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+            ExitHandler.ExitEvent -= PlayerExitsLevel;
         }
 
         public void PlayerDeathOccurred() {
+            
             currentState.Death();
+        }
+
+        public void PlayerExitsLevel()
+        {
+            currentState.ExitLevel();
         }
 
         public void Action()

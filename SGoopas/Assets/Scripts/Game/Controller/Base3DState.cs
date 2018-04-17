@@ -67,6 +67,10 @@ namespace PlayerStates
         {
             // No-op, you can't die in 3D.
         }
+        public override void ExitLevel()
+        {
+            // No-op, you can't exit in 3D.
+        }
 
         protected bool IsGrounded {
             get

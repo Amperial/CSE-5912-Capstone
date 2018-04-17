@@ -18,7 +18,7 @@ namespace PlayerStates
         void Action();
         void Release();
         void Death();
-
+        void ExitLevel();
         void LateUpdate();
     }
 }
