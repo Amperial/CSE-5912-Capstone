@@ -69,7 +69,9 @@ public class MasterStateMachine
     public void GoToNextLevel() {
         if (currentState is GameMainState) {
             GameMainState newLevel = ((GameMainState)currentState).GetStateForNextLevel();
-            MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
+            MasterMonoBehaviour.Instance.FadeScreen(1f, () => {
+                MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
+            });
         }
     }
 
@@ -87,13 +89,11 @@ public class MasterStateMachine
 
     private IEnumerator UpdateLoadingWithProgress(AsyncOperation operation)
     {
-        float progress;
         while (!operation.isDone)
         {
             yield return null;
         }
-
-		MasterMonoBehaviour.Instance.FadeScreen(0);
+        MasterMonoBehaviour.Instance.FadeScreen(0);
     }
 
     public IEnumerator LoadLevelAsynchronously(GameMainState loading) {
