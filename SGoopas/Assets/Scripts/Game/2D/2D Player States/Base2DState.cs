@@ -24,6 +24,7 @@ namespace PlayerStates
         private bool lookingForGroundedPosition = true;
 
         protected Animator anim;
+        protected Color mat;
         protected float characterWidth;
         protected bool dJump;
         protected bool dash;
@@ -37,6 +38,7 @@ namespace PlayerStates
                 rb = previousState2D.rb;
 
                 anim = previousState2D.anim;
+                mat = previousState2D.mat;
                 characterWidth = previousState2D.characterWidth;
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
@@ -54,7 +56,12 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody2D>();
 
             anim = PlayerObject.GetComponent<Animator>();
-            characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x;
+
+            characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x/1.2f;
+
+            mat = PlayerObject.GetComponent<SpriteRenderer>().color;
+            mat.a = 0.7f;
+            PlayerObject.GetComponent<SpriteRenderer>().color = mat;
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
@@ -202,6 +209,16 @@ namespace PlayerStates
 
                 return Physics2D.BoxCast(playerPosition, new Vector2(characterWidth, boxCastHeight), 0f, ground - playerPosition, (ground - playerPosition).magnitude, ~(1 << LayerMask.NameToLayer("Player")));
             }
+        }
+        public void Freeze()
+        {
+            rb.velocity = new Vector2(0,0);
+            rb.angularVelocity = 0;
+        }
+        public override void ExitLevel()
+        {
+            anim.SetBool("exit", true);
+            SetState(new ExitLevel2D(this));
         }
 
     }

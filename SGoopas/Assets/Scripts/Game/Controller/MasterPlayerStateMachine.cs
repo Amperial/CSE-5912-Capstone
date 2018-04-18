@@ -32,16 +32,25 @@ namespace PlayerStates
             currentState = state3D;
             PlayerDeathHandler.ResetDeathEvent();
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
+            ExitHandler.ResetExitEvent();
+            ExitHandler.ExitEvent += PlayerExitsLevel;
         }
 
         ~MasterPlayerStateMachine()
         {
-            // Unsubscribe from death event when this object is destroyed.
+            // Unsubscribe from death and exit events when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+            ExitHandler.ExitEvent -= PlayerExitsLevel;
         }
 
         public void PlayerDeathOccurred() {
+            
             currentState.Death();
+        }
+
+        public void PlayerExitsLevel()
+        {
+            currentState.ExitLevel();
         }
 
         public void Action()
@@ -102,6 +111,30 @@ namespace PlayerStates
             {
                 state2D = currentState;
                 currentState = state3D;
+            }
+            else
+            {
+                state3D = currentState;
+                currentState = state2D;
+            }
+
+            currentState.RestoreState();
+        }
+
+        /*
+         * Supports cancelling a switch to 2D and a switch to 3D.
+         */
+        public void CancelDimensionSwitch()
+        {
+            currentState.StoreState();
+
+            if (currentState is Base2DState)
+            {
+                state2D = currentState;
+                currentState = state3D;
+
+                // For some reason we couldn't swap to 2D. Give a visual cue.
+                MasterMonoBehaviour.Instance.DisplayMessage(new string[]{"Echo: You can't swap in this position. You'll crush me!"});
             }
             else
             {
