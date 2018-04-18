@@ -23,6 +23,7 @@ namespace PlayerStates
         private bool lookingForGroundedPosition = true;
 
         protected Animator anim;
+        protected Color mat;
         protected float characterWidth;
         protected bool dJump;
         protected bool dash;
@@ -36,6 +37,7 @@ namespace PlayerStates
                 rb = previousState2D.rb;
 
                 anim = previousState2D.anim;
+                mat = previousState2D.mat;
                 characterWidth = previousState2D.characterWidth;
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
@@ -54,6 +56,10 @@ namespace PlayerStates
 
             anim = PlayerObject.GetComponent<Animator>();
             characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x/1.2f;
+
+            mat = PlayerObject.GetComponent<SpriteRenderer>().color;
+            mat.a = 0.7f;
+            PlayerObject.GetComponent<SpriteRenderer>().color = mat;
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
