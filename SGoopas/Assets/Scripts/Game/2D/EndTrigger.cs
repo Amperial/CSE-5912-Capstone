@@ -30,7 +30,7 @@ public class EndTrigger : MonoBehaviour
         if (!exit)
         {
             exit = true;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.8f);
             MasterStateMachine.Instance.GoToNextLevel();
         }
 

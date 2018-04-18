@@ -7,7 +7,8 @@ namespace PlayerStates
     {
         public ExitLevel2D(BasePlayerState previousState) : base(previousState)
         {
-            Freeze();
+                rb.velocity = new Vector2(0, 0);
+                rb.angularVelocity = 0;
         }
 
         public override void Action()
@@ -39,10 +40,9 @@ namespace PlayerStates
         {
             // No-op.
         }
-
         public override void Update()
         {
-            SetState(new ExitLevel2D(this));
+            //No-op.
         }
     }
 }
