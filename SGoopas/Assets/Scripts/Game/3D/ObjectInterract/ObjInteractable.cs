@@ -14,7 +14,7 @@ public class ObjInteractable : ObjInteractableBase {
         if (objType == ObjectType.pushPull)
         {
             // Push objects don't have rotation and are really heavy until you interact with them.
-            GetRootRigidBody().constraints = RigidbodyConstraints.FreezeRotation;
+            GetRootRigidBody().constraints = RigidbodyConstraints.FreezeAll;
             ChangeNetMass(10.0f);
         }
     }
@@ -24,6 +24,7 @@ public class ObjInteractable : ObjInteractableBase {
         if (objType == ObjectType.pushPull)
         {
             ChangeNetMass(10.0f);
+            GetRootRigidBody().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
@@ -32,6 +33,7 @@ public class ObjInteractable : ObjInteractableBase {
         {
             case ObjectType.pushPull:
                 ChangeNetMass(0.4f);
+                GetRootRigidBody().constraints = RigidbodyConstraints.FreezeRotation;
                 return new PlayerStates.State3DGrab(gameObject.GetComponent<Collider>(), currentState);
             case ObjectType.lift:
                 return new PlayerStates.State3DLift(gameObject.GetComponent<Collider>(), currentState);
