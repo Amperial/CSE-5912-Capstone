@@ -17,4 +17,9 @@ public class Animator2D {
         anim.SetBool("grounded", grounded);
     }
 
+    public static void exitLevel(Animator anim, bool exit)
+    {
+        anim.SetBool("exit", exit);
+    }
+
 }
