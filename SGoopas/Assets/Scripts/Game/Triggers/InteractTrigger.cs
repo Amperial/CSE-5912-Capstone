@@ -13,7 +13,7 @@ public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable 
         triggerable = target.GetComponent<ITriggerable>();
     }
 
-    public void Interact() {
+    public virtual void Interact() {
         Trigger();
     }
 

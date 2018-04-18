@@ -8,9 +8,11 @@ public class MasterMonoBehaviour : MonoBehaviour {
     public static MasterMonoBehaviour Instance;
 	public GameObject messageContainer;
 	private TextAnimator animator;
+    private System.Action messageCloseAction;
 	public GameObject FaderHolder;
 	private Fader fader;
 	public GameObject pauseMenu;
+	
     void Awake()
     {
         Instance = this;
@@ -20,14 +22,21 @@ public class MasterMonoBehaviour : MonoBehaviour {
     }
 
 	public void DisplayMessage(string[] messageLines){
-		animator.init (messageLines);
-		messageContainer.SetActive (true);
-		animator.enabled = true;
+        DisplayMessage(messageLines, () => {});
 	}
+
+    public void DisplayMessage(string[] messageLines, System.Action onMessageClosed)
+    {
+        animator.init(messageLines);
+        messageContainer.SetActive(true);
+        animator.enabled = true;
+        messageCloseAction = onMessageClosed;
+    }
 
 	public void TerminateMessage(){
 		animator.enabled = false;
 		messageContainer.SetActive (false);
+        messageCloseAction();
 	}
 
 	public void FadeScreen(float target, Action action = null){

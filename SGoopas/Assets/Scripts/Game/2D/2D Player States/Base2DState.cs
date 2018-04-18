@@ -13,6 +13,7 @@ namespace PlayerStates
         private float dJumpForce = 1f;
         private float maxHoriSpeed = 1f;
         private float maxVertSpeed = 1f;
+        private const float boxCastHeight = 0.1f;
 
         protected Rigidbody2D rb;
         private Vector2 linearVelocity;
@@ -55,6 +56,7 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody2D>();
 
             anim = PlayerObject.GetComponent<Animator>();
+
             characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x/1.2f;
 
             mat = PlayerObject.GetComponent<SpriteRenderer>().color;
@@ -204,19 +206,8 @@ namespace PlayerStates
             get {
                 Vector3 playerPosition = PlayerObject.transform.position;
                 Vector3 ground = GroundCheck.position;
-                Vector3 tempVL = playerPosition;
-                Vector3 tempVR = playerPosition;
-                tempVL.x = playerPosition.x - (characterWidth / 2.0f);
-                tempVR.x = playerPosition.x + (characterWidth / 2.0f);
 
-                if (Physics2D.Linecast(playerPosition, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVL, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVR, ground, ~(1 << LayerMask.NameToLayer("Player"))))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return Physics2D.BoxCast(playerPosition, new Vector2(characterWidth, boxCastHeight), 0f, ground - playerPosition, (ground - playerPosition).magnitude, ~(1 << LayerMask.NameToLayer("Player")));
             }
         }
         public void Freeze()
