@@ -22,7 +22,7 @@ public class ControllerConfigure : MonoBehaviour {
     public void SwapDimension()
     {
         Cancellable cancellable = new Cancellable();
-        cancellable.PerformCancellable(playerStateMachine.SwitchDimension, playerStateMachine.SwitchDimension);
+        cancellable.PerformCancellable(playerStateMachine.SwitchDimension, playerStateMachine.CancelDimensionSwitch);
         
         BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
         if (!cancellable.IsCancelled)
