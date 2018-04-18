@@ -44,5 +44,6 @@ namespace PlayerStates
         public abstract void RestoreState();
         public abstract void LateUpdate();
         public abstract void Death();
+        public abstract void ExitLevel();
     }
 }
