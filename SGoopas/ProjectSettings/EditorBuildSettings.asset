@@ -50,3 +50,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/HighWalls.unity
     guid: 2123a4dd7cb5b40e5848e90996114ea2
+  - enabled: 1
+    path: Assets/_Scenes/Game/DayTimeScene1.unity
+    guid: 40d0928b8a637442588263f6de23d7ef
