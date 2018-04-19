@@ -62,11 +62,8 @@ public class ObjInteractable : ObjInteractableBase {
         switch (objType)
         {
             case ObjectType.pushPull:
-                // Push pull is limited by the angle.
-                // Don't apply if the player is too close or not dead-on facing the box.
-                Vector2 objDir = new Vector2(Mathf.Cos(Mathf.Deg2Rad * player.transform.parent.rotation.eulerAngles.y), Mathf.Sin(Mathf.Deg2Rad * player.transform.parent.rotation.eulerAngles.y));
-                bool angleCorrect = Vector2.Angle(objDir.normalized, Vector2.up) < 15f || Vector2.Angle(objDir.normalized, Vector2.down) < 15f || Vector2.Angle(objDir.normalized, Vector2.left) < 15f || Vector2.Angle(objDir.normalized, Vector2.right) < 15f;
-                return angleCorrect;
+
+                return true;
             case ObjectType.lift:
             default:
                 return true;
