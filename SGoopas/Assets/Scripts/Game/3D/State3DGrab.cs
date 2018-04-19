@@ -7,10 +7,10 @@ namespace PlayerStates
     public class State3DGrab : State3DMove
     {
         private Joint grabJoint;
-        private Vector2 objDir;
         private bool upDown;
         Collider grabObject;
         private static Vector2[] axisAngles = new[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+        private int angleIdx;
 
         public State3DGrab(Collider objectToGrab, BasePlayerState previousState) : base(previousState) {
             animation3D.StartGrab();
@@ -34,7 +34,7 @@ namespace PlayerStates
             Vector3 angleDiff = grabObject.transform.position - rb.transform.position;
             Vector2 angle2D = new Vector2(angleDiff.x, angleDiff.z);
             float maxDir = -1;
-            int angleIdx = 0;
+            angleIdx = 0;
             for (int idx = 0; idx < axisAngles.Length; idx++)
             {
                 float curDir = Vector2.Dot(angle2D.normalized, axisAngles[idx]);
@@ -56,10 +56,6 @@ namespace PlayerStates
                 movePt = axisAngles[angleIdx] * Mathf.Abs(angle2D.x);
                 upDown = false;
             }  
-            //float rAngle = Mathf.Deg2Rad * (90 - rb.gameObject.transform.rotation.eulerAngles.y);
-            //objDir = new Vector2(Mathf.Cos(rAngle), Mathf.Sin(rAngle));
-            //if (Vector2.Angle(objDir.normalized, Vector2.up) < 45f || Vector2.Angle(objDir.normalized, Vector2.down) < 45f)
-            //    upDown = true;
             rb.gameObject.transform.position = new Vector3(grabObject.transform.position.x - movePt.x, rb.gameObject.transform.position.y, grabObject.transform.position.z - movePt.y);
             rb.gameObject.transform.rotation = Quaternion.LookRotation(new Vector3(axisAngles[angleIdx].x,0, axisAngles[angleIdx].y));
             grabJoint = PlayerObject.AddComponent<FixedJoint>();
@@ -105,6 +101,7 @@ namespace PlayerStates
             animation3D.ReleaseGrab();
             Object.Destroy(grabJoint);
             SetState(new State3DStand(this));
+            angleIdx = 0;
         }
 
         public override void Update()
@@ -120,7 +117,7 @@ namespace PlayerStates
             if (nonVerticalVelocity.magnitude > 0.0001f)
             {
                 animation3D.StartPush();
-                if (Vector2.Dot(nonVerticalVelocity,objDir) < 0)
+                if (Vector2.Dot(axisAngles[angleIdx], nonVerticalVelocity) < 0)
                 {
                     animation3D.PullTrue();
                 }
