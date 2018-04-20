@@ -7,19 +7,14 @@ namespace PlayerStates
     public class JumpingLeft2D : Base2DState
     {
         public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {
-            FlipSprite();
+            MakeSpriteFaceLeft();
         }
         public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
-            FlipSprite();
+            MakeSpriteFaceLeft();
         }
 
 
-        private void FlipSprite()
-        {
-            Vector3 prevScale = PlayerObject.transform.localScale;
-            prevScale.x = -Mathf.Abs(prevScale.x);
-            PlayerObject.transform.localScale = prevScale;
-        }
+        
         public override void Action()
         {
             if (DashTime != 0 && dash)

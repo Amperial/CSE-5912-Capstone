@@ -7,19 +7,12 @@ namespace PlayerStates
     public class JumpingRight2D : Base2DState
     {
         public JumpingRight2D(BasePlayerState previousState) : base(previousState) {
-            FlipSprite();
+            MakeSpriteFaceRight();
         }
         public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
-            FlipSprite();
+            MakeSpriteFaceRight();
         }
 
-
-        private void FlipSprite()
-        {
-            Vector3 prevScale = PlayerObject.transform.localScale;
-            prevScale.x = Mathf.Abs(prevScale.x);
-            PlayerObject.transform.localScale = prevScale;
-        }
 
         public override void Action()
         {

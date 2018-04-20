@@ -7,8 +7,7 @@ public class EnemyCollisionHandler {
     public static event EnemyCollisionOccured EnemyCollisionEvent;
     public static void TriggerEnemyCollision(GameObject enemy)
     {
-        EnemyCollisionOccured enemyCol = EnemyCollisionEvent;
-        if (enemyCol != null)
-            enemyCol(enemy);
+        if (EnemyCollisionEvent != null)
+            EnemyCollisionEvent(enemy);
     }
 }

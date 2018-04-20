@@ -9,21 +9,16 @@ namespace PlayerStates
 
 
         public StationaryLeft2D(BasePlayerState previousState) : base(previousState) {
-            FlipSprite();
+            MakeSpriteFaceLeft();
             rb.velocity = new Vector2(0, rb.velocity.y);
             dash = true;
             dJump = true;
         }
         public StationaryLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
-            FlipSprite();
+            MakeSpriteFaceLeft();
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        private void FlipSprite() {
-            Vector3 prevScale = PlayerObject.transform.localScale;
-            prevScale.x = -Mathf.Abs(prevScale.x);
-            PlayerObject.transform.localScale = prevScale;
-        }
 
         public override void Action()
         {

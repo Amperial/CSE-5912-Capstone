@@ -301,5 +301,19 @@ namespace PlayerStates
 
         }
 
+        protected void MakeSpriteFaceRight()
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
+        }
+
+        protected void MakeSpriteFaceLeft()
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = -Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
+        }
+
     }
 }

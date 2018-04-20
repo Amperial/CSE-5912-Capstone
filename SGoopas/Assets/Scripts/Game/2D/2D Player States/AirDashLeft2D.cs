@@ -15,12 +15,12 @@ namespace PlayerStates
         private float origGrav;
         public AirDashLeft2D(BasePlayerState previousState) : base(previousState)
         {
-            direction = new Vector3();
+            direction = DashVector;
             PseudoConstructor();
         }
         public AirDashLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck)
         {
-            direction = new Vector3();
+            direction = DashVector;
             PseudoConstructor();
         }
 
