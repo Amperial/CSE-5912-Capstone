@@ -119,5 +119,21 @@ namespace PlayerStates
             dash = true;
             Object.Destroy(Enemy);
         }
+
+        public override void StoreState()
+        {
+            if (MasterMonoBehaviour.Instance != null)
+                MasterMonoBehaviour.Instance.StopCoroutine(coroutine);
+            base.StoreState();
+        }
+
+        public override void RestoreState()
+        {
+            coroutine = AfterImage();
+            if (MasterMonoBehaviour.Instance != null)
+                MasterMonoBehaviour.Instance.StartCoroutine(coroutine);
+            base.RestoreState();
+        }
+
     }
 }
