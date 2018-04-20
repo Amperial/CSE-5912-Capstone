@@ -58,15 +58,5 @@ public class ObjInteractable : ObjInteractableBase {
         return rootRigidBody;
     }
 
-    public override bool IsPlayerAbleToInteract(GameObject player) {
-        switch (objType)
-        {
-            case ObjectType.pushPull:
 
-                return true;
-            case ObjectType.lift:
-            default:
-                return true;
-        }
-    }
 }

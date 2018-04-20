@@ -73,5 +73,5 @@ public abstract class ObjInteractableBase : MonoBehaviour
      * Implementation of interaction restrictions that are more complicated than proximity 
      * (e.g. for push pull, the player needs to be facing one of the object's faces)
      */
-    public abstract bool IsPlayerAbleToInteract(GameObject player);
+
 }
