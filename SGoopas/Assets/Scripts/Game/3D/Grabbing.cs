@@ -8,18 +8,11 @@ public class Grabbing : MonoBehaviour {
     public static event GrabbableObjectChanged grabEvent;
     ObjInteractableBase highlightedObject;
 
-    private void Update()
-    {
-        if (highlightedObject != null && !highlightedObject.IsPlayerAbleToInteract(gameObject)) {
-            UnhighlightObject(highlightedObject);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         ObjInteractableBase objInteractable = other.gameObject.GetComponent<ObjInteractableBase>();
-        bool objInteractableAvailable = objInteractable != null && objInteractable.IsPlayerAbleToInteract(gameObject);
-        if (objInteractableAvailable)
+        if (objInteractable != null)
         {
             HighlightObject(objInteractable);
         }
