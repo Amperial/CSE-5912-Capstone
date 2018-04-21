@@ -16,6 +16,13 @@ public class ControllerConfigure : MonoBehaviour {
             return playerStateMachine;
         }
     }
+
+    ~ControllerConfigure()
+    {
+        // Unsubscribe from swap event when this object is destroyed.
+        DimensionSwitchHandler.DimensionSwitchEvent -= SwapDimension;
+    }
+
     /**
      * To be replaced with an event-based swap in the future
      */
@@ -51,6 +58,9 @@ public class ControllerConfigure : MonoBehaviour {
         controller = new Controller();
         playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
+
+        DimensionSwitchHandler.ResetDimensionSwitchEvent();
+        DimensionSwitchHandler.DimensionSwitchEvent += SwapDimension;
 
 		if (mainMenu) {
 			SwapDimension ();
