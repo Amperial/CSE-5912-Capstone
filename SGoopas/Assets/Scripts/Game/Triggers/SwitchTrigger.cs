@@ -52,10 +52,7 @@ public class SwitchTrigger : ObjInteractableBase, IInteractable, ITriggerable
         // No-op.
     }
 
-    public override bool IsPlayerAbleToInteract(GameObject player)
-    {
-        return true;
-    }
+   
 }
 
 

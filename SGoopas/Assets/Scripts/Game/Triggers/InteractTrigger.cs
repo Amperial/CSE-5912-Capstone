@@ -32,8 +32,5 @@ public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable 
         // No-op.
     }
 
-    public override bool IsPlayerAbleToInteract(GameObject player)
-    {
-        return true;
-    }
+
 }
