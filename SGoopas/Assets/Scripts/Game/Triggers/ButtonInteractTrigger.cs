@@ -7,10 +7,12 @@ using UnityEngine;
 public class ButtonInteractTrigger : InteractTrigger {
     private Vector3 originalScale;
     private bool triggerOn = false;
+    public AudioSource audioSource;
 
     public override void Interact() {
         base.Interact();
         triggerOn = !triggerOn;
+        audioSource.Play();
 
         if (triggerOn)
         {
