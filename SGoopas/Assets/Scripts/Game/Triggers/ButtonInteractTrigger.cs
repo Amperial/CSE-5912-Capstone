@@ -9,24 +9,13 @@ public class ButtonInteractTrigger : InteractTrigger
 {
     private Vector3 originalScale;
     private bool triggerOn = false;
-    private AudioClip audioClip;
-    private AudioSource audioSource;
-
-    public void Start()
-    {
-        audioSource = this.GetComponent<AudioSource>();
-    }
-
-    public void playClip()
-    {
-        audioSource.Play();
-    }
+    public AudioSource audioSource;
 
     public override void Interact()
     {
         base.Interact();
         triggerOn = !triggerOn;
-        playClip();
+        audioSource.Play();
 
         if (triggerOn)
         {

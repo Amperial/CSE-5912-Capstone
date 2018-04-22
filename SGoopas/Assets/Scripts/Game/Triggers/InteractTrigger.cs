@@ -1,7 +1,8 @@
 ﻿using PlayerStates;
 using UnityEngine;
 
-public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable {
+public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable
+{
 
     public GameObject target;
     private ITriggerable triggerable;
@@ -16,7 +17,6 @@ public class InteractTrigger : ObjInteractableBase, IInteractable, ITriggerable 
     public virtual void Interact() {
         Trigger();
     }
-
     public void Trigger() {
         triggerable.Trigger();
     }

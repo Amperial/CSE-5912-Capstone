@@ -56,4 +56,5 @@ public class MasterMonoBehaviour : MonoBehaviour {
 		pauseMenu.SetActive (false);
 		Time.timeScale = 1;
 	}
+
 }
