@@ -44,7 +44,6 @@ public class ControllerConfigure : MonoBehaviour {
         controller.RegisterButtonDown("Action", playerStateMachine.Action);
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
-        controller.RegisterButtonDown("Release", playerStateMachine.Release);
         controller.RegisterButtonDown("Reset", MasterStateMachine.Instance.ResetLevel);
 		if (mainMenu) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);

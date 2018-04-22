@@ -43,11 +43,6 @@ namespace PlayerStates
             moveDir += forwardForce;
         }
 
-        public override void Release()
-        {
-            //no action
-        }
-
         public override void Update()
         {
             ApplyMovementForces();
