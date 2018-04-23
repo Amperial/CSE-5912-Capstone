@@ -7,7 +7,7 @@ public class GroupShadowHandler : MonoBehaviour {
 	public bool isLightMovable = false;
 	// Be explicit with reference to the light in the editor.
 	public Light shadowLight;
-
+    public bool hiddenObjects = false;
 	private List<ShadowController> shadowControllers = new List<ShadowController>();
 
 	public void Start() {
@@ -46,7 +46,10 @@ public class GroupShadowHandler : MonoBehaviour {
         foreach (MeshRenderer meshRenderer in shadowObjectsParent.GetComponentsInChildren<MeshRenderer>())
         {
             meshRenderer.enabled = true;
-            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            if (!hiddenObjects)
+                meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+            else
+                meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
     }
 
