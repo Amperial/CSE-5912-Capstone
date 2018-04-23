@@ -34,6 +34,7 @@ namespace PlayerStates
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
             ExitHandler.ResetExitEvent();
             ExitHandler.ExitEvent += PlayerExitsLevel;
+            EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
         }
 
         ~MasterPlayerStateMachine()
@@ -41,10 +42,11 @@ namespace PlayerStates
             // Unsubscribe from death and exit events when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
             ExitHandler.ExitEvent -= PlayerExitsLevel;
+            EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
         }
 
         public void PlayerDeathOccurred() {
-            
+
             currentState.Death();
         }
 
@@ -143,6 +145,11 @@ namespace PlayerStates
             }
 
             currentState.RestoreState();
+        }
+
+        public void EnemyCollision(GameObject Enemy)
+        {
+            currentState.EnemyCollision(Enemy);
         }
     }
 }
