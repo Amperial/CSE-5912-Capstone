@@ -26,6 +26,8 @@ namespace PlayerStates
         private Vector3 original2DPosition;
         private Movement2DConfig mc;
         private bool lookingForGroundedPosition = true;
+        private static GameObject swapMarker;
+        private GameObject swapMarkerPrefab;
 
         protected Animator anim;
         protected Color mat;
@@ -41,6 +43,7 @@ namespace PlayerStates
                 mc = previousState2D.mc;
                 rb = previousState2D.rb;
 
+                swapMarkerPrefab = previousState2D.swapMarkerPrefab;
                 anim = previousState2D.anim;
                 mat = previousState2D.mat;
                 characterWidth = previousState2D.characterWidth;
@@ -66,6 +69,8 @@ namespace PlayerStates
             mat = PlayerObject.GetComponent<SpriteRenderer>().color;
             mat.a = 0.7f;
             PlayerObject.GetComponent<SpriteRenderer>().color = mat;
+
+            swapMarkerPrefab = (GameObject)Resources.Load("swap");
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
@@ -224,6 +229,13 @@ namespace PlayerStates
                 // This prevents the case where the player gets stuck in the spot of death due to the user switching to 3D right beforehand.
                 original2DPosition = rb.gameObject.transform.position;
                 lookingForGroundedPosition = false;
+
+                //Also place a swap marker at that position
+                if (swapMarker != null)
+                    Object.Destroy(swapMarker);
+                swapMarker = Object.Instantiate(swapMarkerPrefab, PlayerObject.transform.root);
+                swapMarker.transform.position = PlayerObject.transform.position;
+                swapMarker.transform.localScale = PlayerObject.transform.localScale;
             }
         }
 
