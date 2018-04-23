@@ -15,7 +15,6 @@ public class FloatingEnemy : MonoBehaviour {
 	void Start () {
         RecalculatePath();
 	}
-	
     void Move()
     {
         float maxDist = speed * Time.deltaTime;
@@ -61,7 +60,10 @@ public class FloatingEnemy : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject == MainObjectContainer.Instance.Player2D)
+        {
             PlayerDeathHandler.TriggerPlayerDeath();
+            EnemyCollisionHandler.TriggerEnemyCollision(gameObject);
+        }
     }
 
     public void RecalculatePath()

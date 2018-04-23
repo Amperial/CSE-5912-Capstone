@@ -7,25 +7,25 @@ namespace PlayerStates
     public class StationaryRight2D : Base2DState
     {
         public StationaryRight2D(BasePlayerState previousState) : base(previousState) {
-            FlipSprite();
+            MakeSpriteFaceRight();
             rb.velocity = new Vector2(0, rb.velocity.y);
             dash = true;
             dJump = true;
         }
         public StationaryRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
-            FlipSprite();
+            MakeSpriteFaceRight();
             rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-
-        private void FlipSprite()
-        {
-            Vector3 prevScale = PlayerObject.transform.localScale;
-            prevScale.x = Mathf.Abs(prevScale.x);
-            PlayerObject.transform.localScale = prevScale;
         }
 
         public override void Action()
         {
+            if (DashTime != 0 && dash)
+            {
+                dash = false;
+                Vector2 dashVec = DashVector;
+                Vector3 dashVect = new Vector3(dashVec.x, dashVec.y, 0);
+                SetState(new AirDashRight2D(this, dashVect));
+            }
         }
 
         public override void FixedUpdate()

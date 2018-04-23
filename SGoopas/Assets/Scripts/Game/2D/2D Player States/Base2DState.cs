@@ -13,6 +13,10 @@ namespace PlayerStates
         private float dJumpForce = 1f;
         private float maxHoriSpeed = 1f;
         private float maxVertSpeed = 1f;
+        private float dashStartAngle = 90f;
+        private float dashDistance = 5f;
+        private float enemyDetectionAngle = 15f;
+        private float dashTime = 0.0f;
         private const float boxCastHeight = 0.1f;
 
         protected Rigidbody2D rb;
@@ -86,6 +90,44 @@ namespace PlayerStates
                 return airMoveForce;
             }
         }
+
+        public float DashStartAngle
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashStartAngle;
+                return dashStartAngle;
+            }
+        }
+        public float DashTime
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashTime;
+                return dashTime;
+            }
+        }
+        public float DashDistance
+        {
+            get
+            {
+                if (mc)
+                    return mc.dashDistance;
+                return dashDistance;
+            }
+        }
+        public float EnemyDetectionAngle
+        {
+            get
+            {
+                if (mc)
+                    return mc.enemyDetectionAngle;
+                return enemyDetectionAngle;
+            }
+        }
+
 
         public float JumpForce
         {
@@ -187,7 +229,7 @@ namespace PlayerStates
 
         public override void LateUpdate()
         {
-            
+
         }
 
         public override void Death() {
@@ -208,6 +250,46 @@ namespace PlayerStates
                 Vector3 ground = GroundCheck.position;
 
                 return Physics2D.BoxCast(playerPosition, new Vector2(characterWidth, boxCastHeight), 0f, ground - playerPosition, (ground - playerPosition).magnitude, ~(1 << LayerMask.NameToLayer("Player")));
+
+            }
+        }
+
+        protected Vector2 DashVector
+        {
+            get
+            {
+                Vector2 dashVector;
+                if(PlayerObject.transform.localScale.x < 0)
+                    dashVector = Quaternion.Euler(0, 0, DashStartAngle) * PlayerObject.transform.up;
+                else
+                    dashVector = Quaternion.Euler(0, 0, -DashStartAngle) * PlayerObject.transform.up;
+                bool trig = Physics2D.queriesHitTriggers;
+                Physics2D.queriesHitTriggers = true;
+                Collider2D[] enemies = Physics2D.OverlapCircleAll(PlayerObject.transform.position, DashDistance, 1 << LayerMask.NameToLayer("Enemy"));
+                Physics2D.queriesHitTriggers = trig;
+                if (enemies.Length != 0)
+                {
+                    Dictionary<Collider2D, float> angleEnemies = new Dictionary<Collider2D, float>();
+                    foreach(Collider2D enemy in enemies)
+                    {
+                        float angle = Vector2.Angle((enemy.transform.position - PlayerObject.transform.position), dashVector);
+                        if (angle <= EnemyDetectionAngle)
+                            angleEnemies.Add(enemy, angle);
+                    }
+                    Collider2D minEnemy = null;
+                    float minAngle = float.MaxValue;
+                    foreach(KeyValuePair<Collider2D, float> enemy in angleEnemies)
+                    {
+                        if(enemy.Value <= minAngle)
+                        {
+                            minAngle = enemy.Value;
+                            minEnemy = enemy.Key;
+                        }
+                    }
+                    if (minEnemy != null)
+                        dashVector = minEnemy.transform.position - PlayerObject.transform.position;
+                }
+                return dashVector.normalized;
             }
         }
         public void Freeze()
@@ -219,6 +301,25 @@ namespace PlayerStates
         {
             anim.SetBool("exit", true);
             SetState(new ExitLevel2D(this));
+        }
+
+        public override void EnemyCollision(GameObject Enemy)
+        {
+
+        }
+
+        protected void MakeSpriteFaceRight()
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
+        }
+
+        protected void MakeSpriteFaceLeft()
+        {
+            Vector3 prevScale = PlayerObject.transform.localScale;
+            prevScale.x = -Mathf.Abs(prevScale.x);
+            PlayerObject.transform.localScale = prevScale;
         }
 
     }
