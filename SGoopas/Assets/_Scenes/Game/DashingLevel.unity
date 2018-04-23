@@ -3210,6 +3210,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.34896588, z: 1.999998}
   m_Center: {x: 2, y: -0.003292106, z: 0.999999}
+--- !u!1 &557403069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 557403070}
+  - component: {fileID: 557403071}
+  m_Layer: 0
+  m_Name: Text Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557403070
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557403069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2071740302}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &557403071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 557403069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc8f4ab036a31441a0a3452faca2965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 385012966}
 --- !u!1 &561316723
 GameObject:
   m_ObjectHideFlags: 0
@@ -8340,6 +8381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371722889}
   - component: {fileID: 1371722890}
+  - component: {fileID: 1371722891}
   m_Layer: 0
   m_Name: Dash Intro
   m_TagString: Untagged
@@ -8385,6 +8427,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &1371722891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1371722888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc132ed2c6ea84dfbab21bf7f5419083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 557403069}
 --- !u!1001 &1382348449
 Prefab:
   m_ObjectHideFlags: 0
@@ -9316,6 +9370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1516313845}
   - component: {fileID: 1516313846}
+  - component: {fileID: 1516313847}
   m_Layer: 0
   m_Name: Reset Intro
   m_TagString: Untagged
@@ -9361,6 +9416,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 6}
   m_EdgeRadius: 0
+--- !u!114 &1516313847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1516313844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc132ed2c6ea84dfbab21bf7f5419083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 557403069}
 --- !u!1 &1517417399
 GameObject:
   m_ObjectHideFlags: 0
@@ -13101,6 +13168,7 @@ Transform:
   m_Children:
   - {fileID: 1371722889}
   - {fileID: 1516313845}
+  - {fileID: 557403070}
   m_Father: {fileID: 1088576507}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
