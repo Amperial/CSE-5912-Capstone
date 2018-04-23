@@ -7,6 +7,7 @@ namespace PlayerStates
     public class MasterPlayerStateMachine
     {
         public bool is2D = false;
+        public bool swapAvailable = true;
 
         private IPlayerState currentState, state3D, state2D;
         public IPlayerState CurrentPlayerState
@@ -38,6 +39,10 @@ namespace PlayerStates
             EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
             DimensionSwitchHandler.ResetDimensionSwitchEvent();
             DimensionSwitchHandler.DimensionSwitchEvent += AttemptDimensionSwap;
+            PlayerFreezeHandler.ResetFreezeEvent();
+            PlayerFreezeHandler.ResetUnfreezeEvent();
+            PlayerFreezeHandler.PlayerFreezeEvent += FreezeCharacter;
+            PlayerFreezeHandler.PlayerUnfreezeEvent += UnfreezeCharacter;
         }
 
         ~MasterPlayerStateMachine()
@@ -47,8 +52,8 @@ namespace PlayerStates
             ExitHandler.ExitEvent -= PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
             DimensionSwitchHandler.DimensionSwitchEvent -= AttemptDimensionSwap;
-
-        
+            PlayerFreezeHandler.PlayerFreezeEvent -= FreezeCharacter;
+            PlayerFreezeHandler.PlayerUnfreezeEvent -= UnfreezeCharacter;
         }
 
         public void PlayerDeathOccurred() {
@@ -111,7 +116,27 @@ namespace PlayerStates
             currentState.LateUpdate();
         }
 
-        public void AttemptDimensionSwap()
+        public void FreezeCharacter()
+        {
+            swapAvailable = false;
+            currentState.Freeze();
+        }
+
+        public void UnfreezeCharacter()
+        {
+            swapAvailable = true;
+            currentState.Unfreeze();
+        }
+
+        public void DimensionSwapButtonPressed()
+        {
+            if (swapAvailable)
+            {
+                AttemptDimensionSwap();
+            }
+        }
+
+        private void AttemptDimensionSwap()
         {
             Cancellable cancellable = new Cancellable();
             cancellable.PerformCancellable(SwitchDimension, CancelDimensionSwitch);
@@ -123,7 +148,7 @@ namespace PlayerStates
             }
         }
 
-        public void SwitchDimension()
+        private void SwitchDimension()
         {
             currentState.StoreState();
 
@@ -144,7 +169,7 @@ namespace PlayerStates
         /*
          * Supports cancelling a switch to 2D and a switch to 3D.
          */
-        public void CancelDimensionSwitch()
+        private void CancelDimensionSwitch()
         {
             currentState.StoreState();
 

@@ -27,7 +27,7 @@ public class ControllerConfigure : MonoBehaviour {
 		if (mainMenu) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);
 		} else {
-            controller.RegisterButtonDown ("SwapDimension", playerStateMachine.AttemptDimensionSwap);
+            controller.RegisterButtonDown ("SwapDimension", playerStateMachine.DimensionSwapButtonPressed);
 		}
     }
 
@@ -38,7 +38,7 @@ public class ControllerConfigure : MonoBehaviour {
         ConfigureControls();
 
         if (mainMenu) {
-            playerStateMachine.AttemptDimensionSwap();
+            playerStateMachine.DimensionSwapButtonPressed();
 		}
     }
 	

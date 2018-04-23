@@ -22,10 +22,12 @@ public class ShadowIntroduction : MonoBehaviour, ITriggerable {
 
     void ITriggerable.Trigger()
     {
+        PlayerFreezeHandler.TriggerPlayerFreeze();
         playerCamera.FocusOnObject(MainObjectContainer.Instance.Player2D, new Vector3(0, -2, 3));
         MasterMonoBehaviour.Instance.DisplayMessage(introTexts[Mathf.Min(textNumber, introTexts.Length)], () => {
             textNumber++;
             playerCamera.RestoreFocus();
+            PlayerFreezeHandler.TriggerPlayerUnfreeze();
         });
     }
 }
