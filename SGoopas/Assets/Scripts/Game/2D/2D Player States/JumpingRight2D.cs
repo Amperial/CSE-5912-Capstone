@@ -6,16 +6,22 @@ namespace PlayerStates
 {
     public class JumpingRight2D : Base2DState
     {
-        public JumpingRight2D(BasePlayerState previousState) : base(previousState) {}
-        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {}
-       
+        public JumpingRight2D(BasePlayerState previousState) : base(previousState) {
+            MakeSpriteFaceRight();
+        }
+        public JumpingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
+            MakeSpriteFaceRight();
+        }
+
+
         public override void Action()
         {
-            if (dash)
+            if (DashTime != 0 && dash)
             {
                 dash = false;
-                if (rb.velocity.x < MaxHoriSpeed)
-                    rb.AddForce(new Vector2(AirDashForce, 0) * rb.mass, ForceMode2D.Force);
+                Vector2 dashVec = DashVector;
+                Vector3 dashVect = new Vector3(dashVec.x, dashVec.y, 0);
+                SetState(new AirDashRight2D(this, dashVect));
             }
         }
 
@@ -41,8 +47,9 @@ namespace PlayerStates
 
         public override void MoveLeft()
         {
-            if (rb.velocity.x > -MaxHoriSpeed)
-                rb.AddForce(new Vector2(-AirMoveForce, 0) * rb.mass * Time.deltaTime, ForceMode2D.Force);
+            JumpingLeft2D left = new JumpingLeft2D(this);
+            SetState(left);
+            left.MoveLeft();
         }
 
         public override void MoveRight()
