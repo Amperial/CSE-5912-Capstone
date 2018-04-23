@@ -66,8 +66,11 @@ public class MasterStateMachine
         MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState()));
     }
 
+	public void GoToLevel(int level) {
+		MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(level)));
+	}
+
 	public void GoToLevelSelect(){
-		//MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(5)));
 		MasterStateMachine.Instance.setState(new LevelSelectState());
 	}
 

@@ -59,16 +59,16 @@ public class LevelSelectPlayer : MonoBehaviour {
 			Instance.MainMenu ();
 			break;
 		case "Menu Level 1 Shadow":
-			Instance.LevelOne ();
+			Instance.GoToLevel (0);
 			break;
 		case "Menu Level 2 Shadow":
-			Instance.LevelOne ();
+			Instance.GoToLevel (1);
 			break;
 		case "Menu Level 3 Shadow":
-			Instance.LevelOne ();
+			Instance.GoToLevel (2);
 			break;
 		case "Menu Level 4 Shadow":
-			Instance.LevelOne ();
+			Instance.GoToLevel (3);
 			break;
 		}
 	}
@@ -80,11 +80,11 @@ public class LevelSelectPlayer : MonoBehaviour {
 		});
 	}
 
-	public void LevelOne()
+	public void GoToLevel(int level)
 	{
 		buttonPress.Play();
 		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
-			MasterStateMachine.Instance.GoToFirstLevel();
+			MasterStateMachine.Instance.GoToLevel(level);
 		});
 	}
 		

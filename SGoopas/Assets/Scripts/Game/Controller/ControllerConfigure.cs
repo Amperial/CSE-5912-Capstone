@@ -8,7 +8,9 @@ public class ControllerConfigure : MonoBehaviour {
     private Controller controller;
 
     public bool is2D = false;
-	public bool mainMenu = false;
+
+	public enum SceneType {GAME, MAIN_MENU, LEVEL_SELECT}
+	public SceneType sceneType = SceneType.GAME;
     public MasterPlayerStateMachine PlayerStateMachine
     {
         get
@@ -46,9 +48,13 @@ public class ControllerConfigure : MonoBehaviour {
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
         controller.RegisterButtonDown("Release", playerStateMachine.Release);
         controller.RegisterButtonDown("Reset", MasterStateMachine.Instance.ResetLevel);
-		if (mainMenu) {
+		if (sceneType == SceneType.MAIN_MENU) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);
-		} else {
+		} 
+		else if(sceneType == SceneType.LEVEL_SELECT){
+			controller.RegisterButtonDown ("Submit", LevelSelectPlayer.LevelSelect);
+		}
+		else {
 			controller.RegisterButtonDown ("SwapDimension", SwapDimension);
 		}
     }
@@ -62,7 +68,7 @@ public class ControllerConfigure : MonoBehaviour {
         DimensionSwitchHandler.ResetDimensionSwitchEvent();
         DimensionSwitchHandler.DimensionSwitchEvent += SwapDimension;
 
-		if (mainMenu) {
+		if (sceneType == SceneType.MAIN_MENU || sceneType == SceneType.LEVEL_SELECT) {
 			SwapDimension ();
 		}
     }
