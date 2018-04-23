@@ -12,7 +12,7 @@ public class MasterMonoBehaviour : MonoBehaviour {
 	public GameObject FaderHolder;
 	private Fader fader;
 	public GameObject pauseMenu;
-    public static AudioSource audioSource;
+    public AudioSource audioSource;
 
     void Awake()
     {
@@ -58,9 +58,8 @@ public class MasterMonoBehaviour : MonoBehaviour {
 		Time.timeScale = 1;
 	}
 
-    public static void Click()
+    public void Click()
     {
-        audioSource = GameObject.FindObjectOfType<AudioSource>().GetComponent<AudioSource>();
         audioSource.Play();
     }
 }

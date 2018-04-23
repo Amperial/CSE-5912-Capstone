@@ -11,7 +11,7 @@ public class ButtonInteractTrigger : InteractTrigger {
     public override void Interact() {
         base.Interact();
         triggerOn = !triggerOn;
-        MasterMonoBehaviour.Click();
+        MasterMonoBehaviour.Instance.Click();
 
         if (triggerOn)
         {
