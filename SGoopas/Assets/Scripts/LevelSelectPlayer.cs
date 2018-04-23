@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelSelectPlayer : MonoBehaviour {
 	public static string selection = "Menu Level 1 Shadow";
 	public AudioSource buttonPress;
-	public Text backText, level1Text, level2Text, level3Text, level4Text, level5Text;
+	public Text backText, level1Text, level2Text, level3Text, level4Text, level5Text, level6Text;
 	private static LevelSelectPlayer Instance;
 	private Color selected, unselected;
 
@@ -34,8 +34,9 @@ public class LevelSelectPlayer : MonoBehaviour {
 		level3Text.color = unselected;
 		level4Text.color = unselected;
 		level5Text.color = unselected;
+        level6Text.color = unselected;
 
-		switch (selection) {
+        switch (selection) {
 		case "Menu Back Shadow":
 			backText.color = selected;
 			break;
@@ -53,7 +54,10 @@ public class LevelSelectPlayer : MonoBehaviour {
 			break;
 		case "Menu Level 5 Shadow":
 			level5Text.color = selected;
-			break;
+                break;
+        case "Menu Level 6 Shadow":
+                level6Text.color = selected;
+                break;
 		}
 	}
 
@@ -77,7 +81,10 @@ public class LevelSelectPlayer : MonoBehaviour {
 		case "Menu Level 5 Shadow":
 			Instance.GoToLevel (4);
 			break;
-		}
+        case "Menu Level 6 Shadow":
+            Instance.GoToLevel(5);
+            break;
+        }
 	}
 
 	public void MainMenu(){
