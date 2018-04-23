@@ -20,5 +20,7 @@ namespace PlayerStates
         void ExitLevel();
         void LateUpdate();
         void EnemyCollision(GameObject Enemy);
+        void Freeze();
+        void Unfreeze();
     }
 }

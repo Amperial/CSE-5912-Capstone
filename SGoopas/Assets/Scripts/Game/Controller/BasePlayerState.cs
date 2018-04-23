@@ -45,5 +45,11 @@ namespace PlayerStates
         public abstract void Death();
         public abstract void EnemyCollision(GameObject Enemy);
         public abstract void ExitLevel();
+
+        public virtual void Freeze() {
+            SetState(new FrozenPlayerState(this));
+        }
+
+        public virtual void Unfreeze() {}
     }
 }
