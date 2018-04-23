@@ -66,12 +66,27 @@ public class MasterStateMachine
         MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState()));
     }
 
+	public void GoToLevel(int level) {
+		MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(new GameMainState(level)));
+	}
+
+	public void GoToLevelSelect(){
+		MasterStateMachine.Instance.setState(new LevelSelectState());
+	}
+
     public void GoToNextLevel() {
         if (currentState is GameMainState) {
-            GameMainState newLevel = ((GameMainState)currentState).GetStateForNextLevel();
-            MasterMonoBehaviour.Instance.FadeScreen(1f, () => {
-                MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously(newLevel));
-            });
+            IGameState newLevel = ((GameMainState)currentState).GetStateForNextLevel();
+            if (newLevel is GameMainState)
+            {
+                MasterMonoBehaviour.Instance.FadeScreen(1f, () => {
+                    MasterMonoBehaviour.Instance.StartCoroutine(LoadLevelAsynchronously((GameMainState)newLevel));
+                });
+            } else {
+                MasterMonoBehaviour.Instance.FadeScreen(1f, () => {
+                    setState(newLevel);
+                });
+            }
         }
     }
 

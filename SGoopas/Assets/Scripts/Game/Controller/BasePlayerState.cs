@@ -37,7 +37,6 @@ namespace PlayerStates
         public abstract void MoveLeft();
         public abstract void MoveRight();
         public abstract void MoveUp();
-        public abstract void Release();
         public abstract void Update();
         public abstract void FixedUpdate();
         public abstract void StoreState();
@@ -46,5 +45,11 @@ namespace PlayerStates
         public abstract void Death();
         public abstract void EnemyCollision(GameObject Enemy);
         public abstract void ExitLevel();
+
+        public virtual void Freeze() {
+            SetState(new FrozenPlayerState(this));
+        }
+
+        public virtual void Unfreeze() {}
     }
 }

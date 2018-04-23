@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class MenuPlayer : MonoBehaviour {
 	public static string selection = "Menu Play Shadow";
 	public AudioSource buttonPress;
-	public Text playText, creditsText, quitText;
+	public Text playText, creditsText, quitText, levelsText;
 	private static MenuPlayer Instance;
 	private Color selected, unselected;
 
@@ -31,10 +31,14 @@ public class MenuPlayer : MonoBehaviour {
 		quitText.color = unselected;
 		creditsText.color = unselected;
 		playText.color = unselected;
+		levelsText.color = unselected;
 
 		switch (selection) {
 		case "Menu Play Shadow":
 			playText.color = selected;
+			break;
+		case "Menu Level Select Shadow":
+			levelsText.color = selected;
 			break;
 		case "Menu Credits Shadow":
 			creditsText.color = selected;
@@ -51,7 +55,7 @@ public class MenuPlayer : MonoBehaviour {
 			Instance.Play ();
 			break;
 		case "Menu Level Select Shadow":
-			Debug.Log ("level select");
+			Instance.LevelSelect ();
 			break;
 		case "Menu Credits Shadow":
 			Instance.Credits ();
@@ -67,6 +71,14 @@ public class MenuPlayer : MonoBehaviour {
 		buttonPress.Play();
 		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
 			MasterStateMachine.Instance.GoToFirstLevel();
+		});
+	}
+
+	public void LevelSelect()
+	{
+		buttonPress.Play();
+		MasterMonoBehaviour.Instance.FadeScreen (1f, () => {
+			MasterStateMachine.Instance.GoToLevelSelect();
 		});
 	}
 

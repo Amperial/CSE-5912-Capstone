@@ -46,16 +46,6 @@ namespace PlayerStates
         }
         public override void Action()
         {
-            // No-op, disable action while grabbing.
-        }
-
-        public override void Jump()
-        {
-            // No-op, disable jumping while grabbing.
-        }
-
-        public override void Release()
-        {
             grabObj.GetComponent<ObjInteractableBase>().InteractionEnded();
             animation3D.StopRun();
             animation3D.StopCarry();
@@ -63,6 +53,11 @@ namespace PlayerStates
             grabRb.detectCollisions = true;
             grabObj.transform.parent = oldParent;
             SetState(new State3DStand(this));
+        }
+
+        public override void Jump()
+        {
+            // No-op, disable jumping while grabbing.
         }
 
         public override void Update()

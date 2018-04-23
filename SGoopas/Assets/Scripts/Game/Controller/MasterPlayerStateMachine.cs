@@ -6,6 +6,8 @@ namespace PlayerStates
 {
     public class MasterPlayerStateMachine
     {
+        public bool is2D = false;
+        public bool swapAvailable = true;
 
         private IPlayerState currentState, state3D, state2D;
         public IPlayerState CurrentPlayerState
@@ -35,6 +37,12 @@ namespace PlayerStates
             ExitHandler.ResetExitEvent();
             ExitHandler.ExitEvent += PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
+            DimensionSwitchHandler.ResetDimensionSwitchEvent();
+            DimensionSwitchHandler.DimensionSwitchEvent += AttemptDimensionSwap;
+            PlayerFreezeHandler.ResetFreezeEvent();
+            PlayerFreezeHandler.ResetUnfreezeEvent();
+            PlayerFreezeHandler.PlayerFreezeEvent += FreezeCharacter;
+            PlayerFreezeHandler.PlayerUnfreezeEvent += UnfreezeCharacter;
         }
 
         ~MasterPlayerStateMachine()
@@ -43,6 +51,9 @@ namespace PlayerStates
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
             ExitHandler.ExitEvent -= PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
+            DimensionSwitchHandler.DimensionSwitchEvent -= AttemptDimensionSwap;
+            PlayerFreezeHandler.PlayerFreezeEvent -= FreezeCharacter;
+            PlayerFreezeHandler.PlayerUnfreezeEvent -= UnfreezeCharacter;
         }
 
         public void PlayerDeathOccurred() {
@@ -85,11 +96,6 @@ namespace PlayerStates
             currentState.MoveUp();
         }
 
-        public void Release()
-        {
-            currentState.Release();
-        }
-
         public void Update()
         {
             currentState.Update();
@@ -105,7 +111,39 @@ namespace PlayerStates
             currentState.LateUpdate();
         }
 
-        public void SwitchDimension()
+        public void FreezeCharacter()
+        {
+            swapAvailable = false;
+            currentState.Freeze();
+        }
+
+        public void UnfreezeCharacter()
+        {
+            swapAvailable = true;
+            currentState.Unfreeze();
+        }
+
+        public void DimensionSwapButtonPressed()
+        {
+            if (swapAvailable)
+            {
+                AttemptDimensionSwap();
+            }
+        }
+
+        private void AttemptDimensionSwap()
+        {
+            Cancellable cancellable = new Cancellable();
+            cancellable.PerformCancellable(SwitchDimension, CancelDimensionSwitch);
+
+            MainObjectContainer.Instance.BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
+            if (!cancellable.IsCancelled)
+            {
+                is2D = !is2D;
+            }
+        }
+
+        private void SwitchDimension()
         {
             currentState.StoreState();
 
@@ -126,7 +164,7 @@ namespace PlayerStates
         /*
          * Supports cancelling a switch to 2D and a switch to 3D.
          */
-        public void CancelDimensionSwitch()
+        private void CancelDimensionSwitch()
         {
             currentState.StoreState();
 

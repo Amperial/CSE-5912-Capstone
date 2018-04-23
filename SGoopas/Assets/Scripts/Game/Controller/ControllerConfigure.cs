@@ -7,34 +7,15 @@ public class ControllerConfigure : MonoBehaviour {
     private MasterPlayerStateMachine playerStateMachine;
     private Controller controller;
 
-    public bool is2D = false;
 	public bool mainMenu = false;
+	public enum SceneType {GAME, MAIN_MENU, LEVEL_SELECT}
+	public SceneType sceneType = SceneType.GAME;
+
     public MasterPlayerStateMachine PlayerStateMachine
     {
         get
         {
             return playerStateMachine;
-        }
-    }
-
-    ~ControllerConfigure()
-    {
-        // Unsubscribe from swap event when this object is destroyed.
-        DimensionSwitchHandler.DimensionSwitchEvent -= SwapDimension;
-    }
-
-    /**
-     * To be replaced with an event-based swap in the future
-     */
-    public void SwapDimension()
-    {
-        Cancellable cancellable = new Cancellable();
-        cancellable.PerformCancellable(playerStateMachine.SwitchDimension, playerStateMachine.CancelDimensionSwitch);
-        
-        BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
-        if (!cancellable.IsCancelled)
-        {
-            is2D = !is2D;
         }
     }
 
@@ -44,12 +25,15 @@ public class ControllerConfigure : MonoBehaviour {
         controller.RegisterButtonDown("Action", playerStateMachine.Action);
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
-        controller.RegisterButtonDown("Release", playerStateMachine.Release);
         controller.RegisterButtonDown("Reset", MasterStateMachine.Instance.ResetLevel);
-		if (mainMenu) {
+		if (sceneType == SceneType.MAIN_MENU) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);
-		} else {
-			controller.RegisterButtonDown ("SwapDimension", SwapDimension);
+		} 
+		else if(sceneType == SceneType.LEVEL_SELECT){
+			controller.RegisterButtonDown ("Submit", LevelSelectPlayer.LevelSelect);
+		}
+		else {
+			controller.RegisterButtonDown ("SwapDimension", playerStateMachine.DimensionSwapButtonPressed);
 		}
     }
 
@@ -59,11 +43,8 @@ public class ControllerConfigure : MonoBehaviour {
         playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
 
-        DimensionSwitchHandler.ResetDimensionSwitchEvent();
-        DimensionSwitchHandler.DimensionSwitchEvent += SwapDimension;
-
-		if (mainMenu) {
-			SwapDimension ();
+		if (sceneType == SceneType.MAIN_MENU || sceneType == SceneType.LEVEL_SELECT) {
+			playerStateMachine.DimensionSwapButtonPressed();
 		}
     }
 	

@@ -23,7 +23,13 @@ public class GameMainState : IGameState
         }
     }
 
-    public GameMainState GetStateForNextLevel() {
+    public IGameState GetStateForNextLevel() {
+        if (levelNumber + 1 >= levels.Count)
+        {
+            // End of game.
+            return new CreditsState();
+        }
+
         return new GameMainState(levelNumber + 1);
     }
 
