@@ -7,34 +7,12 @@ public class ControllerConfigure : MonoBehaviour {
     private MasterPlayerStateMachine playerStateMachine;
     private Controller controller;
 
-    public bool is2D = false;
 	public bool mainMenu = false;
     public MasterPlayerStateMachine PlayerStateMachine
     {
         get
         {
             return playerStateMachine;
-        }
-    }
-
-    ~ControllerConfigure()
-    {
-        // Unsubscribe from swap event when this object is destroyed.
-        DimensionSwitchHandler.DimensionSwitchEvent -= SwapDimension;
-    }
-
-    /**
-     * To be replaced with an event-based swap in the future
-     */
-    public void SwapDimension()
-    {
-        Cancellable cancellable = new Cancellable();
-        cancellable.PerformCancellable(playerStateMachine.SwitchDimension, playerStateMachine.CancelDimensionSwitch);
-        
-        BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
-        if (!cancellable.IsCancelled)
-        {
-            is2D = !is2D;
         }
     }
 
@@ -49,7 +27,7 @@ public class ControllerConfigure : MonoBehaviour {
 		if (mainMenu) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);
 		} else {
-			controller.RegisterButtonDown ("SwapDimension", SwapDimension);
+            controller.RegisterButtonDown ("SwapDimension", playerStateMachine.AttemptDimensionSwap);
 		}
     }
 
@@ -59,11 +37,8 @@ public class ControllerConfigure : MonoBehaviour {
         playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
 
-        DimensionSwitchHandler.ResetDimensionSwitchEvent();
-        DimensionSwitchHandler.DimensionSwitchEvent += SwapDimension;
-
-		if (mainMenu) {
-			SwapDimension ();
+        if (mainMenu) {
+            playerStateMachine.AttemptDimensionSwap();
 		}
     }
 	

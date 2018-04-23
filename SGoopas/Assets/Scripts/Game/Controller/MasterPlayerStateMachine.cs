@@ -6,6 +6,7 @@ namespace PlayerStates
 {
     public class MasterPlayerStateMachine
     {
+        public bool is2D = false;
 
         private IPlayerState currentState, state3D, state2D;
         public IPlayerState CurrentPlayerState
@@ -35,6 +36,8 @@ namespace PlayerStates
             ExitHandler.ResetExitEvent();
             ExitHandler.ExitEvent += PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
+            DimensionSwitchHandler.ResetDimensionSwitchEvent();
+            DimensionSwitchHandler.DimensionSwitchEvent += AttemptDimensionSwap;
         }
 
         ~MasterPlayerStateMachine()
@@ -43,6 +46,9 @@ namespace PlayerStates
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
             ExitHandler.ExitEvent -= PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
+            DimensionSwitchHandler.DimensionSwitchEvent -= AttemptDimensionSwap;
+
+        
         }
 
         public void PlayerDeathOccurred() {
@@ -103,6 +109,18 @@ namespace PlayerStates
         public void LateUpdate()
         {
             currentState.LateUpdate();
+        }
+
+        public void AttemptDimensionSwap()
+        {
+            Cancellable cancellable = new Cancellable();
+            cancellable.PerformCancellable(SwitchDimension, CancelDimensionSwitch);
+
+            MainObjectContainer.Instance.BroadcastMessage(is2D ? "SwitchTo3D" : "SwitchTo2D", cancellable, SendMessageOptions.DontRequireReceiver);
+            if (!cancellable.IsCancelled)
+            {
+                is2D = !is2D;
+            }
         }
 
         public void SwitchDimension()
