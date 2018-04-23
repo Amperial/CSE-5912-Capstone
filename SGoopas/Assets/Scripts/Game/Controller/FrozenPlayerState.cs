@@ -21,7 +21,6 @@ namespace PlayerStates
         public override void MoveLeft() {}
         public override void MoveRight() {}
         public override void MoveUp() {}
-        public override void Release() {}
         public override void Update() {}
         public override void FixedUpdate() {}
         public override void StoreState() {}

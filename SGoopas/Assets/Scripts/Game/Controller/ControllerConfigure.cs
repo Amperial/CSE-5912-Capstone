@@ -8,6 +8,9 @@ public class ControllerConfigure : MonoBehaviour {
     private Controller controller;
 
 	public bool mainMenu = false;
+	public enum SceneType {GAME, MAIN_MENU, LEVEL_SELECT}
+	public SceneType sceneType = SceneType.GAME;
+
     public MasterPlayerStateMachine PlayerStateMachine
     {
         get
@@ -22,12 +25,15 @@ public class ControllerConfigure : MonoBehaviour {
         controller.RegisterButtonDown("Action", playerStateMachine.Action);
         controller.RegisterAxis("Horizontal", playerStateMachine.MoveLeft, playerStateMachine.MoveRight);
         controller.RegisterAxis("Vertical", playerStateMachine.MoveDown, playerStateMachine.MoveUp);
-        controller.RegisterButtonDown("Release", playerStateMachine.Release);
         controller.RegisterButtonDown("Reset", MasterStateMachine.Instance.ResetLevel);
-		if (mainMenu) {
+		if (sceneType == SceneType.MAIN_MENU) {
 			controller.RegisterButtonDown ("Submit", MenuPlayer.MenuSelect);
-		} else {
-            controller.RegisterButtonDown ("SwapDimension", playerStateMachine.DimensionSwapButtonPressed);
+		} 
+		else if(sceneType == SceneType.LEVEL_SELECT){
+			controller.RegisterButtonDown ("Submit", LevelSelectPlayer.LevelSelect);
+		}
+		else {
+			controller.RegisterButtonDown ("SwapDimension", playerStateMachine.DimensionSwapButtonPressed);
 		}
     }
 
@@ -37,8 +43,8 @@ public class ControllerConfigure : MonoBehaviour {
         playerStateMachine = new MasterPlayerStateMachine(MainObjectContainer.Instance.Player2D, MainObjectContainer.Instance.Player3D);
         ConfigureControls();
 
-        if (mainMenu) {
-            playerStateMachine.DimensionSwapButtonPressed();
+		if (sceneType == SceneType.MAIN_MENU || sceneType == SceneType.LEVEL_SELECT) {
+			playerStateMachine.DimensionSwapButtonPressed();
 		}
     }
 	

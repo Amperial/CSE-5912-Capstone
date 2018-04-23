@@ -194,10 +194,6 @@ namespace PlayerStates
             }
         }
 
-        public override void Release()
-        {
-
-        }
         public override void MoveUp()
         {
             // Commented out because MoveUp() is handled in the controller as an axis and will continually call Jump() while held down

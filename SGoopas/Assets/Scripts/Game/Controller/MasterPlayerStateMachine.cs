@@ -96,11 +96,6 @@ namespace PlayerStates
             currentState.MoveUp();
         }
 
-        public void Release()
-        {
-            currentState.Release();
-        }
-
         public void Update()
         {
             currentState.Update();

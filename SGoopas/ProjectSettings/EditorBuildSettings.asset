@@ -53,3 +53,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Game/DayTimeScene1.unity
     guid: 40d0928b8a637442588263f6de23d7ef
+  - enabled: 1
+    path: Assets/_Scenes/LevelSelect.unity
+    guid: e557dd5acd13d421f87a7d4e45d2c963
