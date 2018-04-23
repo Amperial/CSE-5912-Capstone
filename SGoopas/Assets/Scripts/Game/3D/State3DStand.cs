@@ -78,11 +78,6 @@ namespace PlayerStates
             newState.MoveUp();
         }
 
-        public override void Release()
-        {
-            //no action
-        }
-
         public override void Update()
         {
             // No-op.

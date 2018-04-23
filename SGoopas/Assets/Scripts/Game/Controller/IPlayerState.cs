@@ -16,7 +16,6 @@ namespace PlayerStates
         void FixedUpdate();
         void Jump();
         void Action();
-        void Release();
         void Death();
         void ExitLevel();
         void LateUpdate();
