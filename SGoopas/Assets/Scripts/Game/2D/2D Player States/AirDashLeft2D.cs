@@ -11,7 +11,6 @@ namespace PlayerStates
         private GameObject afterimage;
         private Vector3 direction;
         private IEnumerator coroutine;
-        private Rigidbody2D rigidbody;
         private float origGrav;
         public AirDashLeft2D(BasePlayerState previousState) : base(previousState)
         {
@@ -39,10 +38,9 @@ namespace PlayerStates
         {
                 afterimage = (GameObject)Resources.Load("AfterImage");
                 timeEllapsed = 0.0f;
-                rigidbody = PlayerObject.GetComponent<Rigidbody2D>();
-                origGrav = rigidbody.gravityScale;
-                rigidbody.gravityScale = 0.0f;
-                rigidbody.velocity = direction.normalized * DashDistance / DashTime;
+                origGrav = rb.gravityScale;
+                rb.gravityScale = 0.0f;
+                rb.velocity = direction.normalized * DashDistance / DashTime;
                 coroutine = AfterImage();
                 if (MasterMonoBehaviour.Instance != null)
                     MasterMonoBehaviour.Instance.StartCoroutine(coroutine);
@@ -50,7 +48,7 @@ namespace PlayerStates
 
         private void PseudoDestructor()
         {
-            rigidbody.gravityScale = origGrav;
+            rb.gravityScale = origGrav;
             if (MasterMonoBehaviour.Instance != null)
                 MasterMonoBehaviour.Instance.StopCoroutine(coroutine);
             SetState(new JumpingLeft2D(this));
@@ -89,6 +87,7 @@ namespace PlayerStates
         public override void Update()
         {
             timeEllapsed += Time.deltaTime;
+            rb.velocity = direction.normalized * DashDistance / DashTime;
             if (timeEllapsed >= DashTime)
                 PseudoDestructor();
         }
