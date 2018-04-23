@@ -12,20 +12,13 @@ public abstract class ShadowController {
 	public ShadowController(ShadowCaster caster, GameObject gameObject) {
 		shadowCaster = caster;
 		this.gameObject = gameObject;
-		this.meshRenderer = this.gameObject.GetComponent<MeshRenderer> ();
 	}
 
 	public abstract void UpdateShadow ();
 
     public abstract bool IsShadowOkay(GameObject player);
 
-    public virtual void ConstructShadow()
-    {
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-    }
+    public abstract void ConstructShadow();
 
-	public virtual void DeconstructShadow()
-    {
-        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-    }
+    public abstract void DeconstructShadow();
 }

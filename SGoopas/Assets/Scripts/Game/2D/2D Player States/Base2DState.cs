@@ -17,6 +17,7 @@ namespace PlayerStates
         private float dashDistance = 5f;
         private float enemyDetectionAngle = 15f;
         private float dashTime = 0.0f;
+        private const float boxCastHeight = 0.1f;
 
         protected Rigidbody2D rb;
         private Vector2 linearVelocity;
@@ -27,6 +28,7 @@ namespace PlayerStates
         private bool lookingForGroundedPosition = true;
 
         protected Animator anim;
+        protected Color mat;
         protected float characterWidth;
         protected bool dJump;
         protected bool dash;
@@ -40,6 +42,7 @@ namespace PlayerStates
                 rb = previousState2D.rb;
 
                 anim = previousState2D.anim;
+                mat = previousState2D.mat;
                 characterWidth = previousState2D.characterWidth;
                 linearVelocity = previousState2D.linearVelocity;
                 angularVelocity = previousState2D.angularVelocity;
@@ -57,7 +60,12 @@ namespace PlayerStates
             rb = PlayerObject.GetComponent<Rigidbody2D>();
 
             anim = PlayerObject.GetComponent<Animator>();
+
             characterWidth = PlayerObject.GetComponent<Collider2D>().bounds.size.x/1.2f;
+
+            mat = PlayerObject.GetComponent<SpriteRenderer>().color;
+            mat.a = 0.7f;
+            PlayerObject.GetComponent<SpriteRenderer>().color = mat;
 
             linearVelocity = new Vector2();
             angularVelocity = 0.0f;
@@ -221,7 +229,7 @@ namespace PlayerStates
 
         public override void LateUpdate()
         {
-            
+
         }
 
         public override void Death() {
@@ -240,20 +248,9 @@ namespace PlayerStates
             get {
                 Vector3 playerPosition = PlayerObject.transform.position;
                 Vector3 ground = GroundCheck.position;
-                Vector3 tempVL = playerPosition;
-                Vector3 tempVR = playerPosition;
-                tempVL.x = playerPosition.x - (characterWidth / 2.0f);
-                tempVR.x = playerPosition.x + (characterWidth / 2.0f);
 
-                if (Physics2D.Linecast(playerPosition, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVL, ground, ~(1 << LayerMask.NameToLayer("Player"))) || Physics2D.Linecast(tempVR, ground, ~(1 << LayerMask.NameToLayer("Player"))))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-                
+                return Physics2D.BoxCast(playerPosition, new Vector2(characterWidth, boxCastHeight), 0f, ground - playerPosition, (ground - playerPosition).magnitude, ~(1 << LayerMask.NameToLayer("Player")));
+
             }
         }
 
@@ -294,6 +291,16 @@ namespace PlayerStates
                 }
                 return dashVector.normalized;
             }
+        }
+        public void Freeze()
+        {
+            rb.velocity = new Vector2(0,0);
+            rb.angularVelocity = 0;
+        }
+        public override void ExitLevel()
+        {
+            anim.SetBool("exit", true);
+            SetState(new ExitLevel2D(this));
         }
 
         public override void EnemyCollision(GameObject Enemy)

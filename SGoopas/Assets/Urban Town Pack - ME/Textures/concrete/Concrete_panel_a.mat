@@ -10,178 +10,99 @@ Material:
   m_Shader: {fileID: 4800000, guid: d0e770fbe1465b947a3fab390a869c68, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _Albedo
-      second:
+    - _Albedo:
         m_Texture: {fileID: 2800000, guid: 8d7cf8b71fa1c2545ba15622cdd86a15, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _BumpMap
-      second:
+    - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedo
-      second:
+    - _DetailAlbedo:
         m_Texture: {fileID: 2800000, guid: 38966fc8ec8de4c44b7c41b80f8eb9af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailAlbedoMap
-      second:
+    - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailMask
-      second:
+    - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormal
-      second:
+    - _DetailNormal:
         m_Texture: {fileID: 2800000, guid: 20838556c05ac9f4a87f1a62ac195ad7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DetailNormalMap
-      second:
+    - _DetailNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _EmissionMap
-      second:
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MetallicGlossMap
-      second:
+    - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Normal
-      second:
+    - _Normal:
         m_Texture: {fileID: 2800000, guid: 497e1f149a1fbbc49bbdaf997d5b650b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OcclusionMap
-      second:
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ParallaxMap
-      second:
+    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _RMA
-      second:
+    - _RMA:
         m_Texture: {fileID: 2800000, guid: 5fbe0a6df5682e240b894b642eab49d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _texcoord
-      second:
+    - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _AlbedoDetail
-      second: 1
-    - first:
-        name: _BumpScale
-      second: 1
-    - first:
-        name: _Cutoff
-      second: 0.5
-    - first:
-        name: _DetailBrightness
-      second: 2
-    - first:
-        name: _DetailNormalIntenisty
-      second: 1
-    - first:
-        name: _DetailNormalMapScale
-      second: 1
-    - first:
-        name: _DetailTiling
-      second: 2
-    - first:
-        name: _DstBlend
-      second: 0
-    - first:
-        name: _GlossMapScale
-      second: 1
-    - first:
-        name: _Glossiness
-      second: 1
-    - first:
-        name: _GlossyReflections
-      second: 1
-    - first:
-        name: _Metallic
-      second: 1
-    - first:
-        name: _MetallnessValue
-      second: 0
-    - first:
-        name: _Mode
-      second: 0
-    - first:
-        name: _NormalIntensity
-      second: 1
-    - first:
-        name: _OcclusionStrength
-      second: 1
-    - first:
-        name: _Parallax
-      second: 0.02
-    - first:
-        name: _SmoothnessTextureChannel
-      second: 0
-    - first:
-        name: _SpecularHighlights
-      second: 1
-    - first:
-        name: _SrcBlend
-      second: 1
-    - first:
-        name: _UVSec
-      second: 0
-    - first:
-        name: _ZWrite
-      second: 1
-    - first:
-        name: __dirty
-      second: 0
+    - _AlbedoDetail: 1
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailBrightness: 0.5
+    - _DetailNormalIntenisty: 1
+    - _DetailNormalMapScale: 1
+    - _DetailTiling: 2
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 1
+    - _GlossyReflections: 1
+    - _Metallic: 1
+    - _MetallnessValue: 0
+    - _Mode: 0
+    - _NormalIntensity: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-    - first:
-        name: _DetailTiling
-      second: {r: 2, g: 1, b: 0, a: 0}
-    - first:
-        name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _DetailTiling: {r: 2, g: 1, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

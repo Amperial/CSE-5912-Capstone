@@ -8,17 +8,12 @@ public class FloatingEnemy : MonoBehaviour {
     Vector3[] points;
 
     public float speed;
-
-    private bool move = false;
+    [HideInInspector]
+    public bool move = false;
 
 	// Use this for initialization
 	void Start () {
-        points = new Vector3[transform.childCount + 1];
-        points[0] = transform.position;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            points[i + 1] = transform.GetChild(i).position;
-        }
+        RecalculatePath();
 	}
     void Move()
     {
@@ -68,6 +63,16 @@ public class FloatingEnemy : MonoBehaviour {
         {
             PlayerDeathHandler.TriggerPlayerDeath();
             EnemyCollisionHandler.TriggerEnemyCollision(gameObject);
+        }
+    }
+
+    public void RecalculatePath()
+    {
+        points = new Vector3[transform.childCount + 1];
+        points[0] = transform.position;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            points[i + 1] = transform.GetChild(i).position;
         }
     }
 

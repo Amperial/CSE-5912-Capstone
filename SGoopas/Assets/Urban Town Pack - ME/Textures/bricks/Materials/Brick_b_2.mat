@@ -92,7 +92,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 1
+    - _Glossiness: -0.15
     - _GlossyReflections: 1
     - _HeightContrast: 1
     - _HeightTiling: 1

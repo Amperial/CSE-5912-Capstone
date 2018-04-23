@@ -23,15 +23,38 @@ public class GroupShadowHandler : MonoBehaviour {
 	public void SwitchTo2D(Cancellable cancellable) {
 		foreach (ShadowController shadowController in shadowControllers) {
             cancellable.PerformCancellable(shadowController.ConstructShadow, shadowController.DeconstructShadow);
+            cancellable.PerformCancellable(HideShadowObjects, ShowShadowObjects);
 
             if (!cancellable.IsCancelled && !shadowController.IsShadowOkay(MainObjectContainer.Instance.Player2D))
                 cancellable.Cancel();
 		}
 	}
 
+    private void HideShadowObjects() {
+        foreach (MeshRenderer meshRenderer in shadowObjectsParent.GetComponentsInChildren<MeshRenderer>())
+        {
+            if (meshRenderer.gameObject.GetComponent<ShadowConfiguration>() != null)
+            {
+                meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            } else {
+                meshRenderer.enabled = false;
+            }
+        }
+    }
+
+    private void ShowShadowObjects() {
+        foreach (MeshRenderer meshRenderer in shadowObjectsParent.GetComponentsInChildren<MeshRenderer>())
+        {
+            meshRenderer.enabled = true;
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+    }
+
 	public void SwitchTo3D(Cancellable cancellable) { 
 		foreach (ShadowController shadowController in shadowControllers) {
-            cancellable.PerformCancellable(shadowController.DeconstructShadow, shadowController.ConstructShadow);
+                    cancellable.PerformCancellable(shadowController.DeconstructShadow, shadowController.ConstructShadow);
+                    cancellable.PerformCancellable(ShowShadowObjects, HideShadowObjects);
+           
         }
 	}
 

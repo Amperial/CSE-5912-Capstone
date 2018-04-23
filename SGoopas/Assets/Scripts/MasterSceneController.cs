@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MasterSceneController : MonoBehaviour {
-	void Start () {
+    void Start () {
+        GameMainState.CheckForLevelIntegrity();
         MasterStateMachine.Instance.setState(new IntroState());
     }
 

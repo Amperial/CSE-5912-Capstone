@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System;
 
-public class Spotlight : MonoBehaviour {
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+public class Spotlight : MonoBehaviour
+{
     private GameObject planeChild;
     private bool generated;
     private Plane plane;
@@ -23,9 +27,9 @@ public class Spotlight : MonoBehaviour {
         planeChild.transform.parent = transform;
         generated = false;
         plane = new Plane(MainObjectContainer.Instance.ShadowPlane.transform.up, MainObjectContainer.Instance.ShadowPlane.transform.position);
-        if(!ShadowMaterial)
+        if (!ShadowMaterial)
             CreateDefaultShadowMaterial();
-        if(!IndicatorMaterial)
+        if (!IndicatorMaterial)
             CreateDefaultIndicatorMaterial();
     }
 
@@ -82,6 +86,8 @@ public class Spotlight : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(Spotlight))]
 public class SpotlightEditor : Editor
 {
@@ -106,3 +112,5 @@ public class SpotlightEditor : Editor
         }
     }
 }
+
+#endif

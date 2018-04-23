@@ -30,18 +30,29 @@ namespace PlayerStates
             state2D = new StationaryRight2D(player2D, this, groundCheck);
             state2D.StoreState();
             currentState = state3D;
+            PlayerDeathHandler.ResetDeathEvent();
             PlayerDeathHandler.PlayerDeathEvent += PlayerDeathOccurred;
+            ExitHandler.ResetExitEvent();
+            ExitHandler.ExitEvent += PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent += EnemyCollision;
         }
 
-        ~MasterPlayerStateMachine() {
-            // Unsubscribe from death event when this object is destroyed.
+        ~MasterPlayerStateMachine()
+        {
+            // Unsubscribe from death and exit events when this object is destroyed.
             PlayerDeathHandler.PlayerDeathEvent -= PlayerDeathOccurred;
+            ExitHandler.ExitEvent -= PlayerExitsLevel;
             EnemyCollisionHandler.EnemyCollisionEvent -= EnemyCollision;
         }
 
         public void PlayerDeathOccurred() {
+
             currentState.Death();
+        }
+
+        public void PlayerExitsLevel()
+        {
+            currentState.ExitLevel();
         }
 
         public void Action()
@@ -80,7 +91,7 @@ namespace PlayerStates
         }
 
         public void Update()
-        { 
+        {
             currentState.Update();
         }
 
@@ -102,6 +113,30 @@ namespace PlayerStates
             {
                 state2D = currentState;
                 currentState = state3D;
+            }
+            else
+            {
+                state3D = currentState;
+                currentState = state2D;
+            }
+
+            currentState.RestoreState();
+        }
+
+        /*
+         * Supports cancelling a switch to 2D and a switch to 3D.
+         */
+        public void CancelDimensionSwitch()
+        {
+            currentState.StoreState();
+
+            if (currentState is Base2DState)
+            {
+                state2D = currentState;
+                currentState = state3D;
+
+                // For some reason we couldn't swap to 2D. Give a visual cue.
+                MasterMonoBehaviour.Instance.DisplayMessage(new string[]{"Echo: You can't swap in this position. You'll crush me!"});
             }
             else
             {

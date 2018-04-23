@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class GameMainState : IGameState
 {
     private string sceneName;
-    private static List<string> levels = new List<string>{"Test", "LightFeatures", "SpotlightTest"};
+    private static List<string> levels = new List<string>{"DayTimeScene1", "RSLevel", "MLLevel", "HighWalls", "BinaryLevel"};
     private int levelNumber;
 
     public GameMainState(int levelNumber = 0) {
         this.levelNumber = levelNumber;
         sceneName = levels[Mathf.Min(levelNumber, levels.Count)];
+    }
+
+    public static void CheckForLevelIntegrity()
+    {
+        foreach (string levelName in levels)
+        {
+            Assert.IsTrue(Application.CanStreamedLevelBeLoaded(levelName), "Level " + levelName + " was listed in GameMain.cs but cannot be loaded.");
+        }
     }
 
     public GameMainState GetStateForNextLevel() {
@@ -42,11 +51,11 @@ public class GameMainState : IGameState
 
     void IGameState.onPause()
     {
-        SceneManager.GetSceneByName(sceneName).GetRootGameObjects()[0].SetActive(false);
+        //No op
     }
 
     void IGameState.onUnpause()
     {
-        SceneManager.GetSceneByName(sceneName).GetRootGameObjects()[0].SetActive(true);
+        //No op
     }
 }
