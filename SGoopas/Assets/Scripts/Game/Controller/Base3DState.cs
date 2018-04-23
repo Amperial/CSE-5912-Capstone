@@ -66,13 +66,6 @@ namespace PlayerStates
 
         }
 
-        public override void Freeze()
-        {
-            rb.velocity = new Vector3();
-            rb.angularVelocity = new Vector3();
-            base.Freeze();
-        }
-
         public override void Death()
         {
             // No-op, you can't die in 3D.

@@ -300,12 +300,6 @@ namespace PlayerStates
                 return dashVector.normalized;
             }
         }
-        public override void Freeze()
-        {
-            rb.velocity = new Vector2(0,0);
-            rb.angularVelocity = 0;
-            base.Freeze();
-        }
 
         public override void ExitLevel()
         {
