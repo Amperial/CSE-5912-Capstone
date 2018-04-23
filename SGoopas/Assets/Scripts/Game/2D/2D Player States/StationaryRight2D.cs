@@ -22,9 +22,7 @@ namespace PlayerStates
             if (DashTime != 0 && dash)
             {
                 dash = false;
-                Vector2 dashVec = DashVector;
-                Vector3 dashVect = new Vector3(dashVec.x, dashVec.y, 0);
-                SetState(new AirDashRight2D(this, dashVect));
+                SetState(new AirDashRight2D(this, new Vector3(1, 0, 0)));
             }
         }
 

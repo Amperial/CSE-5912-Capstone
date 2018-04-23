@@ -58,6 +58,7 @@ public class Spotlight : MonoBehaviour
         colliderScript.applicatorType = this.ApplicatorType;
         colliderScript.ShadowMaterial = this.ShadowMaterial;
         colliderScript.IndicatorMaterial = this.IndicatorMaterial;
+        planeChild.tag = "Physics2D";
     }
 
     private void ActivateCollider()
