@@ -226,12 +226,16 @@ namespace PlayerStates
                 original2DPosition = rb.gameObject.transform.position;
                 lookingForGroundedPosition = false;
 
-                //Also place a swap marker at that position
-                if (swapMarker != null)
-                    Object.Destroy(swapMarker);
-                swapMarker = Object.Instantiate(swapMarkerPrefab, PlayerObject.transform.root);
-                swapMarker.transform.position = PlayerObject.transform.position;
-                swapMarker.transform.localScale = PlayerObject.transform.localScale;
+                if (mc.leavesSwapMarker)
+                {
+                    //Also place a swap marker at that position
+                    if (swapMarker != null)
+                        Object.Destroy(swapMarker);
+                    swapMarker = Object.Instantiate(swapMarkerPrefab, PlayerObject.transform.root);
+                    swapMarker.transform.position = PlayerObject.transform.position;
+                    swapMarker.transform.localScale = PlayerObject.transform.localScale;
+
+                }
             }
         }
 
