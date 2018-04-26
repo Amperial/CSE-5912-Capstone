@@ -41,6 +41,7 @@ namespace PlayerStates
 
         public override void Update()
         {
+            Animator2D.updateGroundedParam(anim, true);
             SetState(new StationaryRight2D(this));
         }
     }
