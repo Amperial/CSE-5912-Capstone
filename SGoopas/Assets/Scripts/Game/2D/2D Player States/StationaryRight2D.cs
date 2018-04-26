@@ -7,12 +7,14 @@ namespace PlayerStates
     public class StationaryRight2D : Base2DState
     {
         public StationaryRight2D(BasePlayerState previousState) : base(previousState) {
+            Animator2D.updateGroundedParam(anim, true);
             MakeSpriteFaceRight();
             rb.velocity = new Vector2(0, rb.velocity.y);
             dash = true;
             dJump = true;
         }
         public StationaryRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
+            Animator2D.updateGroundedParam(anim, true);
             MakeSpriteFaceRight();
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
@@ -60,7 +62,6 @@ namespace PlayerStates
             if (!IsGrounded)
             {
                 SetState(new JumpingRight2D(this));
-                Animator2D.updateGroundedParam(anim, false);
             }
             //Sets animator's x and y speeds for the animations to use
             Animator2D.updateXYParam(anim, rb);

@@ -8,9 +8,11 @@ namespace PlayerStates
     {
         public JumpingLeft2D(BasePlayerState previousState) : base(previousState) {
             MakeSpriteFaceLeft();
+            Animator2D.updateGroundedParam(anim, false);
         }
         public JumpingLeft2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
             MakeSpriteFaceLeft();
+            Animator2D.updateGroundedParam(anim, false);
         }
 
 
@@ -65,7 +67,6 @@ namespace PlayerStates
             if (IsGrounded)
             {
                 SetState(new MovingLeft2D(this));
-                Animator2D.updateGroundedParam(anim, true);
             }
             //Sets animator's x and y speeds for the animations to use
             Animator2D.updateXYParam(anim, rb);

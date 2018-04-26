@@ -10,9 +10,11 @@ namespace PlayerStates
             actionTaken = true;
             dash = true;
             dJump = true;
+            Animator2D.updateGroundedParam(anim, true);
         }
         public MovingRight2D(GameObject player, MasterPlayerStateMachine playerStateMachine, Transform groundCheck) : base(player, playerStateMachine, groundCheck) {
             actionTaken = true;
+            Animator2D.updateGroundedParam(anim, true);
         }
 
         bool actionTaken;
@@ -61,7 +63,6 @@ namespace PlayerStates
             if (!IsGrounded)
             {
                 SetState(new JumpingRight2D(this));
-                Animator2D.updateGroundedParam(anim, false);
             }
             //Sets animator's x and y speeds for the animations to use
             Animator2D.updateXYParam(anim, rb);
